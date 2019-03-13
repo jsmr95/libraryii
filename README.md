@@ -3,8 +3,6 @@ Waffle:
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/jsmr95/libraryii.svg?columns=all)](https://waffle.io/jsmr95/libraryii)
 
 
-ffle.io - Columns and their card count](https://badge.waffle.io/jsmr95/libraryii.svg?columns=all)](https://waffle.io/jsmr95/libraryii)
-
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
