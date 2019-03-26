@@ -13,6 +13,8 @@ CREATE TABLE usuarios_id
 /* Tabla de usuarios en sí, la que contiene todos los datos de un
     usuario registrado */
 DROP TABLE IF EXISTS usuarios
+
+CREATE TABLE usuarios
 (
       id        bigint          PRIMARY KEY REFERENCES usuarios_id (id)
     , login     varchar(255)    NOT NULL UNIQUE
