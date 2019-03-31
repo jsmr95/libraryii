@@ -26,4 +26,20 @@ CREATE TABLE usuarios
     , pass      varchar(255)    NOT NULL
     , auth_key  varchar(255)    NOT NULL
     , created_at timestamp(0)   NOT NULL DEFAULT localtimestamp
+    , updated_at timestamp(0)
+);
+
+/* Tabla Libros */
+DROP TABLE IF EXISTS libros CASCADE;
+
+CREATE TABLE libros
+(
+      id        BIGSERIAL PRIMARY KEY
+    , titulo    varchar(255) NOT NULL
+    , isbn      varchar(255) NOT NULL
+    , sinopsis  varchar(255) NOT NULL
+    , url_compra varchar(255) NOT NULL
+    , anyo      numeric(4) NOT NULL
+    , autor_id  varchar(255) PRIMARY KEY REFERENCES autor (id)
+    , genero_id varchar(255) PRIMARY KEY REFERENCES genero (id)
 );
