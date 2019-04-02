@@ -153,16 +153,29 @@ VALUES (1, 'jose', 'jose@jose.com', 'jose', 'gallego', 'Joven programador...',
 
 -- Autores --
 INSERT INTO autores (id, nombre, descripcion, anyo)
-VALUES (1, 'Stephen King', 'Stephen Edwin King es un escritor estadounidense
+VALUES ('Stephen King', 'Stephen Edwin King es un escritor estadounidense
             conocido por sus novelas de terror. Los libros ...', 1947)
-    ,  (2, 'Carlos Ruiz Zafón', 'Escritor con una temprana vocación, comenzó
+    ,  ('Carlos Ruiz Zafón', 'Escritor con una temprana vocación, comenzó
             con literatura juvenil con la novela "El principe de la niebla".', 1964)
-    ,  (3, 'Isabel Allende', 'Isabel Allende Llona es una reconocida escritora
+    ,  ('Isabel Allende', 'Isabel Allende Llona es una reconocida escritora
             y periodista chilena, conocida principalmente por sus novelas ...', 1942)
-    ,  (4, 'Georg R. R. Martin', 'George Raymond Richard Martin conocido por sus
+    ,  ('Georg R. R. Martin', 'George Raymond Richard Martin conocido por sus
             seguidores como GRRM, es un escritor y guionista estadounidense ...', 1948)
-    ,  (5, 'Arturo Pérez Reverte', 'Es un periodista y escritor español, miembro
+    ,  ('Arturo Pérez Reverte', 'Es un periodista y escritor español, miembro
             de la Real Academia Española. Antiguo corresponsal de Radio...', 1951)
-    ,  (6, 'Megan Maxwell', 'Megan Maxwell es una conocida escritora de literatura
+    ,  ('Megan Maxwell', 'Megan Maxwell es una conocida escritora de literatura
             romántica de origen español, por parte de madre y norteamericano,...', 1965);
-    
+
+-- Generos --
+INSERT INTO generos ( genero)
+VALUES ('Artes', 'Aventuras', 'Biografías y Memorias', 'Ciencia-Ficción'
+        , 'Ciencias y Naturaleza', 'Clásicos', 'Erótica', 'Fantasía', 'Histórica y Bélica'
+        , 'Humor', 'Infantil', 'Informática y Tecnología', 'Literatura', 'Narrativa'
+        , 'Poesía', 'Romántica', 'Superhéroes', 'Teatro');
+
+-- Generos --
+INSERT INTO generos ( genero)
+VALUES ('Artes', 'Aventuras', 'Biografías y Memorias', 'Ciencia-Ficción'
+        , 'Ciencias y Naturaleza', 'Clásicos', 'Erótica', 'Fantasía', 'Histórica y Bélica'
+        , 'Humor', 'Infantil', 'Informática y Tecnología', 'Literatura', 'Narrativa'
+        , 'Poesía', 'Romántica', 'Superhéroes', 'Teatro');
