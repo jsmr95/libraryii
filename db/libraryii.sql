@@ -179,3 +179,7 @@ VALUES ('Artes', 'Aventuras', 'Biografías y Memorias', 'Ciencia-Ficción'
         , 'Ciencias y Naturaleza', 'Clásicos', 'Erótica', 'Fantasía', 'Histórica y Bélica'
         , 'Humor', 'Infantil', 'Informática y Tecnología', 'Literatura', 'Narrativa'
         , 'Poesía', 'Romántica', 'Superhéroes', 'Teatro');
+
+-- Libros --
+INSERT INTO libros ( titulo, isbn, anyo, sinopsis, url_compra, autor_id, genero_id)
+VALUES ();
