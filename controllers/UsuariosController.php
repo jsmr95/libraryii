@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Usuarios;
 use app\models\UsuariosIdSearch;
+use http\Url;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -64,10 +65,11 @@ class UsuariosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Usuarios();
+        $model = new Usuarios(['scenario' => Usuarios::SCENARIO_CREATE]);
+        $model->setAuthKey();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->usuario_id]);
+            return $this->enviarEmail($model);
         }
 
         return $this->render('create', [
@@ -123,5 +125,32 @@ class UsuariosController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Enviar un email de verificacion al usuario.
+     * @param  Usuarios $model Usuario receptor
+     * @return [action] Realiza una accion
+     */
+    public function enviarEmail($model)
+    {
+        $url = Url::to([
+            'usuarios/verificar',
+            'id' => $model->id,
+            'auth_key' => $model->auth_key,
+        ], true);
+
+        if (Yii::$app->mailer->compose()
+            ->setFrom('josemaria.gallego@iesdonana.org')
+            ->setTo($model->email)
+            ->setSubject('Libraryii - Correo de confirmación')
+            ->setTextBody("Verique su cuenta clicando en el siguiente enlace: $url")
+            ->send()
+        ) {
+            Yii::$app->session->setFlash('success', 'Se ha enviado un correo de confirmación a su email, por favor verifiquelo.');
+        } else {
+            Yii::$app->session->setFlash('error', 'Se ha producido un error al mandar el correo de confirmación.');
+        }
+        return $this->redirect(['index']);
     }
 }

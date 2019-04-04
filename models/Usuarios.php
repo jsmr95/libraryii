@@ -226,4 +226,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             }
         }
     }
+
+
+    public function setAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
+    }
 }
