@@ -7,9 +7,9 @@ use yii\data\ActiveDataProvider;
 use app\models\Usuarios;
 
 /**
- * UsuariosFavsSearch represents the model behind the search form of `app\models\Usuarios`.
+ * UsuariosSearch represents the model behind the search form of `app\models\Usuarios`.
  */
-class UsuariosFavsSearch extends Usuarios
+class UsuariosSearch extends Usuarios
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class UsuariosFavsSearch extends Usuarios
     {
         return [
             [['usuario_id'], 'integer'],
-            [['login', 'email', 'nombre', 'apellido', 'biografia', 'url_avatar', 'pass', 'auth_key', 'created_at', 'updated_at'], 'safe'],
+            [['login', 'email', 'nombre', 'apellido', 'biografia', 'url_avatar', 'password', 'auth_key', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -69,7 +69,7 @@ class UsuariosFavsSearch extends Usuarios
             ->andFilterWhere(['ilike', 'apellido', $this->apellido])
             ->andFilterWhere(['ilike', 'biografia', $this->biografia])
             ->andFilterWhere(['ilike', 'url_avatar', $this->url_avatar])
-            ->andFilterWhere(['ilike', 'pass', $this->pass])
+            ->andFilterWhere(['ilike', 'password', $this->password])
             ->andFilterWhere(['ilike', 'auth_key', $this->auth_key]);
 
         return $dataProvider;
