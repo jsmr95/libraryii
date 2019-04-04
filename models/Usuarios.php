@@ -182,7 +182,6 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->authKey;
     }
 
     /**
@@ -190,7 +189,6 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
     }
 
     /**
@@ -201,7 +199,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return Yii::$app->security->validatePassword($password, $this->password);
     }
 
     /**

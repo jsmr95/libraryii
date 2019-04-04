@@ -154,7 +154,7 @@ VALUES (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT),
 -- Usuarios --
 INSERT INTO usuarios (usuario_id, login, email, nombre, apellido, biografia, url_avatar, password)
 VALUES (1, 'jose', 'jose@jose.com', 'Jose', 'Gallego', 'Joven programador...',
-            null, 'jose')
+            null, crypt('jose', gen_salt('bf',10)))
     ,  (2, 'pepe', 'pepe@pepe.com', 'Pepe', 'Ruiz', 'Programador senior...',
             null, crypt('pepe', gen_salt('bf',10)))
     ,  (3, 'admin', 'admin@admin.com', 'admin', 'admin', 'Un administrador...',
