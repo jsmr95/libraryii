@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Usuarios;
-use app\models\UsuariosFavsSearch;
+use app\models\UsuariosIdSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -35,7 +35,7 @@ class UsuariosController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UsuariosFavsSearch();
+        $searchModel = new UsuariosIdSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +46,7 @@ class UsuariosController extends Controller
 
     /**
      * Displays a single Usuarios model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -78,7 +78,7 @@ class UsuariosController extends Controller
     /**
      * Updates an existing Usuarios model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +98,7 @@ class UsuariosController extends Controller
     /**
      * Deletes an existing Usuarios model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +112,7 @@ class UsuariosController extends Controller
     /**
      * Finds the Usuarios model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Usuarios the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
