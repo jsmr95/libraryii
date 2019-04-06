@@ -47,6 +47,11 @@ AppAsset::register($this);
         $usuario = Usuarios::findOne(['id' => Yii::$app->user->id]);
         $menu = [
             [
+                'label' => 'Autores',
+                'url' => ['/autores/index'],
+                'encode' => false
+            ],
+            [
                 'label' => 'Libros',
                  'url' => ['/libros/index'],
                  'encode' => false

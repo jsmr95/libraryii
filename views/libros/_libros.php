@@ -1,8 +1,5 @@
 <?php
-use app\models\Libros;
-use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 ?>
 <style media="screen">
 .right{

@@ -21,10 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
         if (Yii::$app->user->identity->login === 'admin'){
     ?>
     <p>
-        <?= Html::a('Create Libros', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Introducir Libro', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php  } } ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,

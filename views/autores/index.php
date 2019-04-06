@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use yii\widgets\ListView;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\AutoresSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -14,24 +16,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php
+        if (!Yii::$app->user->isGuest){
+        if (Yii::$app->user->identity->login === 'admin'){
+    ?>
     <p>
-        <?= Html::a('Create Autores', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Introducir Autor', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+<?php  } } ?>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
+    <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'nombre',
-            'descripcion',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
+        'itemView' => '_autores',
     ]); ?>
 
 
