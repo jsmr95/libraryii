@@ -50,7 +50,7 @@ AppAsset::register($this);
                  'encode' => false
             ],
             [
-                'label' => 'Logout',
+                'label' => "Logout ($usuario->login)",
                 'url' => ['/site/logout'],
                 'linkOptions' => ['data-method' => 'POST'],
                 'encode' => false,

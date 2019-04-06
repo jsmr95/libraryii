@@ -14,19 +14,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php
+        if (Yii::$app->user->identity->login === 'admin'){
+    ?>
     <p>
         <?= Html::a('Create Libros', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+    <?php  }  ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            // ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
             'titulo',
             'isbn',
             'anyo',
@@ -35,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'autor_id',
             //'genero_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            // ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
