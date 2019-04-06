@@ -45,9 +45,9 @@ use yii\widgets\ActiveForm;
                     ]) ?>
                 </h2>
                 <ul>
-                    <li>Autor: <?= $model->autor_id ?></li>
+                    <li>Autor: <?= $model->autor->nombre ?></li>
                     <li>Año: <?= $model->anyo ?></li>
-                    <li>Género: <?= $model->genero_id ?></li>
+                    <li>Género: <?= $model->genero->genero ?></li>
                     <li>ISBN: <?= $model->isbn ?></li>
                     <li> <?= Html::a('Compra', $model->url_compra) ?>
                     </li>
