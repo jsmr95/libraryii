@@ -37,8 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-offset-1 col-lg-11">
                 <!-- Botón Login -->
                 <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                <!-- Botón Registrarse -->
-                <?= Html::a('Registrarse', ['usuarios/create'], ['class' => 'btn btn-success', 'name' => 'register-button']) ?>
             </div>
             <div class="col-lg-offset-1 col-lg-11">
                 <div class="row">
