@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <!-- Datos cuenta -->
-    <?= $form->field($model, 'id')/*->hiddenInput()->label(false)*/ ?>
+    <?= $form->field($model, 'id')->hiddenInput()->label(false) ?>
 
     <?= $form->field($model, 'login')->textInput(['maxlength' => true]) ?>
 
@@ -34,9 +34,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'auth_key')->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'created_at')/*->hiddenInput()->label(false)*/ ?>
+    <?= $form->field($model, 'created_at')->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'updated_at')/*->hiddenInput()->label(false)*/ ?>
+    <?= $form->field($model, 'updated_at')->hiddenInput()->label(false) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Registrar', ['class' => 'btn btn-success']) ?>

@@ -83,17 +83,9 @@ class UsuariosController extends Controller
             $idUsuario = new UsuariosId();
             $idUsuario->save();
             $model->id = $idUsuario->id;
-            $model->updated_at = null;
-            $model->url_avatar = null;
-            $model->biografia = null;
-            $model->password = Yii::$app->security->generatePasswordHash($model->password);
-            // return $this->redirect('index');
-            // var_dump($model);
-            var_dump($model->save());
-            echo '<pre>';
-            var_dump($model);
 
-            // var_dump($model->errors);
+            $model->save();
+            return $this->redirect('index');
             // $this->enviarEmail($model);
         }
 

@@ -226,23 +226,24 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      * @param  bool $insert true->insert, false->update
      * @return bool true->inserccion o modificación llevada a cabo, false-> cancelado
      */
-    // public function beforeSave($insert)
-    // {
-    //     if (!parent::beforeSave($insert)) {
-    //         return false;
-    //     }
-    //     if ($insert) {
-    //         if ($this->scenario === self::SCENARIO_CREATE) {
-    //             $this->password = Yii::$app->security
-    //                 ->generatePasswordHash($this->password);
-    //         }
-    //     } elseif ($this->scenario === self::SCENARIO_UPDATE) {
-    //         if ($this->password === '') {
-    //             $this->password = $this->getOldAttribute('password');
-    //         } else {
-    //             $this->password = Yii::$app->security
-    //                 ->generatePasswordHash($this->password);
-    //         }
-    //     }
-    // }
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        if ($insert) {
+            if ($this->scenario === self::SCENARIO_CREATE) {
+                $this->password = Yii::$app->security
+                    ->generatePasswordHash($this->password);
+            }
+        } elseif ($this->scenario === self::SCENARIO_UPDATE) {
+            if ($this->password === '') {
+                $this->password = $this->getOldAttribute('password');
+            } else {
+                $this->password = Yii::$app->security
+                    ->generatePasswordHash($this->password);
+            }
+        }
+        return true;
+    }
 }
