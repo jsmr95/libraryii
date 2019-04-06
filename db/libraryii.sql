@@ -1,6 +1,7 @@
 ------------------------------
 -- Archivo de base de datos --
 ------------------------------
+CREATE EXTENSION pgcrypto;
 
 /* Tabla usuarios_id, este id de usuario no se eliminará nunca*/
 DROP TABLE IF EXISTS usuarios_id CASCADE;
@@ -15,10 +16,8 @@ CREATE TABLE usuarios_id
 DROP TABLE IF EXISTS usuarios CASCADE;
 
 CREATE TABLE usuarios
-(   id              BIGSERIAL PRIMARY KEY
-    ,  usuario_id   bigint REFERENCES usuarios_id (id)
-                        ON DELETE CASCADE
-                        ON UPDATE CASCADE
+(
+      id            bigint PRIMARY KEY REFERENCES usuarios_id (id)
     , login         varchar(255)    NOT NULL UNIQUE
     , email         varchar(255)    NOT NULL UNIQUE
     , nombre        varchar(255)    NOT NULL
@@ -27,8 +26,8 @@ CREATE TABLE usuarios
     , url_avatar    varchar(255)
     , password      varchar(255)    NOT NULL
     , auth_key      varchar(255)
-    , created_at    timestamp(0)   NOT NULL DEFAULT localtimestamp
-    , updated_at    timestamp(0)
+    , created_at    TIMESTAMP(0)   NOT NULL DEFAULT LOCALTIMESTAMP
+    , updated_at    TIMESTAMP(0)
 );
 
 /* Tabla Generos */
@@ -75,9 +74,9 @@ DROP TABLE IF EXISTS comentarios CASCADE;
 CREATE TABLE comentarios
 (
       id                BIGSERIAL PRIMARY KEY
-    , usuario_id        BIGINT REFERENCES usuarios (id)
-                            ON DELETE CASCADE
-                            ON UPDATE CASCADE
+    , usuario_id        BIGINT REFERENCES usuarios_id (id)
+                            ON DELETE NO ACTION
+                            ON UPDATE NO ACTION
     , libro_id          BIGINT REFERENCES libros (id)
                             ON DELETE CASCADE
                             ON UPDATE CASCADE
@@ -94,9 +93,9 @@ CREATE TABLE posts
       id            BIGSERIAL PRIMARY KEY
     , contenido     varchar(255) NOT NULL
     , created_at    timestamp(0)   NOT NULL DEFAULT localtimestamp
-    , usuario_id    BIGINT REFERENCES usuarios (id)
-                        ON DELETE CASCADE
-                        ON UPDATE CASCADE
+    , usuario_id    BIGINT REFERENCES usuarios_id (id)
+                        ON DELETE NO ACTION
+                        ON UPDATE NO ACTION
 );
 
 /* Tabla Libros favoritos */
@@ -105,9 +104,9 @@ DROP TABLE IF EXISTS libros_favs CASCADE;
 CREATE TABLE libros_favs
 (
       id            BIGSERIAL PRIMARY KEY
-    , usuario_id    BIGINT REFERENCES usuarios (id)
-                        ON DELETE CASCADE
-                        ON UPDATE CASCADE
+    , usuario_id    BIGINT REFERENCES usuarios_id (id)
+                        ON DELETE NO ACTION
+                        ON UPDATE NO ACTION
     , libro_id      BIGINT REFERENCES libros (id)
                         ON DELETE CASCADE
                         ON UPDATE CASCADE
@@ -119,9 +118,9 @@ DROP TABLE IF EXISTS autores_favs CASCADE;
 CREATE TABLE autores_favs
 (
       id            BIGSERIAL PRIMARY KEY
-    , usuario_id    BIGINT REFERENCES usuarios (id)
-                        ON DELETE CASCADE
-                        ON UPDATE CASCADE
+    , usuario_id    BIGINT REFERENCES usuarios_id (id)
+                        ON DELETE NO ACTION
+                        ON UPDATE NO ACTION
     , autor_id      BIGINT REFERENCES autores (id)
                         ON DELETE CASCADE
                         ON UPDATE CASCADE
@@ -133,12 +132,12 @@ DROP TABLE IF EXISTS users_favs CASCADE;
 CREATE TABLE users_favs
 (
       id            BIGSERIAL PRIMARY KEY
-    , usuario_id    BIGINT REFERENCES usuarios (id)
-                        ON DELETE CASCADE
-                        ON UPDATE CASCADE
-    , usuario_fav      BIGINT REFERENCES usuarios (id)
-                        ON DELETE CASCADE
-                        ON UPDATE CASCADE
+    , usuario_id    BIGINT REFERENCES usuarios_id (id)
+                        ON DELETE NO ACTION
+                        ON UPDATE NO ACTION
+    , usuario_fav      BIGINT REFERENCES usuarios_id (id)
+                        ON DELETE NO ACTION
+                        ON UPDATE NO ACTION
 );
 
 
@@ -152,15 +151,15 @@ VALUES (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT),
        (DEFAULT), (DEFAULT);
 
 -- Usuarios --
-INSERT INTO usuarios (usuario_id, login, email, nombre, apellido, biografia, url_avatar, password)
+INSERT INTO usuarios (id, login, email, nombre, apellido, biografia, url_avatar, password, auth_key)
 VALUES (1, 'jose', 'jose@jose.com', 'Jose', 'Gallego', 'Joven programador...',
-            null, crypt('jose', gen_salt('bf',10)))
+            null, crypt('jose', gen_salt('bf',10)),'')
     ,  (2, 'pepe', 'pepe@pepe.com', 'Pepe', 'Ruiz', 'Programador senior...',
-            null, crypt('pepe', gen_salt('bf',10)))
+            null, crypt('pepe', gen_salt('bf',10)),'')
     ,  (3, 'admin', 'admin@admin.com', 'admin', 'admin', 'Un administrador...',
-            null, crypt('admin', gen_salt('bf',10)))
+            null, crypt('admin', gen_salt('bf',10)),'')
     ,  (4, 'carmen', 'carmen@carmen.com', 'Carmen', 'Gallego', 'Joven programadora...',
-            null, crypt('carmen', gen_salt('bf',10)));
+            null, crypt('carmen', gen_salt('bf',10)),'');
 
 -- Autores --
 INSERT INTO autores (nombre, descripcion)

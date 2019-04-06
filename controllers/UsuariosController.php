@@ -3,9 +3,11 @@
 namespace app\controllers;
 
 use app\models\Usuarios;
+use app\models\UsuariosId;
 use app\models\UsuariosIdSearch;
 use http\Url;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -27,6 +29,15 @@ class UsuariosController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            // 'access' => [
+            //     'class' => AccessControl::className(),
+            //     'only' => ['create'],
+            //     'rules' => [
+            //         'allow' => true,
+            //         'actions' => ['create'],
+            //         'roles' => ['?'],
+            //     ],
+            // ],
         ];
     }
 
@@ -66,12 +77,28 @@ class UsuariosController extends Controller
     public function actionCreate()
     {
         $model = new Usuarios(['scenario' => Usuarios::SCENARIO_CREATE]);
-        $model->setAuthKey();
+        //genero un usuario_id para asociarle al usuario que voy a crear
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->enviarEmail($model);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $idUsuario = new UsuariosId();
+            $idUsuario->save();
+            $model->id = $idUsuario->id;
+            $model->updated_at = null;
+            $model->url_avatar = null;
+            $model->biografia = null;
+            $model->password = Yii::$app->security->generatePasswordHash($model->password);
+            // return $this->redirect('index');
+            // var_dump($model);
+            var_dump($model->save());
+            echo '<pre>';
+            var_dump($model);
+
+            // var_dump($model->errors);
+            // $this->enviarEmail($model);
         }
 
+        $model->password = '';
+        $model->password_repeat = '';
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -152,5 +179,11 @@ class UsuariosController extends Controller
             Yii::$app->session->setFlash('error', 'Se ha producido un error al mandar el correo de confirmación.');
         }
         return $this->redirect(['index']);
+    }
+
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
     }
 }

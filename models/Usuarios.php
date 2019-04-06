@@ -9,7 +9,6 @@ use yii\web\IdentityInterface;
  * This is the model class for table "usuarios".
  *
  * @property int $id
- * @property int $usuario_id
  * @property string $login
  * @property string $email
  * @property string $nombre
@@ -44,6 +43,12 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     const SCENARIO_UPDATE = 'update';
 
     /**
+     * Contraseña para verificar que el usuario no la ha escrito mal.
+     * @var string
+     */
+    public $password_repeat;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -57,32 +62,46 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['usuario_id', 'login', 'email', 'nombre', 'apellido', 'password'], 'required'],
-            [['usuario_id'], 'default', 'value' => null],
-            [['usuario_id'], 'integer'],
+            [['login', 'email', 'nombre', 'apellido', 'password'], 'required'],
+            [['login', 'email', 'nombre', 'apellido', 'password', 'password_repeat'], 'required', 'on' => [self::SCENARIO_CREATE]],
+            [['password'], 'compare', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
+            [['email', 'login'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
+            [['email'], 'email', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
             [['id', 'created_at', 'updated_at'], 'safe'],
             [['login', 'email', 'nombre', 'apellido', 'biografia', 'url_avatar', 'password', 'auth_key'], 'string', 'max' => 255],
-            [['email'], 'unique'],
-            [['login'], 'unique'],
-            [['usuario_id'], 'unique'],
-            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
+            [['auth_key'], 'default', 'value' => function () {
+                return $this->auth_key = Yii::$app->security->generateRandomString();
+            }],
+            [['created_at'], 'default', 'value' => function () {
+                return date('Y-m-d');
+            }],
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * Función para añadir un atributo al conjunto de atributos.
+     * @return array Conjunto de atributos mergeados.
+     */
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['password_repeat']);
+    }
+
+    /**
+     * Función para cambiar los nombres de las columnas, por un formato más social.
      */
     public function attributeLabels()
     {
         return [
-            'usuario_id' => 'Usuario ID',
+            'id' => 'ID',
             'login' => 'Login',
             'email' => 'Email',
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
-            'biografia' => 'Biografia',
+            'biografia' => 'Descripción',
             'url_avatar' => 'Url Avatar',
-            'password' => 'Password',
+            'password' => 'Contraseña',
+            'password_repeat' => 'Repita contraseña',
             'auth_key' => 'Auth Key',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -207,29 +226,23 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      * @param  bool $insert true->insert, false->update
      * @return bool true->inserccion o modificación llevada a cabo, false-> cancelado
      */
-    public function beforeSave($insert)
-    {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-        if ($insert) {
-            if ($this->scenario === self::SCENARIO_CREATE) {
-                goto salto;
-            }
-        } elseif ($this->scenario === self::SCENARIO_UPDATE) {
-            if ($this->password === '') {
-                $this->password = $this->getOldAttribute('password');
-            } else {
-                salto:
-                $this->password = Yii::$app->security
-                    ->generatePasswordHash($this->password);
-            }
-        }
-    }
-
-
-    public function setAuthKey()
-    {
-        $this->auth_key = Yii::$app->security->generateRandomString();
-    }
+    // public function beforeSave($insert)
+    // {
+    //     if (!parent::beforeSave($insert)) {
+    //         return false;
+    //     }
+    //     if ($insert) {
+    //         if ($this->scenario === self::SCENARIO_CREATE) {
+    //             $this->password = Yii::$app->security
+    //                 ->generatePasswordHash($this->password);
+    //         }
+    //     } elseif ($this->scenario === self::SCENARIO_UPDATE) {
+    //         if ($this->password === '') {
+    //             $this->password = $this->getOldAttribute('password');
+    //         } else {
+    //             $this->password = Yii::$app->security
+    //                 ->generatePasswordHash($this->password);
+    //         }
+    //     }
+    // }
 }
