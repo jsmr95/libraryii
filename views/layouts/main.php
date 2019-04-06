@@ -39,8 +39,10 @@ AppAsset::register($this);
     ]);
 
     if (Yii::$app->user->isGuest) {
-        $menu = [['label' => 'Login', 'url' => ['/site/login']],
-            ['label' => 'Registrarse', 'url' => ['/usuarios/create']]];
+        $menu = [
+            ['label' => 'Registrarse', 'url' => ['/usuarios/create']],
+            ['label' => 'Login', 'url' => ['/site/login']]
+        ];
     } else {
         $usuario = Usuarios::findOne(['id' => Yii::$app->user->id]);
         $menu = [

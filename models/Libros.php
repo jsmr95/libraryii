@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "libros".
  *
@@ -56,11 +54,11 @@ class Libros extends \yii\db\ActiveRecord
             'id' => 'ID',
             'titulo' => 'Titulo',
             'isbn' => 'Isbn',
-            'anyo' => 'Anyo',
+            'anyo' => 'Año',
             'sinopsis' => 'Sinopsis',
-            'url_compra' => 'Url Compra',
-            'autor_id' => 'Autor ID',
-            'genero_id' => 'Genero ID',
+            'url_compra' => 'Compra',
+            'autor_id' => 'Autor',
+            'genero_id' => 'Genero',
         ];
     }
 
