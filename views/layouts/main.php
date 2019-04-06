@@ -3,6 +3,8 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\models\Usuarios;
+
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -29,31 +31,36 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => 'Libraryii',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+
+    if (Yii::$app->user->isGuest) {
+        $menu = [['label' => 'Login', 'url' => ['/site/login']],
+            ['label' => 'Registrarse', 'url' => ['/usuarios/create']]];
+    } else {
+        $usuario = Usuarios::findOne(['id' => Yii::$app->user->id]);
+        $menu = [
+            [
+                'label' => 'Libros',
+                 'url' => ['/libros/index'],
+                 'encode' => false
+            ],
+            [
+                'label' => 'Logout',
+                'url' => ['/site/logout'],
+                'linkOptions' => ['data-method' => 'POST'],
+                'encode' => false,
+            ],
+        ];
+    }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            // ['label' => 'Home', 'url' => ['/site/index']],
-            // ['label' => 'About', 'url' => ['/site/about']],
-            // ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->login . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
+        'items' => $menu,
     ]);
     NavBar::end();
     ?>
