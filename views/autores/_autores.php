@@ -21,8 +21,8 @@ use yii\helpers\Html;
 
 }
 .autor-texto {
-    padding-top: 55px;
-    padding-bottom: 55px;
+    padding-top: 30px;
+    padding-bottom: 50px;
     font-family: cursive;
 }
 </style>
@@ -36,8 +36,13 @@ use yii\helpers\Html;
                 </p>
             </center>
         </div>
-        <div class="autor-texto col-md-7">
-            <?= $model->descripcion  ?>
+        <div class=" col-md-7">
+            <h2>
+                <?= Html::a($model->nombre, ['autores/view', 'id' => $model->id]) ?>
+            </h2>
+            <p class="autor-texto">
+                <?= $model->descripcion  ?>
+            </p>
         </div>
     </div>
 
