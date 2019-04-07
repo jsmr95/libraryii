@@ -5,7 +5,6 @@ namespace app\controllers;
 use app\models\Usuarios;
 use app\models\UsuariosId;
 use app\models\UsuariosIdSearch;
-use http\Url;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -77,20 +76,24 @@ class UsuariosController extends Controller
     public function actionCreate()
     {
         $model = new Usuarios(['scenario' => Usuarios::SCENARIO_CREATE]);
-        //genero un usuario_id para asociarle al usuario que voy a crear
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            //genero un usuario_id para asociarle al usuario que voy a crear
             $idUsuario = new UsuariosId();
             $idUsuario->save();
             $model->id = $idUsuario->id;
 
             $model->save();
-            return $this->redirect('index');
-            // $this->enviarEmail($model);
+            $this->enviarEmail(
+                $model,
+                'mail',
+                'Confirmación de usuario',
+                'Se ha enviado un correo de confirmación, por favor, consulte su correo.',
+                'Ha habido un error al mandar el correo de confirmación.'
+            );
+            return;
         }
 
-        $model->password = '';
-        $model->password_repeat = '';
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -149,28 +152,57 @@ class UsuariosController extends Controller
     /**
      * Enviar un email de verificacion al usuario.
      * @param  Usuarios $model Usuario receptor
+     * @param mixed $vista
+     * @param mixed $asunto
+     * @param mixed $mensajeOk
+     * @param mixed $mensajeError
      * @return [action] Realiza una accion
      */
-    public function enviarEmail($model)
+    public function enviarEmail($model, $vista, $asunto, $mensajeOk, $mensajeError)
     {
-        $url = Url::to([
-            'usuarios/verificar',
-            'id' => $model->id,
-            'auth_key' => $model->auth_key,
-        ], true);
-
-        if (Yii::$app->mailer->compose()
-            ->setFrom('josemaria.gallego@iesdonana.org')
+        if (Yii::$app->mailer->compose($vista, [
+            'model' => $model,
+        ])
+            ->setFrom('libraryiidaw@gmail.com')
             ->setTo($model->email)
-            ->setSubject('Libraryii - Correo de confirmación')
-            ->setTextBody("Verique su cuenta clicando en el siguiente enlace: $url")
-            ->send()
-        ) {
-            Yii::$app->session->setFlash('success', 'Se ha enviado un correo de confirmación a su email, por favor verifiquelo.');
+            ->setSubject($asunto)
+            ->send()) {
+            Yii::$app->session->setFlash('success', $mensajeOk);
         } else {
-            Yii::$app->session->setFlash('error', 'Se ha producido un error al mandar el correo de confirmación.');
+            Yii::$app->session->setFlash('error', $mensajeError);
         }
-        return $this->redirect(['index']);
+        return $this->redirect(['site/index']);
+    }
+
+    /**
+     * Accion para verificar un usuario.
+     * @return [action] Redirecciona al site/index
+     */
+    public function actionVerificar()
+    {
+        //extract(Yii::$app->request->post('x_Usuarios'));
+        //A jose se le manda por post x_Usuarios y a joni Usuarios.
+        //Tenemos que extraerlo de diferente forma cada uno, no sabemos el motivo.
+        //Esto de aqui abajo lo resuelve.
+        $post = Yii::$app->request->post();
+        $keys = preg_grep('/.*Usuarios.*/i', array_keys($post));
+        extract(Yii::$app->request->post($keys[1]));
+        $usuario = Usuarios::findByUserName($login);
+        if (isset($usuario)) {
+            if ($usuario->auth_key === $auth_key) {
+                $usuario->auth_key = '';
+                if ($usuario->save()) {
+                    Yii::$app->session->setFlash('success', 'Se ha verificado su usuario CORRECTAMENTE, puedes iniciar sesión.');
+                } else {
+                    Yii::$app->session->setFlash('error', 'ERROR: No se ha verificado su usuario correctamente1.');
+                }
+            } else {
+                Yii::$app->session->setFlash('error', 'ERROR: No se ha verificado su usuario correctamente.');
+            }
+        } else {
+            Yii::$app->session->setFlash('error', 'ERROR: No se ha verificado.');
+        }
+        return $this->redirect(['site/index']);
     }
 
     public function beforeAction($action)

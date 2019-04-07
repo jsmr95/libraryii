@@ -99,13 +99,24 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
             'biografia' => 'Descripción',
-            'url_avatar' => 'Url Avatar',
+            'url_avatar' => 'Avatar',
             'password' => 'Contraseña',
             'password_repeat' => 'Repita contraseña',
             'auth_key' => 'Auth Key',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    /**
+     * Busca Usuarios por el login.
+     *
+     * @param mixed $login login ha buscar
+     * @return static|null
+     */
+    public static function findByUsername($login)
+    {
+        return static::findOne(['login' => $login]);
     }
 
     /**
