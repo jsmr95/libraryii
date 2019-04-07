@@ -71,7 +71,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [['login', 'email', 'nombre', 'apellido', 'biografia', 'url_avatar', 'password', 'auth_key'], 'string', 'max' => 255],
             [['auth_key'], 'default', 'value' => function () {
                 return $this->auth_key = Yii::$app->security->generateRandomString();
-            }],
+            }, 'on' => [self::SCENARIO_CREATE]],
             [['created_at'], 'default', 'value' => function () {
                 return date('Y-m-d');
             }],
