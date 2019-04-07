@@ -71,7 +71,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [['login', 'email', 'nombre', 'apellido', 'biografia', 'url_avatar', 'password', 'auth_key'], 'string', 'max' => 255],
             [['auth_key'], 'default', 'value' => function () {
                 return $this->auth_key = Yii::$app->security->generateRandomString();
-            }],
+            }, 'on' => [self::SCENARIO_CREATE]],
             [['created_at'], 'default', 'value' => function () {
                 return date('Y-m-d');
             }],
@@ -99,13 +99,24 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
             'biografia' => 'Descripción',
-            'url_avatar' => 'Url Avatar',
+            'url_avatar' => 'Avatar',
             'password' => 'Contraseña',
             'password_repeat' => 'Repita contraseña',
             'auth_key' => 'Auth Key',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    /**
+     * Busca Usuarios por el login.
+     *
+     * @param mixed $login login ha buscar
+     * @return static|null
+     */
+    public static function findByUsername($login)
+    {
+        return static::findOne(['login' => $login]);
     }
 
     /**

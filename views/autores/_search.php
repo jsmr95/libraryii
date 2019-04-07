@@ -14,17 +14,18 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
+    <div class="row" >
+        <div class="col-md-3" style="border:1px solid; padding:20px; border-radius:9px">
 
-    <?= $form->field($model, 'id') ?>
+            <?= $form->field($model, 'nombre') ?>
 
-    <?= $form->field($model, 'nombre') ?>
+            <div class="form-group">
+                <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
+            </div>
 
-    <?= $form->field($model, 'descripcion') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        </div>
     </div>
+
 
     <?php ActiveForm::end(); ?>
 

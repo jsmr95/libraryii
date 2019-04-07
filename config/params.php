@@ -2,6 +2,6 @@
 
 return [
     'adminEmail' => 'admin@example.com',
-    'smtpUsername' => 'josemaria.gallego@iesdonana.org',
+    'smtpUsername' => 'libraryiidaw@gmail.com',
     'bsVersion' => '3.x',
 ];
