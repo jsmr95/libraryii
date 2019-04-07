@@ -62,10 +62,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['login', 'email', 'nombre', 'apellido', 'password'], 'required'],
             [['login', 'email', 'nombre', 'apellido', 'password', 'password_repeat'], 'required', 'on' => [self::SCENARIO_CREATE]],
-            [['password'], 'compare', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
-            [['email', 'login'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
+            [['password'], 'compare', 'on' => [self::SCENARIO_CREATE]],
+            [['email', 'login'], 'unique', 'on' => [self::SCENARIO_CREATE]],
+            [['password_repeat'], 'compare', 'compareAttribute' => 'password',
+                'skipOnEmpty' => false, 'on' => [self::SCENARIO_UPDATE], ],
             [['email'], 'email', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
             [['id', 'created_at', 'updated_at'], 'safe'],
             [['login', 'email', 'nombre', 'apellido', 'biografia', 'url_avatar', 'password', 'auth_key'], 'string', 'max' => 255],
@@ -73,8 +74,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 return $this->auth_key = Yii::$app->security->generateRandomString();
             }, 'on' => [self::SCENARIO_CREATE]],
             [['created_at'], 'default', 'value' => function () {
-                return date('Y-m-d');
-            }],
+                return date('Y-m-d h:i:s');
+            }, 'on' => [self::SCENARIO_CREATE]],
+            [['updated_at'], 'default', 'value' => function () {
+                return date('Y-m-d H:i:s');
+            }, 'on' => [self::SCENARIO_UPDATE]],
         ];
     }
 
@@ -117,6 +121,17 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public static function findByUsername($login)
     {
         return static::findOne(['login' => $login]);
+    }
+
+    /**
+     * Busca Usuarios por el email.
+     *
+     * @param mixed $email email ha buscar
+     * @return static|null
+     */
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => $email]);
     }
 
     /**
