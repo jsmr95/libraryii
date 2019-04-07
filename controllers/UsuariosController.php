@@ -10,6 +10,8 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -147,6 +149,77 @@ class UsuariosController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Accion para mandar el correo segun me pasen email o el login.
+     * @return [action] Renderiza a una vista donde te dá la opcion de modificar la contraseña
+     */
+    public function actionRecuperarcontra()
+    {
+        if ($emailNombre = Yii::$app->request->post('emailNombre')) {
+            $usuarioNombre = Usuarios::findByUsername($emailNombre);
+            $usuarioEmail = Usuarios::findByEmail($emailNombre);
+
+            if (isset($usuarioNombre) || isset($usuarioEmail)) {
+                if (isset($usuarioNombre)) {
+                    $this->enviarEmail(
+                        $usuarioNombre,
+                        'recuperarcontra',
+                        'Recuperación de contraseña',
+                        'Se ha enviado un correo para restablecer su contraseña ,porfavor, consulte su correo.',
+                        'Ha ocurrido un error al mandar el correo.'
+                        );
+                } else {
+                    $this->enviarEmail(
+                        $usuarioEmail,
+                        'recuperarcontra',
+                        'Recuperación de contraseña',
+                        'Se ha enviado un correo para restablecer su contraseña ,porfavor, consulte su correo.',
+                        'Ha ocurrido un error al mandar el correo.'
+                        );
+                }
+            } else {
+                Yii::$app->session->setFlash('error', 'El usuario o email no son correctos.');
+            }
+        }
+        return $this->render('recuperarcontra');
+    }
+
+    /**
+     * Funcion para modificar la contraseña.
+     * @return [type] [description]
+     */
+    public function actionModificarcontra()
+    {
+        $post = Yii::$app->request->post();
+        $keys = preg_grep('/.*Usuarios.*/i', array_keys($post));
+        extract(Yii::$app->request->post($keys[1]));
+        $model = $this->findModel($id);
+        $model->scenario = Usuarios::SCENARIO_UPDATE;
+
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            //cambio la fecha de modificacion
+            $model->updated_at = date('Y-m-d H:i:s');
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Se ha modificado su contraseña correctamente.');
+
+                return $this->redirect(['site/index']);
+            }
+        }
+
+        $model->password = $model->password_repeat = '';
+
+
+        return $this->render('modificarcontra', [
+            'model' => $model,
+        ]);
     }
 
     /**

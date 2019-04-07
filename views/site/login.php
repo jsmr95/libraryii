@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to login:</p>
-
+    <br>
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
         'layout' => 'horizontal',
@@ -33,23 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
 
     <div class="form-group">
-        <div class="row">
-            <div class="col-lg-offset-1 col-lg-11">
-                <!-- Botón Login -->
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-            <div class="col-lg-offset-1 col-lg-11">
-                <div class="row">
-                    <!-- para colocar el olvidé mi contraseña -->
-                </div>
-            </div>
+        <div class="col-lg-offset-1 col-lg-11">
+            <!-- Botón Login -->
+            <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+        </div>
+        <div class="col-lg-offset-1 col-lg-11">
+            <br>
+            <?= Html::a('Olvidé mi contraseña', ['usuarios/recuperarcontra']) ?>
         </div>
     </div>
 
     <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
-    </div>
 </div>
