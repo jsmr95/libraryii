@@ -32,7 +32,13 @@ use yii\helpers\Html;
             <!-- Imagen AQUI -->
             <center>
                 <p>
-                    Aqui va la imagen!
+                    <?php
+                    if (empty($model->imagen)) {
+                        echo Html::img(Yii::getAlias('@uploads').'userAutorDefecto.jpeg');
+                    } else {
+                        echo Html::img(Yii::getAlias('@uploads').$model->imagen);
+                    }
+                    ?>
                 </p>
             </center>
         </div>
