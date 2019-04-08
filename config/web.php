@@ -11,6 +11,7 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
+        '@uploads' => 'file:///home/jose/jose/php/libraryii/images/',
     ],
     'language' => 'es-ES',
     'components' => [

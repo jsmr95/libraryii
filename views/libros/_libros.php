@@ -28,7 +28,13 @@ use yii\helpers\Html;
         <div class="libro-cuerpo col-md-3">
             <center>
                 <p>
-                    <img src="<?=$model->imagen?>"></img>
+                    <?php
+                    if (empty($model->imagen)) {
+                        echo Html::img(Yii::getAlias('@uploads').'libroDefecto.png');
+                    } else {
+                        echo Html::img(Yii::getAlias('@uploads').$model->imagen);
+                    }
+                    ?>
                 </p>
             </center>
         </div>

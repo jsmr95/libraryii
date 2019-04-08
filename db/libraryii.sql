@@ -208,28 +208,28 @@ INSERT INTO libros ( titulo, isbn, anyo, sinopsis, url_compra, autor_id, genero_
 VALUES ('El principito', '9788498381498', 1943, 'El principito habita un pequeñísimo
             asteroide, que comparte con una flor y empieza a experimentar la soledad.'
             , 'https://www.amazon.es/gp/product/8498381495/ref=as_li_tf_tl?ie=UTF8&tag=entrel-21&linkCode=as2'
-            , 7, 13, '/home/jose/jose/php/libraryii/images/9788498381498.jpg')
+            , 7, 13, '9788498381498.jpg')
     ,  ('El resplandor', '9789875668478', 1977, 'Tenía una deuda pendiente con Stephen King.
             Crecí rodeado de sus libros;It, Cementerio de animales, ...'
             , 'https://www.amazon.es/gp/product/9875668478/ref=as_li_tf_tl?ie=UTF8&tag=entrel-21&linkCode=as2'
-            , 1, 19, '/home/jose/jose/php/libraryii/images/9789875668478.jpg')
+            , 1, 19, '9789875668478.jpg')
     ,  ('Marina', '9788423687268', 1999, 'Óscar Drai se marchó huyendo de sus recuerdos, pensando ingenuamente que,
             si ponía suficiente distancia, las voces de su pasado se acallarían para siempre ...'
             , 'https://www.amazon.es/gp/product/8423687260/ref=as_li_tf_tl?ie=UTF8&tag=entrel-21&linkCode=as2'
-            , 2, 20, '/home/jose/jose/php/libraryii/images/9788423687268.jpg')
+            , 2, 20, '9788423687268.jpg')
     ,  ('La suma de los días', '9788401341915', 2007, 'Isabel Allende narra a su hija Paula
             todo lo que ha sucedido con la familia desde el momento en que ella murió. El lector vive, junto con la autora...'
             , 'https://www.amazon.es/gp/product/8401341914/ref=as_li_tf_tl?ie=UTF8&tag=entrel-21&linkCode=as2'
-            , 3, 3, '/home/jose/jose/php/libraryii/images/9788401341915.jpg')
+            , 3, 3, '9788401341915.jpg')
     ,  ('Juego de tronos (canción de hielo y fuego #1)', '9788496208964', 1996, 'Primer libro de la saga CANCIÓN DE HIELO Y FUEGO.
             «En un mundo donde las estaciones pueden durar decenios y donde las tierras del norte,
             más allá del Muro, ocultan seres míticos y temibles,...'
             , 'https://www.amazon.es/gp/product/8496208966/ref=as_li_tf_tl?ie=UTF8&tag=entrel-21&linkCode=as2'
-            , 4, 8, '/home/jose/jose/php/libraryii/images/9788496208964.jpg')
+            , 4, 8, '9788496208964.jpg')
     ,  ('Las ranas también se enamoran', '9788492929467', 2011, 'Marta Rodríguez es una joven y divertida madre
               soltera que conduce una Honda CBF 600. Trabaja en el taller de moda flamenca de Lola Herrera,...'
             , 'https://www.amazon.es/gp/product/8492929464/ref=as_li_tf_tl?ie=UTF8&tag=entrel-21&linkCode=as2'
-            , 6, 13, '/home/jose/jose/php/libraryii/images/9788492929467.jpg');
+            , 6, 13, '9788492929467.jpg');
 
 -- Comentarios --
 INSERT INTO comentarios (usuario_id, libro_id, comentario_id)
