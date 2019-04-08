@@ -8,6 +8,7 @@ namespace app\models;
  * @property int $id
  * @property string $titulo
  * @property string $isbn
+ * @property string $imagen
  * @property string $anyo
  * @property string $sinopsis
  * @property string $url_compra
@@ -37,6 +38,7 @@ class Libros extends \yii\db\ActiveRecord
         return [
             [['titulo', 'isbn', 'anyo', 'sinopsis', 'url_compra'], 'required'],
             [['anyo'], 'number'],
+            [['isbn'], 'unique'],
             [['autor_id', 'genero_id'], 'default', 'value' => null],
             [['autor_id', 'genero_id'], 'integer'],
             [['titulo', 'isbn', 'sinopsis', 'url_compra'], 'string', 'max' => 255],

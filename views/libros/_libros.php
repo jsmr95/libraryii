@@ -26,10 +26,9 @@ use yii\helpers\Html;
 <div class="row libro">
     <div class="libro-cuerpo col-md-12">
         <div class="libro-cuerpo col-md-3">
-            <!-- Imagen AQUI -->
             <center>
                 <p>
-                    Aqui va la imagen!
+                    <img src="<?=$model->imagen?>"></img>
                 </p>
             </center>
         </div>

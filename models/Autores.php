@@ -2,14 +2,13 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "autores".
  *
  * @property int $id
  * @property string $nombre
  * @property string $descripcion
+ * @property string $imagen
  *
  * @property AutoresFavs[] $autoresFavs
  * @property Libros[] $libros
@@ -31,7 +30,7 @@ class Autores extends \yii\db\ActiveRecord
     {
         return [
             [['nombre', 'descripcion'], 'required'],
-            [['nombre', 'descripcion'], 'string', 'max' => 255],
+            [['nombre', 'descripcion', 'imagen'], 'string', 'max' => 255],
         ];
     }
 
