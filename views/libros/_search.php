@@ -15,25 +15,18 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <div class="row" >
+        <div class="col-md-3" style="border:1px solid; padding:20px; border-radius:9px">
 
-    <?= $form->field($model, 'titulo') ?>
+            <?= $form->field($model, 'titulo') ?>
+            <?= $form->field($model, 'anyo') ?>
+            <?= $form->field($model, 'genero_id') ?>
 
-    <?= $form->field($model, 'isbn') ?>
+            <div class="form-group">
+                <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
+            </div>
 
-    <?= $form->field($model, 'anyo') ?>
-
-    <?= $form->field($model, 'sinopsis') ?>
-
-    <?php // echo $form->field($model, 'url_compra') ?>
-
-    <?php // echo $form->field($model, 'autor_id') ?>
-
-    <?php // echo $form->field($model, 'genero_id') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>
