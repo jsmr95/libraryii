@@ -1,4 +1,6 @@
 <?php
+
+use yii\helpers\Url;
 use yii\helpers\Html;
 
 ?>
@@ -25,6 +27,18 @@ use yii\helpers\Html;
     padding-bottom: 50px;
     font-family: cursive;
 }
+.glyphicon-trash {
+    color:red;
+    font-size: 20px !important;
+}
+.glyphicon-trash:hover {
+    color:blue;
+    font-size: 18px !important;
+}
+.enlace {
+    margin-left: 15px !important;
+}
+
 </style>
 <div class="row autor">
     <div class="autor-cuerpo col-md-12">
@@ -32,19 +46,28 @@ use yii\helpers\Html;
             <!-- Imagen AQUI -->
             <center>
                 <p>
-                    <?php
-                    if (empty($model->imagen)) {
-                        echo Html::img(Yii::getAlias('@uploads').'userAutorDefecto.jpeg');
-                    } else {
-                        echo Html::img(Yii::getAlias('@uploads').$model->imagen);
-                    }
-                    ?>
+                <?php
+                if (empty($model->imagen)) {
+                    echo Html::img(Yii::getAlias('@uploads').'userAutorDefecto.jpeg');
+                } else {
+                    echo Html::img(Yii::getAlias('@uploads').$model->imagen);
+                }
+                ?>
                 </p>
             </center>
         </div>
         <div class=" col-md-7">
             <h2>
                 <?= Html::a($model->nombre, ['autores/view', 'id' => $model->id]) ?>
+                <?= Html::a( "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
+                [ 'autores/delete', 'id' => $model->id ],
+                [ 'data' =>
+                    [
+                        'method' => 'POST',
+                        'confirm' => "¿Seguro que quieres eliminar a '$model->nombre'?"
+                    ]
+                ]) ?>
+
             </h2>
             <p class="autor-texto">
                 <?= $model->descripcion  ?>
