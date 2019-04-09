@@ -17,10 +17,13 @@ use yii\widgets\ActiveForm;
 
     <div class="row" >
         <div class="col-md-3" style="border:1px solid; padding:20px; border-radius:9px">
+            <?php echo $sort->link('titulo') ?>
+            <?= $form->field($model, 'titulo')->label(false) ?>
+            <?php echo $sort->link('titulo') ?>
+            <?= $form->field($model, 'anyo')->label(false) ?>
+            <?php echo $sort->link('titulo') ?>
 
-            <?= $form->field($model, 'titulo') ?>
-            <?= $form->field($model, 'anyo') ?>
-            <?= $form->field($model, 'genero_id') ?>
+            <?= $form->field($model, 'genero_id')->label(false) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
