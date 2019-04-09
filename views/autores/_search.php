@@ -17,7 +17,8 @@ use yii\widgets\ActiveForm;
     <div class="row" >
         <div class="col-md-3" style="border:1px solid; padding:20px; border-radius:9px">
 
-            <?= $form->field($model, 'nombre') ?>
+            <?php echo $sort->link('nombre'); ?>
+            <?= $form->field($model, 'nombre')->label(false) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
