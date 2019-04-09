@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Introducir Libro', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php  } } ?>
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel, 'sort' => $dataProvider->sort]); ?>
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
