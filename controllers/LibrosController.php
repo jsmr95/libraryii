@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Generos;
 use app\models\Libros;
 use app\models\LibrosSearch;
 use Yii;
@@ -85,8 +86,10 @@ class LibrosController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+
         return $this->render('create', [
             'model' => $model,
+            'listaGeneros' => $this->listaGeneros(),
         ]);
     }
 
@@ -107,6 +110,7 @@ class LibrosController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'listaGeneros' => $this->listaGeneros(),
         ]);
     }
 
@@ -138,5 +142,17 @@ class LibrosController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Lista de Generos para mostrarlos a la hora de crear un libro o modificarlo.
+     * @return array Array de generos
+     */
+    private function listaGeneros()
+    {
+        return Generos::find()
+            ->select('genero')
+            ->indexBy('id')
+            ->column();
     }
 }

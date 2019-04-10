@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'autor_id')->textInput() ?>
 
-    <?= $form->field($model, 'genero_id')->textInput() ?>
+    <?= $form->field($model, 'genero_id')->dropDownList($listaGeneros) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Insertar', ['class' => 'btn btn-success']) ?>
