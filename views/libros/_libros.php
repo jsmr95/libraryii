@@ -22,17 +22,21 @@ use yii\helpers\Html;
     padding-top: 55px;
     font-family: cursive;
 }
+img[src^='/images'] {
+    width: 190px !important;
+    height: 225px !important;
+}
 </style>
 <div class="row libro">
     <div class="libro-cuerpo col-md-12">
-        <div class="libro-cuerpo col-md-3">
+        <div class="col-md-3">
             <center>
                 <p>
                     <?php
                     if (empty($model->imagen)) {
-                        echo Html::img(Yii::getAlias('@uploads').'libroDefecto.png');
+                        echo Html::img(Yii::getAlias('@web').'libroDefecto.png');
                     } else {
-                        echo Html::img(Yii::getAlias('@uploads').$model->imagen);
+                        echo Html::img(Yii::getAlias('@web').'/images/'.$model->imagen);
                     }
                     ?>
                 </p>

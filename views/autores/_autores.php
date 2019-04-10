@@ -59,14 +59,19 @@ use yii\helpers\Html;
         <div class=" col-md-7">
             <h2>
                 <?= Html::a($model->nombre, ['autores/view', 'id' => $model->id]) ?>
-                <?= Html::a( "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
+                <?php
+                    if (!Yii::$app->user->isGuest && Yii::$app->user->identity->login === 'admin'){
+
+                echo Html::a( "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
                 [ 'autores/delete', 'id' => $model->id ],
                 [ 'data' =>
                     [
                         'method' => 'POST',
                         'confirm' => "¿Seguro que quieres eliminar a '$model->nombre'?"
                     ]
-                ]) ?>
+                ]);
+                    }
+                ?>
 
             </h2>
             <p class="autor-texto">

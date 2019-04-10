@@ -17,13 +17,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php
-        if (!Yii::$app->user->isGuest){
-        if (Yii::$app->user->identity->login === 'admin'){
+        if (!Yii::$app->user->isGuest && Yii::$app->user->identity->login === 'admin'){
     ?>
     <p>
         <?= Html::a('Introducir Autor', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php  } } ?>
+<?php } ?>
 
     <?php echo $this->render('_search', ['model' => $searchModel, 'sort' => $dataProvider->sort]); ?>
 
