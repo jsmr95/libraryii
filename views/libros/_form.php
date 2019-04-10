@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'url_compra')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'autor_id')->textInput() ?>
+    <?= $form->field($model, 'autor_id')->dropDownList($listaAutores) ?>
 
     <?= $form->field($model, 'genero_id')->dropDownList($listaGeneros) ?>
 

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Autores;
 use app\models\Generos;
 use app\models\Libros;
 use app\models\LibrosSearch;
@@ -90,6 +91,7 @@ class LibrosController extends Controller
         return $this->render('create', [
             'model' => $model,
             'listaGeneros' => $this->listaGeneros(),
+            'listaAutores' => $this->listaAutores(),
         ]);
     }
 
@@ -111,6 +113,7 @@ class LibrosController extends Controller
         return $this->render('update', [
             'model' => $model,
             'listaGeneros' => $this->listaGeneros(),
+            'listaAutores' => $this->listaAutores(),
         ]);
     }
 
@@ -150,9 +153,21 @@ class LibrosController extends Controller
      */
     private function listaGeneros()
     {
-        return Generos::find()
+        return array_merge([''], Generos::find()
             ->select('genero')
             ->indexBy('id')
-            ->column();
+            ->column());
+    }
+
+    /**
+     * Lista de Autores para mostrarlos a la hora de crear un libro o modificarlo.
+     * @return array Array de autores
+     */
+    private function listaAutores()
+    {
+        return array_merge([''], Autores::find()
+            ->select('nombre')
+            ->indexBy('id')
+            ->column());
     }
 }
