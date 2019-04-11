@@ -11,7 +11,7 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
-        '@uploads' => 'file:///home/jose/jose/php/libraryii/images/',
+        '@uploads' => 'https://s3.eu-west-2.amazonaws.com/imagesjsmr95/',
     ],
     'language' => 'es-ES',
     'components' => [
