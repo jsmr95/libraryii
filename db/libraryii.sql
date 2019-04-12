@@ -212,7 +212,7 @@ VALUES ('El principito', '9788498381498', 1943, 'El principito habita un pequeñ
     ,  ('El resplandor', '9789875668478', 1977, 'Tenía una deuda pendiente con Stephen King.
             Crecí rodeado de sus libros;It, Cementerio de animales, ...'
             , 'https://www.amazon.es/gp/product/9875668478/ref=as_li_tf_tl?ie=UTF8&tag=entrel-21&linkCode=as2'
-            , 1, 19, '9789875668478.jpg')
+            , 1, 19, '9788497593809.jpg')
     ,  ('Marina', '9788423687268', 1999, 'Óscar Drai se marchó huyendo de sus recuerdos, pensando ingenuamente que,
             si ponía suficiente distancia, las voces de su pasado se acallarían para siempre ...'
             , 'https://www.amazon.es/gp/product/8423687260/ref=as_li_tf_tl?ie=UTF8&tag=entrel-21&linkCode=as2'
