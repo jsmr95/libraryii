@@ -142,6 +142,18 @@ CREATE TABLE users_favs
                         ON UPDATE NO ACTION
 );
 
+/* Tabla Estados */
+DROP TABLE IF EXISTS estados CASCADE;
+
+CREATE TABLE estados
+(
+      id            BIGSERIAL PRIMARY KEY
+    , usuario_id    BIGINT REFERENCES usuarios_id (id)
+                        ON DELETE NO ACTION
+                        ON UPDATE NO ACTION
+    , estado        varchar(255) NOT NULL
+    , created_at    TIMESTAMP(0)   NOT NULL DEFAULT LOCALTIMESTAMP
+);
 
 ------------------------
 -------- VALUES --------
@@ -258,3 +270,10 @@ VALUES  (1,2)
         ,  (1, 3)
         ,  (2, 3)
         ,  (3, 1);
+
+-- Estados --
+INSERT INTO estados (usuario_id, estado)
+VALUES  (1, 'Qué pasada de libro, lo recomiendo al 100%!! "El principito".')
+        ,  (1, 'Volvería a leerme todos y cada uno de los libros de Carlos Ruiz Zafón.')
+        ,  (2, 'Esperaba algo más de "Juego de Tronos".')
+        ,  (3, 'Sin duda una de mis mejores compras con este libro!');
