@@ -169,6 +169,20 @@ CREATE TABLE estados_favs
                         ON UPDATE CASCADE
 );
 
+/* Tabla Estado_lyb */
+DROP TABLE IF EXISTS estados_lyb CASCADE;
+
+CREATE TABLE estados_lyb
+(
+      id            BIGSERIAL PRIMARY KEY
+    , usuario_id    BIGINT REFERENCES usuarios_id (id)
+                        ON DELETE NO ACTION
+                        ON UPDATE NO ACTION
+    , estado_id     BIGINT REFERENCES estados (id)
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
+);
+
 ------------------------
 -------- VALUES --------
 ------------------------
@@ -298,3 +312,10 @@ VALUES  (1, 3)
         ,  (1, 4)
         ,  (2, 1)
         ,  (3, 2);
+
+-- Estados_lyb --
+INSERT INTO estados_lyb (usuario_id, estado_id)
+VALUES  (1, 4)
+        ,  (1, 1)
+        ,  (2, 4)
+        ,  (3, 1);
