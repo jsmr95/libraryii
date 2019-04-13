@@ -70,7 +70,7 @@ class EstadosController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
+        return $this->render('index', [
             'model' => $model,
         ]);
     }
