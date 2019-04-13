@@ -42,15 +42,15 @@ use yii\helpers\Html;
 </style>
 <div class="row autor">
     <div class="autor-cuerpo col-md-12">
-        <div class="autor-cuerpo col-md-3">
+        <div class="col-md-3">
             <!-- Imagen AQUI -->
             <center>
                 <p>
                 <?php
                 if (empty($model->imagen)) {
-                    echo Html::img(Yii::getAlias('@uploads').'userAutorDefecto.jpeg');
+                    echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg');
                 } else {
-                    echo Html::img(Yii::getAlias('@uploads').$model->imagen);
+                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen);
                 }
                 ?>
                 </p>

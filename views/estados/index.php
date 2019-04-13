@@ -1,7 +1,12 @@
 <?php
 
+use app\models\Estados;
+
 use yii\helpers\Html;
 use yii\grid\GridView;
+
+use yii\widgets\ListView;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\EstadosSearch */
@@ -14,25 +19,40 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Estados', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php echo $this->render('_search', ['model' => $searchModel, 'sort' =>$dataProvider->sort]); ?>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="estados-form">
 
-    <?= GridView::widget([
+                <?php $form = ActiveForm::begin([
+                    'action' => ['estados/create'],
+                    'options' =>   ['method' => 'post'],
+                    ]); ?>
+                <?php
+                    $model = new Estados();
+                    $model->usuario_id = Yii::$app->user->id;
+                ?>
+
+                <?= $form->field($model, 'usuario_id')->textInput()->hiddenInput()->label(false) ?>
+
+                <?= $form->field($model, 'estado')->textarea(['maxlength' => true])->label('Que quieres postear?') ?>
+
+                <?= $form->field($model, 'created_at')->textInput()->hiddenInput()->label(false) ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton('Postear', ['class' => 'btn btn-success']) ?>
+                </div>
+
+                <?php ActiveForm::end(); ?>
+
+            </div>
+        </div>
+    </div>
+
+    <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'usuario_id',
-            'estado',
-            'created_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
+        'itemView' => '_estados',
     ]); ?>
 
 
