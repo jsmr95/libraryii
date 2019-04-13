@@ -2,9 +2,9 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Estados;
 
 /**
  * EstadosSearch represents the model behind the search form of `app\models\Estados`.
@@ -18,7 +18,7 @@ class EstadosSearch extends Estados
     {
         return [
             [['id', 'usuario_id'], 'integer'],
-            [['estado', 'created_at'], 'safe'],
+            [['estado', 'created_at', 'usuario.usersFavs'], 'safe'],
         ];
     }
 
@@ -32,7 +32,7 @@ class EstadosSearch extends Estados
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Creates data provider instance with search query applied.
      *
      * @param array $params
      *
@@ -40,7 +40,10 @@ class EstadosSearch extends Estados
      */
     public function search($params)
     {
-        $query = Estados::find();
+        $id = Yii::$app->user->id;
+        $query = Estados::find()->joinWith('usuario.usersFavs u', true, 'INNER JOIN')
+        ->where(['estados.usuario_id' => $id])
+        ->orWhere("u.usuario_id IN (SELECT usuario_fav FROM users_favs WHERE usuario_id = $id)");
 
         // add conditions that should always apply here
 
@@ -64,6 +67,8 @@ class EstadosSearch extends Estados
         ]);
 
         $query->andFilterWhere(['ilike', 'estado', $this->estado]);
+        // ->andFilterWhere(['ilike', 'usuario.usersFavs',
+        //                   $this->getAttribute('usuario.usersFavs'), ]);
 
         return $dataProvider;
     }

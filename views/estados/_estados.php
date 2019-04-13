@@ -44,7 +44,6 @@ use yii\helpers\Html;
             <h2>
                 <?php
                 $usua = Usuarios::findOne(['id' => $model->usuario->id]);
-                //var_dump($usua); die();
                 ?>
                 <?= Html::a(
                     $usua->nombre,
