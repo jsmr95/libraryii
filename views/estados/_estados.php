@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Usuarios;
+
 use yii\helpers\Url;
 use yii\helpers\Html;
 
@@ -18,9 +20,24 @@ use yii\helpers\Html;
             </center>
         </div>
         <div class=" col-md-7">
+        <span>
             <h2>
-                <?= Html::a($model->usuario->nombre, ['usuarios/view', 'id' => $model->usuario->id]) ?>
+                <?php
+                $usua = Usuarios::findOne(['id' => $model->usuario->id]);
+                //var_dump($usua); die();
+                ?>
+                <?= Html::a(
+                    $usua->nombre,
+                    ['usuarios/view',
+                        'id' => $model->usuario->id
+                    ]) ?>
+                <small style="font-size: 12px;">
+                    <?= Yii::$app->formatter
+                        ->asRelativeTime($model->created_at)
+                    ?>
+                </small>
             </h2>
+        </span>
             <p class="autor-texto">
                 <?= $model->estado  ?>
             </p>

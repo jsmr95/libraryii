@@ -9,6 +9,15 @@ use Yii;
  *
  * @property int $id
  *
+ * @property AutoresFavs[] $autoresFavs
+ * @property Comentarios[] $comentarios
+ * @property Estados[] $estados
+ * @property EstadosFavs[] $estadosFavs
+ * @property EstadosLyb[] $estadosLybs
+ * @property LibrosFavs[] $librosFavs
+ * @property Posts[] $posts
+ * @property UsersFavs[] $usersFavs
+ * @property UsersFavs[] $usersFavs0
  * @property Usuarios $usuarios
  */
 class UsuariosId extends \yii\db\ActiveRecord
@@ -42,8 +51,80 @@ class UsuariosId extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getAutoresFavs()
+    {
+        return $this->hasMany(AutoresFavs::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComentarios()
+    {
+        return $this->hasMany(Comentarios::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEstados()
+    {
+        return $this->hasMany(Estados::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEstadosFavs()
+    {
+        return $this->hasMany(EstadosFavs::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEstadosLybs()
+    {
+        return $this->hasMany(EstadosLyb::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLibrosFavs()
+    {
+        return $this->hasMany(LibrosFavs::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosts()
+    {
+        return $this->hasMany(Posts::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsersFavs()
+    {
+        return $this->hasMany(UsersFavs::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsersFavs0()
+    {
+        return $this->hasMany(UsersFavs::className(), ['usuario_fav' => 'id'])->inverseOf('usuarioFav');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getUsuarios()
     {
-        return $this->hasOne(Usuarios::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+        return $this->hasOne(Usuarios::className(), ['id' => 'id'])->inverseOf('id0');
     }
 }
