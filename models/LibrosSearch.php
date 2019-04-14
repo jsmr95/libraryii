@@ -17,9 +17,18 @@ class LibrosSearch extends Libros
     {
         return [
             [['id', 'autor_id', 'genero_id'], 'integer'],
-            [['titulo', 'isbn', 'sinopsis', 'url_compra'], 'safe'],
+            [['titulo', 'isbn', 'sinopsis', 'url_compra', 'genero.genero'], 'safe'],
             [['anyo'], 'number'],
         ];
+    }
+
+    /**
+     * Funcion para añadir atributo nuevo.
+     * @return array Array resultante de de los nuevos atributos.
+     */
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['genero.genero']);
     }
 
     /**
@@ -40,13 +49,18 @@ class LibrosSearch extends Libros
      */
     public function search($params)
     {
-        $query = Libros::find();
+        $query = Libros::find()->joinWith('genero');
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['genero.genero'] = [
+            'asc' => ['generos.genero' => SORT_ASC],
+            'desc' => ['generos.genero' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -67,6 +81,7 @@ class LibrosSearch extends Libros
         $query->andFilterWhere(['ilike', 'titulo', $this->titulo])
             ->andFilterWhere(['ilike', 'isbn', $this->isbn])
             ->andFilterWhere(['ilike', 'sinopsis', $this->sinopsis])
+            ->andFilterWhere(['ilike', 'generos.genero', $this->getAttribute('genero.genero')])
             ->andFilterWhere(['ilike', 'url_compra', $this->url_compra]);
 
         return $dataProvider;
