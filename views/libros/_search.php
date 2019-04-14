@@ -21,8 +21,8 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'titulo')->label(false) ?>
             <?php echo $sort->link('anyo') ?>
             <?= $form->field($model, 'anyo')->label(false) ?>
-            <?php echo $sort->link('genero_id') ?>
-            <?= $form->field($model, 'genero_id')->label(false) ?>
+            <?php echo $sort->link('genero.genero') ?>
+            <?= $form->field($model, 'genero.genero')->label(false) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
