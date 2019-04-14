@@ -15,16 +15,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php
+    if (!Yii::$app->user->isGuest){
+        if (Yii::$app->user->identity->login === $model->login){
+            ?>
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar cuenta', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Estás seguro que desea eliminar su cuenta?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
+<?php } }  ?>
 
     <?= DetailView::widget([
         'model' => $model,
