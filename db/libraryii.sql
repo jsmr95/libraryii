@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS usuarios CASCADE;
 CREATE TABLE usuarios
 (
       id            bigint PRIMARY KEY REFERENCES usuarios_id (id)
+                        ON DELETE CASCADE
     , login         varchar(255)    NOT NULL UNIQUE
     , email         varchar(255)    NOT NULL UNIQUE
     , nombre        varchar(255)    NOT NULL
@@ -77,8 +78,8 @@ CREATE TABLE comentarios
 (
       id                BIGSERIAL PRIMARY KEY
     , usuario_id        BIGINT REFERENCES usuarios_id (id)
-                            ON DELETE NO ACTION
-                            ON UPDATE NO ACTION
+                            ON DELETE CASCADE
+                            ON UPDATE CASCADE
     , libro_id          BIGINT REFERENCES libros (id)
                             ON DELETE CASCADE
                             ON UPDATE CASCADE
@@ -96,8 +97,8 @@ CREATE TABLE posts
     , contenido     varchar(255) NOT NULL
     , created_at    timestamp(0)   NOT NULL DEFAULT localtimestamp
     , usuario_id    BIGINT REFERENCES usuarios_id (id)
-                        ON DELETE NO ACTION
-                        ON UPDATE NO ACTION
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
 );
 
 /* Tabla Libros favoritos */
@@ -107,8 +108,8 @@ CREATE TABLE libros_favs
 (
       id            BIGSERIAL PRIMARY KEY
     , usuario_id    BIGINT REFERENCES usuarios_id (id)
-                        ON DELETE NO ACTION
-                        ON UPDATE NO ACTION
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
     , libro_id      BIGINT REFERENCES libros (id)
                         ON DELETE CASCADE
                         ON UPDATE CASCADE
@@ -121,8 +122,8 @@ CREATE TABLE autores_favs
 (
       id            BIGSERIAL PRIMARY KEY
     , usuario_id    BIGINT REFERENCES usuarios_id (id)
-                        ON DELETE NO ACTION
-                        ON UPDATE NO ACTION
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
     , autor_id      BIGINT REFERENCES autores (id)
                         ON DELETE CASCADE
                         ON UPDATE CASCADE
@@ -135,11 +136,11 @@ CREATE TABLE users_favs
 (
       id            BIGSERIAL PRIMARY KEY
     , usuario_id    BIGINT REFERENCES usuarios_id (id)
-                        ON DELETE NO ACTION
-                        ON UPDATE NO ACTION
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
     , usuario_fav      BIGINT REFERENCES usuarios_id (id)
-                        ON DELETE NO ACTION
-                        ON UPDATE NO ACTION
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
 );
 
 /* Tabla Estados */
@@ -149,8 +150,8 @@ CREATE TABLE estados
 (
       id            BIGSERIAL PRIMARY KEY
     , usuario_id    BIGINT REFERENCES usuarios_id (id)
-                        ON DELETE NO ACTION
-                        ON UPDATE NO ACTION
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
     , estado        varchar(255) NOT NULL
     , created_at    TIMESTAMP(0)   NOT NULL DEFAULT LOCALTIMESTAMP
 );
@@ -162,8 +163,8 @@ CREATE TABLE estados_favs
 (
       id            BIGSERIAL PRIMARY KEY
     , usuario_id    BIGINT REFERENCES usuarios_id (id)
-                        ON DELETE NO ACTION
-                        ON UPDATE NO ACTION
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
     , estado_id     BIGINT REFERENCES estados (id)
                         ON DELETE CASCADE
                         ON UPDATE CASCADE
@@ -176,8 +177,8 @@ CREATE TABLE estados_lyb
 (
       id            BIGSERIAL PRIMARY KEY
     , usuario_id    BIGINT REFERENCES usuarios_id (id)
-                        ON DELETE NO ACTION
-                        ON UPDATE NO ACTION
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
     , estado_id     BIGINT REFERENCES estados (id)
                         ON DELETE CASCADE
                         ON UPDATE CASCADE
