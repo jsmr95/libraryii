@@ -62,6 +62,11 @@ AppAsset::register($this);
                  'encode' => false
             ],
             [
+                'label' => 'Mi Perfil',
+                 'url' => ['/usuarios/view', 'id' => $usuario->id],
+                 'encode' => false,
+            ],
+            [
                 'label' => "Logout ($usuario->login)",
                 'url' => ['/site/logout'],
                 'linkOptions' => ['data-method' => 'POST'],

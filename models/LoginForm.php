@@ -49,7 +49,7 @@ class LoginForm extends Model
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
-            if ($user->auth_key != '') {
+            if ($user && $user->auth_key != '') {
                 $this->addError($attribute, 'Usuario no verificado, busque un correo de libraryiidaw en su email y verifiquelo.');
             }
         }
