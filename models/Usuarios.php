@@ -64,7 +64,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             [['login', 'email', 'nombre', 'apellido', 'password', 'password_repeat'], 'required', 'on' => [self::SCENARIO_CREATE]],
             [['password'], 'compare', 'on' => [self::SCENARIO_CREATE]],
-            [['email', 'login'], 'unique', 'on' => [self::SCENARIO_CREATE]],
+            [['email', 'login'], 'unique', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
             [['password_repeat'], 'compare', 'compareAttribute' => 'password',
                 'skipOnEmpty' => false, 'on' => [self::SCENARIO_UPDATE], ],
             [['email'], 'email', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
@@ -269,6 +269,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 $this->password = Yii::$app->security
                     ->generatePasswordHash($this->password);
             }
+            $this->updated_at = date('Y-m-d H:i:s');
         }
         return true;
     }
