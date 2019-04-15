@@ -23,6 +23,10 @@ use yii\helpers\Html;
     font-family: cursive;
 }
 </style>
+<?php
+$usua = Usuarios::findOne(['id' => $model->usuario->id]);
+if ($usua) {
+    ?>
 <div class="row ">
     <div class="cuerpo_estado col-md-12">
         <div class=" col-md-2">
@@ -42,9 +46,6 @@ use yii\helpers\Html;
         <div class=" col-md-7">
         <span>
             <h2>
-                <?php
-                $usua = Usuarios::findOne(['id' => $model->usuario->id]);
-                ?>
                 <?= Html::a(
                     $usua->nombre,
                     ['usuarios/view',
@@ -64,3 +65,4 @@ use yii\helpers\Html;
     </div>
 
 </div>
+<?php } ?>

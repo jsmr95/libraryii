@@ -133,8 +133,10 @@ class UsuariosController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        $usuarioId = UsuariosId::findOne($id);
+        $usuarioId->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['site/index']);
     }
 
     /**
