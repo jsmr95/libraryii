@@ -41,7 +41,7 @@ class EstadosSearch extends Estados
     public function search($params)
     {
         $id = Yii::$app->user->id;
-        $query = Estados::find()->joinWith('usuario.usersFavs u', true, 'INNER JOIN')
+        $query = Estados::find()->joinWith('usuario.usersFavs u', true, 'LEFT JOIN')
         ->where(['estados.usuario_id' => $id])
         ->orWhere("u.usuario_id IN (SELECT usuario_fav FROM users_favs WHERE usuario_id = $id)");
 
