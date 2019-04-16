@@ -47,7 +47,7 @@ class Estados extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'usuario_id' => 'Usuario ID',
+            'usuario_id' => 'Usuario',
             'estado' => 'Estado',
             'created_at' => 'Created At',
         ];
