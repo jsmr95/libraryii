@@ -15,6 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
+    <!-- Esto falla ahora mismo -->
     <?= $form->field($model, 'usuario_id') ?>
 
     <?= $form->field($model, 'estado') ?>

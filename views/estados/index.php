@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel app\models\EstadosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Estados';
+$this->title = 'Social';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="estados-index">
