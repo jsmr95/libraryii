@@ -23,6 +23,18 @@ namespace app\models;
 class Libros extends \yii\db\ActiveRecord
 {
     /**
+     * Escenario donde se inserta un libro.
+     * @var string
+     */
+    const SCENARIO_CREATE = 'create';
+
+    /**
+     * Escenario donde un libro se modifica.
+     * @var string
+     */
+    const SCENARIO_UPDATE = 'update';
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -44,6 +56,7 @@ class Libros extends \yii\db\ActiveRecord
             [['titulo', 'isbn', 'sinopsis', 'url_compra'], 'string', 'max' => 255],
             [['autor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Autores::className(), 'targetAttribute' => ['autor_id' => 'id']],
             [['genero_id'], 'exist', 'skipOnError' => true, 'targetClass' => Generos::className(), 'targetAttribute' => ['genero_id' => 'id']],
+            [['url_compra'], 'url'],
         ];
     }
 
