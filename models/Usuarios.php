@@ -248,6 +248,24 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Funcion para consultar si el usuario logueado, sigue o no, al usuario
+     * que está consultando.
+     * @param  int $miId id del usuario logueado
+     * @param  int $seguidorId id del usuario al que visita
+     * @return string res cadena que hará mostrar un corazón lleno (lo sigue)
+     * o un corazon vacío (no lo sigue).
+     */
+    public function consultaSeguidor($miId, $seguidorId)
+    {
+        $fila = UsersFavs::find()->where(['usuario_id' => $miId])
+            ->andWhere(['usuario_fav' => $seguidorId])->one();
+        if ($fila) {
+            return '';
+        }
+        return '-empty';
+    }
+
+    /**
      * Funcion que es llamada antes de insertar o actualizar un registro.
      * @param  bool $insert true->insert, false->update
      * @return bool true->inserccion o modificación llevada a cabo, false-> cancelado
