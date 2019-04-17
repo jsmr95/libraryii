@@ -21,9 +21,14 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
 
 </style>
 <div class="container">
-
+    <?php
+    $corazon = '-empty';
+    ?>
     <center>
-        <h1><?= Html::encode($this->title) ?></h1>
+        <h1>
+            <?= Html::encode($this->title)?>
+            <?= Html::a("<span class='glyphicon glyphicon-heart$corazon' aria-hidden='true'></span>", '#') ?>
+        </h1>
     </center>
 
     <?php
