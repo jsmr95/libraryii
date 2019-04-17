@@ -50,10 +50,10 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
         <div class="col-md-offset-5 col-md-2">
             <br>
             <?php
-            if (empty($model->imagen)) {
+            if (empty($model->url_avatar)) {
                 echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg');
             } else {
-                echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen);
+                echo Html::img(Yii::getAlias('@uploads').'/'.$model->url_avatar);
             }
             ?>
         </div>

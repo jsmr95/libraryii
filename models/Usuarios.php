@@ -269,6 +269,9 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 $this->password = Yii::$app->security
                     ->generatePasswordHash($this->password);
             }
+            if ($this->url_avatar === '') {
+                $this->url_avatar = $this->getOldAttribute('url_avatar');
+            }
             $this->updated_at = date('Y-m-d H:i:s');
         }
         return true;

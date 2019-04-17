@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'biografia')->textarea(['rows' => 10]) ?>
 
-    <?= $form->field($model, 'url_avatar')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'url_avatar')->input('file') ?>
 
     <?= $form->field($model, 'auth_key')->hiddenInput()->label(false) ?>
 
@@ -39,7 +39,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'updated_at')->hiddenInput()->label(false) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Registrar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton($titulo, ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Volver', ['usuarios/view', 'id' => $model->id], ['class' => 'btn btn-success btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
