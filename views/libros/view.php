@@ -35,7 +35,7 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Estas seguro de borrar este libro?',
                 'method' => 'post',
             ],
         ]) ?>
