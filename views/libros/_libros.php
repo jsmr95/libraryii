@@ -51,7 +51,7 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
                     ]) ?>
                 </h2>
                 <ul>
-                    <li>Autor: <?= $model->autor->nombre ?></li>
+                    <li>Autor: <?= Html::a($model->autor->nombre, ['autores/view', 'id' => $model->autor->id]) ?></li>
                     <li>Año: <?= $model->anyo ?></li>
                     <li>Género: <?= $model->genero->genero ?></li>
                     <li>ISBN: <?= $model->isbn ?></li>
