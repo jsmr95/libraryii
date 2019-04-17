@@ -33,8 +33,11 @@ span.glyphicon {
         <h1>
             <?= Html::encode($this->title)?>
             <?php
-            if (Yii::$app->user->id != $model->id) {
-            echo Html::a("<span class='glyphicon glyphicon-heart$corazon' aria-hidden='true'></span>", '#');
+            if (Yii::$app->user->id != $model->id && !Yii::$app->user->isGuest) {
+            echo Html::a("<span class='glyphicon glyphicon-heart$corazon' aria-hidden='true'></span>", '#',
+                [
+                    'class' => 'follow',
+                ]);
             }
             ?>
         </h1>
