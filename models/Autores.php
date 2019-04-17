@@ -16,6 +16,18 @@ namespace app\models;
 class Autores extends \yii\db\ActiveRecord
 {
     /**
+     * Escenario donde se inserta un autor.
+     * @var string
+     */
+    const SCENARIO_CREATE = 'create';
+
+    /**
+     * Escenario donde un autor se modifica.
+     * @var string
+     */
+    const SCENARIO_UPDATE = 'update';
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -60,5 +72,23 @@ class Autores extends \yii\db\ActiveRecord
     public function getLibros()
     {
         return $this->hasMany(Libros::className(), ['autor_id' => 'id'])->inverseOf('autor');
+    }
+
+    /**
+     * Funcion que es llamada antes de insertar o actualizar un registro.
+     * @param  bool $insert true->insert, false->update
+     * @return bool true->inserccion o modificación llevada a cabo, false-> cancelado
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        if (!$insert) {
+            if ($this->imagen === '') {
+                $this->imagen = $this->getOldAttribute('imagen');
+            }
+        }
+        return true;
     }
 }
