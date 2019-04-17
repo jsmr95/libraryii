@@ -26,6 +26,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'genero_id')->dropDownList($listaGeneros) ?>
 
+    <?= $form->field($model, 'imagen')->input('file') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Insertar', ['class' => 'btn btn-success']) ?>
     </div>

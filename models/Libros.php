@@ -53,7 +53,7 @@ class Libros extends \yii\db\ActiveRecord
             [['isbn'], 'unique'],
             [['autor_id', 'genero_id'], 'default', 'value' => null],
             [['autor_id', 'genero_id'], 'integer'],
-            [['titulo', 'isbn', 'sinopsis', 'url_compra'], 'string', 'max' => 255],
+            [['titulo', 'isbn', 'sinopsis', 'url_compra', 'imagen'], 'string', 'max' => 255],
             [['autor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Autores::className(), 'targetAttribute' => ['autor_id' => 'id']],
             [['genero_id'], 'exist', 'skipOnError' => true, 'targetClass' => Generos::className(), 'targetAttribute' => ['genero_id' => 'id']],
             [['url_compra'], 'url'],
@@ -74,6 +74,7 @@ class Libros extends \yii\db\ActiveRecord
             'url_compra' => 'Compra',
             'autor_id' => 'Autor',
             'genero_id' => 'Genero',
+            'imagen' => 'Imagen',
         ];
     }
 
@@ -107,5 +108,23 @@ class Libros extends \yii\db\ActiveRecord
     public function getLibrosFavs()
     {
         return $this->hasMany(LibrosFavs::className(), ['libro_id' => 'id'])->inverseOf('libro');
+    }
+
+    /**
+     * Funcion que es llamada antes de insertar o actualizar un registro.
+     * @param  bool $insert true->insert, false->update
+     * @return bool true->inserccion o modificación llevada a cabo, false-> cancelado
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        if (!$insert) {
+            if ($this->imagen === '') {
+                $this->imagen = $this->getOldAttribute('imagen');
+            }
+        }
+        return true;
     }
 }
