@@ -11,9 +11,20 @@ $this->params['breadcrumbs'][] = ['label' => 'Libros', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+<style>
+
+img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
+    width: 190px !important;
+    height: 225px !important;
+    border-radius: 20px;
+}
+
+</style>
 <div class="libros-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <center>
+        <h1><?= Html::encode($this->title) ?></h1>
+    </center>
     <!-- Muestro estas opciones solo para el admin -->
     <?php
         if (!Yii::$app->user->isGuest){
@@ -31,19 +42,43 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?php } } ?>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'titulo',
-            'isbn',
-            'anyo',
-            'sinopsis',
-            'url_compra:url',
-            'autor_id',
-            'genero_id',
-        ],
-    ]) ?>
-    <!-- Crear una vista mejorada -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-5 col-md-2">
+                <br>
+                <?php
+                if (empty($model->imagen)) {
+                    echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png');
+                } else {
+                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen);
+                }
+                ?>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <center>
+                      Información Principal
+                    </center>
+                  </div>
+                  <div class="panel-body">
+                      <p>Titulo: <?= $model->titulo ?></p>
+                      <p>ISBN: <?= $model->isbn ?></p>
+                      <p>Año: <?= $model->anyo ?></p>
+                      <p>Sinopsis: <?= $model->sinopsis ?></p>
+                      <p>Compra: <?= Html::a('Compra', $model->url_compra) ?></p>
+                      <p>
+                          Autor: <?= Html::a($model->autor->nombre, ['autores/view', 'id' => $model->autor->id])?>
+                      </p>
+                      <p>Género: <?= $model->genero->genero ?></p>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
