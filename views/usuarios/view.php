@@ -20,6 +20,9 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
     height: 225px !important;
     border-radius: 110px;
 }
+span.glyphicon {
+    color:red;
+}
 
 </style>
 <div class="container">
