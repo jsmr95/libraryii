@@ -2,6 +2,7 @@
 
 use app\models\Usuarios;
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -28,18 +29,32 @@ span.glyphicon {
 <div class="container">
     <?php
     $corazon = $model->consultaSeguidor(Yii::$app->user->id, $model->id);
+    $url = Url::to(['usersFavs/create']);
+    $id = $model->id;
+    $followJs = <<<EOT
+
+    function seguir(e){
+        $.post({
+            url: '$url',
+            data: { usuario_fav: $id},
+        });
+    }
+
+    $(document).ready(function(){
+        $('.follow').click(seguir);
+    });
+EOT;
+$this->registerJs($followJs);
     ?>
     <center>
         <h1>
             <?= Html::encode($this->title)?>
             <?php
-            if (Yii::$app->user->id != $model->id && !Yii::$app->user->isGuest) {
-            echo Html::a("<span class='glyphicon glyphicon-heart$corazon' aria-hidden='true'></span>", '#',
-                [
-                    'class' => 'follow',
-                ]);
-            }
-            ?>
+            if (Yii::$app->user->id != $model->id && !Yii::$app->user->isGuest) { ?>
+                <button class="follow">
+                    <span class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
+                </button>
+            <?php } ?>
         </h1>
     </center>
 

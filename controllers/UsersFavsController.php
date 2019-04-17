@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\UsersFavs;
 use app\models\UsersFavsSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * UsersFavsController implements the CRUD actions for UsersFavs model.
@@ -46,7 +46,7 @@ class UsersFavsController extends Controller
 
     /**
      * Displays a single UsersFavs model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -65,6 +65,7 @@ class UsersFavsController extends Controller
     public function actionCreate()
     {
         $model = new UsersFavs();
+        $model->usuario_id = Yii::$app->user->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -78,7 +79,7 @@ class UsersFavsController extends Controller
     /**
      * Updates an existing UsersFavs model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +99,7 @@ class UsersFavsController extends Controller
     /**
      * Deletes an existing UsersFavs model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +113,7 @@ class UsersFavsController extends Controller
     /**
      * Finds the UsersFavs model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return UsersFavs the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
