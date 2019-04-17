@@ -29,7 +29,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'imagen')->input('file') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Insertar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton($titulo, ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Volver', ['libros/view', 'id' => $model->id], ['class' => 'btn btn-success btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
