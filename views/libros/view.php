@@ -30,6 +30,7 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
         if (!Yii::$app->user->isGuest){
         if (Yii::$app->user->identity->login === 'admin'){
     ?>
+    <center>
     <p>
         <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
@@ -40,6 +41,7 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
             ],
         ]) ?>
     </p>
+    </center>
     <?php } } ?>
 
     <div class="container">
