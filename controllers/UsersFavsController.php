@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\UsersFavs;
 use app\models\UsersFavsSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * UsersFavsController implements the CRUD actions for UsersFavs model.
@@ -46,7 +46,7 @@ class UsersFavsController extends Controller
 
     /**
      * Displays a single UsersFavs model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -58,27 +58,44 @@ class UsersFavsController extends Controller
     }
 
     /**
-     * Creates a new UsersFavs model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Creación de un seguimiento, un usuario sigue a otro.
      * @return mixed
+     * @param mixed $usuario_fav
      */
-    public function actionCreate()
+    public function actionCreate($usuario_fav)
     {
-        $model = new UsersFavs();
+        //Modificar
+        $id = Yii::$app->user->id;
+        $model = UsersFavs::find()
+            ->where([
+            'usuario_id' => $id,
+            'usuario_fav' => $usuario_fav,
+        ])->one();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model) {
+            if (!$model->delete()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return '-empty';
+            }
+        } else {
+            $nuevo = new UsersFavs([
+                'usuario_id' => $id,
+                'usuario_fav' => $usuario_fav,
+            ]);
+            if (!$nuevo->save()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return '';
+            }
+            return '';
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
      * Updates an existing UsersFavs model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +115,7 @@ class UsersFavsController extends Controller
     /**
      * Deletes an existing UsersFavs model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +129,7 @@ class UsersFavsController extends Controller
     /**
      * Finds the UsersFavs model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return UsersFavs the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

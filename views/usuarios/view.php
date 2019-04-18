@@ -1,5 +1,8 @@
 <?php
 
+use app\models\Usuarios;
+
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -18,12 +21,50 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
     height: 225px !important;
     border-radius: 110px;
 }
+span.glyphicon {
+    color:red;
+}
 
 </style>
 <div class="container">
+    <?php
+    $corazon = $model->consultaSeguidor(Yii::$app->user->id, $model->id);
+    $url = Url::to(['users-favs/create']);
+    $id = $model->id;
+    $followJs = <<<EOT
 
+    function seguir(event){
+        $.ajax({
+            url: '$url',
+            data: { usuario_fav: '$id'},
+            success: function(data){
+                if (data == '') {
+                    $('#corazon').removeClass('glyphicon-heart-empty');
+                    $('#corazon').addClass('glyphicon-heart');
+                } else {
+                    $('#corazon').removeClass('glyphicon-heart');
+                    $('#corazon').addClass('glyphicon-heart-empty');
+                }
+            }
+        });
+    }
+
+    $(document).ready(function(){
+        $('.follow').click(seguir);
+    });
+EOT;
+$this->registerJs($followJs);
+    ?>
     <center>
-        <h1><?= Html::encode($this->title) ?></h1>
+        <h1>
+            <?= Html::encode($this->title)?>
+            <?php
+            if (Yii::$app->user->id != $model->id && !Yii::$app->user->isGuest) { ?>
+                <button class="follow">
+                    <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
+                </button>
+            <?php } ?>
+        </h1>
     </center>
 
     <?php
