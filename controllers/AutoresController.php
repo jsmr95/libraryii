@@ -37,6 +37,7 @@ class AutoresController extends Controller
     {
         $searchModel = new AutoresSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = ['pageSize' => 5];
 
         return $this->render('index', [
             'searchModel' => $searchModel,

@@ -1,7 +1,11 @@
 <?php
 
+use yii\data\Pagination;
+
 use yii\helpers\Url;
 use yii\helpers\Html;
+
+use yii\widgets\LinkPager;
 
 ?>
 <style media="screen">
@@ -40,6 +44,7 @@ use yii\helpers\Html;
 }
 
 </style>
+
 <div class="row autor">
     <div class="autor-cuerpo col-md-12">
         <div class="col-md-3">
@@ -79,5 +84,4 @@ use yii\helpers\Html;
             </p>
         </div>
     </div>
-
 </div>
