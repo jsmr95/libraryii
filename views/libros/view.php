@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <style>
 
-img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
+img.libros {
     width: 190px !important;
     height: 225px !important;
     border-radius: 20px;
@@ -50,9 +50,9 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
                 <br>
                 <?php
                 if (empty($model->imagen)) {
-                    echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png');
+                    echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'libros']);
                 } else {
-                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen);
+                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'libros']);
                 }
                 ?>
             </div>

@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <style>
 
-img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
+img.usuarios {
     width: 190px !important;
     height: 225px !important;
     border-radius: 110px;
@@ -92,9 +92,9 @@ $this->registerJs($followJs);
             <br>
             <?php
             if (empty($model->url_avatar)) {
-                echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg');
+                echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'usuarios']);
             } else {
-                echo Html::img(Yii::getAlias('@uploads').'/'.$model->url_avatar);
+                echo Html::img(Yii::getAlias('@uploads').'/'.$model->url_avatar, ['class' => 'usuarios']);
             }
             ?>
         </div>

@@ -75,6 +75,16 @@ class Autores extends \yii\db\ActiveRecord
     }
 
     /**
+     * Función para obtener todos los libros de un autor.
+     * @return array|null Array de libros de ese autor.
+     */
+    public function librosAutor()
+    {
+        $libros = Libros::find()->where(['autor_id' => $this->id])->all();
+        return $libros;
+    }
+
+    /**
      * Funcion que es llamada antes de insertar o actualizar un registro.
      * @param  bool $insert true->insert, false->update
      * @return bool true->inserccion o modificación llevada a cabo, false-> cancelado
