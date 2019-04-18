@@ -58,22 +58,38 @@ class UsersFavsController extends Controller
     }
 
     /**
-     * Creates a new UsersFavs model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Creación de un seguimiento, un usuario sigue a otro.
      * @return mixed
+     * @param mixed $usuario_fav
      */
-    public function actionCreate()
+    public function actionCreate($usuario_fav)
     {
-        $model = new UsersFavs();
-        $model->usuario_id = Yii::$app->user->id;
+        //Modificar
+        $id = Yii::$app->user->id;
+        $model = UsersFavs::find()
+            ->where([
+            'usuario_id' => $id,
+            'usuario_fav' => $usuario_fav,
+        ])->one();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model) {
+            if (!$model->delete()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return '-empty';
+            }
+        } else {
+            $nuevo = new UsersFavs([
+                'usuario_id' => $id,
+                'usuario_fav' => $usuario_fav,
+            ]);
+            if (!$nuevo->save()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return '';
+            }
+            return '';
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**

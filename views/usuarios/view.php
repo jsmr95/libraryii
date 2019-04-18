@@ -29,14 +29,23 @@ span.glyphicon {
 <div class="container">
     <?php
     $corazon = $model->consultaSeguidor(Yii::$app->user->id, $model->id);
-    $url = Url::to(['usersFavs/create']);
+    $url = Url::to(['users-favs/create']);
     $id = $model->id;
     $followJs = <<<EOT
 
-    function seguir(e){
-        $.post({
+    function seguir(event){
+        $.ajax({
             url: '$url',
-            data: { usuario_fav: $id},
+            data: { usuario_fav: '$id'},
+            success: function(data){
+                if (data == '') {
+                    $('#corazon').removeClass('glyphicon-heart-empty');
+                    $('#corazon').addClass('glyphicon-heart');
+                } else {
+                    $('#corazon').removeClass('glyphicon-heart');
+                    $('#corazon').addClass('glyphicon-heart-empty');
+                }
+            }
         });
     }
 
@@ -52,7 +61,7 @@ $this->registerJs($followJs);
             <?php
             if (Yii::$app->user->id != $model->id && !Yii::$app->user->isGuest) { ?>
                 <button class="follow">
-                    <span class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
+                    <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
                 </button>
             <?php } ?>
         </h1>

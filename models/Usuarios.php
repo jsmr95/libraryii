@@ -20,13 +20,7 @@ use yii\web\IdentityInterface;
  * @property string $created_at
  * @property string $updated_at
  *
- * @property AutoresFavs[] $autoresFavs
- * @property Comentarios[] $comentarios
- * @property LibrosFavs[] $librosFavs
- * @property Posts[] $posts
- * @property UsersFavs[] $usersFavs
- * @property UsersFavs[] $usersFavs0
- * @property UsuariosId $usuario
+ * @property UsuariosId $id0
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -135,62 +129,6 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAutoresFavs()
-    {
-        return $this->hasMany(AutoresFavs::className(), ['usuario_id' => 'usuario_id'])->inverseOf('usuario');
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getComentarios()
-    {
-        return $this->hasMany(Comentarios::className(), ['usuario_id' => 'usuario_id'])->inverseOf('usuario');
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLibrosFavs()
-    {
-        return $this->hasMany(LibrosFavs::className(), ['usuario_id' => 'usuario_id'])->inverseOf('usuario');
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPosts()
-    {
-        return $this->hasMany(Posts::className(), ['usuario_id' => 'usuario_id'])->inverseOf('usuario');
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUsersFavs()
-    {
-        return $this->hasMany(UsersFavs::className(), ['usuario_id' => 'usuario_id'])->inverseOf('usuario');
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUsersFavs0()
-    {
-        return $this->hasMany(UsersFavs::className(), ['usuario_fav' => 'usuario_id'])->inverseOf('usuarioFav');
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUsuario()
-    {
-        return $this->hasOne(UsuariosId::className(), ['id' => 'usuario_id'])->inverseOf('usuarios');
-    }
-
-    /**
      * Encuentra una identidad dado un ID.
      *
      * @param  string|int $id El id para buscar
@@ -263,6 +201,14 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             return '';
         }
         return '-empty';
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getId0()
+    {
+        return $this->hasOne(UsuariosId::className(), ['id' => 'id'])->inverseOf('usuarios');
     }
 
     /**

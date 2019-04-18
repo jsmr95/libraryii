@@ -11,8 +11,8 @@ use Yii;
  * @property int $usuario_id
  * @property int $usuario_fav
  *
- * @property Usuarios $usuario
- * @property Usuarios $usuarioFav
+ * @property UsuariosId $usuario
+ * @property UsuariosId $usuarioFav
  */
 class UsersFavs extends \yii\db\ActiveRecord
 {
@@ -32,8 +32,8 @@ class UsersFavs extends \yii\db\ActiveRecord
         return [
             [['usuario_id', 'usuario_fav'], 'default', 'value' => null],
             [['usuario_id', 'usuario_fav'], 'integer'],
-            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'usuario_id']],
-            [['usuario_fav'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_fav' => 'usuario_id']],
+            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
+            [['usuario_fav'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_fav' => 'id']],
         ];
     }
 
@@ -54,7 +54,7 @@ class UsersFavs extends \yii\db\ActiveRecord
      */
     public function getUsuario()
     {
-        return $this->hasOne(Usuarios::className(), ['usuario_id' => 'usuario_id'])->inverseOf('usersFavs');
+        return $this->hasOne(UsuariosId::className(), ['id' => 'usuario_id'])->inverseOf('usersFavs');
     }
 
     /**
@@ -62,6 +62,6 @@ class UsersFavs extends \yii\db\ActiveRecord
      */
     public function getUsuarioFav()
     {
-        return $this->hasOne(Usuarios::className(), ['usuario_id' => 'usuario_fav'])->inverseOf('usersFavs0');
+        return $this->hasOne(UsuariosId::className(), ['id' => 'usuario_fav'])->inverseOf('usersFavs0');
     }
 }
