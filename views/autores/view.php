@@ -1,6 +1,11 @@
 <?php
 
+use app\models\Libros;
+
+use yii\data\ActiveDataProvider;
+
 use yii\helpers\Html;
+use yii\widgets\ListView;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -13,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <style>
 
-img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
+img.autores {
     width: 190px !important;
     height: 225px !important;
     border-radius: 20px;
@@ -50,9 +55,9 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
                 <br>
                 <?php
                 if (empty($model->imagen)) {
-                    echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg');
+                    echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'autores']);
                 } else {
-                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen);
+                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'autores']);
                 }
                 ?>
             </div>
@@ -83,7 +88,15 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
                     </center>
                   </div>
                   <div class="panel-body">
-                      <p>Aqui van todos sus libros</p>
+                        <?php
+                        $dataProvider = new ActiveDataProvider([
+                            'query' => Libros::find()->where(['autor_id' => $model->id]),
+                        ]);
+                        echo ListView::widget([
+                          'dataProvider' => $dataProvider,
+                          'summary' => '',
+                          'itemView' => '_librosAutor',
+                      ]); ?>
                   </div>
                 </div>
             </div>

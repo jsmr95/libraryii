@@ -22,7 +22,7 @@ use yii\helpers\Html;
     padding-top: 55px;
     font-family: cursive;
 }
-img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
+img.libros {
     width: 190px !important;
     height: 225px !important;
 }
@@ -34,9 +34,9 @@ img[src^="https://s3.eu-west-2.amazonaws.com/imagesjsmr95"] {
                 <p>
                     <?php
                     if (empty($model->imagen)) {
-                        echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png');
+                        echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'libros']);
                     } else {
-                        echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen);
+                        echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'libros']);
                     }
                     ?>
                 </p>
