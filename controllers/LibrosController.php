@@ -54,6 +54,7 @@ class LibrosController extends Controller
     {
         $searchModel = new LibrosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = ['pageSize' => 5];
 
         return $this->render('index', [
             'searchModel' => $searchModel,
