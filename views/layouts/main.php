@@ -40,6 +40,16 @@ AppAsset::register($this);
 
     if (Yii::$app->user->isGuest) {
         $menu = [
+            [
+                'label' => 'Autores',
+                'url' => ['/autores/index'],
+                'encode' => false
+            ],
+            [
+                'label' => 'Libros',
+                 'url' => ['/libros/index'],
+                 'encode' => false
+            ],
             ['label' => 'Registrarse', 'url' => ['/usuarios/create']],
             ['label' => 'Login', 'url' => ['/site/login']]
         ];
