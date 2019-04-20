@@ -1,9 +1,14 @@
 <?php
 
+use app\models\Libros;
 use app\models\Usuarios;
+use app\models\LibrosFavs;
+
+use yii\data\ActiveDataProvider;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\widgets\ListView;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -28,9 +33,10 @@ span.glyphicon {
 </style>
 <div class="container">
     <?php
+    $id = $model->id;
+    $fila = LibrosFavs::find()->where(['usuario_id' => $id])->one();
     $corazon = $model->consultaSeguidor(Yii::$app->user->id, $model->id);
     $url = Url::to(['users-favs/create']);
-    $id = $model->id;
     $followJs = <<<EOT
 
     function seguir(event){
@@ -86,8 +92,7 @@ $this->registerJs($followJs);
 </div>
 </div>
 <?php } }  ?>
-
-    <div class="row">
+<div class="row">
         <div class="col-md-offset-5 col-md-2">
             <br>
             <?php
@@ -102,7 +107,26 @@ $this->registerJs($followJs);
     <br>
     <br>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+
+        <div class="col-md-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Libros que sigue...</div>
+                <div class="panel-body">
+                    <?php
+                    $dataProvider = new ActiveDataProvider([
+                        'query' => Libros::find()
+                        ->joinWith('librosFavs')
+                        ->where(['usuario_id' => $model->id]),
+                    ]);
+                    echo ListView::widget([
+                      'dataProvider' => $dataProvider,
+                      'summary' => '',
+                      'itemView' => '_librosFavs',
+                  ]); ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
             <div class="panel panel-primary">
               <div class="panel-heading">Información Cuenta</div>
               <div class="panel-body">
@@ -111,9 +135,7 @@ $this->registerJs($followJs);
               </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 <?php if (!$fila){ echo 'col-md-offset-2';}?>">
             <div class="panel panel-primary">
               <div class="panel-heading">Información Personal</div>
               <div class="panel-body">
