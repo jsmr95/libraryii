@@ -148,23 +148,11 @@
         <td>A key that is used to check the validity of a given identity ID.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
-            <tr class="inherited" id="$autoresFavs">
-        <td><a href="app-models-usuarios.html#$autoresFavs-detail">$autoresFavs</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
             <tr class="inherited" id="$behaviors">
         <td><a href="yii-base-component.html#$behaviors-detail">$behaviors</a></td>
         <td><a href="yii-base-behavior.html">yii\base\Behavior</a>[]</td>
         <td>List of behaviors attached to this component</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
-    </tr>
-            <tr class="inherited" id="$comentarios">
-        <td><a href="app-models-usuarios.html#$comentarios-detail">$comentarios</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="$dirtyAttributes">
         <td><a href="yii-db-baseactiverecord.html#$dirtyAttributes-detail">$dirtyAttributes</a></td>
@@ -190,6 +178,12 @@
         <td>An ID that uniquely identifies a user identity.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
+            <tr class="inherited" id="$id0">
+        <td><a href="app-models-usuarios.html#$id0-detail">$id0</a></td>
+        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
+        <td></td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
             <tr class="inherited" id="$isNewRecord">
         <td><a href="yii-db-baseactiverecord.html#$isNewRecord-detail">$isNewRecord</a></td>
         <td><a href="http://www.php.net/language.types.boolean">boolean</a></td>
@@ -201,12 +195,6 @@
         <td><a href="http://www.php.net/class.arrayiterator">ArrayIterator</a></td>
         <td>An iterator for traversing the items in the list.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
-    </tr>
-            <tr class="inherited" id="$librosFavs">
-        <td><a href="app-models-usuarios.html#$librosFavs-detail">$librosFavs</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="$oldAttributes">
         <td><a href="yii-db-baseactiverecord.html#$oldAttributes-detail">$oldAttributes</a></td>
@@ -223,12 +211,6 @@
             <tr class="inherited" id="$password_repeat">
         <td><a href="app-models-usuarios.html#$password_repeat-detail">$password_repeat</a></td>
         <td><a href="http://www.php.net/language.types.string">string</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
-            <tr class="inherited" id="$posts">
-        <td><a href="app-models-usuarios.html#$posts-detail">$posts</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
         <td></td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
@@ -249,24 +231,6 @@
         <td><a href="http://www.php.net/language.types.string">string</a></td>
         <td>The scenario that this model is in.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
-    </tr>
-            <tr class="inherited" id="$usersFavs">
-        <td><a href="app-models-usuarios.html#$usersFavs-detail">$usersFavs</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
-            <tr class="inherited" id="$usersFavs0">
-        <td><a href="app-models-usuarios.html#$usersFavs0-detail">$usersFavs0</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
-            <tr class="inherited" id="$usuario">
-        <td><a href="app-models-usuarios.html#$usuario-detail">$usuario</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="$validators">
         <td><a href="yii-base-model.html#$validators-detail">$validators</a></td>
@@ -433,6 +397,18 @@
         <td>Removes errors for all attributes or a single attribute.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
     </tr>
+            <tr class="inherited" id="consultaLibroSeguido()">
+        <td><a href="app-models-usuarios.html#consultaLibroSeguido()-detail">consultaLibroSeguido()</a></td>
+        <td>Funcion para consultar si el usuario logueado, tiene o no, al libro
+que está consultando en libros favoritos.</td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
+            <tr class="inherited" id="consultaSeguidor()">
+        <td><a href="app-models-usuarios.html#consultaSeguidor()-detail">consultaSeguidor()</a></td>
+        <td>Funcion para consultar si el usuario logueado, sigue o no, al usuario
+que está consultando.</td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
                 <tr class="inherited" id="createValidators()">
         <td><a href="yii-base-model.html#createValidators()-detail">createValidators()</a></td>
         <td>Creates validator objects based on the validation rules specified in <a href="yii-base-model.html#rules()-detail">rules()</a>.</td>
@@ -558,11 +534,6 @@
         <td>Returns a key that can be used to check the validity of a given identity ID.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
-            <tr class="inherited" id="getAutoresFavs()">
-        <td><a href="app-models-usuarios.html#getAutoresFavs()-detail">getAutoresFavs()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
             <tr class="inherited" id="getBehavior()">
         <td><a href="yii-base-component.html#getBehavior()-detail">getBehavior()</a></td>
         <td>Returns the named behavior object.</td>
@@ -572,11 +543,6 @@
         <td><a href="yii-base-component.html#getBehaviors()-detail">getBehaviors()</a></td>
         <td>Returns all behaviors attached to this component.</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
-    </tr>
-            <tr class="inherited" id="getComentarios()">
-        <td><a href="app-models-usuarios.html#getComentarios()-detail">getComentarios()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="getDb()">
         <td><a href="yii-db-activerecordinterface.html#getDb()-detail">getDb()</a></td>
@@ -613,6 +579,11 @@
         <td>Returns an ID that can uniquely identify a user identity.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
+            <tr class="inherited" id="getId0()">
+        <td><a href="app-models-usuarios.html#getId0()-detail">getId0()</a></td>
+        <td></td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
             <tr class="inherited" id="getIsNewRecord()">
         <td><a href="yii-db-baseactiverecord.html#getIsNewRecord()-detail">getIsNewRecord()</a></td>
         <td>Returns a value indicating whether the current record is new.</td>
@@ -622,11 +593,6 @@
         <td><a href="yii-base-model.html#getIterator()-detail">getIterator()</a></td>
         <td>Returns an iterator for traversing the attributes in the model.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
-    </tr>
-            <tr class="inherited" id="getLibrosFavs()">
-        <td><a href="app-models-usuarios.html#getLibrosFavs()-detail">getLibrosFavs()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="getOldAttribute()">
         <td><a href="yii-db-baseactiverecord.html#getOldAttribute()-detail">getOldAttribute()</a></td>
@@ -642,11 +608,6 @@
         <td><a href="yii-db-baseactiverecord.html#getOldPrimaryKey()-detail">getOldPrimaryKey()</a></td>
         <td>Returns the old primary key value(s).</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
-    </tr>
-            <tr class="inherited" id="getPosts()">
-        <td><a href="app-models-usuarios.html#getPosts()-detail">getPosts()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="getPrimaryKey()">
         <td><a href="yii-db-baseactiverecord.html#getPrimaryKey()-detail">getPrimaryKey()</a></td>
@@ -672,21 +633,6 @@
         <td><a href="yii-db-activerecord.html#getTableSchema()-detail">getTableSchema()</a></td>
         <td>Returns the schema information of the DB table associated with this AR class.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
-    </tr>
-            <tr class="inherited" id="getUsersFavs()">
-        <td><a href="app-models-usuarios.html#getUsersFavs()-detail">getUsersFavs()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
-            <tr class="inherited" id="getUsersFavs0()">
-        <td><a href="app-models-usuarios.html#getUsersFavs0()-detail">getUsersFavs0()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
-            <tr class="inherited" id="getUsuario()">
-        <td><a href="app-models-usuarios.html#getUsuario()-detail">getUsuario()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="getValidators()">
         <td><a href="yii-base-model.html#getValidators()-detail">getValidators()</a></td>
@@ -890,7 +836,7 @@
     </tr>
             <tr id="search()">
         <td><a href="app-models-usuariossearch.html#search()-detail">search()</a></td>
-        <td>Creates data provider instance with search query applied</td>
+        <td>Creates data provider instance with search query applied.</td>
         <td><a href="app-models-usuariossearch.html">app\models\UsuariosSearch</a></td>
     </tr>
             <tr class="inherited" id="setAttribute()">
@@ -1015,7 +961,7 @@
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-                                                                                                                        <tr class="inherited" id="createRelationQuery()">
+                                                                                                                                <tr class="inherited" id="createRelationQuery()">
         <td><a href="yii-db-baseactiverecord.html#createRelationQuery()-detail">createRelationQuery()</a></td>
         <td>Creates a query instance for <code>has-one</code> or <code>has-many</code> relation.</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
@@ -1047,7 +993,7 @@ The previous example would extract "id".</td>
         <td>Finds ActiveRecord instance(s) by the given condition.</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
-                                                                                                                                                                                                                    <tr class="inherited" id="insertInternal()">
+                                                                                                                                                                                            <tr class="inherited" id="insertInternal()">
         <td><a href="yii-db-activerecord.html#insertInternal()-detail">insertInternal()</a></td>
         <td>Inserts an ActiveRecord into DB without considering transaction.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
@@ -1371,7 +1317,7 @@ are being validated by the validation rules that apply to the scenario.</p>
 
     
     <div class="doc-description">
-        <p><strong>Creates data provider instance with search query applied</strong></p>
+        <p><strong>Creates data provider instance with search query applied.</strong></p>
 
         
             </div>
@@ -1425,7 +1371,7 @@ are being validated by the validation rules that apply to the scenario.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 17 Apr 2019 07:17:18 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sat, 20 Apr 2019 22:27:23 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

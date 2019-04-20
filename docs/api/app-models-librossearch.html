@@ -363,9 +363,9 @@
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
             <tr class="inherited" id="beforeSave()">
-        <td><a href="yii-db-baseactiverecord.html#beforeSave()-detail">beforeSave()</a></td>
-        <td>This method is called at the beginning of inserting or updating a record.</td>
-        <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
+        <td><a href="app-models-libros.html#beforeSave()-detail">beforeSave()</a></td>
+        <td>Funcion que es llamada antes de insertar o actualizar un registro.</td>
+        <td><a href="app-models-libros.html">app\models\Libros</a></td>
     </tr>
             <tr class="inherited" id="beforeValidate()">
         <td><a href="yii-base-model.html#beforeValidate()-detail">beforeValidate()</a></td>
@@ -1120,12 +1120,26 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
                         </td>
           <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
         </tr>
+            <tr class="inherited" id="SCENARIO_CREATE">
+          <td id="SCENARIO_CREATE-detail">SCENARIO_CREATE</td>
+          <td>'create'</td>
+          <td>Escenario donde se inserta un libro.
+                        </td>
+          <td><a href="app-models-libros.html">app\models\Libros</a></td>
+        </tr>
             <tr class="inherited" id="SCENARIO_DEFAULT">
           <td id="SCENARIO_DEFAULT-detail">SCENARIO_DEFAULT</td>
           <td>'default'</td>
           <td>The name of the default scenario.
                         </td>
           <td><a href="yii-base-model.html">yii\base\Model</a></td>
+        </tr>
+            <tr class="inherited" id="SCENARIO_UPDATE">
+          <td id="SCENARIO_UPDATE-detail">SCENARIO_UPDATE</td>
+          <td>'update'</td>
+          <td>Escenario donde un libro se modifica.
+                        </td>
+          <td><a href="app-models-libros.html">app\models\Libros</a></td>
         </tr>
         </table>
 </div>
@@ -1349,7 +1363,7 @@ are being validated by the validation rules that apply to the scenario.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 17 Apr 2019 07:17:19 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sat, 20 Apr 2019 22:27:25 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

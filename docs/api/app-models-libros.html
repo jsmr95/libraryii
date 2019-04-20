@@ -362,10 +362,10 @@
         <td>This method is invoked before deleting a record.</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
-            <tr class="inherited" id="beforeSave()">
-        <td><a href="yii-db-baseactiverecord.html#beforeSave()-detail">beforeSave()</a></td>
-        <td>This method is called at the beginning of inserting or updating a record.</td>
-        <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
+            <tr id="beforeSave()">
+        <td><a href="app-models-libros.html#beforeSave()-detail">beforeSave()</a></td>
+        <td>Funcion que es llamada antes de insertar o actualizar un registro.</td>
+        <td><a href="app-models-libros.html">app\models\Libros</a></td>
     </tr>
             <tr class="inherited" id="beforeValidate()">
         <td><a href="yii-base-model.html#beforeValidate()-detail">beforeValidate()</a></td>
@@ -1115,12 +1115,26 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
                         </td>
           <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
         </tr>
+            <tr id="SCENARIO_CREATE">
+          <td id="SCENARIO_CREATE-detail">SCENARIO_CREATE</td>
+          <td>'create'</td>
+          <td>Escenario donde se inserta un libro.
+                        </td>
+          <td><a href="app-models-libros.html">app\models\Libros</a></td>
+        </tr>
             <tr class="inherited" id="SCENARIO_DEFAULT">
           <td id="SCENARIO_DEFAULT-detail">SCENARIO_DEFAULT</td>
           <td>'default'</td>
           <td>The name of the default scenario.
                         </td>
           <td><a href="yii-base-model.html">yii\base\Model</a></td>
+        </tr>
+            <tr id="SCENARIO_UPDATE">
+          <td id="SCENARIO_UPDATE-detail">SCENARIO_UPDATE</td>
+          <td>'update'</td>
+          <td>Escenario donde un libro se modifica.
+                        </td>
+          <td><a href="app-models-libros.html">app\models\Libros</a></td>
         </tr>
         </table>
 </div>
@@ -1231,6 +1245,41 @@ merge the parent labels with child labels using functions such as <code>array_me
                   <th class="param-name-col">return</th>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
                   <td class="param-desc-col"><p>Attribute labels (name =&gt; label)</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="beforeSave()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-libros.html#beforeSave()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        beforeSave()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Funcion que es llamada antes de insertar o actualizar un registro.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="app-models-libros.html#beforeSave()-detail">beforeSave</a></strong> ( <span style="color: #0000BB">$insert</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$insert</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>True-&gt;insert, false-&gt;update</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>True-&gt;inserccion o modificación llevada a cabo, false-&gt; cancelado</p>
 </td>
                 </tr>
                                     </table>
@@ -1476,7 +1525,7 @@ if the table is not named after this convention.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 17 Apr 2019 07:17:19 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sat, 20 Apr 2019 22:27:24 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

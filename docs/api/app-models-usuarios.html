@@ -148,23 +148,11 @@
         <td>A key that is used to check the validity of a given identity ID.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
-            <tr id="$autoresFavs">
-        <td><a href="app-models-usuarios.html#$autoresFavs-detail">$autoresFavs</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
             <tr class="inherited" id="$behaviors">
         <td><a href="yii-base-component.html#$behaviors-detail">$behaviors</a></td>
         <td><a href="yii-base-behavior.html">yii\base\Behavior</a>[]</td>
         <td>List of behaviors attached to this component</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
-    </tr>
-            <tr id="$comentarios">
-        <td><a href="app-models-usuarios.html#$comentarios-detail">$comentarios</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="$dirtyAttributes">
         <td><a href="yii-db-baseactiverecord.html#$dirtyAttributes-detail">$dirtyAttributes</a></td>
@@ -190,6 +178,12 @@
         <td>An ID that uniquely identifies a user identity.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
+            <tr id="$id0">
+        <td><a href="app-models-usuarios.html#$id0-detail">$id0</a></td>
+        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
+        <td></td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
             <tr class="inherited" id="$isNewRecord">
         <td><a href="yii-db-baseactiverecord.html#$isNewRecord-detail">$isNewRecord</a></td>
         <td><a href="http://www.php.net/language.types.boolean">boolean</a></td>
@@ -201,12 +195,6 @@
         <td><a href="http://www.php.net/class.arrayiterator">ArrayIterator</a></td>
         <td>An iterator for traversing the items in the list.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
-    </tr>
-            <tr id="$librosFavs">
-        <td><a href="app-models-usuarios.html#$librosFavs-detail">$librosFavs</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="$oldAttributes">
         <td><a href="yii-db-baseactiverecord.html#$oldAttributes-detail">$oldAttributes</a></td>
@@ -223,12 +211,6 @@
             <tr id="$password_repeat">
         <td><a href="app-models-usuarios.html#$password_repeat-detail">$password_repeat</a></td>
         <td><a href="http://www.php.net/language.types.string">string</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
-            <tr id="$posts">
-        <td><a href="app-models-usuarios.html#$posts-detail">$posts</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
         <td></td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
@@ -249,24 +231,6 @@
         <td><a href="http://www.php.net/language.types.string">string</a></td>
         <td>The scenario that this model is in.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
-    </tr>
-            <tr id="$usersFavs">
-        <td><a href="app-models-usuarios.html#$usersFavs-detail">$usersFavs</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
-            <tr id="$usersFavs0">
-        <td><a href="app-models-usuarios.html#$usersFavs0-detail">$usersFavs0</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
-            <tr id="$usuario">
-        <td><a href="app-models-usuarios.html#$usuario-detail">$usuario</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="$validators">
         <td><a href="yii-base-model.html#$validators-detail">$validators</a></td>
@@ -433,6 +397,18 @@
         <td>Removes errors for all attributes or a single attribute.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
     </tr>
+            <tr id="consultaLibroSeguido()">
+        <td><a href="app-models-usuarios.html#consultaLibroSeguido()-detail">consultaLibroSeguido()</a></td>
+        <td>Funcion para consultar si el usuario logueado, tiene o no, al libro
+que está consultando en libros favoritos.</td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
+            <tr id="consultaSeguidor()">
+        <td><a href="app-models-usuarios.html#consultaSeguidor()-detail">consultaSeguidor()</a></td>
+        <td>Funcion para consultar si el usuario logueado, sigue o no, al usuario
+que está consultando.</td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
                 <tr class="inherited" id="createValidators()">
         <td><a href="yii-base-model.html#createValidators()-detail">createValidators()</a></td>
         <td>Creates validator objects based on the validation rules specified in <a href="yii-base-model.html#rules()-detail">rules()</a>.</td>
@@ -558,11 +534,6 @@
         <td>Returns a key that can be used to check the validity of a given identity ID.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
-            <tr id="getAutoresFavs()">
-        <td><a href="app-models-usuarios.html#getAutoresFavs()-detail">getAutoresFavs()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
             <tr class="inherited" id="getBehavior()">
         <td><a href="yii-base-component.html#getBehavior()-detail">getBehavior()</a></td>
         <td>Returns the named behavior object.</td>
@@ -572,11 +543,6 @@
         <td><a href="yii-base-component.html#getBehaviors()-detail">getBehaviors()</a></td>
         <td>Returns all behaviors attached to this component.</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
-    </tr>
-            <tr id="getComentarios()">
-        <td><a href="app-models-usuarios.html#getComentarios()-detail">getComentarios()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="getDb()">
         <td><a href="yii-db-activerecordinterface.html#getDb()-detail">getDb()</a></td>
@@ -613,6 +579,11 @@
         <td>Returns an ID that can uniquely identify a user identity.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
+            <tr id="getId0()">
+        <td><a href="app-models-usuarios.html#getId0()-detail">getId0()</a></td>
+        <td></td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
             <tr class="inherited" id="getIsNewRecord()">
         <td><a href="yii-db-baseactiverecord.html#getIsNewRecord()-detail">getIsNewRecord()</a></td>
         <td>Returns a value indicating whether the current record is new.</td>
@@ -622,11 +593,6 @@
         <td><a href="yii-base-model.html#getIterator()-detail">getIterator()</a></td>
         <td>Returns an iterator for traversing the attributes in the model.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
-    </tr>
-            <tr id="getLibrosFavs()">
-        <td><a href="app-models-usuarios.html#getLibrosFavs()-detail">getLibrosFavs()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="getOldAttribute()">
         <td><a href="yii-db-baseactiverecord.html#getOldAttribute()-detail">getOldAttribute()</a></td>
@@ -642,11 +608,6 @@
         <td><a href="yii-db-baseactiverecord.html#getOldPrimaryKey()-detail">getOldPrimaryKey()</a></td>
         <td>Returns the old primary key value(s).</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
-    </tr>
-            <tr id="getPosts()">
-        <td><a href="app-models-usuarios.html#getPosts()-detail">getPosts()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="getPrimaryKey()">
         <td><a href="yii-db-baseactiverecord.html#getPrimaryKey()-detail">getPrimaryKey()</a></td>
@@ -672,21 +633,6 @@
         <td><a href="yii-db-activerecord.html#getTableSchema()-detail">getTableSchema()</a></td>
         <td>Returns the schema information of the DB table associated with this AR class.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
-    </tr>
-            <tr id="getUsersFavs()">
-        <td><a href="app-models-usuarios.html#getUsersFavs()-detail">getUsersFavs()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
-            <tr id="getUsersFavs0()">
-        <td><a href="app-models-usuarios.html#getUsersFavs0()-detail">getUsersFavs0()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
-    </tr>
-            <tr id="getUsuario()">
-        <td><a href="app-models-usuarios.html#getUsuario()-detail">getUsuario()</a></td>
-        <td></td>
-        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="getValidators()">
         <td><a href="yii-base-model.html#getValidators()-detail">getValidators()</a></td>
@@ -1010,7 +956,7 @@
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-                                                                                                                        <tr class="inherited" id="createRelationQuery()">
+                                                                                                                                <tr class="inherited" id="createRelationQuery()">
         <td><a href="yii-db-baseactiverecord.html#createRelationQuery()-detail">createRelationQuery()</a></td>
         <td>Creates a query instance for <code>has-one</code> or <code>has-many</code> relation.</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
@@ -1042,7 +988,7 @@ The previous example would extract "id".</td>
         <td>Finds ActiveRecord instance(s) by the given condition.</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
-                                                                                                                                                                                                                    <tr class="inherited" id="insertInternal()">
+                                                                                                                                                                                            <tr class="inherited" id="insertInternal()">
         <td><a href="yii-db-activerecord.html#insertInternal()-detail">insertInternal()</a></td>
         <td>Inserts an ActiveRecord into DB without considering transaction.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
@@ -1252,40 +1198,6 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-models-usuarios.html#getAuthKey()-detail">getAuthKey</a></strong> ( )</div>
 
 
-    <div class="detail-header h3" id="$autoresFavs-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#$autoresFavs-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $autoresFavs        <span class="detail-header-tag small">
-            public                         <em>read-only</em>                         property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getAutoresFavs()-detail">getAutoresFavs</a></strong> ( )</div>
-
-
-    <div class="detail-header h3" id="$comentarios-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#$comentarios-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $comentarios        <span class="detail-header-tag small">
-            public                         <em>read-only</em>                         property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getComentarios()-detail">getComentarios</a></strong> ( )</div>
-
-
     <div class="detail-header h3" id="$id-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="app-models-usuarios.html#$id-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -1304,11 +1216,11 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a>|<a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="app-models-usuarios.html#getId()-detail">getId</a></strong> ( )</div>
 
 
-    <div class="detail-header h3" id="$librosFavs-detail">
+    <div class="detail-header h3" id="$id0-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#$librosFavs-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="app-models-usuarios.html#$id0-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $librosFavs        <span class="detail-header-tag small">
+        $id0        <span class="detail-header-tag small">
             public                         <em>read-only</em>                         property
                     </span>
     </div>
@@ -1318,7 +1230,7 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
         
             </div>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getLibrosFavs()-detail">getLibrosFavs</a></strong> ( )</div>
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getId0()-detail">getId0</a></strong> ( )</div>
 
 
     <div class="detail-header h3" id="$password_repeat-detail">
@@ -1336,74 +1248,6 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
             </div>
 
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="app-models-usuarios.html#$password_repeat-detail">$password_repeat</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
-
-
-    <div class="detail-header h3" id="$posts-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#$posts-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $posts        <span class="detail-header-tag small">
-            public                         <em>read-only</em>                         property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getPosts()-detail">getPosts</a></strong> ( )</div>
-
-
-    <div class="detail-header h3" id="$usersFavs-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#$usersFavs-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $usersFavs        <span class="detail-header-tag small">
-            public                         <em>read-only</em>                         property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getUsersFavs()-detail">getUsersFavs</a></strong> ( )</div>
-
-
-    <div class="detail-header h3" id="$usersFavs0-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#$usersFavs0-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $usersFavs0        <span class="detail-header-tag small">
-            public                         <em>read-only</em>                         property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getUsersFavs0()-detail">getUsersFavs0</a></strong> ( )</div>
-
-
-    <div class="detail-header h3" id="$usuario-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#$usuario-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $usuario        <span class="detail-header-tag small">
-            public                         <em>read-only</em>                         property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getUsuario()-detail">getUsuario</a></strong> ( )</div>
 
 </div>
 <h2>Method Details</h2>
@@ -1491,6 +1335,92 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
                   <th class="param-name-col">return</th>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
                   <td class="param-desc-col"><p>True-&gt;inserccion o modificación llevada a cabo, false-&gt; cancelado</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="consultaLibroSeguido()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-usuarios.html#consultaLibroSeguido()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        consultaLibroSeguido()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Funcion para consultar si el usuario logueado, tiene o no, al libro
+que está consultando en libros favoritos.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-models-usuarios.html#consultaLibroSeguido()-detail">consultaLibroSeguido</a></strong> ( <span style="color: #0000BB">$miId</span>, <span style="color: #0000BB">$libroId</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$miId</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Id del usuario logueado</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$libroId</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Id del libro al que visita</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Res cadena que hará mostrar una estrella llena (lo sigue)
+o una estrella vacía (no lo sigue).</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="consultaSeguidor()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-usuarios.html#consultaSeguidor()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        consultaSeguidor()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Funcion para consultar si el usuario logueado, sigue o no, al usuario
+que está consultando.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-models-usuarios.html#consultaSeguidor()-detail">consultaSeguidor</a></strong> ( <span style="color: #0000BB">$miId</span>, <span style="color: #0000BB">$seguidorId</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$miId</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Id del usuario logueado</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$seguidorId</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Id del usuario al que visita</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Res cadena que hará mostrar un corazón lleno (lo sigue)
+o un corazon vacío (no lo sigue).</p>
 </td>
                 </tr>
                                     </table>
@@ -1668,52 +1598,6 @@ other scenarios, that require forceful access revocation for old sessions.</p>
 
 <!--	-->
 
-    <div class="detail-header h3" id="getAutoresFavs()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#getAutoresFavs()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getAutoresFavs()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getAutoresFavs()-detail">getAutoresFavs</a></strong> ( )</td></tr>
-            </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="getComentarios()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#getComentarios()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getComentarios()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getComentarios()-detail">getComentarios</a></strong> ( )</td></tr>
-            </table>
-
-<!--	-->
-
     <div class="detail-header h3" id="getId()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="app-models-usuarios.html#getId()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -1743,11 +1627,11 @@ other scenarios, that require forceful access revocation for old sessions.</p>
 
 <!--	-->
 
-    <div class="detail-header h3" id="getLibrosFavs()-detail">
+    <div class="detail-header h3" id="getId0()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#getLibrosFavs()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="app-models-usuarios.html#getId0()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        getLibrosFavs()
+        getId0()
         <span class="detail-header-tag small">
             public                                    method
                     </span>
@@ -1761,99 +1645,7 @@ other scenarios, that require forceful access revocation for old sessions.</p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getLibrosFavs()-detail">getLibrosFavs</a></strong> ( )</td></tr>
-            </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="getPosts()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#getPosts()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getPosts()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getPosts()-detail">getPosts</a></strong> ( )</td></tr>
-            </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="getUsersFavs()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#getUsersFavs()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getUsersFavs()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getUsersFavs()-detail">getUsersFavs</a></strong> ( )</td></tr>
-            </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="getUsersFavs0()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#getUsersFavs0()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getUsersFavs0()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getUsersFavs0()-detail">getUsersFavs0</a></strong> ( )</td></tr>
-            </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="getUsuario()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-usuarios.html#getUsuario()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getUsuario()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getUsuario()-detail">getUsuario</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-usuarios.html#getId0()-detail">getId0</a></strong> ( )</td></tr>
             </table>
 
 <!--	-->
@@ -2076,7 +1868,7 @@ if the table is not named after this convention.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 17 Apr 2019 07:17:19 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sat, 20 Apr 2019 22:27:24 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

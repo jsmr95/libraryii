@@ -351,9 +351,9 @@
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
             <tr class="inherited" id="beforeSave()">
-        <td><a href="yii-db-baseactiverecord.html#beforeSave()-detail">beforeSave()</a></td>
-        <td>This method is called at the beginning of inserting or updating a record.</td>
-        <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
+        <td><a href="app-models-autores.html#beforeSave()-detail">beforeSave()</a></td>
+        <td>Funcion que es llamada antes de insertar o actualizar un registro.</td>
+        <td><a href="app-models-autores.html">app\models\Autores</a></td>
     </tr>
             <tr class="inherited" id="beforeValidate()">
         <td><a href="yii-base-model.html#beforeValidate()-detail">beforeValidate()</a></td>
@@ -680,6 +680,11 @@
         <td>Returns a value indicating whether the specified operation is transactional in the current <a href="yii-base-model.html#$scenario-detail">$scenario</a>.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
     </tr>
+            <tr class="inherited" id="librosAutor()">
+        <td><a href="app-models-autores.html#librosAutor()-detail">librosAutor()</a></td>
+        <td>Función para obtener todos los libros de un autor.</td>
+        <td><a href="app-models-autores.html">app\models\Autores</a></td>
+    </tr>
             <tr class="inherited" id="link()">
         <td><a href="yii-db-baseactiverecord.html#link()-detail">link()</a></td>
         <td>Establishes the relationship between two models.</td>
@@ -939,7 +944,7 @@ The previous example would extract "id".</td>
         <td>Inserts an ActiveRecord into DB without considering transaction.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
     </tr>
-                                                                                                                    <tr class="inherited" id="refreshInternal()">
+                                                                                                                        <tr class="inherited" id="refreshInternal()">
         <td><a href="yii-db-baseactiverecord.html#refreshInternal()-detail">refreshInternal()</a></td>
         <td>Repopulates this active record with the latest data from a newly fetched instance.</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
@@ -1098,12 +1103,26 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
                         </td>
           <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
         </tr>
+            <tr class="inherited" id="SCENARIO_CREATE">
+          <td id="SCENARIO_CREATE-detail">SCENARIO_CREATE</td>
+          <td>'create'</td>
+          <td>Escenario donde se inserta un autor.
+                        </td>
+          <td><a href="app-models-autores.html">app\models\Autores</a></td>
+        </tr>
             <tr class="inherited" id="SCENARIO_DEFAULT">
           <td id="SCENARIO_DEFAULT-detail">SCENARIO_DEFAULT</td>
           <td>'default'</td>
           <td>The name of the default scenario.
                         </td>
           <td><a href="yii-base-model.html">yii\base\Model</a></td>
+        </tr>
+            <tr class="inherited" id="SCENARIO_UPDATE">
+          <td id="SCENARIO_UPDATE-detail">SCENARIO_UPDATE</td>
+          <td>'update'</td>
+          <td>Escenario donde un autor se modifica.
+                        </td>
+          <td><a href="app-models-autores.html">app\models\Autores</a></td>
         </tr>
         </table>
 </div>
@@ -1298,7 +1317,7 @@ are being validated by the validation rules that apply to the scenario.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 17 Apr 2019 07:17:19 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sat, 20 Apr 2019 22:27:24 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {
