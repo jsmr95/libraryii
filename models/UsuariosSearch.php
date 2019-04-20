@@ -4,7 +4,6 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Usuarios;
 
 /**
  * UsuariosSearch represents the model behind the search form of `app\models\Usuarios`.
@@ -17,7 +16,7 @@ class UsuariosSearch extends Usuarios
     public function rules()
     {
         return [
-            [['usuario_id'], 'integer'],
+            [['id'], 'integer'],
             [['login', 'email', 'nombre', 'apellido', 'biografia', 'url_avatar', 'password', 'auth_key', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -32,7 +31,7 @@ class UsuariosSearch extends Usuarios
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Creates data provider instance with search query applied.
      *
      * @param array $params
      *
@@ -58,7 +57,7 @@ class UsuariosSearch extends Usuarios
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'usuario_id' => $this->usuario_id,
+            'id' => $this->id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

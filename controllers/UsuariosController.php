@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\models\Usuarios;
 use app\models\UsuariosId;
-use app\models\UsuariosIdSearch;
+use app\models\UsuariosSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -48,7 +48,7 @@ class UsuariosController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UsuariosIdSearch();
+        $searchModel = new UsuariosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
