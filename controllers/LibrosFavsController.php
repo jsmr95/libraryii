@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\LibrosFavs;
 use app\models\LibrosFavsSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * LibrosFavsController implements the CRUD actions for LibrosFavs model.
@@ -46,7 +46,7 @@ class LibrosFavsController extends Controller
 
     /**
      * Displays a single LibrosFavs model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -60,25 +60,42 @@ class LibrosFavsController extends Controller
     /**
      * Creates a new LibrosFavs model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param mixed $libro_id
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($libro_id)
     {
-        $model = new LibrosFavs();
+        $id = Yii::$app->user->id;
+        $model = LibrosFavs::find()
+            ->where([
+            'usuario_id' => $id,
+            'libro_id' => $libro_id,
+        ])->one();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model) {
+            if (!$model->delete()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return '-empty';
+            }
+        } else {
+            $nuevo = new LibrosFavs([
+                'usuario_id' => $id,
+                'libro_id' => $libro_id,
+            ]);
+            if (!$nuevo->save()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return '';
+            }
+            return '';
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
      * Updates an existing LibrosFavs model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +115,7 @@ class LibrosFavsController extends Controller
     /**
      * Deletes an existing LibrosFavs model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +129,7 @@ class LibrosFavsController extends Controller
     /**
      * Finds the LibrosFavs model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return LibrosFavs the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
