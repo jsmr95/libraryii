@@ -44,9 +44,10 @@ use yii\widgets\LinkPager;
 }
 
 </style>
-
 <div class="row autor">
+    <!-- Fila por cada autor -->
     <div class="autor-cuerpo col-md-12">
+        <!-- Caja de información-->
         <div class="col-md-3">
             <!-- Imagen AQUI -->
             <center>
@@ -62,6 +63,7 @@ use yii\widgets\LinkPager;
             </center>
         </div>
         <div class=" col-md-7">
+            <!-- Información del autor -->
             <h2>
                 <?= Html::a($model->nombre, ['autores/view', 'id' => $model->id]) ?>
                 <?php

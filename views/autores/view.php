@@ -26,7 +26,7 @@ img.autores {
 
 </style>
 <div class="libros-view">
-
+    <!-- Titulo del autor y las opciones para modificarlo-->
     <center>
         <h1><?= Html::encode($this->title) ?></h1>
     </center>
@@ -50,8 +50,10 @@ img.autores {
     <?php } } ?>
 
     <div class="container">
+        <!-- Contenedor de cada autor -->
         <div class="row">
             <div class="col-md-offset-5 col-md-2">
+                <!-- Fila donde colocamos la imagen-->
                 <br>
                 <?php
                 if (empty($model->imagen)) {
@@ -65,6 +67,7 @@ img.autores {
         <br>
         <br>
         <div class="row">
+            <!-- Fila donde ponemos la información principal-->
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-primary">
                   <div class="panel-heading">
@@ -80,6 +83,7 @@ img.autores {
             </div>
         </div>
         <div class="row">
+            <!-- Fila donde colocamos los libros escritos por el autor-->
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-primary">
                   <div class="panel-heading">
