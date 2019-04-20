@@ -55,7 +55,7 @@ EOT;
 $this->registerJs($followJs);
 ?>
 <div class="libros-view">
-
+    <!-- Titulo del libro y botón para seguirlo-->
     <center>
         <h1><?= Html::encode($this->title) ?>
         <?php
@@ -89,8 +89,11 @@ $this->registerJs($followJs);
     <?php } } ?>
 
     <div class="container">
+        <!-- Contenedor de cada libro -->
         <div class="row">
+            <!-- Fila del libro donde incluye la imagen-->
             <div class="col-md-offset-5 col-md-2">
+                <!-- Columna de 2 y separada 5 que incluye la imagen del libro -->
                 <br>
                 <?php
                 if (empty($model->imagen)) {
@@ -104,7 +107,9 @@ $this->registerJs($followJs);
         <br>
         <br>
         <div class="row">
+            <!-- Fila del libro donde está la información -->
             <div class="col-md-8 col-md-offset-2">
+                <!-- Columna de 8 y separada 2 para la información principal-->
                 <div class="panel panel-primary">
                   <div class="panel-heading">
                     <center>

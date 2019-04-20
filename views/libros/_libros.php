@@ -28,8 +28,11 @@ img.libros {
 }
 </style>
 <div class="row libro">
-    <div class="libro-cuerpo col-md-12">
+    <!-- Fila para cada libro-->
+    <div class="col-md-12 libro-cuerpo ">
+        <!-- Columna completa de cada libro-->
         <div class="col-md-3">
+            <!-- Columna de 3 para la imagen del libro-->
             <center>
                 <p>
                     <?php
@@ -42,7 +45,8 @@ img.libros {
                 </p>
             </center>
         </div>
-        <div class="libro-cabecera col-md-4">
+        <div class="col-md-4 libro-cabecera ">
+            <!-- Columna de 4 para la info de cada libro -->
             <p>
                 <h2>
                     <?= Html::a($model->titulo, [
@@ -60,7 +64,8 @@ img.libros {
                 </ul>
             </p>
         </div>
-        <div class="libro-texto col-md-5">
+        <div class="col-md-5 libro-texto ">
+            <!-- Columna de 5 para la sinopsis-->
             <?= $model->sinopsis  ?>
         </div>
     </div>
