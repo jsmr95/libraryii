@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "libros_favs".
  *
@@ -12,7 +10,7 @@ use Yii;
  * @property int $libro_id
  *
  * @property Libros $libro
- * @property Usuarios $usuario
+ * @property UsuariosId $usuario
  */
 class LibrosFavs extends \yii\db\ActiveRecord
 {
@@ -33,7 +31,7 @@ class LibrosFavs extends \yii\db\ActiveRecord
             [['usuario_id', 'libro_id'], 'default', 'value' => null],
             [['usuario_id', 'libro_id'], 'integer'],
             [['libro_id'], 'exist', 'skipOnError' => true, 'targetClass' => Libros::className(), 'targetAttribute' => ['libro_id' => 'id']],
-            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'usuario_id']],
+            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
 
@@ -62,6 +60,6 @@ class LibrosFavs extends \yii\db\ActiveRecord
      */
     public function getUsuario()
     {
-        return $this->hasOne(Usuarios::className(), ['usuario_id' => 'usuario_id'])->inverseOf('librosFavs');
+        return $this->hasOne(UsuariosId::className(), ['id' => 'usuario_id'])->inverseOf('librosFavs');
     }
 }

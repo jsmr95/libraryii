@@ -1,5 +1,8 @@
 <?php
 
+use app\models\Usuarios;
+
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -19,18 +22,49 @@ img.libros {
     border-radius: 20px;
 }
 
+span#estrella{
+    color: rgb(255, 233, 0);
+}
+
 </style>
 <?php
-$corazon = '';
+$url = Url::to(['libros-favs/create']);
+$id = $model->id;
+$followJs = <<<EOT
+
+function seguir(event){
+    $.ajax({
+        url: '$url',
+        data: { libro_id: '$id'},
+        success: function(data){
+            if (data == '') {
+                $('#estrella').removeClass('glyphicon-star-empty');
+                $('#estrella').addClass('glyphicon-star');
+            } else {
+                $('#estrella').removeClass('glyphicon-star');
+                $('#estrella').addClass('glyphicon-star-empty');
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+    $('.follow').click(seguir);
+});
+EOT;
+$this->registerJs($followJs);
 ?>
 <div class="libros-view">
 
     <center>
         <h1><?= Html::encode($this->title) ?>
         <?php
-        if (!Yii::$app->user->isGuest) { ?>
+        if (!Yii::$app->user->isGuest) {
+            $usuario = Usuarios::find(Yii::$app->user->id)->one();
+            $corazon = $usuario->consultaLibroSeguido($usuario->id, $model->id);
+            ?>
             <button class="follow">
-                <span id="corazon" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
+                <span id="estrella" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
             </button>
         <?php } ?>
         </h1>
