@@ -20,10 +20,20 @@ img.libros {
 }
 
 </style>
+<?php
+$corazon = '';
+?>
 <div class="libros-view">
 
     <center>
-        <h1><?= Html::encode($this->title) ?></h1>
+        <h1><?= Html::encode($this->title) ?>
+        <?php
+        if (!Yii::$app->user->isGuest) { ?>
+            <button class="follow">
+                <span id="corazon" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
+            </button>
+        <?php } ?>
+        </h1>
     </center>
     <!-- Muestro estas opciones solo para el admin -->
     <?php

@@ -204,6 +204,24 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Funcion para consultar si el usuario logueado, tiene o no, al libro
+     * que está consultando en libros favoritos.
+     * @param  int $miId id del usuario logueado
+     * @param  int $libroId id del libro al que visita
+     * @return string res cadena que hará mostrar una estrella llena (lo sigue)
+     * o una estrella vacía (no lo sigue).
+     */
+    public function consultaLibroSeguido($miId, $libroId)
+    {
+        $fila = LibrosFavs::find()->where(['usuario_id' => $miId])
+            ->andWhere(['libro_id' => $libroId])->one();
+        if ($fila) {
+            return '';
+        }
+        return '-empty';
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getId0()
