@@ -37,7 +37,9 @@ img.librosAutor {
 
 </style>
 <div class="row libro">
-    <div class="libro-cuerpo col-md-10">
+    <!-- Fila para cada libro que tiene un autor-->
+    <div class="col-md-10 libro-cuerpo ">
+        <!-- Columna 10 para cada libro-->
         <div class="col-md-2">
             <!-- Imagen AQUI -->
             <center>
@@ -53,6 +55,7 @@ img.librosAutor {
             </center>
         </div>
         <div class=" col-md-8">
+            <!--Columna de 8 para el titulo y sinopsis del libro -->
             <h3>
                 <?= Html::a($model->titulo, ['libros/view', 'id' => $model->id]) ?>
             </h3>
