@@ -32,7 +32,9 @@ img.librosUsuarios {
 }
 </style>
 <div class="row libro">
+    <!-- Fila de cada libro -->
     <div class="libro-cuerpo col-md-10 col-md-offset-1">
+        <!-- Columna de 10 y separado 1 para cada libro-->
         <div class="col-md-2">
             <!-- Imagen AQUI -->
             <center>
@@ -48,7 +50,9 @@ img.librosUsuarios {
             </center>
         </div>
     <div class="row">
+        <!-- Fila para cada titulo del libro-->
         <div class=" col-md-8 col-md-offset-1">
+            <!-- Columna de 8 y separada 1 para el titulo-->
             <center>
                 <h5>
                     <?= Html::a($model->titulo, ['libros/view', 'id' => $model->id], ['class' => 'tituloLibro']) ?>

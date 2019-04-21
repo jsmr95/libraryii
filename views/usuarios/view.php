@@ -32,7 +32,9 @@ span.glyphicon {
 
 </style>
 <div class="container">
+    <!--Contenedor para el libro -->
     <?php
+    //Variables que voy a usar
     $id = $model->id;
     $fila = LibrosFavs::find()->where(['usuario_id' => $id])->one();
     $corazon = $model->consultaSeguidor(Yii::$app->user->id, $model->id);
@@ -61,6 +63,7 @@ span.glyphicon {
 EOT;
 $this->registerJs($followJs);
     ?>
+    <!-- Nombre y corazón para saber si lo sigo-->
     <center>
         <h1>
             <?= Html::encode($this->title)?>
@@ -78,6 +81,7 @@ $this->registerJs($followJs);
         if (Yii::$app->user->identity->login === $model->login){
             ?>
 <div class="row">
+    <!-- Fila para mostrar las opciones de un administrador-->
     <div class="col-md-offset-5 col-md-2">
     <p>
         <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -93,7 +97,9 @@ $this->registerJs($followJs);
 </div>
 <?php } }  ?>
 <div class="row">
+    <!-- Fila para el usuario-->
         <div class="col-md-offset-5 col-md-2">
+            <!-- Columnna de 5 y separada 2 para la imagen del usuario -->
             <br>
             <?php
             if (empty($model->url_avatar)) {
@@ -107,8 +113,9 @@ $this->registerJs($followJs);
     <br>
     <br>
     <div class="row">
-
+        <!-- Fila para saber los libro que sigue el usuario-->
         <div class="col-md-2">
+            <!-- Columna de 2-->
             <div class="panel panel-primary">
                 <div class="panel-heading">Libros que sigue...</div>
                 <div class="panel-body">
@@ -127,6 +134,7 @@ $this->registerJs($followJs);
             </div>
         </div>
         <div class="col-md-8">
+            <!-- Columna de 8 para la Info de la cuenta-->
             <div class="panel panel-primary">
               <div class="panel-heading">Información Cuenta</div>
               <div class="panel-body">
@@ -136,6 +144,7 @@ $this->registerJs($followJs);
             </div>
         </div>
         <div class="col-md-8 <?php if (!$fila){ echo 'col-md-offset-2';}?>">
+            <!-- Columna de 8 para la info personal, tendrá 2 de separación dependiendo si tiene o no libros siguiendo-->
             <div class="panel panel-primary">
               <div class="panel-heading">Información Personal</div>
               <div class="panel-body">
