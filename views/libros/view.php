@@ -59,8 +59,9 @@ $this->registerJs($followJs);
     <center>
         <h1><?= Html::encode($this->title) ?>
         <?php
+        $corazon = '';
         if (!Yii::$app->user->isGuest) {
-            $usuario = Usuarios::find(Yii::$app->user->id)->one();
+            $usuario = Usuarios::findOne(Yii::$app->user->id);
             $corazon = $usuario->consultaLibroSeguido($usuario->id, $model->id);
             ?>
             <button class="follow">
