@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\AutoresFavs;
 use app\models\AutoresFavsSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * AutoresFavsController implements the CRUD actions for AutoresFavs model.
@@ -46,7 +46,7 @@ class AutoresFavsController extends Controller
 
     /**
      * Displays a single AutoresFavs model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -61,24 +61,42 @@ class AutoresFavsController extends Controller
      * Creates a new AutoresFavs model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @param mixed $autor_id
      */
-    public function actionCreate()
+    public function actionCreate($autor_id)
     {
-        $model = new AutoresFavs();
+        //Modificar
+        $id = Yii::$app->user->id;
+        $model = AutoresFavs::find()
+            ->where([
+            'usuario_id' => $id,
+            'autor_id' => $autor_id,
+        ])->one();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model) {
+            if (!$model->delete()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return '-empty';
+            }
+        } else {
+            $nuevo = new AutoresFavs([
+                'usuario_id' => $id,
+                'autor_id' => $autor_id,
+            ]);
+            if (!$nuevo->save()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return '';
+            }
+            return '';
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
      * Updates an existing AutoresFavs model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +116,7 @@ class AutoresFavsController extends Controller
     /**
      * Deletes an existing AutoresFavs model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +130,7 @@ class AutoresFavsController extends Controller
     /**
      * Finds the AutoresFavs model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return AutoresFavs the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

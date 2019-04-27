@@ -12,7 +12,7 @@ use Yii;
  * @property int $autor_id
  *
  * @property Autores $autor
- * @property Usuarios $usuario
+ * @property UsuariosId $usuario
  */
 class AutoresFavs extends \yii\db\ActiveRecord
 {
@@ -33,7 +33,7 @@ class AutoresFavs extends \yii\db\ActiveRecord
             [['usuario_id', 'autor_id'], 'default', 'value' => null],
             [['usuario_id', 'autor_id'], 'integer'],
             [['autor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Autores::className(), 'targetAttribute' => ['autor_id' => 'id']],
-            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'usuario_id']],
+            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
 
@@ -62,6 +62,6 @@ class AutoresFavs extends \yii\db\ActiveRecord
      */
     public function getUsuario()
     {
-        return $this->hasOne(Usuarios::className(), ['usuario_id' => 'usuario_id'])->inverseOf('autoresFavs');
+        return $this->hasOne(UsuariosId::className(), ['id' => 'usuario_id'])->inverseOf('autoresFavs');
     }
 }
