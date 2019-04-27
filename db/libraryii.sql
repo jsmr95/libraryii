@@ -89,9 +89,9 @@ CREATE TABLE comentarios
 );
 
 /* Tabla Posts */
-DROP TABLE IF EXISTS posts CASCADE;
+DROP TABLE IF EXISTS estado_personal CASCADE;
 
-CREATE TABLE posts
+CREATE TABLE estado_personal
 (
       id            BIGSERIAL PRIMARY KEY
     , contenido     varchar(255) NOT NULL

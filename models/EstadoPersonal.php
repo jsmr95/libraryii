@@ -2,10 +2,8 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
- * This is the model class for table "posts".
+ * This is the model class for table "estado_personal".
  *
  * @property int $id
  * @property string $contenido
@@ -14,14 +12,14 @@ use Yii;
  *
  * @property Usuarios $usuario
  */
-class Posts extends \yii\db\ActiveRecord
+class EstadoPersonal extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'posts';
+        return 'estado_personal';
     }
 
     /**
@@ -57,6 +55,6 @@ class Posts extends \yii\db\ActiveRecord
      */
     public function getUsuario()
     {
-        return $this->hasOne(Usuarios::className(), ['usuario_id' => 'usuario_id'])->inverseOf('posts');
+        return $this->hasOne(Usuarios::className(), ['usuario_id' => 'usuario_id'])->inverseOf('estadoPersonal');
     }
 }

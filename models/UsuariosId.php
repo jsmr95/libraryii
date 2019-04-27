@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "usuarios_id".
  *
@@ -15,7 +13,7 @@ use Yii;
  * @property EstadosFavs[] $estadosFavs
  * @property EstadosLyb[] $estadosLybs
  * @property LibrosFavs[] $librosFavs
- * @property Posts[] $posts
+ * @property EstadoPersonal[] $estadoPersonal
  * @property UsersFavs[] $usersFavs
  * @property UsersFavs[] $usersFavs0
  * @property Usuarios $usuarios
@@ -99,9 +97,9 @@ class UsuariosId extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPosts()
+    public function getEstadoPersonal()
     {
-        return $this->hasMany(Posts::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+        return $this->hasOne(Posts::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
     }
 
     /**
