@@ -58,6 +58,8 @@ class Autores extends \yii\db\ActiveRecord
         ];
     }
 
+
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -82,6 +84,24 @@ class Autores extends \yii\db\ActiveRecord
     {
         $libros = Libros::find()->where(['autor_id' => $this->id])->all();
         return $libros;
+    }
+
+    /**
+     * Funcion para consultar si el usuario logueado, sigue o no, al autor
+     * que está consultando.
+     * @param  int $miId id del usuario logueado
+     * @param  int $autorId id del autor al que visita
+     * @return string res cadena que hará mostrar un corazón lleno (lo sigue)
+     * o un corazon vacío (no lo sigue).
+     */
+    public function consultaAutorSeguido($miId, $autorId)
+    {
+        $fila = AutoresFavs::find()->where(['usuario_id' => $miId])
+            ->andWhere(['autor_id' => $autorId])->one();
+        if ($fila) {
+            return '';
+        }
+        return '-empty';
     }
 
     /**

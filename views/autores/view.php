@@ -1,9 +1,11 @@
 <?php
 
 use app\models\Libros;
+use app\models\AutoresFavs;
 
 use yii\data\ActiveDataProvider;
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\DetailView;
@@ -23,12 +25,51 @@ img.autores {
     height: 225px !important;
     border-radius: 20px;
 }
+span.glyphicon {
+    color:red;
+}
 
 </style>
-<div class="libros-view">
-    <!-- Titulo del autor y las opciones para modificarlo-->
+<div class="container">
+    <!--Contenedor para el libro -->
+    <?php
+    //Variables que voy a usar
+    $id = $model->id;
+    $fila = AutoresFavs::find()->where(['usuario_id' => $id])->one();
+    $corazon = $model->consultaAutorSeguido(Yii::$app->user->id, $id);
+    $url = Url::to(['autores-favs/create']);
+    $followJs = <<<EOT
+
+    function seguir(event){
+        $.ajax({
+            url: '$url',
+            data: { autor_id: '$id'},
+            success: function(data){
+                if (data == '') {
+                    $('#corazon').removeClass('glyphicon-heart-empty');
+                    $('#corazon').addClass('glyphicon-heart');
+                } else {
+                    $('#corazon').removeClass('glyphicon-heart');
+                    $('#corazon').addClass('glyphicon-heart-empty');
+                }
+            }
+        });
+    }
+
+    $(document).ready(function(){
+        $('.follow').click(seguir);
+    });
+EOT;
+$this->registerJs($followJs);
+    ?>
+    <!-- Nombre y corazón para saber si lo sigo-->
     <center>
-        <h1><?= Html::encode($this->title) ?></h1>
+        <h1>
+            <?= Html::encode($this->title)?>
+            <button class="follow">
+                <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
+            </button>
+        </h1>
     </center>
     <!-- Muestro estas opciones solo para el admin -->
     <?php
