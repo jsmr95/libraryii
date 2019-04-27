@@ -2,17 +2,17 @@
 
 namespace app\controllers;
 
+use app\models\EstadoPersonal;
+use app\models\EstadoPersonalSearch;
 use Yii;
-use app\models\Posts;
-use app\models\PostsSearch;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
- * PostsController implements the CRUD actions for Posts model.
+ * EstadoPersonal implements the CRUD actions for EstadoPersonal model.
  */
-class PostsController extends Controller
+class EstadoPersonalController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class PostsController extends Controller
     }
 
     /**
-     * Lists all Posts models.
+     * Lists all EstadoPersonal models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PostsSearch();
+        $searchModel = new EstadoPersonalSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,8 +45,8 @@ class PostsController extends Controller
     }
 
     /**
-     * Displays a single Posts model.
-     * @param integer $id
+     * Displays a single EstadoPersonals model.
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -58,13 +58,13 @@ class PostsController extends Controller
     }
 
     /**
-     * Creates a new Posts model.
+     * Creates a new EstadoPersonals model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Posts();
+        $model = new EstadoPersonal();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,9 +76,9 @@ class PostsController extends Controller
     }
 
     /**
-     * Updates an existing Posts model.
+     * Updates an existing EstadoPersonal model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -96,9 +96,9 @@ class PostsController extends Controller
     }
 
     /**
-     * Deletes an existing Posts model.
+     * Deletes an existing EstadoPersonal model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -110,15 +110,15 @@ class PostsController extends Controller
     }
 
     /**
-     * Finds the Posts model based on its primary key value.
+     * Finds the EstadoPersonal model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Posts the loaded model
+     * @param int $id
+     * @return EstadoPersonal the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Posts::findOne($id)) !== null) {
+        if (($model = EstadoPersonal::findOne($id)) !== null) {
             return $model;
         }
 

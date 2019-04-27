@@ -4,12 +4,11 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Posts;
 
 /**
  * PostsSearch represents the model behind the search form of `app\models\Posts`.
  */
-class PostsSearch extends Posts
+class EstadoPersonalSearch extends Posts
 {
     /**
      * {@inheritdoc}
@@ -32,7 +31,7 @@ class PostsSearch extends Posts
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Creates data provider instance with search query applied.
      *
      * @param array $params
      *
