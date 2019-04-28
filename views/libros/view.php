@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Votos;
 use app\models\Usuarios;
 
 use yii\helpers\Url;
@@ -149,11 +150,20 @@ $this->registerJs($followJs);
             </div>
         </div>
         <br><br>
+        <?php if (!Yii::$app->user->isGuest) {
+            $votante = Votos::find()->where(['usuario_id' => $usuarioId,
+                                             'libro_id' => $id])->one();
+            if ($votante) {
+                $voto = $votante->voto;
+            }else {
+                $voto = 0;
+            }
+            ?>
         <div class="row">
             <center>
                 <label class="control-label">Valora el libro:</label>
                 <?= StarRating::widget(['name' => 'rating',
-                                        'value' => 2,
+                                        'value' => $voto,
                                         'pluginOptions' => [
                                             'step' => 1 ]
                                         ]);
@@ -163,6 +173,7 @@ $this->registerJs($followJs);
         </div>
         <br>
         <br>
+    <?php } ?>
         <div class="row">
             <!-- Fila del libro donde está la información -->
             <div class="col-md-8 col-md-offset-2">

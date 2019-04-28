@@ -67,16 +67,23 @@ class VotosController extends Controller
      */
     public function actionCreate($usuario_id, $libro_id, $voto)
     {
-        // $model = new Votos();
-        //
-        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        //     return $this->redirect(['view', 'id' => $model->id]);
-        // }
-        //
-        // return $this->render('create', [
-        //     'model' => $model,
-        // ]);
-        return $voto;
+        $model = Votos::find()->where(['usuario_id' => $usuario_id,
+                              'libro_id' => $libro_id,
+                             ])->one();
+        var_dump($model);
+        if ($model) {
+            if (!$model->delete()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            }
+        }
+        $nuevo = new Votos([
+            'usuario_id' => $usuario_id,
+            'libro_id' => $libro_id,
+            'voto' => $voto,
+        ]);
+        if (!$nuevo->save()) {
+            Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+        }
     }
 
     /**
