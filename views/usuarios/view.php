@@ -142,15 +142,21 @@ $this->registerJs($followJs);
             <center>
                 <p style="font-style: italic;">
                     <?php
-                    $estado = EstadoPersonal::find(['usuario_id' => $usuarioId])->one();
-                    if ($estado) { ?>
+                    $estado = EstadoPersonal::find()
+                        ->where(['usuario_id' => $id])->one();
+                    if ($estado) {
+                        if ($usuarioId === $id) { ?>
+
                         '<?= Html::textInput('contenido',$estado->contenido,
                         [
                             'id' => 'inputEstadoPersonal',
                         ]);  ?>'
                     <?php } else { ?>
-                        'Estado Personal'
+                        '<?= Html::encode($estado->contenido) ?>'
                     <?php } ?>
+                <?php } else { ?>
+                    'Estado Personal'
+                <?php } ?>
                 </p>
             </center>
         </div>

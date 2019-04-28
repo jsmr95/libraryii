@@ -323,4 +323,5 @@ VALUES  (1, 4)
 
 -- estado_personal --
 INSERT INTO estado_personal (usuario_id, contenido)
-VALUES  (1, 'La lectura es mi distracción.');
+VALUES  (1, 'La lectura es mi distracción.'),
+        (2, 'Me encanta leer!');
