@@ -19,7 +19,9 @@
         "ext-intl": "*",
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.1.0"
+        "yiisoft/yii2-swiftmailer": "~2.1.0",
+        "kartik-v/yii2-widgets": "dev-master",
+        "kartik-v/yii2-widget-rating": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "dev-master",
@@ -28,7 +30,6 @@
         "yiisoft/yii2-shell": "dev-master",
         "yiisoft/yii2-apidoc": "dev-project",
 
-        "kartik-v/bootstrap-star-rating": "dev-master",
         "codeception/codeception": "^2.3.0",
         "codeception/verify": "^1.0.0",
         "codeception/specify": "^1.0.0",
