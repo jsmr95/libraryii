@@ -61,19 +61,28 @@ class EstadoPersonalController extends Controller
      * Creates a new EstadoPersonals model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @param mixed $contenido
+     * @param mixed $usuario_id
      */
-    public function actionCreate()
+    public function actionCreate($usuario_id, $contenido)
     {
-        $model = new EstadoPersonal();
+        $model = EstadoPersonal::find(['usuario_id' => $usuario_id])->one();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model) {
+            if (!$model->delete()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                $nuevo = new EstadoPersonal([
+                    'usuario_id' => $usuario_id,
+                    'contenido' => $contenido,
+                ]);
+                if (!$nuevo->save()) {
+                    Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+                }
+            }
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
+
 
     /**
      * Updates an existing EstadoPersonal model.

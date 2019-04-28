@@ -320,3 +320,7 @@ VALUES  (1, 4)
         ,  (1, 1)
         ,  (2, 4)
         ,  (3, 1);
+
+-- estado_personal --
+INSERT INTO estado_personal (usuario_id, contenido)
+VALUES  (1, 'La lectura es mi distracción.');
