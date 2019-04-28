@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "usuarios_id".
  *
@@ -9,11 +11,11 @@ namespace app\models;
  *
  * @property AutoresFavs[] $autoresFavs
  * @property Comentarios[] $comentarios
+ * @property EstadoPersonal[] $estadoPersonals
  * @property Estados[] $estados
  * @property EstadosFavs[] $estadosFavs
  * @property EstadosLyb[] $estadosLybs
  * @property LibrosFavs[] $librosFavs
- * @property EstadoPersonal[] $estadoPersonal
  * @property UsersFavs[] $usersFavs
  * @property UsersFavs[] $usersFavs0
  * @property Usuarios $usuarios
@@ -65,6 +67,14 @@ class UsuariosId extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getEstadoPersonals()
+    {
+        return $this->hasMany(EstadoPersonal::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getEstados()
     {
         return $this->hasMany(Estados::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
@@ -92,14 +102,6 @@ class UsuariosId extends \yii\db\ActiveRecord
     public function getLibrosFavs()
     {
         return $this->hasMany(LibrosFavs::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEstadoPersonal()
-    {
-        return $this->hasOne(Posts::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
     }
 
     /**

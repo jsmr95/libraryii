@@ -3,6 +3,7 @@
 use app\models\Libros;
 use app\models\Usuarios;
 use app\models\LibrosFavs;
+use app\models\EstadoPersonal;
 
 use yii\data\ActiveDataProvider;
 
@@ -30,20 +31,29 @@ span.glyphicon {
     color:red;
 }
 
+#inputEstadoPersonal {
+    border: none;
+    width: 500px;
+    text-align: center;
+    margin-top: 15px;
+}
+
 </style>
 <div class="container">
     <!--Contenedor para el libro -->
     <?php
     //Variables que voy a usar
     $id = $model->id;
+    $usuarioId = Yii::$app->user->id;
     $fila = LibrosFavs::find()->where(['usuario_id' => $id])->one();
-    $corazon = $model->consultaSeguidor(Yii::$app->user->id, $model->id);
-    $url = Url::to(['users-favs/create']);
+    $corazon = $model->consultaSeguidor( $usuarioId, $model->id);
+    $url1 = Url::to(['users-favs/create']);
+    $url2 = Url::to(['estado-personal/create']);
     $followJs = <<<EOT
 
     function seguir(event){
         $.ajax({
-            url: '$url',
+            url: '$url1',
             data: { usuario_fav: '$id'},
             success: function(data){
                 if (data == '') {
@@ -57,8 +67,19 @@ span.glyphicon {
         });
     }
 
+    function cambiarEstado(event){
+        var content = $('#inputEstadoPersonal').val();
+        $.ajax({
+            url: '$url2',
+            data: { usuario_id: '$usuarioId',
+                    contenido: content
+                },
+        });
+    }
+
     $(document).ready(function(){
         $('.follow').click(seguir);
+        $('#inputEstadoPersonal').change(cambiarEstado);
     });
 EOT;
 $this->registerJs($followJs);
@@ -68,7 +89,7 @@ $this->registerJs($followJs);
         <h1>
             <?= Html::encode($this->title)?>
             <?php
-            if (Yii::$app->user->id != $model->id && !Yii::$app->user->isGuest) { ?>
+            if ($usuarioId != $model->id && !Yii::$app->user->isGuest) { ?>
                 <button class="follow">
                     <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
                 </button>
@@ -84,8 +105,8 @@ $this->registerJs($followJs);
     <!-- Fila para mostrar las opciones de un administrador-->
     <div class="col-md-offset-5 col-md-2">
     <p>
-        <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Eliminar cuenta', ['delete', 'id' => $model->id], [
+        <?= Html::a('Modificar', ['update', 'id' => $id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar cuenta', ['delete', 'id' => $id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Estás seguro que desea eliminar su cuenta? Se eliminará TODO su contenido registrado!',
@@ -98,8 +119,9 @@ $this->registerJs($followJs);
 <?php } }  ?>
 <div class="row">
     <!-- Fila para el usuario-->
+    <div class="row">
         <div class="col-md-offset-5 col-md-2">
-            <!-- Columnna de 5 y separada 2 para la imagen del usuario -->
+            <!-- Columnna de 5 y separada 2 para la imagen del usuario y estado personal -->
             <br>
             <?php
             if (empty($model->url_avatar)) {
@@ -110,59 +132,84 @@ $this->registerJs($followJs);
             ?>
         </div>
     </div>
-    <br>
-    <br>
+
+    <!-- Obtengo el estado personal del usuario -->
+    <?php
+    if (!Yii::$app->user->isGuest){
+        ?>
     <div class="row">
-        <!-- Fila para saber los libro que sigue el usuario-->
-        <div class="col-md-2">
-            <!-- Columna de 2-->
-            <div class="panel panel-primary">
-                <div class="panel-heading">Libros que sigue...</div>
-                <div class="panel-body">
+        <div class="col-md-12">
+            <center>
+                <p style="font-style: italic;">
                     <?php
-                    $dataProvider = new ActiveDataProvider([
-                        'query' => Libros::find()
-                        ->joinWith('librosFavs')
-                        ->where(['usuario_id' => $model->id]),
-                    ]);
-                    echo ListView::widget([
-                      'dataProvider' => $dataProvider,
-                      'summary' => '',
-                      'itemView' => '_librosFavs',
-                  ]); ?>
-                </div>
-            </div>
+                    $estado = EstadoPersonal::find(['usuario_id' => $usuarioId])->one();
+                    if ($estado) { ?>
+                        '<?= Html::textInput('contenido',$estado->contenido,
+                        [
+                            'id' => 'inputEstadoPersonal',
+                        ]);  ?>'
+                    <?php } else { ?>
+                        'Estado Personal'
+                    <?php } ?>
+                </p>
+            </center>
         </div>
-        <div class="col-md-8">
-            <!-- Columna de 8 para la Info de la cuenta-->
-            <div class="panel panel-primary">
-              <div class="panel-heading">Información Cuenta</div>
-              <div class="panel-body">
-                  <p>Login: <?= $model->login ?></p>
-                  <p>Email: <?= $model->email ?></p>
-              </div>
-            </div>
-        </div>
-        <div class="col-md-8 <?php if (!$fila){ echo 'col-md-offset-2';}?>">
-            <!-- Columna de 8 para la info personal, tendrá 2 de separación dependiendo si tiene o no libros siguiendo-->
-            <div class="panel panel-primary">
-              <div class="panel-heading">Información Personal</div>
-              <div class="panel-body">
-                  <p>Nombre: <?= $model->nombre ?></p>
-                  <p>Apellido: <?= $model->apellido ?></p>
-                  <p>Biografía: <?= $model->biografia ?></p>
-                  <p>Autenticado: <?php
-                   if (empty($model->auth_key)) {?>
-                       Verificado!
-                   <?php } else {?>
-                   NO verificado!
-                   <?php } ?>
-                   </p>
-                  <p>Creado: <?= $model->created_at ?></p>
-                  <p>Última modificación: <?= $model->updated_at ?></p>
-              </div>
+    </div>
+    <?php } ?>
+</div>
+<br>
+<br>
+<div class="row">
+    <!-- Fila para saber los libro que sigue el usuario-->
+    <div class="col-md-2">
+        <!-- Columna de 2-->
+        <div class="panel panel-primary">
+            <div class="panel-heading">Libros que sigue...</div>
+            <div class="panel-body">
+                <?php
+                $dataProvider = new ActiveDataProvider([
+                    'query' => Libros::find()
+                    ->joinWith('librosFavs')
+                    ->where(['usuario_id' => $model->id]),
+                ]);
+                echo ListView::widget([
+                  'dataProvider' => $dataProvider,
+                  'summary' => '',
+                  'itemView' => '_librosFavs',
+              ]); ?>
             </div>
         </div>
     </div>
+    <div class="col-md-8">
+        <!-- Columna de 8 para la Info de la cuenta-->
+        <div class="panel panel-primary">
+          <div class="panel-heading">Información Cuenta</div>
+          <div class="panel-body">
+              <p>Login: <?= $model->login ?></p>
+              <p>Email: <?= $model->email ?></p>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-8 <?php if (!$fila){ echo 'col-md-offset-2';}?>">
+        <!-- Columna de 8 para la info personal, tendrá 2 de separación dependiendo si tiene o no libros siguiendo-->
+        <div class="panel panel-primary">
+          <div class="panel-heading">Información Personal</div>
+          <div class="panel-body">
+              <p>Nombre: <?= $model->nombre ?></p>
+              <p>Apellido: <?= $model->apellido ?></p>
+              <p>Biografía: <?= $model->biografia ?></p>
+              <p>Autenticado: <?php
+               if (empty($model->auth_key)) {?>
+                   Verificado!
+               <?php } else {?>
+               NO verificado!
+               <?php } ?>
+               </p>
+              <p>Creado: <?= $model->created_at ?></p>
+              <p>Última modificación: <?= $model->updated_at ?></p>
+          </div>
+        </div>
+    </div>
+</div>
 
 </div>

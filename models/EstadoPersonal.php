@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 /**
  * This is the model class for table "estado_personal".
  *
@@ -10,7 +12,7 @@ namespace app\models;
  * @property string $created_at
  * @property int $usuario_id
  *
- * @property Usuarios $usuario
+ * @property UsuariosId $usuario
  */
 class EstadoPersonal extends \yii\db\ActiveRecord
 {
@@ -33,7 +35,7 @@ class EstadoPersonal extends \yii\db\ActiveRecord
             [['usuario_id'], 'default', 'value' => null],
             [['usuario_id'], 'integer'],
             [['contenido'], 'string', 'max' => 255],
-            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'usuario_id']],
+            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
 
@@ -55,6 +57,6 @@ class EstadoPersonal extends \yii\db\ActiveRecord
      */
     public function getUsuario()
     {
-        return $this->hasOne(Usuarios::className(), ['usuario_id' => 'usuario_id'])->inverseOf('estadoPersonal');
+        return $this->hasOne(UsuariosId::className(), ['id' => 'usuario_id'])->inverseOf('estadoPersonals');
     }
 }
