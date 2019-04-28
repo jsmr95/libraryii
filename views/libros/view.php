@@ -5,6 +5,7 @@ use app\models\Usuarios;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use kartik\widgets\StarRating;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Libros */
@@ -104,6 +105,13 @@ $this->registerJs($followJs);
                 }
                 ?>
             </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <center>
+                <label for="input-1" class="control-label">Valora el libro:</label>
+                <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
+            </center>
         </div>
         <br>
         <br>
