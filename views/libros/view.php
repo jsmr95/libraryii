@@ -27,15 +27,21 @@ span#estrella{
     color: rgb(255, 233, 0);
 }
 
+.caption {
+    display: none !important;
+}
+
 </style>
 <?php
-$url = Url::to(['libros-favs/create']);
+$url1 = Url::to(['libros-favs/create']);
+$url2 = Url::to(['votos/create']);
 $id = $model->id;
+$usuarioId = Yii::$app->user->id;
 $followJs = <<<EOT
 
 function seguir(event){
     $.ajax({
-        url: '$url',
+        url: '$url1',
         data: { libro_id: '$id'},
         success: function(data){
             if (data == '') {
@@ -49,8 +55,44 @@ function seguir(event){
     });
 }
 
+
+function votar(event){
+    var valorVoto;
+    var relleno = $('.rating-stars').attr('title');
+    switch (relleno) {
+        case 'Una Estrella':
+            valorVoto = 1;
+            break;
+        case 'Dos Estrellas':
+            valorVoto = 2;
+            break;
+        case 'Tres Estrellas':
+            valorVoto = 3;
+            break;
+        case 'Cuatro Estrellas':
+            valorVoto = 4;
+            break;
+        case 'Cinco Estrellas':
+            valorVoto = 5;
+            break;
+        default:
+            valorVoto = 0;
+    }
+    console.log(relleno);
+    $.ajax({
+        url: '$url2',
+        data: { libro_id: '$id',
+                usuario_id: '$usuarioId',
+                voto: valorVoto},
+        success: function(data){
+            console.log(data);
+        }
+    });
+}
+
 $(document).ready(function(){
     $('.follow').click(seguir);
+    $('.rating-stars').change(votar);
 });
 EOT;
 $this->registerJs($followJs);
@@ -111,7 +153,7 @@ $this->registerJs($followJs);
             <center>
                 <label class="control-label">Valora el libro:</label>
                 <?= StarRating::widget(['name' => 'rating',
-                                        'value' => 0,
+                                        'value' => 2,
                                         'pluginOptions' => [
                                             'step' => 1 ]
                                         ]);
