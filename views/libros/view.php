@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Votos;
+use app\models\Libros;
 use app\models\Usuarios;
 
 use yii\helpers\Url;
@@ -168,7 +169,13 @@ $this->registerJs($followJs);
                                             'step' => 1 ]
                                         ]);
                 ?>
-                <!-- <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1"> -->
+            </center>
+        </div>
+        <div class="row">
+            <center>
+                <?php $media = $model->calculaMediaVotos();?>
+                <p>Media:</p>
+                <?= $media ?>
             </center>
         </div>
         <br>
