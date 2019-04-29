@@ -66,20 +66,19 @@ class EstadoPersonalController extends Controller
      */
     public function actionCreate($usuario_id, $contenido)
     {
-        $model = EstadoPersonal::find(['usuario_id' => $usuario_id])->one();
+        $model = EstadoPersonal::find()->where(['usuario_id' => $usuario_id])->one();
 
         if ($model) {
             if (!$model->delete()) {
                 Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
-            } else {
-                $nuevo = new EstadoPersonal([
-                    'usuario_id' => $usuario_id,
-                    'contenido' => $contenido,
-                ]);
-                if (!$nuevo->save()) {
-                    Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
-                }
             }
+        }
+        $nuevo = new EstadoPersonal([
+            'usuario_id' => $usuario_id,
+            'contenido' => $contenido,
+        ]);
+        if (!$nuevo->save()) {
+            Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
         }
     }
 
