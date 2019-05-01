@@ -2,17 +2,17 @@
 
 namespace app\controllers;
 
-use app\models\EstadoPersonal;
-use app\models\EstadoPersonalSearch;
+use app\models\Votos;
+use app\models\VotosSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
- * EstadoPersonal implements the CRUD actions for EstadoPersonal model.
+ * VotosController implements the CRUD actions for Votos model.
  */
-class EstadoPersonalController extends Controller
+class VotosController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class EstadoPersonalController extends Controller
     }
 
     /**
-     * Lists all EstadoPersonal models.
+     * Lists all Votos models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new EstadoPersonalSearch();
+        $searchModel = new VotosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class EstadoPersonalController extends Controller
     }
 
     /**
-     * Displays a single EstadoPersonals model.
+     * Displays a single Votos model.
      * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,33 +58,38 @@ class EstadoPersonalController extends Controller
     }
 
     /**
-     * Creates a new EstadoPersonals model.
+     * Creates a new Votos model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
-     * @param mixed $contenido
      * @param mixed $usuario_id
+     * @param mixed $libro_id
+     * @param mixed $voto
      */
-    public function actionCreate($usuario_id, $contenido)
+    public function actionCreate($usuario_id, $libro_id, $voto)
     {
-        $model = EstadoPersonal::find()->where(['usuario_id' => $usuario_id])->one();
-
+        $model = Votos::find()->where(['usuario_id' => $usuario_id,
+                              'libro_id' => $libro_id,
+                             ])->one();
+        var_dump($model);
         if ($model) {
             if (!$model->delete()) {
                 Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
             }
         }
-        $nuevo = new EstadoPersonal([
-            'usuario_id' => $usuario_id,
-            'contenido' => $contenido,
-        ]);
-        if (!$nuevo->save()) {
-            Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+        if ($voto != 0) {
+            $nuevo = new Votos([
+                'usuario_id' => $usuario_id,
+                'libro_id' => $libro_id,
+                'voto' => $voto,
+            ]);
+            if (!$nuevo->save()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            }
         }
     }
 
-
     /**
-     * Updates an existing EstadoPersonal model.
+     * Updates an existing Votos model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id
      * @return mixed
@@ -104,7 +109,7 @@ class EstadoPersonalController extends Controller
     }
 
     /**
-     * Deletes an existing EstadoPersonal model.
+     * Deletes an existing Votos model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id
      * @return mixed
@@ -118,15 +123,15 @@ class EstadoPersonalController extends Controller
     }
 
     /**
-     * Finds the EstadoPersonal model based on its primary key value.
+     * Finds the Votos model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id
-     * @return EstadoPersonal the loaded model
+     * @return Votos the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = EstadoPersonal::findOne($id)) !== null) {
+        if (($model = Votos::findOne($id)) !== null) {
             return $model;
         }
 

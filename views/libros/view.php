@@ -1,10 +1,13 @@
 <?php
 
+use app\models\Votos;
+use app\models\Libros;
 use app\models\Usuarios;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use kartik\rating\StarRating;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Libros */
@@ -26,15 +29,22 @@ span#estrella{
     color: rgb(255, 233, 0);
 }
 
+.caption {
+    display: none !important;
+}
+
 </style>
 <?php
-$url = Url::to(['libros-favs/create']);
+$url1 = Url::to(['libros-favs/create']);
+$url2 = Url::to(['votos/create']);
+$url3 = Url::to(['libros/calculamediavotos']);
 $id = $model->id;
+$usuarioId = Yii::$app->user->id;
 $followJs = <<<EOT
 
 function seguir(event){
     $.ajax({
-        url: '$url',
+        url: '$url1',
         data: { libro_id: '$id'},
         success: function(data){
             if (data == '') {
@@ -48,8 +58,53 @@ function seguir(event){
     });
 }
 
+
+function votar(event){
+    var valorVoto;
+    var relleno = $('.rating-stars').attr('title');
+    switch (relleno) {
+        case 'Una Estrella':
+            valorVoto = 1;
+            break;
+        case 'Dos Estrellas':
+            valorVoto = 2;
+            break;
+        case 'Tres Estrellas':
+            valorVoto = 3;
+            break;
+        case 'Cuatro Estrellas':
+            valorVoto = 4;
+            break;
+        case 'Cinco Estrellas':
+            valorVoto = 5;
+            break;
+        default:
+            valorVoto = 0;
+    }
+
+    $.ajax({
+        url: '$url2',
+        data: { libro_id: '$id',
+                usuario_id: '$usuarioId',
+                voto: valorVoto
+            }
+    });
+
+    $.ajax({
+        url: '$url3',
+        data: { libro_id: '$id',
+        },
+        success: function(data){
+            $('#media').html(data);
+        }
+    });
+
+
+}
+
 $(document).ready(function(){
     $('.follow').click(seguir);
+    $('.rating-stars').change(votar);
 });
 EOT;
 $this->registerJs($followJs);
@@ -105,8 +160,39 @@ $this->registerJs($followJs);
                 ?>
             </div>
         </div>
+        <br><br>
+        <?php if (!Yii::$app->user->isGuest) {
+            $votante = Votos::find()->where(['usuario_id' => $usuarioId,
+                                             'libro_id' => $id])->one();
+            if ($votante) {
+                $voto = $votante->voto;
+            }else {
+                $voto = 0;
+            }
+            ?>
+        <div class="row">
+            <center>
+                <label class="control-label">Valora el libro:</label>
+                <?= StarRating::widget(['name' => 'rating',
+                                        'value' => $voto,
+                                        'pluginOptions' => [
+                                            'step' => 1 ]
+                                        ]);
+                ?>
+            </center>
+        </div>
+        <div class="row">
+            <center>
+                <?php $media = Yii::$app->runAction('libros/calculamediavotos',['libro_id' => $id])?>
+                <p>Media:</p>
+                <h4 id="media">
+                    <?= $media ?>
+                </h4>
+            </center>
+        </div>
         <br>
         <br>
+    <?php } ?>
         <div class="row">
             <!-- Fila del libro donde está la información -->
             <div class="col-md-8 col-md-offset-2">

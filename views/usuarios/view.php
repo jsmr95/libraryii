@@ -35,7 +35,6 @@ span.glyphicon {
     border: none;
     width: 500px;
     text-align: center;
-    margin-top: 15px;
 }
 
 </style>
@@ -140,7 +139,7 @@ $this->registerJs($followJs);
     <div class="row">
         <div class="col-md-12">
             <center>
-                <p style="font-style: italic;">
+                <p style="font-style: italic; margin-top: 25px">
                     <?php
                     $estado = EstadoPersonal::find()
                         ->where(['usuario_id' => $id])->one();
@@ -154,6 +153,11 @@ $this->registerJs($followJs);
                     <?php } else { ?>
                         '<?= Html::encode($estado->contenido) ?>'
                     <?php } ?>
+                <?php } else if ($usuarioId === $id) { ?>
+                    '<?= Html::textInput('contenido','Estado Personal',
+                    [
+                        'id' => 'inputEstadoPersonal',
+                    ]);  ?>'
                 <?php } else { ?>
                     'Estado Personal'
                 <?php } ?>

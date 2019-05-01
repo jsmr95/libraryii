@@ -35,6 +35,12 @@ class Libros extends \yii\db\ActiveRecord
     const SCENARIO_UPDATE = 'update';
 
     /**
+     * Votacion media de un libro.
+     * @var string
+     */
+    public $mediaVotos;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()

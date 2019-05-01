@@ -184,6 +184,21 @@ CREATE TABLE estados_lyb
                         ON UPDATE CASCADE
 );
 
+/* Tabla votos */
+DROP TABLE IF EXISTS votos CASCADE;
+
+CREATE TABLE votos
+(
+      id            BIGSERIAL PRIMARY KEY
+    , usuario_id    BIGINT REFERENCES usuarios_id (id)
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
+    , libro_id     BIGINT REFERENCES libros (id)
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
+    , voto          NUMERIC (1,0)
+);
+
 ------------------------
 -------- VALUES --------
 ------------------------
