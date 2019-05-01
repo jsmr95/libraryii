@@ -37,6 +37,7 @@ span#estrella{
 <?php
 $url1 = Url::to(['libros-favs/create']);
 $url2 = Url::to(['votos/create']);
+$url3 = Url::to(['libros/calculamediavotos']);
 $id = $model->id;
 $usuarioId = Yii::$app->user->id;
 $followJs = <<<EOT
@@ -80,16 +81,25 @@ function votar(event){
         default:
             valorVoto = 0;
     }
-    console.log(relleno);
+
     $.ajax({
         url: '$url2',
         data: { libro_id: '$id',
                 usuario_id: '$usuarioId',
-                voto: valorVoto},
+                voto: valorVoto
+            }
+    });
+
+    $.ajax({
+        url: '$url3',
+        data: { libro_id: '$id',
+        },
         success: function(data){
-            console.log(data);
+            $('#media').html(data);
         }
     });
+
+
 }
 
 $(document).ready(function(){
@@ -173,9 +183,11 @@ $this->registerJs($followJs);
         </div>
         <div class="row">
             <center>
-                <?php $media = $model->calculaMediaVotos();?>
+                <?php $media = Yii::$app->runAction('libros/calculamediavotos',['libro_id' => $id])?>
                 <p>Media:</p>
-                <?= $media ?>
+                <h4 id="media">
+                    <?= $media ?>
+                </h4>
             </center>
         </div>
         <br>

@@ -76,13 +76,15 @@ class VotosController extends Controller
                 Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
             }
         }
-        $nuevo = new Votos([
-            'usuario_id' => $usuario_id,
-            'libro_id' => $libro_id,
-            'voto' => $voto,
-        ]);
-        if (!$nuevo->save()) {
-            Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+        if ($voto != 0) {
+            $nuevo = new Votos([
+                'usuario_id' => $usuario_id,
+                'libro_id' => $libro_id,
+                'voto' => $voto,
+            ]);
+            if (!$nuevo->save()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            }
         }
     }
 

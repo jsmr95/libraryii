@@ -117,23 +117,6 @@ class Libros extends \yii\db\ActiveRecord
     }
 
     /**
-     * Funcion para calcular la media de los votos de un libro.
-     * @return int media de votos de un libro
-     */
-    public function calculaMediaVotos()
-    {
-        $filas = Votos::find()->where(['libro_id' => $this->id])->all();
-        if (count($filas)) {
-            $sumaTotal = 0;
-            foreach ($filas as $fila) {
-                $sumaTotal += $fila->voto;
-            }
-            return $sumaTotal / count($filas);
-        }
-        return 0;
-    }
-
-    /**
      * Funcion que es llamada antes de insertar o actualizar un registro.
      * @param  bool $insert true->insert, false->update
      * @return bool true->inserccion o modificación llevada a cabo, false-> cancelado

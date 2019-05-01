@@ -6,6 +6,7 @@ use app\models\Autores;
 use app\models\Generos;
 use app\models\Libros;
 use app\models\LibrosSearch;
+use app\models\Votos;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -170,5 +171,23 @@ class LibrosController extends Controller
             ->select('nombre')
             ->indexBy('id')
             ->column());
+    }
+
+    /**
+     * Funcion para calcular la media de los votos de un libro.
+     * @return int media de votos de un libro
+     * @param mixed $libro_id
+     */
+    public function actionCalculamediavotos($libro_id)
+    {
+        $filas = Votos::find()->where(['libro_id' => $libro_id])->all();
+        if (count($filas)) {
+            $sumaTotal = 0;
+            foreach ($filas as $fila) {
+                $sumaTotal += $fila->voto;
+            }
+            return $sumaTotal / count($filas);
+        }
+        return 0;
     }
 }
