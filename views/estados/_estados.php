@@ -48,9 +48,9 @@ function hacerLyb(event){
                 estado_id: estado_id},
         success: function(data){
             if (data > 0) {
-                $("button").attr('data-id',data).addClass('botonLyb');
+                $(event.target).attr('data-id') == data ? $(event.target).addClass('botonLyb') : '';
             }else {
-                $("button").attr('data-id',data).removeClass('botonLyb');
+                $(event.target).removeClass('botonLyb');
             }
         }
     });
