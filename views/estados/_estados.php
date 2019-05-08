@@ -22,7 +22,46 @@ use yii\helpers\Html;
     padding-bottom: 50px;
     font-family: cursive;
 }
+#lyb{
+    margin-left: 30px;
+}
+#lyb > button{
+    width: 70px;
+}
+.botonLyb{
+    color: green;
+}
 </style>
+<?php
+//Variables que voy a usar
+$id = $model->id;
+$usuarioId = Yii::$app->user->id;
+// $fila = LibrosFavs::find()->where(['usuario_id' => $id])->one();
+$url = Url::to(['estados-lyb/create']);
+$followJs = <<<EOT
+
+function hacerLyb(event){
+    var estado_id = event.target.attributes['data-id'].nodeValue;
+    $.ajax({
+        url: '$url',
+        data: { usuario_id: '$usuarioId',
+                estado_id: estado_id},
+        success: function(data){
+            if (data > 0) {
+                $("button").attr('data-id',data).addClass('botonLyb');
+            }else {
+                $("button").attr('data-id',data).removeClass('botonLyb');
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+    $('#lybrear$id').click(hacerLyb);
+});
+EOT;
+$this->registerJs($followJs);
+?>
 <?php
 $usua = Usuarios::findOne(['id' => $model->usuario->id]);
 if ($usua) {
@@ -60,6 +99,11 @@ if ($usua) {
         </span>
             <p class="estado_texto">
                 <?= $model->estado  ?>
+            </p>
+            <p  id="lyb">
+                <button id="lybrear<?=$id?>" data-id="<?= $id ?>">
+                    <span class='glyphicon glyphicon-retweet' aria-hidden='true'></span>
+                </button>
             </p>
         </div>
     </div>
