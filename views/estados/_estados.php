@@ -101,7 +101,9 @@ if ($usua) {
                 <?= $model->estado  ?>
             </p>
             <p  id="lyb">
-                <button id="lybrear<?=$id?>" data-id="<?= $id ?>">
+                <button id="lybrear<?=$id?>"
+                    class="<?= $model->consultaLyb($usuarioId, $id) ? "botonLyb" : ""; ?>"
+                    data-id="<?= $id ?>">
                     <span class='glyphicon glyphicon-retweet' aria-hidden='true'></span>
                 </button>
             </p>

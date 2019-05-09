@@ -60,4 +60,20 @@ class Estados extends \yii\db\ActiveRecord
     {
         return $this->hasOne(UsuariosId::className(), ['id' => 'usuario_id'])->inverseOf('estados');
     }
+
+    /**
+     * Función para consultar si un usuario ha hecho lyb en algun estado.
+     * @param mixed $usuarioId
+     * @param mixed $estadoId
+     * @return bool true|false para saber si ha hecho lyb en ese estado.
+     */
+    public function consultaLyb($usuarioId, $estadoId)
+    {
+        $fila = EstadosLyb::find()->where(['usuario_id' => $usuarioId])
+            ->andWhere(['estado_id' => $estadoId])->one();
+        if ($fila) {
+            return true;
+        }
+        return false;
+    }
 }
