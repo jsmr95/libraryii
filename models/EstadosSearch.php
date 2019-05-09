@@ -43,7 +43,9 @@ class EstadosSearch extends Estados
         $id = Yii::$app->user->id;
         $query = Estados::find()->joinWith('usuario.usersFavs u', true, 'LEFT JOIN')
         ->where(['estados.usuario_id' => $id])
-        ->orWhere("u.usuario_id IN (SELECT usuario_fav FROM users_favs WHERE usuario_id = $id)");
+        ->orWhere("u.usuario_id IN (SELECT usuario_fav AS seguidor FROM users_favs WHERE usuario_id = $id)");
+        // ->orWhere('u.usuario_id IN (SELECT usuario_id FROM estados_lyb WHERE usuario_id = seguidor)');
+        //falta esto, para ver los lybs de los seguidores mios
 
         // add conditions that should always apply here
 
