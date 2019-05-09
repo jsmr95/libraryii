@@ -36,19 +36,20 @@ use yii\helpers\Html;
 //Variables que voy a usar
 $id = $model->id;
 $usuarioId = Yii::$app->user->id;
-// $fila = LibrosFavs::find()->where(['usuario_id' => $id])->one();
-$url = Url::to(['estados-lyb/create']);
+$corazon = $model->consultaFav($usuarioId,$id);
+$url1 = Url::to(['estados-lyb/create']);
+$url2 = Url::to(['estados-favs/create']);
 $followJs = <<<EOT
 
 function hacerLyb(event){
-    var estado_id = event.target.attributes['data-id'].nodeValue;
+    var estado_id = event.target.attributes['data-lyb'].nodeValue;
     $.ajax({
-        url: '$url',
+        url: '$url1',
         data: { usuario_id: '$usuarioId',
                 estado_id: estado_id},
         success: function(data){
             if (data > 0) {
-                $(event.target).attr('data-id') == data ? $(event.target).addClass('botonLyb') : '';
+                $(event.target).attr('data-lyb') == data ? $(event.target).addClass('botonLyb') : '';
             }else {
                 $(event.target).removeClass('botonLyb');
             }
@@ -56,8 +57,27 @@ function hacerLyb(event){
     });
 }
 
+function hacerFav(event){
+    var estado_id = event.target.attributes['data-fav'].nodeValue;
+    $.ajax({
+        url: '$url2',
+        data: { usuario_id: '$usuarioId',
+                estado_id: estado_id},
+        success: function(data){
+            if (data == '') {
+                $(event.target).find('span').removeClass('glyphicon-heart-empty');
+                $(event.target).find('span').addClass('glyphicon-heart');
+            } else {
+                $(event.target).find('span').removeClass('glyphicon-heart');
+                $(event.target).find('span').addClass('glyphicon-heart-empty');
+            }
+        }
+    });
+}
+
 $(document).ready(function(){
     $('#lybrear$id').click(hacerLyb);
+    $('#favear$id').click(hacerFav);
 });
 EOT;
 $this->registerJs($followJs);
@@ -103,12 +123,15 @@ if ($usua) {
             <p  id="lyb">
                 <button id="lybrear<?=$id?>"
                     class="<?= $model->consultaLyb($usuarioId, $id) ? "botonLyb" : ""; ?>"
-                    data-id="<?= $id ?>">
+                    data-lyb="<?= $id ?>">
                     <span class='glyphicon glyphicon-retweet' aria-hidden='true'></span>
+                </button>
+                <button id="favear<?=$id?>" data-fav="<?= $id ?>">
+                    <span style="color:red" id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
                 </button>
             </p>
         </div>
     </div>
-
 </div>
+
 <?php } ?>

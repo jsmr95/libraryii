@@ -76,4 +76,20 @@ class Estados extends \yii\db\ActiveRecord
         }
         return false;
     }
+
+    /**
+     * Función para consultar si un usuario ha hecho fav en algun estado.
+     * @param mixed $usuarioId
+     * @param mixed $estadoId
+     * @return string ''|'-emtpy' para saber si ha hecho fav en ese estado.
+     */
+    public function consultaFav($usuarioId, $estadoId)
+    {
+        $fila = EstadosFavs::find()->where(['usuario_id' => $usuarioId])
+            ->andWhere(['estado_id' => $estadoId])->one();
+        if ($fila) {
+            return '';
+        }
+        return '-empty';
+    }
 }
