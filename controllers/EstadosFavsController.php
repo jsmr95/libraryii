@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\EstadosFavs;
 use app\models\EstadosFavsSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * EstadosFavsController implements the CRUD actions for EstadosFavs model.
@@ -46,7 +46,7 @@ class EstadosFavsController extends Controller
 
     /**
      * Displays a single EstadosFavs model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -61,24 +61,42 @@ class EstadosFavsController extends Controller
      * Creates a new EstadosFavs model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @param mixed $usuario_id
+     * @param mixed $estado_id
      */
-    public function actionCreate()
+    public function actionCreate($usuario_id, $estado_id)
     {
-        $model = new EstadosFavs();
+        $id = Yii::$app->user->id;
+        $model = EstadosFavs::find()
+            ->where([
+            'usuario_id' => $usuario_id,
+            'estado_id' => $estado_id,
+        ])->one();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model) {
+            if (!$model->delete()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return '-empty';
+            }
+        } else {
+            $nuevo = new EstadosFavs([
+                'usuario_id' => $usuario_id,
+                'estado_id' => $estado_id,
+            ]);
+            if (!$nuevo->save()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return '';
+            }
+            return '';
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
      * Updates an existing EstadosFavs model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +116,7 @@ class EstadosFavsController extends Controller
     /**
      * Deletes an existing EstadosFavs model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +130,7 @@ class EstadosFavsController extends Controller
     /**
      * Finds the EstadosFavs model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return EstadosFavs the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
