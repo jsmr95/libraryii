@@ -190,17 +190,25 @@ $this->registerJs($followJs);
             </div>
         </div>
     </div>
+
+    <!-- PANEL CENTRAL -->
     <div class="col-md-8">
         <!-- Columna de 8 para la Info de la cuenta-->
-        <div class="panel panel-primary">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Me gustan</a></li>
+            <!-- <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Mis Lybs</a></li> -->
+        </ul>
+        <div class="tab-content ">
+            <div role="tabpanel" class="tab-pane active" id="home">
+        <div class="panel panel-primary ">
           <div class="panel-heading">Información Cuenta</div>
           <div class="panel-body">
               <p>Login: <?= $model->login ?></p>
               <p>Email: <?= $model->email ?></p>
           </div>
         </div>
-    </div>
-    <div class="col-md-8 <?php if (!$fila){ echo 'col-md-offset-2';}?>">
+    <div class="">
         <!-- Columna de 8 para la info personal, tendrá 2 de separación dependiendo si tiene o no libros siguiendo-->
         <div class="panel panel-primary">
           <div class="panel-heading">Información Personal</div>
@@ -220,6 +228,8 @@ $this->registerJs($followJs);
           </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 
 </div>
