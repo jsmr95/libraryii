@@ -79,6 +79,13 @@ span.glyphicon {
     $(document).ready(function(){
         $('.follow').click(seguir);
         $('#inputEstadoPersonal').change(cambiarEstado);
+
+        //Función para cambiar de pestañas
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
+
     });
 EOT;
 $this->registerJs($followJs);
@@ -194,13 +201,13 @@ $this->registerJs($followJs);
     <!-- PANEL CENTRAL -->
     <div class="col-md-8">
         <!-- Columna de 8 para la Info de la cuenta-->
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Me gustan</a></li>
             <!-- <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Mis Lybs</a></li> -->
         </ul>
         <div class="tab-content ">
-            <div role="tabpanel" class="tab-pane active" id="home">
+            <div role="tabpanel" class="tab-pane fade in active" id="home">
         <div class="panel panel-primary ">
           <div class="panel-heading">Información Cuenta</div>
           <div class="panel-body">
@@ -228,6 +235,9 @@ $this->registerJs($followJs);
           </div>
         </div>
     </div>
+</div><!-- Final PANEL DE INFORMACION -->
+<div role="tabpanel" class="tab-pane fade" id="profile">
+    <p>HOLAAA ESTE ES EL SEGUNDO PANEL DE ME GUSTAS!</p>
 </div>
 </div>
 </div>
