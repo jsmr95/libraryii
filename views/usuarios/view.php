@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Libros;
+use app\models\Estados;
 use app\models\Usuarios;
 use app\models\LibrosFavs;
 use app\models\EstadoPersonal;
@@ -237,7 +238,22 @@ $this->registerJs($followJs);
     </div>
 </div><!-- Final PANEL DE INFORMACION -->
 <div role="tabpanel" class="tab-pane fade" id="profile">
-    <p>HOLAAA ESTE ES EL SEGUNDO PANEL DE ME GUSTAS!</p>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Estados que me gustan...</div>
+        <div class="panel-body">
+            <?php
+            $dataProvider = new ActiveDataProvider([
+                'query' => Estados::find()
+                ->joinWith('estadosFavs')
+                ->where(['estados_favs.usuario_id' => $model->id]),
+            ]);
+            echo ListView::widget([
+              'dataProvider' => $dataProvider,
+              'summary' => '',
+              'itemView' => '_userEstados',
+          ]); ?>
+        </div>
+    </div>
 </div>
 </div>
 </div>
