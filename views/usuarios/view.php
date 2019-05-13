@@ -205,7 +205,7 @@ $this->registerJs($followJs);
         <ul class="nav nav-tabs" role="tablist" id="myTabs">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Me gustan</a></li>
-            <!-- <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Mis Lybs</a></li> -->
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Mis Lybs</a></li>
         </ul>
         <div class="tab-content ">
             <div role="tabpanel" class="tab-pane fade in active" id="home">
@@ -254,7 +254,25 @@ $this->registerJs($followJs);
           ]); ?>
         </div>
     </div>
-</div>
+</div><!-- FIN PANEL ME GUSTAN -->
+<div role="tabpanel" class="tab-pane fade" id="messages">
+    <div class="panel panel-primary">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <?php
+            $dataProvider = new ActiveDataProvider([
+                'query' => Estados::find()
+                ->joinWith('estadosLybs')
+                ->where(['estados_lyb.usuario_id' => $model->id]),
+            ]);
+            echo ListView::widget([
+              'dataProvider' => $dataProvider,
+              'summary' => '',
+              'itemView' => '_userEstados',
+          ]); ?>
+        </div>
+    </div>
+</div><!-- FIN PANEL MIS LYBS -->
 </div>
 </div>
 
