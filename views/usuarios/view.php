@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Libros;
+use app\models\Estados;
 use app\models\Usuarios;
 use app\models\LibrosFavs;
 use app\models\EstadoPersonal;
@@ -79,6 +80,13 @@ span.glyphicon {
     $(document).ready(function(){
         $('.follow').click(seguir);
         $('#inputEstadoPersonal').change(cambiarEstado);
+
+        //Función para cambiar de pestañas
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
+
     });
 EOT;
 $this->registerJs($followJs);
@@ -190,17 +198,25 @@ $this->registerJs($followJs);
             </div>
         </div>
     </div>
+
+    <!-- PANEL CENTRAL -->
     <div class="col-md-8">
         <!-- Columna de 8 para la Info de la cuenta-->
-        <div class="panel panel-primary">
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Me gustan</a></li>
+            <!-- <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Mis Lybs</a></li> -->
+        </ul>
+        <div class="tab-content ">
+            <div role="tabpanel" class="tab-pane fade in active" id="home">
+        <div class="panel panel-primary ">
           <div class="panel-heading">Información Cuenta</div>
           <div class="panel-body">
               <p>Login: <?= $model->login ?></p>
               <p>Email: <?= $model->email ?></p>
           </div>
         </div>
-    </div>
-    <div class="col-md-8 <?php if (!$fila){ echo 'col-md-offset-2';}?>">
+    <div class="">
         <!-- Columna de 8 para la info personal, tendrá 2 de separación dependiendo si tiene o no libros siguiendo-->
         <div class="panel panel-primary">
           <div class="panel-heading">Información Personal</div>
@@ -220,6 +236,26 @@ $this->registerJs($followJs);
           </div>
         </div>
     </div>
+</div><!-- Final PANEL DE INFORMACION -->
+<div role="tabpanel" class="tab-pane fade" id="profile">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Estados que me gustan...</div>
+        <div class="panel-body">
+            <?php
+            $dataProvider = new ActiveDataProvider([
+                'query' => Estados::find()
+                ->joinWith('estadosFavs')
+                ->where(['estados_favs.usuario_id' => $model->id]),
+            ]);
+            echo ListView::widget([
+              'dataProvider' => $dataProvider,
+              'summary' => '',
+              'itemView' => '_userEstados',
+          ]); ?>
+        </div>
+    </div>
+</div>
+</div>
 </div>
 
 </div>
