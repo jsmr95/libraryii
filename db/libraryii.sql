@@ -317,7 +317,7 @@ VALUES  (1,2)
 
 -- Estados --
 INSERT INTO estados (usuario_id, estado)
-VALUES  (1, 'Qué pasada de libro, lo recomiendo al 100%!! "El principito".')
+VALUES  (1, 'Qué pasada de libro, lo recomiendo al 100%!! "El principitoasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadsf".')
         ,  (1, 'Volvería a leerme todos y cada uno de los libros de Carlos Ruiz Zafón.')
         ,  (2, 'Esperaba algo más de "Juego de Tronos".')
         ,  (3, 'Sin duda una de mis mejores compras con este libro!');
