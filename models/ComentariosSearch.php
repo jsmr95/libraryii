@@ -18,6 +18,7 @@ class ComentariosSearch extends Comentarios
     {
         return [
             [['id', 'usuario_id', 'libro_id', 'comentario_id'], 'integer'],
+            [['texto', 'created_at'], 'safe'],
         ];
     }
 
@@ -61,7 +62,10 @@ class ComentariosSearch extends Comentarios
             'usuario_id' => $this->usuario_id,
             'libro_id' => $this->libro_id,
             'comentario_id' => $this->comentario_id,
+            'created_at' => $this->created_at,
         ]);
+
+        $query->andFilterWhere(['ilike', 'texto', $this->texto]);
 
         return $dataProvider;
     }

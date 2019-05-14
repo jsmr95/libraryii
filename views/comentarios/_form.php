@@ -12,11 +12,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'texto')->textarea(['rows' => 6]) ?>
+
     <?= $form->field($model, 'usuario_id')->textInput() ?>
 
     <?= $form->field($model, 'libro_id')->textInput() ?>
 
     <?= $form->field($model, 'comentario_id')->textInput() ?>
+
+    <?= $form->field($model, 'created_at')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
