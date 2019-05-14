@@ -15,9 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <!-- Esto falla ahora mismo -->
-    <?= $form->field($model, 'usuario_id') ?>
-
+    <!-- Solo buscamos por palabras en el estado -->
     <?= $form->field($model, 'estado') ?>
 
 
