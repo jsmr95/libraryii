@@ -3,9 +3,11 @@
 use app\models\Votos;
 use app\models\Libros;
 use app\models\Usuarios;
+use app\models\Comentarios;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
 use kartik\rating\StarRating;
 
@@ -216,6 +218,106 @@ $this->registerJs($followJs);
                   </div>
                 </div>
             </div>
+        </div>
+
+
+        <?php if (!Yii::$app->user->isGuest): ?>
+
+        <div class="row">
+            <div class="col-md-offset-1">
+                <?php
+                $comentario = new Comentarios();
+                $comentario->libro_id = $model->id;
+                $comentario->usuario_id = Yii::$app->user->identity->id;
+                $comentario->texto = '';
+                $comentario->comentario_id = null;
+                $form = ActiveForm::begin([
+                    'method' => 'POST',
+                    'action' => Url::to(['comentarios/create']),
+                    ]) ?>
+                    <?= $form->field($comentario, 'texto')->textarea()->label('Comentar') ?>
+                    <?= $form->field($comentario, 'comentario_id')->hiddenInput()->label(false) ?>
+                    <?= $form->field($comentario, 'libro_id')->hiddenInput()->label(false) ?>
+                    <?= $form->field($comentario, 'usuario_id')->hiddenInput()->label(false) ?>
+                    <button class="btn btn-xs btn-success" type="submit" name="button">Comentar</button>
+                <?php ActiveForm::end() ?>
+
+            </div>
+        </div>
+    <?php endif; ?>
+        <br>
+        <div class="row">
+        <?php
+        pintarComentarios($comentarios, $this);
+        /**
+         * Función para mostrar los comentarios de un libro
+         * @param  array $comentarios Array de comentarios
+         * @param   void $vista   Vista donde se van a mostrar los comentarios
+         * @return void
+         */
+        function pintarComentarios($comentarios, $vista)
+        {
+            ?>
+            <?php if ($comentarios) : ?>
+                <ul>
+                <?php foreach ($comentarios as $comentario) : ?>
+                    <div>
+                        <?= $vista->render('/comentarios/_comentario',[
+                            'model' => $comentario
+                            ]) ?>
+                        <?php pintarComentarios($comentario->comentariosHijos(), $vista)?>
+                    </div>
+                <?php endforeach ?>
+                </ul>
+        <?php endif;
+        }
+        ?>
+
+        <?php if (!Yii::$app->user->isGuest): ?>
+            <!-- modal -->
+            <?php $respuesta = new Comentarios([
+                'usuario_id' => Yii::$app->user->identity->id,
+                'libro_id' => $model->id
+            ]);
+            ?>
+
+            <div class="modal fade" id="respuestaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">Nueva respuesta</h4>
+                        </div>
+                        <div class="modal-body">
+                            <?php $form = ActiveForm::begin([
+                                'action' => Url::to(['comentarios/responder-comentario']),
+                                ]) ?>
+                            <?= $form->field($respuesta, 'libro_id')->hiddenInput()->label(false) ?>
+                            <?= $form->field($respuesta, 'comentario_id')->hiddenInput(['class' => 'respuesta_id'])->label(false) ?>
+                            <?= $form->field($respuesta, 'usuario_id')->hiddenInput()->label(false) ?>
+                                <?= $form->field($respuesta, 'texto')->textarea()->label(false) ?>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Enviar respuesta</button>
+                        </div>
+                        <?php $form->end() ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php
+//JavaScript para meter el comentario_id a una respuesta
+$js = <<<EOF
+$('#respuestaModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+    var modal = $(this)
+    modal.find('.respuesta_id').val(id)
+})
+EOF;
+            $this->registerJs($js);
+            ?>
         </div>
     </div>
 

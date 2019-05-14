@@ -77,6 +77,7 @@ DROP TABLE IF EXISTS comentarios CASCADE;
 CREATE TABLE comentarios
 (
       id                BIGSERIAL PRIMARY KEY
+    , texto         TEXT      NOT NULL
     , usuario_id        BIGINT REFERENCES usuarios_id (id)
                             ON DELETE CASCADE
                             ON UPDATE CASCADE
@@ -86,6 +87,7 @@ CREATE TABLE comentarios
     , comentario_id     BIGINT REFERENCES comentarios (id)
                             ON DELETE CASCADE
                             ON UPDATE CASCADE
+    , created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 /* Tabla Posts */
@@ -288,11 +290,14 @@ VALUES ('El principito', '9788498381498', 1943, 'El principito habita un pequeñ
             , 6, 13, '9788492929467.jpg');
 
 -- Comentarios --
-INSERT INTO comentarios (usuario_id, libro_id, comentario_id)
-VALUES  (1,1,null)
-        ,  (1, 2, null)
-        ,  (2, 3, null)
-        ,  (3, 4, null);
+INSERT INTO comentarios (texto, usuario_id, libro_id, comentario_id)
+VALUES  ('Me ha encantado',1,1,null)
+        ,  ('No me ha gustado mucho',1, 2, null)
+        ,  ('Sin palabras',2, 3, null)
+        ,  ('Sin palabras1',2, 3, 3)
+        ,  ('Sin palabras2',2, 3, 3)
+        ,  ('Me ha encantado1',2, 3, 1)
+        ,  ('Nada mas que añadir',3, 4, null);
 
 -- Libros_favs --
 INSERT INTO libros_favs (usuario_id, libro_id)

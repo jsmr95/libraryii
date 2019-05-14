@@ -2,20 +2,20 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "comentarios".
  *
  * @property int $id
+ * @property string $texto
  * @property int $usuario_id
  * @property int $libro_id
  * @property int $comentario_id
+ * @property string $created_at
  *
  * @property Comentarios $comentario
  * @property Comentarios[] $comentarios
  * @property Libros $libro
- * @property Usuarios $usuario
+ * @property UsuariosId $usuario
  */
 class Comentarios extends \yii\db\ActiveRecord
 {
@@ -33,11 +33,14 @@ class Comentarios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['texto'], 'required'],
+            [['texto'], 'string'],
             [['usuario_id', 'libro_id', 'comentario_id'], 'default', 'value' => null],
             [['usuario_id', 'libro_id', 'comentario_id'], 'integer'],
-            [['comentario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Comentarios::className(), 'targetAttribute' => ['comentario_id' => 'id']],
+            [['created_at'], 'safe'],
+            [['comentario_id'], 'exist', 'skipOnError' => true, 'targetClass' => self::className(), 'targetAttribute' => ['comentario_id' => 'id']],
             [['libro_id'], 'exist', 'skipOnError' => true, 'targetClass' => Libros::className(), 'targetAttribute' => ['libro_id' => 'id']],
-            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'usuario_id']],
+            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
 
@@ -48,10 +51,23 @@ class Comentarios extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'usuario_id' => 'Usuario ID',
-            'libro_id' => 'Libro ID',
-            'comentario_id' => 'Comentario ID',
+            'texto' => 'Texto',
+            'usuario_id' => 'Usuario',
+            'libro_id' => 'Libro',
+            'comentario_id' => 'Comentario',
+            'created_at' => 'Creado',
         ];
+    }
+
+    /**
+     * Función para sacar los comentarios hijos.
+     * @return array array de comentarios hijos
+     */
+    public function comentariosHijos()
+    {
+        return self::find()
+            ->where(['comentario_id' => $this->id])
+            ->all();
     }
 
     /**
@@ -59,7 +75,7 @@ class Comentarios extends \yii\db\ActiveRecord
      */
     public function getComentario()
     {
-        return $this->hasOne(Comentarios::className(), ['id' => 'comentario_id'])->inverseOf('comentarios');
+        return $this->hasOne(self::className(), ['id' => 'comentario_id'])->inverseOf('comentarios');
     }
 
     /**
@@ -67,7 +83,7 @@ class Comentarios extends \yii\db\ActiveRecord
      */
     public function getComentarios()
     {
-        return $this->hasMany(Comentarios::className(), ['comentario_id' => 'id'])->inverseOf('comentario');
+        return $this->hasMany(self::className(), ['comentario_id' => 'id'])->inverseOf('comentario');
     }
 
     /**
@@ -83,6 +99,6 @@ class Comentarios extends \yii\db\ActiveRecord
      */
     public function getUsuario()
     {
-        return $this->hasOne(Usuarios::className(), ['usuario_id' => 'usuario_id'])->inverseOf('comentarios');
+        return $this->hasOne(UsuariosId::className(), ['id' => 'usuario_id'])->inverseOf('comentarios');
     }
 }
