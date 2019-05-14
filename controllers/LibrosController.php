@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Autores;
+use app\models\Comentarios;
 use app\models\Generos;
 use app\models\Libros;
 use app\models\LibrosSearch;
@@ -71,8 +72,16 @@ class LibrosController extends Controller
      */
     public function actionView($id)
     {
+        $comentarios = Comentarios::find()
+           ->where([
+               'comentario_id' => null,
+               'libro_id' => $id,
+           ])
+           ->all();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'comentarios' => $comentarios,
         ]);
     }
 

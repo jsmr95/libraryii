@@ -31,7 +31,7 @@ use yii\helpers\Html;
                 ->usuarios
                 ->login, [
                     'usuarios/view',
-                    'id' => $model->usuario->usuarios->nombre
+                    'id' => $model->usuario->usuarios->id
                     ]) ?>
                     <?= Yii::$app
                     ->formatter
@@ -45,7 +45,7 @@ use yii\helpers\Html;
 
     <div class="">
 
-    <?php if (!Yii::$app->user->isGuest): ?>
+    <?php if (!Yii::$app->user->isGuest && $model->comentario_id == null): ?>
         <div class="contestar col-md-offset-10 col-md-1">
             <?= Html::button('Contestar', [
                 'class' => 'btn btn-primary btn-xs',

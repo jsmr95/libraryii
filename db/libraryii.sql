@@ -294,6 +294,9 @@ INSERT INTO comentarios (texto, usuario_id, libro_id, comentario_id)
 VALUES  ('Me ha encantado',1,1,null)
         ,  ('No me ha gustado mucho',1, 2, null)
         ,  ('Sin palabras',2, 3, null)
+        ,  ('Sin palabras1',2, 3, 3)
+        ,  ('Sin palabras2',2, 3, 3)
+        ,  ('Me ha encantado1',2, 3, 1)
         ,  ('Nada mas que añadir',3, 4, null);
 
 -- Libros_favs --

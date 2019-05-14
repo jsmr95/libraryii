@@ -2,12 +2,13 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Comentarios;
 use app\models\ComentariosSearch;
+use Yii;
+use yii\base\InvalidValueException;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ComentariosController implements the CRUD actions for Comentarios model.
@@ -46,7 +47,7 @@ class ComentariosController extends Controller
 
     /**
      * Displays a single Comentarios model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -67,7 +68,7 @@ class ComentariosController extends Controller
         $model = new Comentarios();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['libros/view', 'id' => $model->libro_id]);
         }
 
         return $this->render('create', [
@@ -76,9 +77,25 @@ class ComentariosController extends Controller
     }
 
     /**
+     * Función para crear un comentario hijo.
+     * @return null|void devuelve una excepcion si falla o redirije si todo va bien.
+     */
+    public function actionResponderComentario()
+    {
+        $comentarioPadreId = Yii::$app->request->post()['Comentarios']['comentario_id'];
+        if (!($model = Comentarios::findOne($comentarioPadreId))) {
+            throw new InvalidValueException('Comentario no valido');
+        }
+        $model = new Comentarios();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        }
+        return $this->redirect(['libros/view', 'id' => $model->libro_id]);
+    }
+
+    /**
      * Updates an existing Comentarios model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +115,7 @@ class ComentariosController extends Controller
     /**
      * Deletes an existing Comentarios model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +129,7 @@ class ComentariosController extends Controller
     /**
      * Finds the Comentarios model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Comentarios the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

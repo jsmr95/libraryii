@@ -60,6 +60,17 @@ class Comentarios extends \yii\db\ActiveRecord
     }
 
     /**
+     * Función para sacar los comentarios hijos.
+     * @return array array de comentarios hijos
+     */
+    public function comentariosHijos()
+    {
+        return self::find()
+            ->where(['comentario_id' => $this->id])
+            ->all();
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getComentario()
