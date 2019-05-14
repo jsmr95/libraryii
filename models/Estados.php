@@ -36,6 +36,9 @@ class Estados extends \yii\db\ActiveRecord
             [['created_at'], 'safe'],
             [['estado'], 'string', 'max' => 255],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
+            [['created_at'], 'default', 'value' => function () {
+                return date('Y-m-d h:i:s');
+            }],
         ];
     }
 
