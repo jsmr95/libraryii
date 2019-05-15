@@ -54,7 +54,21 @@ img.libros {
                     'libros/view',
                     'id' => $model->id
                     ]) ?>
+                    <!-- Botón para seguimiento -->
+                    <span class="dropdown">
+                      <button style="margin-left:20px" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        ...
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Leído</a></li>
+                        <li><a href="#">Leyendo</a></li>
+                        <li><a href="#">Me gustaría leerlo</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Limpiar seguimiento</a></li>
+                      </ul>
+                  </span>
                 </h2>
+
                 <ul>
                     <li>Autor: <?= Html::a($model->autor->nombre, ['autores/view', 'id' => $model->autor->id]) ?></li>
                     <li>Año: <?= $model->anyo ?></li>
@@ -64,6 +78,7 @@ img.libros {
                     </li>
                 </ul>
             </p>
+
         </div>
         <div class="col-md-5 libro-texto ">
             <!-- Columna de 5 para la sinopsis-->

@@ -201,6 +201,32 @@ CREATE TABLE votos
     , voto          NUMERIC (1,0)
 );
 
+/* Tabla libros_estados */
+DROP TABLE IF EXISTS libros_estados CASCADE;
+
+CREATE TABLE libros_estados
+(
+      id            BIGSERIAL PRIMARY KEY
+    , estado        VARCHAR(255) NOT NULL
+);
+
+/* Tabla seguimientos */
+DROP TABLE IF EXISTS seguimientos CASCADE;
+
+CREATE TABLE seguimientos
+(
+      id            BIGSERIAL PRIMARY KEY
+    , usuario_id    BIGINT REFERENCES usuarios_id (id)
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
+    , libro_id     BIGINT REFERENCES libros (id)
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
+    , estado_id     BIGINT REFERENCES libros_estados (id)
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
+);
+
 ------------------------
 -------- VALUES --------
 ------------------------
@@ -345,3 +371,15 @@ VALUES  (1, 4)
 INSERT INTO estado_personal (usuario_id, contenido)
 VALUES  (1, 'La lectura es mi distracción.'),
         (2, 'Me encanta leer!');
+
+-- libros_estados --
+INSERT INTO libros_estados (estado)
+VALUES  ('Leido')
+      , ('Leyendo')
+      , ('Me gustaría leerlo');
+
+--  --
+INSERT INTO seguimientos (usuario_id, libro_id, estado_id)
+VALUES  (1, 1, 1)
+    , (1, 2, 3)
+    , (2, 1, 2);
