@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Seguimientos;
 use app\models\SeguimientosSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * SeguimientosController implements the CRUD actions for Seguimientos model.
@@ -46,7 +46,7 @@ class SeguimientosController extends Controller
 
     /**
      * Displays a single Seguimientos model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -58,27 +58,57 @@ class SeguimientosController extends Controller
     }
 
     /**
-     * Creates a new Seguimientos model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Creamos un seguimiento a un libro determinado.
+     * @param int $libro_id id del libro
+     * @param int $usuario_id id del usuario
+     * @param int $estado_id id del estado
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($libro_id, $usuario_id, $estado_id)
     {
-        $model = new Seguimientos();
+        $model = Seguimientos::find()
+            ->where([
+            'usuario_id' => $usuario_id,
+            'libro_id' => $libro_id,
+        ])->one();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model) {
+            if (!$model->delete()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                if ($estado_id != 4) {
+                    $nuevo = new Seguimientos([
+                        'usuario_id' => $usuario_id,
+                        'libro_id' => $libro_id,
+                        'estado_id' => $estado_id,
+                    ]);
+                    if (!$nuevo->save()) {
+                        Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+                    } else {
+                        return true;
+                    }
+                    return true;
+                }
+            }
+        } else {
+            $nuevo = new Seguimientos([
+                'usuario_id' => $usuario_id,
+                'libro_id' => $libro_id,
+                'estado_id' => $estado_id,
+            ]);
+            if (!$nuevo->save()) {
+                Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
+            } else {
+                return true;
+            }
+            return true;
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
      * Updates an existing Seguimientos model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +128,7 @@ class SeguimientosController extends Controller
     /**
      * Deletes an existing Seguimientos model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +142,7 @@ class SeguimientosController extends Controller
     /**
      * Finds the Seguimientos model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Seguimientos the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
