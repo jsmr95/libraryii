@@ -4,6 +4,7 @@ use app\models\Votos;
 use app\models\Libros;
 use app\models\Usuarios;
 use app\models\Comentarios;
+use app\models\Seguimientos;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -160,6 +161,16 @@ $this->registerJs($followJs);
                     echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'libros']);
                 }
                 ?>
+            </div>
+            <div class="col-md-offset-1 col-md-2" style="margin-top:40px">
+                <?php
+                    $numLeido = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>1])->count();
+                    $numLeyendo = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>2])->count();
+                    $numGustaría = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>3])->count();
+                 ?>
+                <p><?=$numLeido?> lo ha leido</p>
+                <p><?=$numLeyendo?> lo estan leyendo</p>
+                <p><?=$numGustaría?> le gustaría leerlo</p>
             </div>
         </div>
         <br><br>
