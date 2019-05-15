@@ -162,6 +162,7 @@ $this->registerJs($followJs);
                 }
                 ?>
             </div>
+            <!-- Muestro los seguimientos -->
             <div class="col-md-offset-1 col-md-2" style="margin-top:40px">
                 <?php
                     $numLeido = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>1])->count();
