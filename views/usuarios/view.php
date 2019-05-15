@@ -206,6 +206,9 @@ $this->registerJs($followJs);
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Me gustan</a></li>
             <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Mis Lybs</a></li>
+            <li role="presentation"><a href="#leyendo" aria-controls="leyendo" role="tab" data-toggle="tab">Leyendo</a></li>
+            <li role="presentation"><a href="#leer" aria-controls="leer" role="tab" data-toggle="tab">Por leer</a></li>
+            <li role="presentation"><a href="#leidos" aria-controls="leidos" role="tab" data-toggle="tab">Leidos</a></li>
         </ul>
         <div class="tab-content ">
             <div role="tabpanel" class="tab-pane fade in active" id="home">
@@ -273,6 +276,60 @@ $this->registerJs($followJs);
         </div>
     </div>
 </div><!-- FIN PANEL MIS LYBS -->
+<div role="tabpanel" class="tab-pane fade" id="leyendo">
+    <div class="panel panel-primary">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <?php
+            $dataProvider = new ActiveDataProvider([
+                'query' => Libros::find()
+                ->joinWith('seguimientos')
+                ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 2]),
+            ]);
+            echo ListView::widget([
+              'dataProvider' => $dataProvider,
+              'summary' => '',
+              'itemView' => '_librosFavs',
+          ]); ?>
+        </div>
+    </div>
+</div><!-- FIN PANEL MIS Leyendo -->
+<div role="tabpanel" class="tab-pane fade" id="leer">
+    <div class="panel panel-primary">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <?php
+            $dataProvider = new ActiveDataProvider([
+                'query' => Libros::find()
+                ->joinWith('seguimientos')
+                ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 3]),
+            ]);
+            echo ListView::widget([
+              'dataProvider' => $dataProvider,
+              'summary' => '',
+              'itemView' => '_librosFavs',
+          ]); ?>
+        </div>
+    </div>
+</div><!-- FIN PANEL MIS Por leer -->
+<div role="tabpanel" class="tab-pane fade" id="leidos">
+    <div class="panel panel-primary">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <?php
+            $dataProvider = new ActiveDataProvider([
+                'query' => Libros::find()
+                ->joinWith('seguimientos')
+                ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 1]),
+            ]);
+            echo ListView::widget([
+              'dataProvider' => $dataProvider,
+              'summary' => '',
+              'itemView' => '_librosFavs',
+          ]); ?>
+        </div>
+    </div>
+</div><!-- FIN PANEL MIS Leidos -->
 </div>
 </div>
 
