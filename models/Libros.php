@@ -19,6 +19,8 @@ namespace app\models;
  * @property Autores $autor
  * @property Generos $genero
  * @property LibrosFavs[] $librosFavs
+ * @property Seguimientos[] $seguimientos
+ * @property Votos[] $votos
  */
 class Libros extends \yii\db\ActiveRecord
 {
@@ -65,6 +67,7 @@ class Libros extends \yii\db\ActiveRecord
             [['url_compra'], 'url'],
         ];
     }
+
 
     /**
      * {@inheritdoc}
@@ -114,6 +117,22 @@ class Libros extends \yii\db\ActiveRecord
     public function getLibrosFavs()
     {
         return $this->hasMany(LibrosFavs::className(), ['libro_id' => 'id'])->inverseOf('libro');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSeguimientos()
+    {
+        return $this->hasMany(Seguimientos::className(), ['libro_id' => 'id'])->inverseOf('libro');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVotos()
+    {
+        return $this->hasMany(Votos::className(), ['libro_id' => 'id'])->inverseOf('libro');
     }
 
     /**

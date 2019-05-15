@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Url;
 use yii\helpers\Html;
 
 ?>
@@ -28,6 +29,35 @@ img.libros {
     height: 225px !important;
 }
 </style>
+
+<?php
+$url1 = Url::to(['seguimientos/create']);
+
+$id = $model->id;
+$usuarioId = Yii::$app->user->id;
+$followJs = <<<EOT
+
+function cambioSeguimiento(event){
+    var libro_id = event.target.parentNode.parentNode.attributes['data-seguimiento'].nodeValue;
+    var estado_id = event.target.parentNode.attributes['data-id'].nodeValue;
+    $.ajax({
+        url: '$url1',
+        data: { libro_id: libro_id,
+                usuario_id: '$usuarioId',
+                estado_id: estado_id},
+        success: function(data){
+        }
+    });
+}
+
+$(document).ready(function(){
+    $('.dropdown$id > li ').click(cambioSeguimiento);
+});
+
+EOT;
+$this->registerJs($followJs);
+?>
+
 <div class="row libro">
     <!-- Fila para cada libro-->
     <div class="col-md-12 libro-cuerpo ">
@@ -54,7 +84,21 @@ img.libros {
                     'libros/view',
                     'id' => $model->id
                     ]) ?>
+                    <!-- Botón para seguimiento -->
+                    <span class="dropdown">
+                      <button style="margin-left:20px" class="btn btn-default dropdown-toggle" id="dropdownMenu<?=$id?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        ...
+                      </button>
+                      <ul class="dropdown-menu dropdown<?=$id?>" aria-labelledby="dropdownMenu<?=$id?>" data-seguimiento="<?= $id ?>">
+                        <li data-id='1'><a>Leído</a></li>
+                        <li data-id='2'><a>Leyendo</a></li>
+                        <li data-id='3'><a>Me gustaría leerlo</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li data-id='4'><a>Limpiar seguimiento</a></li>
+                      </ul>
+                  </span>
                 </h2>
+
                 <ul>
                     <li>Autor: <?= Html::a($model->autor->nombre, ['autores/view', 'id' => $model->autor->id]) ?></li>
                     <li>Año: <?= $model->anyo ?></li>
@@ -64,6 +108,7 @@ img.libros {
                     </li>
                 </ul>
             </p>
+
         </div>
         <div class="col-md-5 libro-texto ">
             <!-- Columna de 5 para la sinopsis-->

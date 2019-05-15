@@ -16,9 +16,11 @@ use Yii;
  * @property EstadosFavs[] $estadosFavs
  * @property EstadosLyb[] $estadosLybs
  * @property LibrosFavs[] $librosFavs
+ * @property Seguimientos[] $seguimientos
  * @property UsersFavs[] $usersFavs
  * @property UsersFavs[] $usersFavs0
  * @property Usuarios $usuarios
+ * @property Votos[] $votos
  */
 class UsuariosId extends \yii\db\ActiveRecord
 {
@@ -107,6 +109,14 @@ class UsuariosId extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getSeguimientos()
+    {
+        return $this->hasMany(Seguimientos::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getUsersFavs()
     {
         return $this->hasMany(UsersFavs::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
@@ -126,5 +136,13 @@ class UsuariosId extends \yii\db\ActiveRecord
     public function getUsuarios()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'id'])->inverseOf('id0');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVotos()
+    {
+        return $this->hasMany(Votos::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
     }
 }
