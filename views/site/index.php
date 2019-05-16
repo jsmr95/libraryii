@@ -19,7 +19,7 @@ footer{
     display: none;
 }
 </style>
-
+    <?php var_dump($ultimoLanzamiento); die(); ?>
     <?= Html::img(Yii::getAlias('@uploads').'/libreria.jpg', ['class' => 'portada']); ?>
 
     <br><br>
@@ -44,7 +44,7 @@ footer{
     </div>
     <div class="row">
         <div class="col-md-8" style="font-size:28px">
-            
+
         </div>
         <div class="col-md-3 col-md-offset-1">
             <p>Último lanzamiento</p>

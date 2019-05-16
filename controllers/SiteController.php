@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\ContactForm;
+use app\models\Libros;
 use app\models\LoginForm;
 use Yii;
 use yii\filters\AccessControl;
@@ -61,7 +62,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $ultimoLanzamiento = Libros::find()->orderBy(['created_at' => SORT_DESC])->one();
+        return $this->render('index', ['ultimoLanzamiento' => $ultimoLanzamiento]);
     }
 
     /**

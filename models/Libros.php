@@ -14,6 +14,7 @@ namespace app\models;
  * @property string $url_compra
  * @property int $autor_id
  * @property int $genero_id
+ * @property string $created_at
  *
  * @property Comentarios[] $comentarios
  * @property Autores $autor
@@ -65,6 +66,9 @@ class Libros extends \yii\db\ActiveRecord
             [['autor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Autores::className(), 'targetAttribute' => ['autor_id' => 'id']],
             [['genero_id'], 'exist', 'skipOnError' => true, 'targetClass' => Generos::className(), 'targetAttribute' => ['genero_id' => 'id']],
             [['url_compra'], 'url'],
+            [['created_at'], 'default', 'value' => function () {
+                return date('Y-m-d H:i:s');
+            }, 'on' => [self::SCENARIO_CREATE]],
         ];
     }
 
