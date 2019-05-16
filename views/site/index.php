@@ -1,7 +1,13 @@
 <?php
 
 /* @var $this yii\web\View */
+use app\models\Libros;
+
+use yii\data\ActiveDataProvider;
+
 use yii\helpers\Html;
+
+use yii\widgets\ListView;
 
 
 $this->title = 'Libraryii';
@@ -19,7 +25,6 @@ footer{
     display: none;
 }
 </style>
-    <?php var_dump($ultimoLanzamiento); die(); ?>
     <?= Html::img(Yii::getAlias('@uploads').'/libreria.jpg', ['class' => 'portada']); ?>
 
     <br><br>
@@ -47,6 +52,17 @@ footer{
 
         </div>
         <div class="col-md-3 col-md-offset-1">
-            <p>Último lanzamiento</p>
+            <center>
+                <p>Último lanzamiento</p>
+            </center>
+            <?php
+            $dataProvider = new ActiveDataProvider([
+                'query' => Libros::find()->where(['id' =>$ultimoLanzamiento->id])
+            ]);
+            echo ListView::widget([
+              'dataProvider' => $dataProvider,
+              'summary' => '',
+              'itemView' => '_ultimoLanzamiento',
+          ]); ?>
         </div>
     </div>
