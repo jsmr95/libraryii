@@ -28,6 +28,9 @@ img.libros {
     width: 190px !important;
     height: 225px !important;
 }
+.dropdown-menu > li {
+    cursor:pointer;
+}
 </style>
 
 <?php
