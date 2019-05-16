@@ -98,6 +98,7 @@ function votar(event){
         data: { libro_id: '$id',
         },
         success: function(data){
+            alert(data);
             $('#media').html(data);
         }
     });
