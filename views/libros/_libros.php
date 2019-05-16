@@ -88,6 +88,8 @@ $this->registerJs($followJs);
                     'id' => $model->id
                     ]) ?>
                     <!-- Botón para seguimiento -->
+                    <?php if (!Yii::$app->user->isGuest): ?>
+
                     <span class="dropdown">
                       <button style="margin-left:20px" class="btn btn-default dropdown-toggle" id="dropdownMenu<?=$id?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         ...
@@ -99,7 +101,8 @@ $this->registerJs($followJs);
                         <li role="separator" class="divider"></li>
                         <li data-id='4'><a>Limpiar seguimiento</a></li>
                       </ul>
-                  </span>
+                    </span>
+                    <?php endif; ?>
                 </h2>
 
                 <ul>
