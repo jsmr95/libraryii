@@ -90,20 +90,18 @@ function votar(event){
         data: { libro_id: '$id',
                 usuario_id: '$usuarioId',
                 voto: valorVoto
+            },
+            success: function() {
+                $.ajax({
+                    url: '$url3',
+                    data: { libro_id: '$id',
+                    },
+                    success: function(data){
+                        $('#media').html(data);
+                    }
+                });
             }
     });
-
-    $.ajax({
-        url: '$url3',
-        data: { libro_id: '$id',
-        },
-        success: function(data){
-            alert(data);
-            $('#media').html(data);
-        }
-    });
-
-
 }
 
 $(document).ready(function(){
