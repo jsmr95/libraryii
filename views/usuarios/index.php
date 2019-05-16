@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use yii\widgets\ListView;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UsuariosFavsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -14,28 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel, 'sort' => $dataProvider->sort]); ?>
 
-    <?= GridView::widget([
+    <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            // ['class' => 'yii\grid\SerialColumn'],
-
-            // 'usuario_id',
-            'login',
-            'email:email',
-            'nombre',
-            'apellido',
-            //'biografia',
-            //'url_avatar:url',
-            //'pass',
-            //'auth_key',
-            //'created_at',
-            //'updated_at',
-
-            // ['class' => 'yii\grid\ActionColumn'],
-        ],
+        'itemView' => '_usuarios',
     ]); ?>
 
 
