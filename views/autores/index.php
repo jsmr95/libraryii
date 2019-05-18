@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_autores',
+        'summary' => '',
     ]); ?>
 
 
