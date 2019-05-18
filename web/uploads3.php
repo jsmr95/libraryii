@@ -66,6 +66,7 @@ function uploadImagen()
         'Bucket' => $bucketName,
         'Key' => $keyName,
         'SourceFile' => $file,
+        'ACL' => 'public-read',
         'StorageClass' => 'REDUCED_REDUNDANCY',
     ]
 );
