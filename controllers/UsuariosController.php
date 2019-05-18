@@ -13,6 +13,8 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
+require '../web/uploads3.php';
+
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
  */
@@ -84,6 +86,9 @@ class UsuariosController extends Controller
             $idUsuario = new UsuariosId();
             $idUsuario->save();
             $model->id = $idUsuario->id;
+            if (!empty($_FILES)) {
+                $model->url_avatar = $_FILES['Usuarios']['name']['url_avatar'];
+            }
 
             $model->save();
             $this->enviarEmail(
@@ -93,6 +98,10 @@ class UsuariosController extends Controller
                 'Se ha enviado un correo de confirmación, por favor, consulte su correo.',
                 'Ha habido un error al mandar el correo de confirmación.'
             );
+            //Subo la imagen
+            if (!empty($_FILES['Usuarios']['name']['url_avatar'])) {
+                uploadImagen();
+            }
             return;
         }
 

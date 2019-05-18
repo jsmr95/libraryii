@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="usuarios-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <!-- Datos cuenta -->
     <?= $form->field($model, 'id')->hiddenInput()->label(false) ?>
@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'biografia')->textarea(['rows' => 10]) ?>
 
-    <?= $form->field($model, 'url_avatar')->input('file') ?>
+    <?= $form->field($model, 'url_avatar')->fileInput() ?>
 
     <?= $form->field($model, 'auth_key')->hiddenInput()->label(false) ?>
 
