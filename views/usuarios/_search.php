@@ -15,15 +15,15 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'usuario_id') ?>
+    <?php //echo $form->field($model, 'id') ?>
 
     <?= $form->field($model, 'login') ?>
 
-    <?= $form->field($model, 'email') ?>
+    <?php //echo $form->field($model, 'email') ?>
 
-    <?= $form->field($model, 'nombre') ?>
+    <?php //echo $form->field($model, 'nombre') ?>
 
-    <?= $form->field($model, 'apellido') ?>
+    <?php //echo $form->field($model, 'apellido') ?>
 
     <?php // echo $form->field($model, 'biografia') ?>
 
@@ -38,8 +38,7 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'updated_at') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
