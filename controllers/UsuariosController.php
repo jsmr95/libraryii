@@ -125,7 +125,7 @@ class UsuariosController extends Controller
         //La acción de borrar la imagen que teniamos para subir otra (modificar),
         //la realizo en el beforesave()
         if ($model->load(Yii::$app->request->post())) {
-            if (!empty($_FILES)) {
+            if (!empty($_FILES['Usuarios']['name']['url_avatar'])) {
                 uploadImagen($model);
                 $model->url_avatar = $_FILES['Usuarios']['name']['url_avatar'];
             }
