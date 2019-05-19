@@ -25,13 +25,39 @@ use Aws\S3\S3Client;
 /**
  * Función para subir una imagen a Amazon S3.
  * @return void|S3Exception void si todo va bien, o una excepcion si falla algo.
+ * @param object $model Modelo para ver si ya tenia foto subida o no.
  */
-function uploadImagen()
+function uploadImagen($model)
 {
     // AWS Info
     $bucketName = 'imagesjsmr95';
     $IAM_KEY = 'AKIAJV2XC7DOVIQH4YNQ';
     $IAM_SECRET = '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';
+
+
+    //Comprueba si tiene foto antigua para eliminarla
+    if (!empty($model->getOldAttribute('url_avatar'))) {
+        $keyName = basename($model->getOldAttribute('url_avatar'));
+        var_dump($model->getOldAttributes());
+
+        $s3 = S3Client::factory(
+            [
+        'credentials' => [
+            'key' => $IAM_KEY,
+            'secret' => $IAM_SECRET,
+        ],
+        'version' => 'latest',
+        'region' => 'eu-west-2',
+    ]
+        );
+
+        //Delete
+        $s3->deleteObject([
+            'Bucket' => $bucketName,
+            'Key' => $keyName,
+        ]);
+    }
+
 
     try {
         // You may need to change the region. It will say in the URL when the bucket is open
@@ -53,7 +79,6 @@ function uploadImagen()
     }
 
     // For this, I would generate a unqiue random string for the key name. But you can do whatever.
-    var_dump($_FILES['Usuarios']['tmp_name']['url_avatar']);
 
     $keyName = basename($_FILES['Usuarios']['name']['url_avatar']);
     $pathInS3 = 'https://s3.eu-west-2.amazonaws.com/' . $bucketName . '/' . $keyName;

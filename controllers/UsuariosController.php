@@ -100,7 +100,7 @@ class UsuariosController extends Controller
             );
             //Subo la imagen
             if (!empty($_FILES['Usuarios']['name']['url_avatar'])) {
-                uploadImagen();
+                uploadImagen($model);
             }
             return;
         }
@@ -122,8 +122,16 @@ class UsuariosController extends Controller
         $model = $this->findModel($id);
         $model->scenario = 'update';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        //La acción de borrar la imagen que teniamos para subir otra (modificar),
+        //la realizo en el beforesave()
+        if ($model->load(Yii::$app->request->post())) {
+            if (!empty($_FILES)) {
+                uploadImagen($model);
+                $model->url_avatar = $_FILES['Usuarios']['name']['url_avatar'];
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         $model->password = '';

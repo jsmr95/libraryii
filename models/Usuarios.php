@@ -5,6 +5,9 @@ namespace app\models;
 use Yii;
 use yii\web\IdentityInterface;
 
+//require '../web/uploads3.php';
+
+
 /**
  * This is the model class for table "usuarios".
  *
