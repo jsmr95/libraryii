@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 <?php  } } ?>
     <?php echo $this->render('_search', ['model' => $searchModel, 'sort' => $dataProvider->sort]); ?>
-
+    <?= Html::a('Ultimos lanzamientos',['libros/ultimos']); ?>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_libros',
