@@ -199,4 +199,22 @@ class LibrosController extends Controller
         }
         return 0;
     }
+
+    /**
+     * Lista de los libros ordenados desde los mas nuevos a mas viejos, simulando
+     * los ultimos lanzamientos.
+     * @return mixed
+     */
+    public function actionUltimos()
+    {
+        $searchModel = new LibrosSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = ['pageSize' => 5];
+        $dataProvider->sort->defaultOrder = ['created_at' => SORT_DESC];
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 }
