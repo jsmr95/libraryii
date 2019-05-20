@@ -44,7 +44,7 @@ footer{
         libro e inclusive seguir a otros usuarios para ver sus interacciones.</p>
         </div>
         <div class="col-md-3 col-md-offset-1">
-            <h2 style="text-decoration: underline; ">Votado del mes</h2>
+            <h2 style="text-decoration: underline; ">Más valorado</h2>
         </div>
     </div>
     <div class="row">
