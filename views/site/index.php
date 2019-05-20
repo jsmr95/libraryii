@@ -44,7 +44,7 @@ footer{
         libro e inclusive seguir a otros usuarios para ver sus interacciones.</p>
         </div>
         <div class="col-md-3 col-md-offset-1">
-            <p>Votado del mes</p>
+            <h2 style="text-decoration: underline; ">Votado del mes</h2>
         </div>
     </div>
     <div class="row">
@@ -53,7 +53,7 @@ footer{
         </div>
         <div class="col-md-3 col-md-offset-1">
             <center>
-                <p>Último lanzamiento</p>
+                <h2 style="text-decoration: underline; ">Último lanzamiento</h2>
             </center>
             <?php
             $dataProvider = new ActiveDataProvider([

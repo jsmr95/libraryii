@@ -35,7 +35,7 @@ img.librosUsuarios {
     <!-- Fila de cada libro -->
     <!-- Imagen AQUI -->
     <center>
-        <p>
+        <p style="margin-top: -35px">
         <?php
         if (empty($model->imagen)) {
             echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'librosUsuarios']);
