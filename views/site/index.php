@@ -49,7 +49,15 @@ footer{
     </div>
     <div class="row">
         <div class="col-md-8" style="font-size:28px">
-
+            <?php
+            $dataProvider = new ActiveDataProvider([
+                'query' => Libros::find()->where(['id' =>$ultimoLanzamiento->id])
+            ]);
+            echo ListView::widget([
+              'dataProvider' => $dataProvider,
+              'summary' => '',
+              'itemView' => '_ultimoLanzamientoMedia',
+          ]); ?>
         </div>
         <div class="col-md-3 col-md-offset-1">
             <center>
@@ -62,7 +70,7 @@ footer{
             echo ListView::widget([
               'dataProvider' => $dataProvider,
               'summary' => '',
-              'itemView' => '_ultimoLanzamiento',
+              'itemView' => '_ultimoLanzamientoMedia',
           ]); ?>
         </div>
     </div>

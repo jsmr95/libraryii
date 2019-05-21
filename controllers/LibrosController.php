@@ -189,13 +189,20 @@ class LibrosController extends Controller
      */
     public function actionCalculamediavotos($libro_id)
     {
-        $filas = Votos::find()->where(['libro_id' => $libro_id])->all();
-        if (count($filas)) {
-            $sumaTotal = 0;
-            foreach ($filas as $fila) {
-                $sumaTotal += $fila->voto;
+        if (($model = Libros::findOne($libro_id)) !== null) {
+            $filas = Votos::find()->where(['libro_id' => $libro_id])->all();
+            if (count($filas)) {
+                $sumaTotal = 0;
+                foreach ($filas as $fila) {
+                    $sumaTotal += $fila->voto;
+                }
+                $res = $sumaTotal / count($filas);
+                $model->mediaVotos = $res;
+                // var_dump($model->mediaVotos);
+                // die();
+                return $res;
             }
-            return $sumaTotal / count($filas);
+            return 0;
         }
         return 0;
     }

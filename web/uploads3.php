@@ -31,9 +31,8 @@ function uploadImagen($model)
 {
     // AWS Info
     $bucketName = 'imagesjsmr95';
-    $IAM_KEY = 'AKIAJV2XC7DOVIQH4YNQ';
-    $IAM_SECRET = '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';
-
+    $IAM_KEY = getenv('IAM_KEY');
+    $IAM_SECRET = getenv('IAM_SECRET');
 
     //Comprueba si tiene foto antigua para eliminarla
     if (!empty($model->getOldAttribute('url_avatar'))) {
