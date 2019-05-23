@@ -63,6 +63,14 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $ultimoLanzamiento = Libros::find()->orderBy(['created_at' => SORT_DESC])->one();
+        // $filas = Libros::find()->all();
+        // foreach ($filas as $fila) {
+        //     //me devuelve todo null, nose porque.
+        //     var_dump($fila->mediaVotos);
+        // }
+        // die();
+        // ME FALTA POR HACER ESTA CONSULTA PARA COGER AL MAS VOTADO
+
         return $this->render('index', ['ultimoLanzamiento' => $ultimoLanzamiento]);
     }
 

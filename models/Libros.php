@@ -72,6 +72,15 @@ class Libros extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Función para añadir un atributo al conjunto de atributos.
+     * @return array Conjunto de atributos mergeados.
+     */
+    // public function attributes()
+    // {
+    //     return array_merge(parent::attributes(), ['mediaVotos']);
+    // }
+
 
     /**
      * {@inheritdoc}
