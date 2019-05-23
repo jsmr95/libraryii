@@ -61,11 +61,11 @@ AppAsset::register($this);
                 'url' => ['/usuarios/index'],
                 'encode' => false
             ],
-            [
-                'label' => 'Social',
-                'url' => ['/estados/index'],
-                'encode' => false
-            ],
+            // [
+            //     'label' => 'Social',
+            //     'url' => ['/estados/index'],
+            //     'encode' => false
+            // ],
             [
                 'label' => 'Autores',
                 'url' => ['/autores/index'],
