@@ -63,6 +63,7 @@ EOT;
 $this->registerJs($followJs);
     ?>
     <!-- Nombre y corazón para saber si lo sigo-->
+    <?php if (!Yii::$app->user->isGuest) { ?>
     <center>
         <h1>
             <?= Html::encode($this->title)?>
@@ -71,6 +72,7 @@ $this->registerJs($followJs);
             </button>
         </h1>
     </center>
+    <?php } ?>
     <!-- Muestro estas opciones solo para el admin -->
     <?php
         if (!Yii::$app->user->isGuest){
