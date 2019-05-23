@@ -327,18 +327,18 @@ VALUES  ('Me ha encantado',1,1,null)
         ,  ('Nada mas que añadir',3, 4, null);
 
 -- Libros_favs --
-INSERT INTO libros_favs (usuario_id, libro_id)
+/* INSERT INTO libros_favs (usuario_id, libro_id)
 VALUES  (1,1)
         ,  (1, 2)
         ,  (2, 2)
-        ,  (3, 2);
+        ,  (3, 2); */
 
 -- Autores_favs --
-INSERT INTO autores_favs (usuario_id, autor_id)
+/* INSERT INTO autores_favs (usuario_id, autor_id)
 VALUES  (1,1)
         ,  (1, 1)
         ,  (2, 1)
-        ,  (3, 1);
+        ,  (3, 1); */
 
 -- Usuarios_favs --
 INSERT INTO users_favs (usuario_id, usuario_fav)
