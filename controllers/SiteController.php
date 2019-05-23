@@ -69,6 +69,7 @@ class SiteController extends Controller
         //     var_dump($fila->mediaVotos);
         // }
         // die();
+        // ME FALTA POR HACER ESTA CONSULTA PARA COGER AL MAS VOTADO
 
         return $this->render('index', ['ultimoLanzamiento' => $ultimoLanzamiento]);
     }
