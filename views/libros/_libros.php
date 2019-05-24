@@ -1,4 +1,6 @@
 <?php
+use app\models\Seguimientos;
+
 use yii\helpers\Url;
 use yii\helpers\Html;
 
@@ -88,11 +90,22 @@ $this->registerJs($followJs);
                     'id' => $model->id
                     ]) ?>
                     <!-- Botón para seguimiento -->
-                    <?php if (!Yii::$app->user->isGuest): ?>
+                    <?php if (!Yii::$app->user->isGuest):
+                    $seguimientoStr = '...';
+                    $seguimiento = Seguimientos::find()
+                    ->where(['usuario_id' => $usuarioId, 'libro_id' => $id])
+                    ->one();
+                    if ($seguimiento) {
+                        $seguimiento->estado_id == 1 ? $seguimientoStr = 'Leído' :
+                        $seguimiento->estado_id == 2 ? $seguimientoStr = 'Leyendo' :
+                        $seguimientoStr = 'Me gustaría leerlo';
+                    }
+                    //Me falta actualizarlo con AJAX
+                    ?>
 
                     <span class="dropdown">
                       <button style="margin-left:20px" class="btn btn-default dropdown-toggle" id="dropdownMenu<?=$id?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        ...
+                        <?= $seguimientoStr ?>
                       </button>
                       <ul class="dropdown-menu dropdown<?=$id?>" aria-labelledby="dropdownMenu<?=$id?>" data-seguimiento="<?= $id ?>">
                         <li data-id='1'><a>Leído</a></li>
