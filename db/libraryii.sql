@@ -355,7 +355,7 @@ INSERT INTO estados (usuario_id, estado, libro_id)
 VALUES  (1, 'Qué pasada de libro, lo recomiendo al 100%!! "El principitoasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadsf".', null)
         ,  (1, 'Volvería a leerme todos y cada uno de los libros de Carlos Ruiz Zafón.', null)
         ,  (2, 'Esperaba algo más de "Juego de Tronos".', 5)
-        ,  (3, 'Sin duda una de mis mejores compras con este libro!', null);
+        ,  (3, 'Sin duda una de mis mejores compras con este libro!', 6);
 
 -- Estados_favs --
 INSERT INTO estados_favs (usuario_id, estado_id)

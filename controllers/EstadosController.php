@@ -71,7 +71,7 @@ class EstadosController extends Controller
                 $model->libro_id = $model->libro_id + 1;
             }
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         }
 

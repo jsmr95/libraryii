@@ -2,6 +2,9 @@
 
 namespace app\models;
 
+use DateTime;
+use DateTimeZone;
+
 /**
  * This is the model class for table "estados".
  *
@@ -38,7 +41,9 @@ class Estados extends \yii\db\ActiveRecord
             [['estado'], 'string', 'max' => 255],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
             [['created_at'], 'default', 'value' => function () {
-                return date('Y-m-d h:i:s');
+                $ahora = date('Y-m-d h:i:s');
+                $dt = new DateTime($ahora, new DateTimeZone('Europe/London'));
+                return $dt->format('Y-m-d h:i:s');
             }],
             [['libro_id'], 'default', 'value' => function () {
                 return null;

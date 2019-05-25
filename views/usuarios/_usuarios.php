@@ -37,10 +37,10 @@ img.usuarios {
     <center>
         <p>
             <?php
-            if (empty($model->imagen)) {
+            if (empty($model->url_avatar)) {
                 echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'usuarios']);
             } else {
-                echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'usuarios']);
+                echo Html::img(Yii::getAlias('@uploads').'/'.$model->url_avatar, ['class' => 'usuarios']);
             }
             ?>
         </p>
