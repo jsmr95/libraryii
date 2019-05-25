@@ -62,6 +62,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->redirect(['estados/index']);
+        }
+
         $ultimoLanzamiento = Libros::find()->orderBy(['created_at' => SORT_DESC])->one();
         // $filas = Libros::find()->all();
         // foreach ($filas as $fila) {

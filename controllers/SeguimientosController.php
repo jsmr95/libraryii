@@ -72,6 +72,7 @@ class SeguimientosController extends Controller
             'libro_id' => $libro_id,
         ])->one();
 
+        $seguimientoStr = '...';
         if ($model) {
             if (!$model->delete()) {
                 Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
@@ -85,9 +86,20 @@ class SeguimientosController extends Controller
                     if (!$nuevo->save()) {
                         Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
                     } else {
-                        return true;
+                        $seguimiento = Seguimientos::find()
+                        ->where(['usuario_id' => $usuario_id, 'libro_id' => $libro_id])
+                        ->one();
+                        if ($seguimiento) {
+                            if ($seguimiento->estado_id == 1) {
+                                return $seguimientoStr = 'Leído';
+                            } elseif ($seguimiento->estado_id == 2) {
+                                return $seguimientoStr = 'Leyendo';
+                            }
+                            return $seguimientoStr = 'Me gustaría leerlo';
+                        }
                     }
-                    return true;
+                } else {
+                    return $seguimientoStr;
                 }
             }
         } else {
@@ -99,9 +111,18 @@ class SeguimientosController extends Controller
             if (!$nuevo->save()) {
                 Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
             } else {
-                return true;
+                $seguimiento = Seguimientos::find()
+                ->where(['usuario_id' => $usuario_id, 'libro_id' => $libro_id])
+                ->one();
+                if ($seguimiento) {
+                    if ($seguimiento->estado_id == 1) {
+                        return $seguimientoStr = 'Leído';
+                    } elseif ($seguimiento->estado_id == 2) {
+                        return $seguimientoStr = 'Leyendo';
+                    }
+                    return $seguimientoStr = 'Me gustaría leerlo';
+                }
             }
-            return true;
         }
     }
 
