@@ -66,8 +66,13 @@ class EstadosController extends Controller
     {
         $model = new Estados();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if (Yii::$app->request->post()['Estados']['libro_id'] != '') {
+                $model->libro_id = $model->libro_id + 1;
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('index', [

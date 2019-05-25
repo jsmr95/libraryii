@@ -18,7 +18,7 @@ class EstadosSearch extends Estados
     {
         return [
             [['id', 'usuario_id'], 'integer'],
-            [['estado', 'created_at', 'usuario.usersFavs'], 'safe'],
+            [['estado', 'created_at', 'usuario.usersFavs', 'libro_id'], 'safe'],
         ];
     }
 

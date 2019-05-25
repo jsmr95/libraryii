@@ -1,6 +1,9 @@
 <?php
 
+use app\models\Libros;
 use app\models\Estados;
+
+use kartik\select2\Select2;
 
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -32,6 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                     $model = new Estados();
                     $model->usuario_id = Yii::$app->user->id;
+                    $libros = Libros::find()->all();
+                    $dataLibros = [];
+                    foreach ($libros as $libro) {
+                        array_push($dataLibros,$libro->titulo);
+                    }
+                    // var_dump($libros); die();
                 ?>
 
                 <?= $form->field($model, 'usuario_id')->textInput()->hiddenInput()->label(false) ?>
@@ -39,6 +48,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'estado')->textarea(['maxlength' => true])->label('Que quieres postear?') ?>
 
                 <?= $form->field($model, 'created_at')->textInput()->hiddenInput()->label(false) ?>
+
+                <?= $form->field($model, 'libro_id')->widget(Select2::className(), [
+                        'data' => $dataLibros,
+                        'options' => ['placeholder' => 'Selecciona un libro si lo deseas, para hacer referencia a él'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ]
+                ]); ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Postear', ['class' => 'btn btn-success']) ?>
