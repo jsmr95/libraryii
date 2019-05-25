@@ -79,14 +79,14 @@ Array
 
     [11] => Array
         (
-            [line] => 13
+            [line] => 14
             [file] => ./controllers/SiteController.php
             [message] => No docblock for element 'app\controllers\SiteController'
         )
 
     [12] => Array
         (
-            [line] => 285
+            [line] => 302
             [file] => ./controllers/UsuariosController.php
             [message] => No docblock for element 'beforeAction'
         )
@@ -163,7 +163,7 @@ Array
 
     [23] => Array
         (
-            [line] => 43
+            [line] => 44
             [file] => ./models/Libros.php
             [message] => No short description for element '$mediaVotos'
         )
@@ -289,7 +289,7 @@ Array
 
     [41] => Array
         (
-            [line] => 43
+            [line] => 46
             [file] => ./models/Usuarios.php
             [message] => No short description for element '$password_repeat'
         )
