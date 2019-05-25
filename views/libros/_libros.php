@@ -51,6 +51,7 @@ function cambioSeguimiento(event){
                 usuario_id: '$usuarioId',
                 estado_id: estado_id},
         success: function(data){
+            $(`#dropdownMenu` + libro_id)[0].innerHTML = data;
         }
     });
 }
@@ -96,9 +97,13 @@ $this->registerJs($followJs);
                     ->where(['usuario_id' => $usuarioId, 'libro_id' => $id])
                     ->one();
                     if ($seguimiento) {
-                        $seguimiento->estado_id == 1 ? $seguimientoStr = 'Leído' :
-                        $seguimiento->estado_id == 2 ? $seguimientoStr = 'Leyendo' :
-                        $seguimientoStr = 'Me gustaría leerlo';
+                        if ($seguimiento->estado_id == 1) {
+                            $seguimientoStr = 'Leído';
+                        } else if ($seguimiento->estado_id == 2) {
+                            $seguimientoStr = 'Leyendo';
+                        } else {
+                            $seguimientoStr = 'Me gustaría leerlo';
+                        }
                     }
                     //Me falta actualizarlo con AJAX
                     ?>
