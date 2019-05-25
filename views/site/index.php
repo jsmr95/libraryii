@@ -44,20 +44,23 @@ footer{
         libro e inclusive seguir a otros usuarios para ver sus interacciones.</p>
         </div>
         <div class="col-md-3 col-md-offset-1">
-            <h2 style="text-decoration: underline; ">Más valorado</h2>
+            <center>
+                <h2 style="text-decoration: underline; ">Más valorado</h2>
+                <?php
+                $dataProvider = new ActiveDataProvider([
+                    'query' => Libros::find()->where(['id' =>$ultimoLanzamiento->id])
+                ]);
+                echo ListView::widget([
+                  'dataProvider' => $dataProvider,
+                  'summary' => '',
+                  'itemView' => '_ultimoLanzamientoMedia',
+              ]); ?>
+            </center>
         </div>
     </div>
     <div class="row">
         <div class="col-md-8" style="font-size:28px">
-            <?php
-            $dataProvider = new ActiveDataProvider([
-                'query' => Libros::find()->where(['id' =>$ultimoLanzamiento->id])
-            ]);
-            echo ListView::widget([
-              'dataProvider' => $dataProvider,
-              'summary' => '',
-              'itemView' => '_ultimoLanzamientoMedia',
-          ]); ?>
+
         </div>
         <div class="col-md-3 col-md-offset-1">
             <center>
