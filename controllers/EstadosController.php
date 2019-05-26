@@ -37,6 +37,9 @@ class EstadosController extends Controller
     {
         $searchModel = new EstadosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->setSort([
+            'defaultOrder' => ['created_at' => SORT_DESC],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -66,8 +69,13 @@ class EstadosController extends Controller
     {
         $model = new Estados();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if (Yii::$app->request->post()['Estados']['libro_id'] != '') {
+                $model->libro_id = $model->libro_id + 1;
+            }
+            if ($model->save()) {
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('index', [

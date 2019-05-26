@@ -1,9 +1,14 @@
 <?php
 
+use app\models\Libros;
 use app\models\Usuarios;
+
+use yii\data\ActiveDataProvider;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+
+use yii\widgets\ListView;
 
 ?>
 <style media="screen">
@@ -31,6 +36,13 @@ use yii\helpers\Html;
 .botonLyb{
     color: green;
 }
+img.usuarios {
+    width: 130px !important;
+    height: 150px !important;
+    border-radius: 70px ;
+    margin-top: 30px !important;
+}
+
 </style>
 <?php
 //Variables que voy a usar
@@ -93,10 +105,10 @@ if ($usua) {
             <center>
                 <p>
                     <?php
-                    if (empty($model->imagen)) {
-                        echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg');
+                    if (empty($usua->url_avatar)) {
+                        echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'usuarios']);
                     } else {
-                        echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen);
+                        echo Html::img(Yii::getAlias('@uploads').'/'.$usua->url_avatar, ['class' => 'usuarios']);
                     }
                     ?>
                 </p>
@@ -131,6 +143,21 @@ if ($usua) {
                 </button>
             </p>
         </div>
+        <?php if ($model->libro_id != '' || $model->libro_id != null) { ?>
+        <div class="col-md-2 col-md-offset-1">
+            <center>
+                <?php
+                $dataProvider = new ActiveDataProvider([
+                    'query' => Libros::find()->where(['id' =>$model->libro_id])
+                ]);
+                echo ListView::widget([
+                  'dataProvider' => $dataProvider,
+                  'summary' => '',
+                  'itemView' => '_libroReferencia',
+              ]); ?>
+            </center>
+        </div>
+    <?php } ?>
     </div>
 </div>
 

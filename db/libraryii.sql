@@ -157,6 +157,9 @@ CREATE TABLE estados
                         ON UPDATE CASCADE
     , estado        varchar(255) NOT NULL
     , created_at    TIMESTAMP(0)   NOT NULL DEFAULT LOCALTIMESTAMP
+    , libro_id    BIGINT REFERENCES libros (id)
+                        ON DELETE CASCADE
+                        ON UPDATE CASCADE
 );
 
 /* Tabla Estados_Favs */
@@ -348,11 +351,11 @@ VALUES  (1,2)
         ,  (3, 1);
 
 -- Estados --
-INSERT INTO estados (usuario_id, estado)
-VALUES  (1, 'Qué pasada de libro, lo recomiendo al 100%!! "El principitoasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadsf".')
-        ,  (1, 'Volvería a leerme todos y cada uno de los libros de Carlos Ruiz Zafón.')
-        ,  (2, 'Esperaba algo más de "Juego de Tronos".')
-        ,  (3, 'Sin duda una de mis mejores compras con este libro!');
+INSERT INTO estados (usuario_id, estado, libro_id)
+VALUES  (1, 'Qué pasada de libro, lo recomiendo al 100%!! "El principitoasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadsf".', null)
+        ,  (1, 'Volvería a leerme todos y cada uno de los libros de Carlos Ruiz Zafón.', null)
+        ,  (2, 'Esperaba algo más de "Juego de Tronos".', 5)
+        ,  (3, 'Sin duda una de mis mejores compras con este libro!', 6);
 
 -- Estados_favs --
 INSERT INTO estados_favs (usuario_id, estado_id)

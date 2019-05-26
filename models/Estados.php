@@ -2,11 +2,15 @@
 
 namespace app\models;
 
+use DateTime;
+use DateTimeZone;
+
 /**
  * This is the model class for table "estados".
  *
  * @property int $id
  * @property int $usuario_id
+ * @property int $libro_id
  * @property string $estado
  * @property string $created_at
  *
@@ -31,13 +35,18 @@ class Estados extends \yii\db\ActiveRecord
     {
         return [
             [['usuario_id'], 'default', 'value' => null],
-            [['usuario_id'], 'integer'],
+            [['usuario_id', 'libro_id'], 'integer'],
             [['estado'], 'required'],
-            [['created_at'], 'safe'],
+            // [['created_at'], 'safe'],
             [['estado'], 'string', 'max' => 255],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
-            [['created_at'], 'default', 'value' => function () {
-                return date('Y-m-d h:i:s');
+            // [['created_at'], 'default', 'value' => function () {
+            //     $ahora = date('Y-m-d h:i:s');
+            //     $dt = new DateTime($ahora, new DateTimeZone('Europe/London'));
+            //     return $dt->format('Y-m-d h:i:s');
+            // }],
+            [['libro_id'], 'default', 'value' => function () {
+                return null;
             }],
         ];
     }
@@ -52,6 +61,7 @@ class Estados extends \yii\db\ActiveRecord
             'usuario_id' => 'Usuario ID',
             'estado' => 'Estado',
             'created_at' => 'Created At',
+            'libro_id' => 'Libro',
         ];
     }
 
@@ -61,6 +71,14 @@ class Estados extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(UsuariosId::className(), ['id' => 'usuario_id'])->inverseOf('estados');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLibro()
+    {
+        return $this->hasOne(Libros::className(), ['id' => 'libro_id'])->inverseOf('estado');
     }
 
     /**
