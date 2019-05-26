@@ -37,6 +37,9 @@ class EstadosController extends Controller
     {
         $searchModel = new EstadosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->setSort([
+            'defaultOrder' => ['created_at' => SORT_DESC],
+        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

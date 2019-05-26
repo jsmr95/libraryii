@@ -37,14 +37,14 @@ class Estados extends \yii\db\ActiveRecord
             [['usuario_id'], 'default', 'value' => null],
             [['usuario_id', 'libro_id'], 'integer'],
             [['estado'], 'required'],
-            [['created_at'], 'safe'],
+            // [['created_at'], 'safe'],
             [['estado'], 'string', 'max' => 255],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => UsuariosId::className(), 'targetAttribute' => ['usuario_id' => 'id']],
-            [['created_at'], 'default', 'value' => function () {
-                $ahora = date('Y-m-d h:i:s');
-                $dt = new DateTime($ahora, new DateTimeZone('Europe/London'));
-                return $dt->format('Y-m-d h:i:s');
-            }],
+            // [['created_at'], 'default', 'value' => function () {
+            //     $ahora = date('Y-m-d h:i:s');
+            //     $dt = new DateTime($ahora, new DateTimeZone('Europe/London'));
+            //     return $dt->format('Y-m-d h:i:s');
+            // }],
             [['libro_id'], 'default', 'value' => function () {
                 return null;
             }],
