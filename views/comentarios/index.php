@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Comentar', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_comentario',

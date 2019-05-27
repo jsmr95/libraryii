@@ -25,7 +25,7 @@ use yii\helpers\Html;
 <div class="row comentario">
     <div class="comentario-cuerpo col-md-11">
         <div class="comentario-cabecera">
-            <p>
+            <h4>
                 <?= Html::a($model
                 ->usuario
                 ->usuarios
@@ -33,10 +33,12 @@ use yii\helpers\Html;
                     'usuarios/view',
                     'id' => $model->usuario->usuarios->id
                     ]) ?>
+                    <small>
                     <?= Yii::$app
                     ->formatter
-                    ->asDateTime($model->created_at, 'short') ?>
-            </p>
+                    ->asRelativeTime($model->created_at) ?>
+                </small>
+            </h4>
         </div>
         <div class="comentario-texto">
             <?= $model->texto  ?>
