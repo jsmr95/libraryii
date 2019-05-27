@@ -1,3 +1,8 @@
+<style media="screen">
+    #usuariossearch-login {
+        width: 300px;
+    }
+</style>
 <?php
 
 use yii\helpers\Html;

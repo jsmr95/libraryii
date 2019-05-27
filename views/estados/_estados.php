@@ -42,6 +42,14 @@ img.usuarios {
     border-radius: 70px ;
     margin-top: 30px !important;
 }
+.glyphicon-trash {
+    color:red;
+    font-size: 20px !important;
+}
+.glyphicon-trash:hover {
+    color:blue;
+    font-size: 18px !important;
+}
 
 </style>
 <?php
@@ -127,6 +135,19 @@ if ($usua) {
                         ->asRelativeTime($model->created_at)
                     ?>
                 </small>
+                <?php
+                    if (!Yii::$app->user->isGuest && Yii::$app->user->identity->login === 'admin'){
+
+                echo Html::a( "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
+                [ 'estados/delete', 'id' => $model->id ],
+                [ 'data' =>
+                    [
+                        'method' => 'POST',
+                        'confirm' => "¿Seguro que quieres eliminar este estado?"
+                    ]
+                ]);
+                    }
+                ?>
             </h2>
         </span>
             <p class="estado_texto">
