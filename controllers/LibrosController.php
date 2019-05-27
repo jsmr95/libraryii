@@ -77,6 +77,7 @@ class LibrosController extends Controller
                'comentario_id' => null,
                'libro_id' => $id,
            ])
+           ->orderBy(['created_at' => SORT_DESC])
            ->all();
 
         return $this->render('view', [
