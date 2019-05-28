@@ -69,7 +69,10 @@ img.usuarios {
                             'confirm' => "¿Seguro que quieres eliminar al usuario $model->login?"
                         ]
                     ]);
-
+                    ?>
+        <small>
+            <?php
+                if ($model->banned_at == null) {
                     echo Html::a(
                         'Banear',
                         ['usuarios/banear', 'id' => $model->id],
@@ -78,8 +81,19 @@ img.usuarios {
                             'data-confirm' => '¿Seguro que desea banear a ese usuario?'
                         ]
                     );
+                } else {
+                    echo Html::a(
+                        'Desbanear',
+                        ['usuarios/desbanear', 'id' => $model->id],
+                        [
+                            'data-method' => 'POST',
+                            'data-confirm' => '¿Seguro que desea desbanear a ese usuario?'
+                        ]
+                    );
+                }
                 }
             ?>
+        </small>
     </h3>
     </center>
 
