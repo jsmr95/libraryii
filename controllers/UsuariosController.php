@@ -320,4 +320,17 @@ class UsuariosController extends Controller
 
         return $this->redirect(['usuarios/index']);
     }
+
+    /**
+     * Accion para que el admin pueda desbanear a los usuarios.
+     * @param  int $id id del usuario a desbanear
+     */
+    public function actionDesbanear($id)
+    {
+        $usuario = $this->findModel($id);
+        $usuario->banned_at = null;
+        $usuario->save();
+        Yii::$app->session->setFlash('success', 'El usuario ha sido desbaneado');
+        return $this->redirect(['usuarios/index']);
+    }
 }
