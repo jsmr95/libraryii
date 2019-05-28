@@ -29,6 +29,14 @@ img.usuarios {
 .dropdown-menu > li {
     cursor:pointer;
 }
+.glyphicon-trash {
+    color:red;
+    font-size: 20px !important;
+}
+.glyphicon-trash:hover {
+    color:blue;
+    font-size: 18px !important;
+}
 </style>
 
 <div class="col-md-3 usuario-cuerpo ">
@@ -50,6 +58,42 @@ img.usuarios {
             'id' => $model->id
             ])
             ?>
+            <?php
+                if (!Yii::$app->user->isGuest && Yii::$app->user->identity->login === 'admin'){
+
+                    echo Html::a( "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
+                    [ 'usuarios/delete', 'id' => $model->id ],
+                    [ 'data' =>
+                        [
+                            'method' => 'POST',
+                            'confirm' => "¿Seguro que quieres eliminar al usuario $model->login?"
+                        ]
+                    ]);
+                    ?>
+        <small>
+            <?php
+                if ($model->banned_at == null) {
+                    echo Html::a(
+                        'Banear',
+                        ['usuarios/banear', 'id' => $model->id],
+                        [
+                            'data-method' => 'POST',
+                            'data-confirm' => '¿Seguro que desea banear a ese usuario?'
+                        ]
+                    );
+                } else {
+                    echo Html::a(
+                        'Desbanear',
+                        ['usuarios/desbanear', 'id' => $model->id],
+                        [
+                            'data-method' => 'POST',
+                            'data-confirm' => '¿Seguro que desea desbanear a ese usuario?'
+                        ]
+                    );
+                }
+                }
+            ?>
+        </small>
     </h3>
     </center>
 

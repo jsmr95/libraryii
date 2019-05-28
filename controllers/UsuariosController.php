@@ -304,4 +304,33 @@ class UsuariosController extends Controller
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
+
+    /**
+     * Accion para que el admin pueda banear a los usuarios.
+     * @param  int $id id del usuario a banear
+     */
+    public function actionBanear($id)
+    {
+        $usuario = $this->findModel($id);
+        $usuario->banned_at = empty($usuario->banned_at) ?
+            (new \DateTime())
+                ->add(new \DateInterval('P2D'))
+                ->format('Y-m-d H:i:s') : null;
+        $usuario->save();
+
+        return $this->redirect(['usuarios/index']);
+    }
+
+    /**
+     * Accion para que el admin pueda desbanear a los usuarios.
+     * @param  int $id id del usuario a desbanear
+     */
+    public function actionDesbanear($id)
+    {
+        $usuario = $this->findModel($id);
+        $usuario->banned_at = null;
+        $usuario->save();
+        Yii::$app->session->setFlash('success', 'El usuario ha sido desbaneado');
+        return $this->redirect(['usuarios/index']);
+    }
 }

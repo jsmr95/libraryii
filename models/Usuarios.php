@@ -46,6 +46,12 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public $password_repeat;
 
     /**
+     * Variable para saber si un usuario tiene algun baneo o no.
+     * @var string
+     */
+    public $_baneado;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -230,6 +236,23 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function getId0()
     {
         return $this->hasOne(UsuariosId::className(), ['id' => 'id'])->inverseOf('usuarios');
+    }
+
+    /**
+     * Función para obtener el baneo.
+     * @return string fecha si la hubiese hasta cuando está baneado.
+     */
+    public function getBaneado()
+    {
+        return $this->_baneado;
+    }
+
+    /**
+     * Funcion afterFind para cambiar la variable baneado.
+     */
+    public function afterFind()
+    {
+        $this->_baneado = !empty($this->banned_at);
     }
 
     /**
