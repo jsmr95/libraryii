@@ -139,7 +139,13 @@
 <tr>
   <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
 </tr>
-        <tr class="inherited" id="$activeValidators">
+        <tr id="$_baneado">
+        <td><a href="app-models-usuarios.html#$_baneado-detail">$_baneado</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td></td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
+            <tr class="inherited" id="$activeValidators">
         <td><a href="yii-base-model.html#$activeValidators-detail">$activeValidators</a></td>
         <td><a href="yii-validators-validator.html">yii\validators\Validator</a>[]</td>
         <td>The validators applicable to the current <a href="yii-base-model.html#$scenario-detail">$scenario</a>.</td>
@@ -155,6 +161,12 @@
         <td><a href="app-models-usuarios.html#$authKey-detail">$authKey</a></td>
         <td><a href="http://www.php.net/language.types.string">string</a></td>
         <td>A key that is used to check the validity of a given identity ID.</td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
+            <tr id="$baneado">
+        <td><a href="app-models-usuarios.html#$baneado-detail">$baneado</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Fecha si la hubiese hasta cuando está baneado.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="$behaviors">
@@ -321,10 +333,10 @@
         <td>This method is invoked after deleting a record.</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
-            <tr class="inherited" id="afterFind()">
-        <td><a href="yii-db-baseactiverecord.html#afterFind()-detail">afterFind()</a></td>
-        <td>This method is called when the AR object is created and populated with the query result.</td>
-        <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
+            <tr id="afterFind()">
+        <td><a href="app-models-usuarios.html#afterFind()-detail">afterFind()</a></td>
+        <td>Funcion afterFind para cambiar la variable baneado.</td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="afterRefresh()">
         <td><a href="yii-db-baseactiverecord.html#afterRefresh()-detail">afterRefresh()</a></td>
@@ -541,6 +553,11 @@ que está consultando.</td>
             <tr id="getAuthKey()">
         <td><a href="app-models-usuarios.html#getAuthKey()-detail">getAuthKey()</a></td>
         <td>Returns a key that can be used to check the validity of a given identity ID.</td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
+            <tr id="getBaneado()">
+        <td><a href="app-models-usuarios.html#getBaneado()-detail">getBaneado()</a></td>
+        <td>Función para obtener el baneo.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="getBehavior()">
@@ -1007,7 +1024,7 @@ The previous example would extract "id".</td>
         <td>Finds ActiveRecord instance(s) by the given condition.</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
-                                                                                                                                                                                            <tr class="inherited" id="insertInternal()">
+                                                                                                                                                                                                <tr class="inherited" id="insertInternal()">
         <td><a href="yii-db-activerecord.html#insertInternal()-detail">insertInternal()</a></td>
         <td>Inserts an ActiveRecord into DB without considering transaction.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
@@ -1199,6 +1216,23 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
 
 <div class="property-doc">
 
+    <div class="detail-header h3" id="$_baneado-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-usuarios.html#$_baneado-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $_baneado        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="app-models-usuarios.html#$_baneado-detail">$_baneado</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
     <div class="detail-header h3" id="$authKey-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="app-models-usuarios.html#$authKey-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -1215,6 +1249,24 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
             </div>
 
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-models-usuarios.html#getAuthKey()-detail">getAuthKey</a></strong> ( )</div>
+
+
+    <div class="detail-header h3" id="$baneado-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-usuarios.html#$baneado-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $baneado        <span class="detail-header-tag small">
+            public                         <em>read-only</em>                         property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>Fecha si la hubiese hasta cuando está baneado.</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-models-usuarios.html#getBaneado()-detail">getBaneado</a></strong> ( )</div>
 
 
     <div class="detail-header h3" id="$id-detail">
@@ -1272,6 +1324,29 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
 <h2>Method Details</h2>
 
 <div class="method-doc">
+
+    <div class="detail-header h3" id="afterFind()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-usuarios.html#afterFind()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        afterFind()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Funcion afterFind para cambiar la variable baneado.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-models-usuarios.html#afterFind()-detail">afterFind</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
 
     <div class="detail-header h3" id="attributeLabels()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
@@ -1617,6 +1692,35 @@ other scenarios, that require forceful access revocation for old sessions.</p>
 
 <!--	-->
 
+    <div class="detail-header h3" id="getBaneado()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-usuarios.html#getBaneado()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getBaneado()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Función para obtener el baneo.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-models-usuarios.html#getBaneado()-detail">getBaneado</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Fecha si la hubiese hasta cuando está baneado.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
     <div class="detail-header h3" id="getId()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="app-models-usuarios.html#getId()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -1887,7 +1991,7 @@ if the table is not named after this convention.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 25 May 2019 08:45:05 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 28 May 2019 21:59:18 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

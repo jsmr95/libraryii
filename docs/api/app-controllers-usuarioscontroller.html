@@ -268,6 +268,11 @@ in the request.</td>
         <td>Sets a component property to be null.</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
     </tr>
+            <tr id="actionBanear()">
+        <td><a href="app-controllers-usuarioscontroller.html#actionBanear()-detail">actionBanear()</a></td>
+        <td>Accion para que el admin pueda banear a los usuarios.</td>
+        <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
+    </tr>
             <tr id="actionCreate()">
         <td><a href="app-controllers-usuarioscontroller.html#actionCreate()-detail">actionCreate()</a></td>
         <td>Creates a new Usuarios model.</td>
@@ -276,6 +281,11 @@ in the request.</td>
             <tr id="actionDelete()">
         <td><a href="app-controllers-usuarioscontroller.html#actionDelete()-detail">actionDelete()</a></td>
         <td>Deletes an existing Usuarios model.</td>
+        <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
+    </tr>
+            <tr id="actionDesbanear()">
+        <td><a href="app-controllers-usuarioscontroller.html#actionDesbanear()-detail">actionDesbanear()</a></td>
+        <td>Accion para que el admin pueda desbanear a los usuarios.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
     </tr>
             <tr id="actionIndex()">
@@ -550,7 +560,7 @@ in the request.</td>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-                                                                                                                                            <tr id="findModel()">
+                                                                                                                                                    <tr id="findModel()">
         <td><a href="app-controllers-usuarioscontroller.html#findModel()-detail">findModel()</a></td>
         <td>Finds the Usuarios model based on its primary key value.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
@@ -596,6 +606,35 @@ in the request.</td>
 <h2>Method Details</h2>
 
 <div class="method-doc">
+
+    <div class="detail-header h3" id="actionBanear()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#actionBanear()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionBanear()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Accion para que el admin pueda banear a los usuarios.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-controllers-usuarioscontroller.html#actionBanear()-detail">actionBanear</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Id del usuario a banear</p>
+</td>
+                </tr>
+                                                </table>
+
+<!--	-->
 
     <div class="detail-header h3" id="actionCreate()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
@@ -653,6 +692,35 @@ in the request.</td>
 </td>
                 </tr>
                         </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionDesbanear()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#actionDesbanear()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionDesbanear()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Accion para que el admin pueda desbanear a los usuarios.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-controllers-usuarioscontroller.html#actionDesbanear()-detail">actionDesbanear</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Id del usuario a desbanear</p>
+</td>
+                </tr>
+                                                </table>
 
 <!--	-->
 
@@ -1040,7 +1108,7 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 25 May 2019 08:45:06 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 28 May 2019 21:59:18 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

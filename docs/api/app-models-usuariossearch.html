@@ -139,7 +139,13 @@
 <tr>
   <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
 </tr>
-        <tr class="inherited" id="$activeValidators">
+        <tr class="inherited" id="$_baneado">
+        <td><a href="app-models-usuarios.html#$_baneado-detail">$_baneado</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td></td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
+            <tr class="inherited" id="$activeValidators">
         <td><a href="yii-base-model.html#$activeValidators-detail">$activeValidators</a></td>
         <td><a href="yii-validators-validator.html">yii\validators\Validator</a>[]</td>
         <td>The validators applicable to the current <a href="yii-base-model.html#$scenario-detail">$scenario</a>.</td>
@@ -155,6 +161,12 @@
         <td><a href="app-models-usuarios.html#$authKey-detail">$authKey</a></td>
         <td><a href="http://www.php.net/language.types.string">string</a></td>
         <td>A key that is used to check the validity of a given identity ID.</td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
+            <tr class="inherited" id="$baneado">
+        <td><a href="app-models-usuarios.html#$baneado-detail">$baneado</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Fecha si la hubiese hasta cuando está baneado.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="$behaviors">
@@ -322,9 +334,9 @@
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
             <tr class="inherited" id="afterFind()">
-        <td><a href="yii-db-baseactiverecord.html#afterFind()-detail">afterFind()</a></td>
-        <td>This method is called when the AR object is created and populated with the query result.</td>
-        <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
+        <td><a href="app-models-usuarios.html#afterFind()-detail">afterFind()</a></td>
+        <td>Funcion afterFind para cambiar la variable baneado.</td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="afterRefresh()">
         <td><a href="yii-db-baseactiverecord.html#afterRefresh()-detail">afterRefresh()</a></td>
@@ -541,6 +553,11 @@ que está consultando.</td>
             <tr class="inherited" id="getAuthKey()">
         <td><a href="app-models-usuarios.html#getAuthKey()-detail">getAuthKey()</a></td>
         <td>Returns a key that can be used to check the validity of a given identity ID.</td>
+        <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
+    </tr>
+            <tr class="inherited" id="getBaneado()">
+        <td><a href="app-models-usuarios.html#getBaneado()-detail">getBaneado()</a></td>
+        <td>Función para obtener el baneo.</td>
         <td><a href="app-models-usuarios.html">app\models\Usuarios</a></td>
     </tr>
             <tr class="inherited" id="getBehavior()">
@@ -1012,7 +1029,7 @@ The previous example would extract "id".</td>
         <td>Finds ActiveRecord instance(s) by the given condition.</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
-                                                                                                                                                                                            <tr class="inherited" id="insertInternal()">
+                                                                                                                                                                                                <tr class="inherited" id="insertInternal()">
         <td><a href="yii-db-activerecord.html#insertInternal()-detail">insertInternal()</a></td>
         <td>Inserts an ActiveRecord into DB without considering transaction.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
@@ -1390,7 +1407,7 @@ are being validated by the validation rules that apply to the scenario.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 25 May 2019 08:45:04 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 28 May 2019 21:59:18 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {
