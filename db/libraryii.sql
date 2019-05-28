@@ -29,6 +29,7 @@ CREATE TABLE usuarios
     , auth_key      varchar(255)
     , created_at    TIMESTAMP(0)   NOT NULL DEFAULT LOCALTIMESTAMP
     , updated_at    TIMESTAMP(0)
+    , banned_at    TIMESTAMP(0)
 );
 
 /* Tabla Generos */

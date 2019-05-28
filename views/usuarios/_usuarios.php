@@ -61,14 +61,23 @@ img.usuarios {
             <?php
                 if (!Yii::$app->user->isGuest && Yii::$app->user->identity->login === 'admin'){
 
-            echo Html::a( "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
-            [ 'usuarios/delete', 'id' => $model->id ],
-            [ 'data' =>
-                [
-                    'method' => 'POST',
-                    'confirm' => "¿Seguro que quieres eliminar al usuario $model->login?"
-                ]
-            ]);
+                    echo Html::a( "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
+                    [ 'usuarios/delete', 'id' => $model->id ],
+                    [ 'data' =>
+                        [
+                            'method' => 'POST',
+                            'confirm' => "¿Seguro que quieres eliminar al usuario $model->login?"
+                        ]
+                    ]);
+
+                    echo Html::a(
+                        'Banear',
+                        ['usuarios/banear', 'id' => $model->id],
+                        [
+                            'data-method' => 'POST',
+                            'data-confirm' => '¿Seguro que desea banear a ese usuario?'
+                        ]
+                    );
                 }
             ?>
     </h3>
