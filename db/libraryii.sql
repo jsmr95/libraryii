@@ -239,7 +239,8 @@ CREATE TABLE seguimientos
 -- Usuarios_id --
 INSERT INTO usuarios_id (id)
 VALUES (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT),
-       (DEFAULT), (DEFAULT);
+       (DEFAULT), (DEFAULT) ,(DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT),
+       (DEFAULT), (DEFAULT), (DEFAULT);
 
 -- Usuarios --
 INSERT INTO usuarios (id, login, email, nombre, apellido, biografia, url_avatar, password, auth_key)
@@ -250,8 +251,29 @@ VALUES (1, 'jose', 'jose@jose.com', 'Jose', 'Gallego', 'Joven programador...',
     ,  (3, 'admin', 'admin@admin.com', 'admin', 'admin', 'Un administrador...',
             'user3.jpg', crypt('admin', gen_salt('bf',10)),'')
     ,  (4, 'carmen', 'carmen@carmen.com', 'Carmen', 'Gallego', 'Joven programadora...',
-            'user4.jpg', crypt('carmen', gen_salt('bf',10)),'');
-
+            'user4.jpg', crypt('carmen', gen_salt('bf',10)),'')
+    ,  (5, 'juan', 'juan@juan.com', 'Juan', 'Del Olmo', 'Me gusta la lectura',
+            'user5.jpg', crypt('juan', gen_salt('bf',10)),'')
+    ,  (6, 'jesus', 'jesus@jesus.com', 'Jesus', 'Benitez', 'Un jesusistrador...',
+            'user6.jpg', crypt('jesus', gen_salt('bf',10)),'')
+    ,  (7, 'manuel', 'manuel@manuel.com', 'Manuel', 'Benitez', 'Joven futbolista que le gusta los libros!',
+            'user7.jpg', crypt('manuel', gen_salt('bf',10)),'')
+    ,  (8, 'david', 'david@david.com', 'David', 'Ramos', 'Un busca vida',
+            'user8.jpg', crypt('david', gen_salt('bf',10)),'')
+    ,  (9, 'miguel', 'miguel@miguel.com', 'Miguel', 'Sanchez', 'No se como he llegado aqui',
+            'user9.jpg', crypt('miguel', gen_salt('bf',10)),'')
+    ,  (10, 'sheila', 'sheila@sheila.com', 'Sheila', 'Establiet', 'Estudiantes de psicologia',
+            'user10.jpg', crypt('sheila', gen_salt('bf',10)),'')
+    ,  (11, 'andrea', 'andrea@andrea.com', 'Andrea', 'Ruiz', 'Alemana, trabajadora y humilde.',
+            'user11.jpg', crypt('andrea', gen_salt('bf',10)),'')
+    ,  (12, 'leticia', 'leticia@leticia.com', 'Leticia', 'Pepa', 'Animadora en mi tiempo libre.',
+            'user12.jpg', crypt('leticia', gen_salt('bf',10)),'')
+    ,  (13, 'silvia', 'silvia@silvia.com', 'Silvia', 'Perez', 'Trabajo en AtSistemas.',
+            'user13.jpg', crypt('silvia', gen_salt('bf',10)),'')
+    ,  (14, 'rafa', 'rafa@rafa.com', 'Rafa', 'Fernandez', 'Arquitecto de vocación!',
+            'user14.jpg', crypt('rafa', gen_salt('bf',10)),'')
+    ,  (15, 'ildefonso', 'ildefonso@ildefonso.com', 'Ildefonso', 'Hernandez', 'Amante del golf y de mi familia',
+            'user15.jpg', crypt('ildefonso', gen_salt('bf',10)),'');
 -- Autores --
 INSERT INTO autores (nombre, descripcion)
 VALUES ('Stephen King', 'Stephen Edwin King es un escritor estadounidense
