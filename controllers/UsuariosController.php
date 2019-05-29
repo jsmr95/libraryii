@@ -32,15 +32,33 @@ class UsuariosController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-            // 'access' => [
-            //     'class' => AccessControl::className(),
-            //     'only' => ['create'],
-            //     'rules' => [
-            //         'allow' => true,
-            //         'actions' => ['create'],
-            //         'roles' => ['?'],
-            //     ],
-            // ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create', 'update', 'view'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            // var_dump(Yii::$app->request->get('id'));
+                            // var_dump(Yii::$app->user->id == Yii::$app->request->get('id'));
+                            // die();
+                            return Yii::$app->request->get('id') == Yii::$app->user->id;
+                        },
+                    ],
+                ],
+            ],
         ];
     }
 
