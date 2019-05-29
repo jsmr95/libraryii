@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "290380e66cde29882127654e85b7ed11",
+    "content-hash": "546c8df9a2b4248a5b8ec0fe31ef4a4b",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -590,6 +590,53 @@
                 "url"
             ],
             "time": "2018-12-04T20:46:45+00:00"
+        },
+        {
+            "name": "ijackua/yii2-sharelinks-widget",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iJackUA/yii2-sharelinks-widget.git",
+                "reference": "f808b06b844fd134f7a504cd88143a8f7939b33a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iJackUA/yii2-sharelinks-widget/zipball/f808b06b844fd134f7a504cd88143a8f7939b33a",
+                "reference": "f808b06b844fd134f7a504cd88143a8f7939b33a",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "ijackua\\sharelinks\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Evgeniy Kuzminov",
+                    "email": "kyzminov@gmail.com",
+                    "homepage": "http://stdout.in"
+                }
+            ],
+            "description": "Yii2 widget for popular social networks 'share link' generation",
+            "homepage": "https://github.com/iJackUA/yii2-sharelinks-widget",
+            "keywords": [
+                "extension",
+                "network",
+                "share",
+                "social",
+                "widget",
+                "yii"
+            ],
+            "abandoned": true,
+            "time": "2015-12-13T20:30:43+00:00"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",

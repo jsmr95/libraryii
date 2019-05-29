@@ -22,7 +22,8 @@
         "yiisoft/yii2-swiftmailer": "~2.1.0",
         "kartik-v/yii2-widgets": "dev-master",
         "kartik-v/yii2-widget-rating": "dev-master",
-        "aws/aws-sdk-php": "^3.93"
+        "aws/aws-sdk-php": "^3.93",
+        "ijackua/yii2-sharelinks-widget": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "dev-master",
