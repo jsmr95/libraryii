@@ -39,6 +39,7 @@ padding: 5px;
 border: 0;
 box-shadow: 0;
 display: inline;
+margin-top: 10px;
 }
 </style>
 
@@ -112,7 +113,6 @@ $this->registerJs($followJs);
                             $seguimientoStr = 'Me gustaría leerlo';
                         }
                     }
-                    //Me falta actualizarlo con AJAX
                     ?>
 
                     <span class="dropdown">
@@ -139,34 +139,33 @@ $this->registerJs($followJs);
                     </li>
                 </ul>
             </p>
+            <div class="share-buttons">
 
+                <!-- Email -->
+                <a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 https://simplesharebuttons.com">
+                    <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />
+                </a>
+
+                <!-- Facebook -->
+                <a href="http://www.facebook.com/sharer.php?u=https://simplesharebuttons.com" target="_blank">
+                    <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+                </a>
+
+                <!-- Google+ -->
+                <a href="https://plus.google.com/share?url=https://simplesharebuttons.com" target="_blank">
+                    <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
+                </a>
+
+                <!-- Twitter -->
+                <a href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" target="_blank">
+                    <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+                </a>
+
+            </div>
         </div>
         <div class="col-md-5 libro-texto ">
             <!-- Columna de 5 para la sinopsis-->
             <?= $model->sinopsis  ?>
-        </div>
-        <div class="share-buttons">
-
-            <!-- Email -->
-            <a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 https://simplesharebuttons.com">
-                <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />
-            </a>
-
-            <!-- Facebook -->
-            <a href="http://www.facebook.com/sharer.php?u=https://simplesharebuttons.com" target="_blank">
-                <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
-            </a>
-
-            <!-- Google+ -->
-            <a href="https://plus.google.com/share?url=https://simplesharebuttons.com" target="_blank">
-                <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
-            </a>
-
-            <!-- Twitter -->
-            <a href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" target="_blank">
-                <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
-            </a>
-
         </div>
     </div>
 
