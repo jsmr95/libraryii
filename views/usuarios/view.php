@@ -182,19 +182,26 @@ $this->registerJs($followJs);
     <div class="col-md-2">
         <!-- Columna de 2-->
         <div class="panel panel-primary">
-            <div class="panel-heading">Libros que sigue...</div>
+            <div class="panel-heading">Libros favoritos</div>
             <div class="panel-body">
                 <?php
-                $dataProvider = new ActiveDataProvider([
-                    'query' => Libros::find()
-                    ->joinWith('librosFavs')
-                    ->where(['usuario_id' => $model->id]),
-                ]);
-                echo ListView::widget([
-                  'dataProvider' => $dataProvider,
-                  'summary' => '',
-                  'itemView' => '_librosFavs',
-              ]); ?>
+                $query = Libros::find()
+                ->joinWith('librosFavs')
+                ->where(['usuario_id' => $model->id])->limit(3);
+                //Controlar esto
+                var_dump(count($query->all()));
+                if (count($query->all()) >=3) {
+                    $dataProvider = new ActiveDataProvider([
+                        'query' => $query,
+                    ]);
+                    echo ListView::widget([
+                        'dataProvider' => $dataProvider,
+                        'summary' => '',
+                        'itemView' => '_librosFavs',
+                    ]);
+                }
+                // die();
+                ?>
             </div>
         </div>
     </div>
@@ -205,7 +212,7 @@ $this->registerJs($followJs);
         <ul class="nav nav-tabs" role="tablist" id="myTabs">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Me gustan</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Mis Lybs</a></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Lybs</a></li>
             <li role="presentation"><a href="#leyendo" aria-controls="leyendo" role="tab" data-toggle="tab">Leyendo</a></li>
             <li role="presentation"><a href="#leer" aria-controls="leer" role="tab" data-toggle="tab">Por leer</a></li>
             <li role="presentation"><a href="#leidos" aria-controls="leidos" role="tab" data-toggle="tab">Leidos</a></li>
