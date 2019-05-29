@@ -11,19 +11,20 @@ use yii\helpers\Html;
 .usuario-cuerpo {
     background-color: #e8edff;
     position: relative;
-    padding: 5px 10px 5px 30px;
-    border-radius: 15px;
+    padding: 5px 0px 5px 0px;
+    border-radius: 45px;
     -webkit-box-shadow: 7px 7px 45px -23px rgba(0,0,0,0.75);
     -moz-box-shadow: 7px 7px 45px -23px rgba(0,0,0,0.75);
     box-shadow: 7px 7px 45px -23px rgba(0,0,0,0.75);
-    margin-right: 80px;
     margin-bottom: 40px;
     margin-top: 40px;
+    width: 230px;
+    margin-right: 55px;
 }
 
 img.usuarios {
-    width: 190px !important;
-    height: 225px !important;
+    width: 140px !important;
+    height: 160px !important;
     border-radius: 50px ;
 }
 .dropdown-menu > li {
