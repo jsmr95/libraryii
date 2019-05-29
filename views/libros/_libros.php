@@ -141,12 +141,12 @@ $this->registerJs($followJs);
             </p>
             <div class="share-buttons">
                 <!-- Facebook -->
-                <a href="http://www.facebook.com/sharer.php?u=https://libraryii.herokuapp.com/index.php?r=libros%2Fview&id=<?=$model->id?>" target="_blank">
+                <a href="http://www.facebook.com/sharer.php?u=https://libraryii.herokuapp.com/index.php?r=libros%2Findex" target="_blank">
                     <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
                 </a>
 
                 <!-- Twitter -->
-                <a href="https://twitter.com/share?url=https://libraryii.herokuapp.com/index.php?r=libros%2Fview&id=<?=$model->id?>" target="_blank">
+                <a href="https://twitter.com/share?url=https://libraryii.herokuapp.com/index.php?r=libros%2Findex" target="_blank">
                     <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
                 </a>
 
