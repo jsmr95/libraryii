@@ -244,13 +244,13 @@ VALUES (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT), (DEFAULT),
 -- Usuarios --
 INSERT INTO usuarios (id, login, email, nombre, apellido, biografia, url_avatar, password, auth_key)
 VALUES (1, 'jose', 'jose@jose.com', 'Jose', 'Gallego', 'Joven programador...',
-            null, crypt('jose', gen_salt('bf',10)),'')
+            'user1.jpg', crypt('jose', gen_salt('bf',10)),'')
     ,  (2, 'pepe', 'pepe@pepe.com', 'Pepe', 'Ruiz', 'Programador senior...',
-            null, crypt('pepe', gen_salt('bf',10)),'')
+            'user2.jpg', crypt('pepe', gen_salt('bf',10)),'')
     ,  (3, 'admin', 'admin@admin.com', 'admin', 'admin', 'Un administrador...',
-            null, crypt('admin', gen_salt('bf',10)),'')
+            'user3.jpg', crypt('admin', gen_salt('bf',10)),'')
     ,  (4, 'carmen', 'carmen@carmen.com', 'Carmen', 'Gallego', 'Joven programadora...',
-            null, crypt('carmen', gen_salt('bf',10)),'');
+            'user4.jpg', crypt('carmen', gen_salt('bf',10)),'');
 
 -- Autores --
 INSERT INTO autores (nombre, descripcion)
