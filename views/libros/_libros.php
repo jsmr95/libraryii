@@ -33,6 +33,14 @@ img.libros {
 .dropdown-menu > li {
     cursor:pointer;
 }
+.share-buttons img {
+width: 35px;
+padding: 5px;
+border: 0;
+box-shadow: 0;
+display: inline;
+margin-top: 10px;
+}
 </style>
 
 <?php
@@ -105,7 +113,6 @@ $this->registerJs($followJs);
                             $seguimientoStr = 'Me gustaría leerlo';
                         }
                     }
-                    //Me falta actualizarlo con AJAX
                     ?>
 
                     <span class="dropdown">
@@ -132,7 +139,18 @@ $this->registerJs($followJs);
                     </li>
                 </ul>
             </p>
+            <div class="share-buttons">
+                <!-- Facebook -->
+                <a href="http://www.facebook.com/sharer.php?u=https://libraryii.herokuapp.com/index.php?r=libros%2Findex" target="_blank">
+                    <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+                </a>
 
+                <!-- Twitter -->
+                <a href="https://twitter.com/share?url=https://libraryii.herokuapp.com/index.php?r=libros%2Findex" target="_blank">
+                    <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+                </a>
+
+            </div>
         </div>
         <div class="col-md-5 libro-texto ">
             <!-- Columna de 5 para la sinopsis-->
