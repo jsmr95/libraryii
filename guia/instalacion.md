@@ -50,4 +50,34 @@ Una vez cumplas los requisitos deberás realizar los siguientes pasos para insta
 
 ## En la nube
 
-Explicar.
+Para poder instalar la aplicación web en la nube deberemos instalar heroku:
+
+* Heroku CLI (https://devcenter.heroku.com/articles/heroku-cli)
+
+Para la instalación seguiremos los siguientes pasos:
+
+1. Si no tienes cuenta, debes crearla, en su pagina oficial.
+
+2. Iniciar sesión en Heroku y crear una apliación.
+
+3. Introducir las mismas variables de entorno que usamos en local, pero añadiendo además la de 'YII_ENV=prod' para indicar que estamos en producción y no en desarrollo.
+
+4. Añadir a la aplicación el *add-on* Heroku Postgres.
+
+5. Desde la consola, iniciar sesión en Heroku:
+
+    ```
+    ~ heroku login
+    ```
+
+6. Inyectar las tablas en la base de datos de Heroku, que debemos de diferenciar con las tablas creadas para el desarrollo:
+
+    ```
+    ~ heroku psql < db/libraryii.sql
+    ```
+
+7. Sincronizar el proyecto con GitHub, y seleccionar en que rama queremos el despliegue:
+
+    ```
+    ~ git push heroku master
+    ```
