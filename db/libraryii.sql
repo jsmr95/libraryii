@@ -70,7 +70,7 @@ CREATE TABLE libros
     , genero_id     BIGINT REFERENCES generos (id)
                         ON DELETE CASCADE
                         ON UPDATE CASCADE
-    , created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    , created_at    TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
 );
 
 /* Tabla comentarios */
