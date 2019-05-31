@@ -89,7 +89,7 @@ CREATE TABLE comentarios
     , comentario_id     BIGINT REFERENCES comentarios (id)
                             ON DELETE CASCADE
                             ON UPDATE CASCADE
-    , created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    , created_at    TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
 );
 
 /* Tabla Posts */
