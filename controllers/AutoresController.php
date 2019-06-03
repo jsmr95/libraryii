@@ -26,18 +26,18 @@ class AutoresController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
-                'access' => [
-                    'class' => AccessControl::class,
-                    'only' => ['create', 'update', 'delete'],
-                    'rules' => [
-                        [
-                            'allow' => true,
-                            'actions' => ['create', 'update', 'delete'],
-                            'roles' => ['@'],
-                            'matchCallback' => function ($rule, $action) {
-                                return Yii::$app->user->identity->login === 'admin';
-                            },
-                        ],
+            ],
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update', 'delete'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->login === 'admin';
+                        },
                     ],
                 ],
             ],
