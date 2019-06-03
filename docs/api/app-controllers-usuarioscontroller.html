@@ -273,6 +273,11 @@ in the request.</td>
         <td>Accion para que el admin pueda banear a los usuarios.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
     </tr>
+            <tr id="actionConsultaseguidores()">
+        <td><a href="app-controllers-usuarioscontroller.html#actionConsultaseguidores()-detail">actionConsultaseguidores()</a></td>
+        <td>Función para consultar los seguidores de este usuario.</td>
+        <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
+    </tr>
             <tr id="actionCreate()">
         <td><a href="app-controllers-usuarioscontroller.html#actionCreate()-detail">actionCreate()</a></td>
         <td>Creates a new Usuarios model.</td>
@@ -560,7 +565,7 @@ in the request.</td>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-                                                                                                                                                    <tr id="findModel()">
+                                                                                                                                                        <tr id="findModel()">
         <td><a href="app-controllers-usuarioscontroller.html#findModel()-detail">findModel()</a></td>
         <td>Finds the Usuarios model based on its primary key value.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
@@ -633,6 +638,41 @@ in the request.</td>
 </td>
                 </tr>
                                                 </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionConsultaseguidores()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#actionConsultaseguidores()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionConsultaseguidores()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Función para consultar los seguidores de este usuario.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="app-controllers-usuarioscontroller.html#actionConsultaseguidores()-detail">actionConsultaseguidores</a></strong> ( <span style="color: #0000BB">$usuario_id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$usuario_id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Id del usuario</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Numero de siguiendos que tiene el usuario</p>
+</td>
+                </tr>
+                                    </table>
 
 <!--	-->
 
@@ -1108,7 +1148,7 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Fri, 31 May 2019 12:01:07 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Mon, 03 Jun 2019 14:34:10 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

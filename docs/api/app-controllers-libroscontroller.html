@@ -273,6 +273,11 @@ in the request.</td>
         <td>Funcion para calcular la media de los votos de un libro.</td>
         <td><a href="app-controllers-libroscontroller.html">app\controllers\LibrosController</a></td>
     </tr>
+            <tr id="actionConsultaseguidores()">
+        <td><a href="app-controllers-libroscontroller.html#actionConsultaseguidores()-detail">actionConsultaseguidores()</a></td>
+        <td>Función para consultar a los que le gusta ese libro.</td>
+        <td><a href="app-controllers-libroscontroller.html">app\controllers\LibrosController</a></td>
+    </tr>
             <tr id="actionCreate()">
         <td><a href="app-controllers-libroscontroller.html#actionCreate()-detail">actionCreate()</a></td>
         <td>Creates a new Libros model.</td>
@@ -541,7 +546,7 @@ los ultimos lanzamientos.</td>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-                                                                                                                                    <tr id="findModel()">
+                                                                                                                                        <tr id="findModel()">
         <td><a href="app-controllers-libroscontroller.html#findModel()-detail">findModel()</a></td>
         <td>Finds the Libros model based on its primary key value.</td>
         <td><a href="app-controllers-libroscontroller.html">app\controllers\LibrosController</a></td>
@@ -616,6 +621,41 @@ los ultimos lanzamientos.</td>
                   <th class="param-name-col">return</th>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
                   <td class="param-desc-col"><p>Media de votos de un libro</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionConsultaseguidores()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-libroscontroller.html#actionConsultaseguidores()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionConsultaseguidores()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Función para consultar a los que le gusta ese libro.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="app-controllers-libroscontroller.html#actionConsultaseguidores()-detail">actionConsultaseguidores</a></strong> ( <span style="color: #0000BB">$libro_id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$libro_id</span></td>
+                  <td class="param-type-col">mixed</td>
+                  <td class="param-desc-col"><p>Id del libro</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Numero de seguidores que tiene el libro</p>
 </td>
                 </tr>
                                     </table>
@@ -919,7 +959,7 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Fri, 31 May 2019 12:01:07 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Mon, 03 Jun 2019 14:34:10 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

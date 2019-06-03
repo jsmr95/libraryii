@@ -86,7 +86,7 @@ Array
 
     [12] => Array
         (
-            [line] => 320
+            [line] => 321
             [file] => ./controllers/UsuariosController.php
             [message] => No docblock for element 'beforeAction'
         )
