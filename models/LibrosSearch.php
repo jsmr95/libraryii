@@ -17,7 +17,7 @@ class LibrosSearch extends Libros
     {
         return [
             [['id', 'autor_id', 'genero_id'], 'integer'],
-            [['titulo', 'isbn', 'sinopsis', 'url_compra', 'genero.genero'], 'safe'],
+            [['titulo', 'isbn', 'sinopsis', 'url_compra', 'genero.genero', 'autor.nombre'], 'safe'],
             [['anyo'], 'number'],
         ];
     }
@@ -28,7 +28,7 @@ class LibrosSearch extends Libros
      */
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['genero.genero']);
+        return array_merge(parent::attributes(), ['genero.genero', 'autor.nombre']);
     }
 
     /**
@@ -49,7 +49,7 @@ class LibrosSearch extends Libros
      */
     public function search($params)
     {
-        $query = Libros::find()->joinWith('genero');
+        $query = Libros::find()->joinWith('autor')->joinWith('genero');
 
         // add conditions that should always apply here
 
@@ -60,6 +60,11 @@ class LibrosSearch extends Libros
         $dataProvider->sort->attributes['genero.genero'] = [
             'asc' => ['generos.genero' => SORT_ASC],
             'desc' => ['generos.genero' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['autor.nombre'] = [
+            'asc' => ['autores.nombre' => SORT_ASC],
+            'desc' => ['autores.nombre' => SORT_DESC],
         ];
 
         $this->load($params);
@@ -82,6 +87,7 @@ class LibrosSearch extends Libros
             ->andFilterWhere(['ilike', 'isbn', $this->isbn])
             ->andFilterWhere(['ilike', 'sinopsis', $this->sinopsis])
             ->andFilterWhere(['ilike', 'generos.genero', $this->getAttribute('genero.genero')])
+            ->andFilterWhere(['ilike', 'autores.nombre', $this->getAttribute('autor.nombre')])
             ->andFilterWhere(['ilike', 'url_compra', $this->url_compra]);
 
         return $dataProvider;

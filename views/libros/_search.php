@@ -23,6 +23,8 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'anyo')->label(false) ?>
             <?php echo $sort->link('genero.genero') ?>
             <?= $form->field($model, 'genero.genero')->label(false) ?>
+            <?php echo $sort->link('autor.nombre') ?>
+            <?= $form->field($model, 'autor.nombre')->label(false) ?>
             <!-- Buscar por autor -->
 
             <div class="form-group">
