@@ -49,26 +49,18 @@ span.glyphicon {
                 if (data == '') {
                     $('#corazon').removeClass('glyphicon-heart-empty');
                     $('#corazon').addClass('glyphicon-heart');
-                    $.ajax({
-                        url: '$url1',
-                        data: { autor_id: '$id'},
-                        success: function(data){
-                            console.log(data);
-                            $('#seguidores')[0].firstChild.nodeValue = data;
-                        }
-                    });
                 } else {
                     $('#corazon').removeClass('glyphicon-heart');
                     $('#corazon').addClass('glyphicon-heart-empty');
-                    $.ajax({
-                        url: '$url1',
-                        data: { autor_id: '$id'},
-                        success: function(data){
-                            console.log(data);
-                            $('#seguidores')[0].firstChild.nodeValue = data;
-                        }
-                    });
                 }
+                $.ajax({
+                    url: '$url1',
+                    data: { autor_id: '$id'},
+                    success: function(data){
+                        console.log(data);
+                        $('#seguidores')[0].firstChild.nodeValue = data;
+                    }
+                });
             }
         });
     }

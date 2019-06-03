@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\UsersFavs;
 use app\models\Usuarios;
 use app\models\UsuariosId;
 use app\models\UsuariosSearch;
@@ -337,6 +338,17 @@ class UsuariosController extends Controller
         $usuario->save();
 
         return $this->redirect(['usuarios/index']);
+    }
+
+    /**
+     * Función para consultar los seguidores de este usuario.
+     * @param int $usuario_id id del usuario
+     * @return int numero de siguiendos que tiene el usuario
+     */
+    public function actionConsultaseguidores($usuario_id)
+    {
+        $siguiendo = UsersFavs::find()->where(['usuario_fav' => $usuario_id])->all();
+        return count($siguiendo);
     }
 
     /**

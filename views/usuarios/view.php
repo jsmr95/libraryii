@@ -49,6 +49,7 @@ span.glyphicon {
     $corazon = $model->consultaSeguidor( $usuarioId, $model->id);
     $url1 = Url::to(['users-favs/create']);
     $url2 = Url::to(['estado-personal/create']);
+    $url3 = Url::to(['usuarios/consultaseguidores']);
     $followJs = <<<EOT
 
     function seguir(event){
@@ -63,6 +64,14 @@ span.glyphicon {
                     $('#corazon').removeClass('glyphicon-heart');
                     $('#corazon').addClass('glyphicon-heart-empty');
                 }
+                $.ajax({
+                    url: '$url3',
+                    data: { usuario_id: '$id'},
+                    success: function(data){
+                        console.log(data);
+                        $('#seguidores')[0].firstChild.nodeValue = data;
+                    }
+                });
             }
         });
     }
@@ -177,6 +186,14 @@ $this->registerJs($followJs);
 </div>
 <br>
 <br>
+<center>
+    <p>Seguidores:
+        <span id="seguidores">
+        <?= Yii::$app->runAction('usuarios/consultaseguidores', ['usuario_id' => $model->id]) ?>
+        </span>
+    </p>
+    <p>Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></p>
+</center>
 <div class="row">
     <!-- Fila para saber los libro que sigue el usuario-->
     <div class="col-md-2">

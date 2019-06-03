@@ -256,6 +256,17 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Función para consultar a los que sigue este usuario.
+     * @param int $usuario_id id del usuario
+     * @return int numero de seguidores que tiene el usuario
+     */
+    public function consultaSiguiendo($usuario_id)
+    {
+        $seguidores = UsersFavs::find()->where(['usuario_id' => $usuario_id])->all();
+        return count($seguidores);
+    }
+
+    /**
      * Funcion que es llamada antes de insertar o actualizar un registro.
      * @param  bool $insert true->insert, false->update
      * @return bool true->inserccion o modificación llevada a cabo, false-> cancelado
