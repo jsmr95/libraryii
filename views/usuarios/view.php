@@ -211,9 +211,9 @@ $this->registerJs($followJs);
                 ]);
 
                 if (count($query->all()) >=3) {
-                    $dataProvider->pagination = ['pageSize' => 3];
+                    $dataProvider->pagination = ['pageSize' => 2];
                 }
-                
+
                 echo ListView::widget([
                     'dataProvider' => $dataProvider,
                     'summary' => '',
