@@ -6,6 +6,7 @@ use app\models\Autores;
 use app\models\Comentarios;
 use app\models\Generos;
 use app\models\Libros;
+use app\models\LibrosFavs;
 use app\models\LibrosSearch;
 use app\models\Votos;
 use Yii;
@@ -224,5 +225,16 @@ class LibrosController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    /**
+     * Función para consultar a los que le gusta ese libro.
+     * @param mixed $libro_id id del libro
+     * @return int numero de seguidores que tiene el libro
+     */
+    public function actionConsultaseguidores($libro_id)
+    {
+        $seguidores = LibrosFavs::find()->where(['libro_id' => $libro_id])->all();
+        return count($seguidores);
     }
 }

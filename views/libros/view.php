@@ -41,6 +41,7 @@ span#estrella{
 $url1 = Url::to(['libros-favs/create']);
 $url2 = Url::to(['votos/create']);
 $url3 = Url::to(['libros/calculamediavotos']);
+$url4 = Url::to(['libros/consultaseguidores']);
 $id = $model->id;
 $usuarioId = Yii::$app->user->id;
 $followJs = <<<EOT
@@ -57,6 +58,14 @@ function seguir(event){
                 $('#estrella').removeClass('glyphicon-star');
                 $('#estrella').addClass('glyphicon-star-empty');
             }
+            $.ajax({
+                url: '$url4',
+                data: { libro_id: '$id'},
+                success: function(data){
+                    console.log(data);
+                    $('#seguidores')[0].firstChild.nodeValue = data;
+                }
+            });
         }
     });
 }
@@ -171,6 +180,9 @@ $this->registerJs($followJs);
                 <p><?=$numLeido?> lo ha leido</p>
                 <p><?=$numLeyendo?> lo estan leyendo</p>
                 <p><?=$numGustaría?> le gustaría leerlo</p>
+                <p>A <span id="seguidores">
+                    <?= Yii::$app->runAction('libros/consultaseguidores', ['libro_id' => $model->id]) ?>
+                </span> persona(s) le(s) gusta </p>
             </div>
         </div>
         <br><br>
