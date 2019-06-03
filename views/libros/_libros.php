@@ -74,12 +74,12 @@ $this->registerJs($followJs);
 
 <div class="row libro">
     <!-- Fila para cada libro-->
-    <div class="col-md-12 libro-cuerpo ">
+    <div class="col-md-12 col-xs-12 libro-cuerpo " itemscope itemtype="http://schema.org/Book">
         <!-- Columna completa de cada libro-->
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-3">
             <!-- Columna de 3 para la imagen del libro-->
             <center>
-                <p>
+                <p itemprop="image">
                     <?php
                     if (empty($model->imagen)) {
                         echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'libros']);
@@ -90,9 +90,9 @@ $this->registerJs($followJs);
                 </p>
             </center>
         </div>
-        <div class="col-md-4 libro-cabecera ">
+        <div class="col-md-4 col-xs-4 libro-cabecera ">
             <!-- Columna de 4 para la info de cada libro -->
-            <p>
+            <p itemprop="name">
                 <h2>
                     <?= Html::a($model->titulo, [
                     'libros/view',
@@ -131,10 +131,10 @@ $this->registerJs($followJs);
                 </h2>
 
                 <ul>
-                    <li>Autor: <?= Html::a($model->autor->nombre, ['autores/view', 'id' => $model->autor->id]) ?></li>
-                    <li>Año: <?= $model->anyo ?></li>
-                    <li>Género: <?= $model->genero->genero ?></li>
-                    <li>ISBN: <?= $model->isbn ?></li>
+                    <li itemprop="author">Autor: <?= Html::a($model->autor->nombre, ['autores/view', 'id' => $model->autor->id]) ?></li>
+                    <li itemprop="copyrightYear">Año: <?= $model->anyo ?></li>
+                    <li itemprop="genre">Género: <?= $model->genero->genero ?></li>
+                    <li itemprop="isbn">ISBN: <?= $model->isbn ?></li>
                     <li> <?= Html::a('Compra', $model->url_compra) ?>
                     </li>
                 </ul>
@@ -152,7 +152,7 @@ $this->registerJs($followJs);
 
             </div>
         </div>
-        <div class="col-md-5 libro-texto ">
+        <div class="col-md-5 col-xs-5 libro-texto " itemprop="description">
             <!-- Columna de 5 para la sinopsis-->
             <?= $model->sinopsis  ?>
         </div>
