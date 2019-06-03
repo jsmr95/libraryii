@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Autores;
+use app\models\AutoresFavs;
 use app\models\AutoresSearch;
 use Yii;
 use yii\filters\AccessControl;
@@ -140,5 +141,16 @@ class AutoresController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Función para consultar los seguidores de este autor.
+     * @param int $autor_id id del autor
+     * @return int numero de seguidores que tiene el autor
+     */
+    public function actionConsultaseguidores($autor_id)
+    {
+        $seguidores = AutoresFavs::find()->where(['autor_id' => $autor_id])->all();
+        return count($seguidores);
     }
 }

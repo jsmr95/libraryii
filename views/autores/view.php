@@ -38,6 +38,7 @@ span.glyphicon {
     $fila = AutoresFavs::find()->where(['usuario_id' => $id])->one();
     $corazon = $model->consultaAutorSeguido(Yii::$app->user->id, $id);
     $url = Url::to(['autores-favs/create']);
+    $url1 = Url::to(['autores/consultaseguidores']);
     $followJs = <<<EOT
 
     function seguir(event){
@@ -48,9 +49,25 @@ span.glyphicon {
                 if (data == '') {
                     $('#corazon').removeClass('glyphicon-heart-empty');
                     $('#corazon').addClass('glyphicon-heart');
+                    $.ajax({
+                        url: '$url1',
+                        data: { autor_id: '$id'},
+                        success: function(data){
+                            console.log(data);
+                            $('#seguidores')[0].firstChild.nodeValue = data;
+                        }
+                    });
                 } else {
                     $('#corazon').removeClass('glyphicon-heart');
                     $('#corazon').addClass('glyphicon-heart-empty');
+                    $.ajax({
+                        url: '$url1',
+                        data: { autor_id: '$id'},
+                        success: function(data){
+                            console.log(data);
+                            $('#seguidores')[0].firstChild.nodeValue = data;
+                        }
+                    });
                 }
             }
         });
@@ -105,6 +122,13 @@ $this->registerJs($followJs);
                     echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'autores']);
                 }
                 ?>
+                <center>
+                    <p style="margin-top: 15px">Seguidores:
+                        <span id="seguidores">
+                        <?= Yii::$app->runAction('autores/consultaseguidores', ['autor_id' => $model->id]) ?>
+                        </span>
+                    </p>
+                </center>
             </div>
         </div>
         <br>
