@@ -76,7 +76,7 @@ $this->registerJs($followJs);
     <center>
         <h1>
             <?= Html::encode($this->title)?>
-            <button class="follow">
+            <button class="follow" title="Marcar como favorito, esto asignará todos sus libros como favoritos">
                 <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
             </button>
         </h1>

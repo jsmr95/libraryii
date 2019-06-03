@@ -130,7 +130,7 @@ $this->registerJs($followJs);
             $usuario = Usuarios::findOne(Yii::$app->user->id);
             $corazon = $usuario->consultaLibroSeguido($usuario->id, $model->id);
             ?>
-            <button class="follow">
+            <button class="follow" title="Marcar como favorito">
                 <span id="estrella" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
             </button>
         <?php } ?>
@@ -233,7 +233,7 @@ $this->registerJs($followJs);
                       <p>ISBN: <?= $model->isbn ?></p>
                       <p>Año: <?= $model->anyo ?></p>
                       <p>Sinopsis: <?= $model->sinopsis ?></p>
-                      <p>Compra: <?= Html::a('Compra', $model->url_compra) ?></p>
+                      <p title="Enlace a compra">Compra: <?= Html::a('Compra', $model->url_compra) ?></p>
                       <p>
                           Autor: <?= Html::a($model->autor->nombre, ['autores/view', 'id' => $model->autor->id])?>
                       </p>

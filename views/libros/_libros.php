@@ -115,7 +115,7 @@ $this->registerJs($followJs);
                     }
                     ?>
 
-                    <span class="dropdown">
+                    <span class="dropdown" title="Seguimiento">
                       <button style="margin-left:20px" class="btn btn-default dropdown-toggle" id="dropdownMenu<?=$id?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <?= $seguimientoStr ?>
                       </button>
@@ -135,18 +135,18 @@ $this->registerJs($followJs);
                     <li itemprop="copyrightYear">Año: <?= $model->anyo ?></li>
                     <li itemprop="genre">Género: <?= $model->genero->genero ?></li>
                     <li itemprop="isbn">ISBN: <?= $model->isbn ?></li>
-                    <li> <?= Html::a('Compra', $model->url_compra) ?>
+                    <li title="Enlace a compra"> <?= Html::a('Compra', $model->url_compra) ?>
                     </li>
                 </ul>
             </p>
             <div class="share-buttons">
                 <!-- Facebook -->
-                <a href="http://www.facebook.com/sharer.php?u=https://libraryii.herokuapp.com/index.php?r=libros%2Findex" target="_blank">
+                <a href="http://www.facebook.com/sharer.php?u=https://libraryii.herokuapp.com/index.php?r=libros%2Findex" target="_blank" title="Compartir en Facebook">
                     <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
                 </a>
 
                 <!-- Twitter -->
-                <a href="https://twitter.com/share?url=https://libraryii.herokuapp.com/index.php?r=libros%2Findex" target="_blank">
+                <a href="https://twitter.com/share?url=https://libraryii.herokuapp.com/index.php?r=libros%2Findex" target="_blank" title="Compartir en Twitter">
                     <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
                 </a>
 

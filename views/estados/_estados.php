@@ -156,10 +156,11 @@ if ($usua) {
             <p  id="lyb">
                 <button id="lybrear<?=$id?>"
                     class="<?= $model->consultaLyb($usuarioId, $id) ? "botonLyb" : ""; ?>"
-                    data-lyb="<?= $id ?>">
+                    data-lyb="<?= $id ?>"
+                    title="Hacer Lyb">
                     <span class='glyphicon glyphicon-retweet' aria-hidden='true'></span>
                 </button>
-                <button id="favear<?=$id?>" data-fav="<?= $id ?>">
+                <button id="favear<?=$id?>" data-fav="<?= $id ?>" title="Me gusta">
                     <span style="color:red" id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
                 </button>
             </p>

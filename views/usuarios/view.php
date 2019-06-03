@@ -156,7 +156,7 @@ $this->registerJs($followJs);
     <div class="row">
         <div class="col-md-12">
             <center>
-                <p style="font-style: italic; margin-top: 25px">
+                <p style="font-style: italic; margin-top: 25px" title="Estado personal">
                     <?php
                     $estado = EstadoPersonal::find()
                         ->where(['usuario_id' => $id])->one();
