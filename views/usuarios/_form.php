@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
@@ -10,7 +10,11 @@ use yii\widgets\ActiveForm;
 
 <div class="usuarios-form">
 
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => ['enctype' => 'multipart/form-data'],
+        'id' => 'login-form-vertical',
+        'type' => ActiveForm::TYPE_VERTICAL
+    ]); ?>
 
     <!-- Datos cuenta -->
     <?= $form->field($model, 'id')->hiddenInput()->label(false) ?>
