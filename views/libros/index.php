@@ -14,7 +14,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="libros-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?>
+        <?php
+        if(!isset($ultimos)){
+            echo Html::a('Ultimos lanzamientos',['libros/ultimos'], ['style' => 'float: right; font-size: 15px;']);
+        } else {
+            echo Html::a('Todos los libros',['libros/index'], ['style' => 'float: right; font-size: 15px;']);
+        }
+         ?>
+    </h1>
 
     <?php
         if (!Yii::$app->user->isGuest){
@@ -25,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 <?php  } } ?>
     <?php echo $this->render('_search', ['model' => $searchModel, 'sort' => $dataProvider->sort]); ?>
-    <?= Html::a('Ultimos lanzamientos',['libros/ultimos']); ?>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_libros',
