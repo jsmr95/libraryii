@@ -204,20 +204,21 @@ $this->registerJs($followJs);
                 <?php
                 $query = Libros::find()
                 ->joinWith('librosFavs')
-                ->where(['usuario_id' => $model->id])->limit(3);
-                //Controlar esto
-                var_dump(count($query->all()));
+                ->where(['usuario_id' => $model->id]);
+
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                ]);
+
                 if (count($query->all()) >=3) {
-                    $dataProvider = new ActiveDataProvider([
-                        'query' => $query,
-                    ]);
-                    echo ListView::widget([
-                        'dataProvider' => $dataProvider,
-                        'summary' => '',
-                        'itemView' => '_librosFavs',
-                    ]);
+                    $dataProvider->pagination = ['pageSize' => 3];
                 }
-                // die();
+                
+                echo ListView::widget([
+                    'dataProvider' => $dataProvider,
+                    'summary' => '',
+                    'itemView' => '_librosFavs',
+                ]);
                 ?>
             </div>
         </div>
