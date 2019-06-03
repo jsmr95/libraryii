@@ -23,7 +23,8 @@
         "kartik-v/yii2-widgets": "dev-master",
         "kartik-v/yii2-widget-rating": "dev-master",
         "aws/aws-sdk-php": "^3.93",
-        "ijackua/yii2-sharelinks-widget": "^1.0"
+        "ijackua/yii2-sharelinks-widget": "^1.0",
+        "kartik-v/yii2-widget-activeform": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "dev-master",
