@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    background-color: #fff2e6;
 }
 
 .wrap {
@@ -112,4 +113,12 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+.breadcrumb {
+    background-color: #fff2e6;
+}
+
+.form-control{
+    background-color: #fffaf5;
 }

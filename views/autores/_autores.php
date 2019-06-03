@@ -17,7 +17,7 @@ use yii\widgets\LinkPager;
     padding: 23px;
 }
 .autor-cuerpo {
-    background-color: #e8edff;
+    background-color: #ffe6cc;
     position: relative;
     padding: 5px 10px 5px 30px;
     border-radius: 6px;
@@ -42,6 +42,12 @@ use yii\widgets\LinkPager;
 .enlace {
     margin-left: 15px !important;
 }
+img.autores {
+    margin-top: 11px;
+    width: 140px !important;
+    height: 160px !important;
+    border-radius: 50px ;
+}
 
 </style>
 <div class="row autor">
@@ -54,9 +60,9 @@ use yii\widgets\LinkPager;
                 <p>
                 <?php
                 if (empty($model->imagen)) {
-                    echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg');
+                    echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'autores']);
                 } else {
-                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen);
+                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'autores']);
                 }
                 ?>
                 </p>

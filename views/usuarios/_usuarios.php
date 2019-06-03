@@ -9,7 +9,7 @@ use yii\helpers\Html;
 }
 
 .usuario-cuerpo {
-    background-color: #e8edff;
+    background-color: #ffe6cc;
     position: relative;
     padding: 5px 0px 5px 0px;
     border-radius: 45px;

@@ -13,7 +13,7 @@ use yii\widgets\ListView;
 ?>
 <style media="screen">
 .cuerpo_estado {
-    background-color: #e8edff;
+    background-color: #ffe6cc;
     position: relative;
     padding: 5px 10px 5px 30px;
     margin: 20px 0px 20px 0px;
@@ -29,9 +29,11 @@ use yii\widgets\ListView;
 }
 #lyb{
     margin-left: 30px;
+    background-color: #ffe6cc;
 }
 #lyb > button{
     width: 70px;
+    background-color: #ffe6cc;
 }
 .botonLyb{
     color: green;
