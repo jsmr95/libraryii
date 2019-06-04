@@ -97,6 +97,7 @@ class Libros extends \yii\db\ActiveRecord
             'autor_id' => 'Autor',
             'genero_id' => 'Genero',
             'imagen' => 'Imagen',
+            'genero.genero' => 'Género',
         ];
     }
 

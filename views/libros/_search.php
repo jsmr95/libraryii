@@ -29,9 +29,9 @@ use kartik\form\ActiveForm;
             <?= $form->field($model, 'autor.nombre')->label(false) ?>
             <!-- Buscar por autor -->
 
-            <div class="form-group">
-                <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary', 'style' => 'margin-top: 15px']) ?>
-            </div>
+            <!-- <div class="form-group">
+                <?php //echo Html::submitButton('Buscar', ['class' => 'btn btn-primary', 'style' => 'margin-top: 15px']) ?>
+            </div> -->
 
         </div>
     </div>
