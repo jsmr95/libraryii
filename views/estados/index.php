@@ -24,27 +24,26 @@ $this->params['breadcrumbs'][] = $this->title;
         return Yii::$app->response->redirect(['site/index']);
     } ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?php echo $this->render('_search', ['model' => $searchModel, 'sort' =>$dataProvider->sort]); ?>
 
     <div class="row">
-        <div class="col-md-6">
+        <h1><?= Html::encode($this->title) ?></h1>
+        
+        <div class="col-md-6 col-xs-6">
             <div class="estados-form">
 
                 <?php $form = ActiveForm::begin([
                     'action' => ['estados/create'],
                     'options' =>   ['method' => 'post'],
-                    ]); ?>
+                ]); ?>
                 <?php
-                    $model = new Estados();
-                    $model->usuario_id = Yii::$app->user->id;
-                    $libros = Libros::find()->all();
-                    $dataLibros = [];
-                    foreach ($libros as $libro) {
-                        array_push($dataLibros,$libro->titulo);
-                    }
-                    // var_dump($libros); die();
+                $model = new Estados();
+                $model->usuario_id = Yii::$app->user->id;
+                $libros = Libros::find()->all();
+                $dataLibros = [];
+                foreach ($libros as $libro) {
+                    array_push($dataLibros,$libro->titulo);
+                }
+                // var_dump($libros); die();
                 ?>
 
                 <?= $form->field($model, 'usuario_id')->textInput()->hiddenInput()->label(false) ?>
@@ -54,11 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'created_at')->textInput()->hiddenInput()->label(false) ?>
 
                 <?= $form->field($model, 'libro_id')->widget(Select2::className(), [
-                        'data' => $dataLibros,
-                        'options' => ['placeholder' => 'Selecciona un libro si lo deseas, para hacer referencia a él'],
-                        'pluginOptions' => [
-                            'allowClear' => true
-                        ]
+                    'data' => $dataLibros,
+                    'options' => ['placeholder' => 'Selecciona un libro si lo deseas, para hacer referencia a él'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ]
                 ]); ?>
 
                 <div class="form-group">
@@ -68,6 +67,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php ActiveForm::end(); ?>
 
             </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+
+            <?php echo $this->render('_search', ['model' => $searchModel, 'sort' =>$dataProvider->sort]); ?>
         </div>
     </div>
 
