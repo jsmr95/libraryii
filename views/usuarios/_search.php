@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?php //echo $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'login') ?>
+    <?= $form->field($model, 'login')->label('Usuarios') ?>
 
     <?php //echo $form->field($model, 'email') ?>
 

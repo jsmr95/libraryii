@@ -14,7 +14,7 @@ use yii\helpers\Html;
     padding: 17px;
 }
 .libro-cuerpo {
-    background-color: #e8edff;
+    background-color: #ffe6cc;
     position: relative;
     padding: 5px 10px 5px 30px;
     border-radius: 6px;

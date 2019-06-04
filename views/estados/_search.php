@@ -1,6 +1,11 @@
+<style media="screen">
+    #estadossearch-estado {
+        width: 300px;
+    }
+</style>
 <?php
 
-use yii\helpers\Html;
+// use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -16,12 +21,12 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <!-- Solo buscamos por palabras en el estado -->
-    <?= $form->field($model, 'estado') ?>
+    <?= $form->field($model, 'estado')->input('text', ['placeholder' => 'Buscar']) ?>
 
 
-    <div class="form-group">
-        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
-    </div>
+    <!-- <div class="form-group">
+        <?php //echo Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
+    </div> -->
 
     <?php ActiveForm::end(); ?>
 
