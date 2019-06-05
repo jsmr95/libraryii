@@ -1,5 +1,5 @@
 <style media="screen">
-    #buscador {
+    #postear {
         border: 1px solid;
         border-radius: 15px;
         padding:20px;
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <br>
-    <div class="row" id="buscador" >
+    <div class="row" id="postear" >
         <div class="row">
             <!-- <h1><?php //echo Html::encode($this->title) ?></h1> -->
             <?php $form = ActiveForm::begin([
