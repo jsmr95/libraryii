@@ -78,7 +78,7 @@ class Estados extends \yii\db\ActiveRecord
      */
     public function getLibro()
     {
-        return $this->hasOne(Libros::className(), ['id' => 'libro_id'])->inverseOf('estado');
+        return $this->hasOne(Libros::className(), ['id' => 'libro_id'])->inverseOf('estados');
     }
 
     /**
