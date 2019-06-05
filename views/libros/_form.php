@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'sinopsis')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'url_compra')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'url_compra')->textInput(['maxlength' => true])->label('Url de Compra') ?>
 
     <?= $form->field($model, 'autor_id')->dropDownList($listaAutores) ?>
 

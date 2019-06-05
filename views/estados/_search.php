@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <!-- Solo buscamos por palabras en el estado -->
-    <?= $form->field($model, 'estado')->input('text', ['placeholder' => 'Buscar']) ?>
+    <?= $form->field($model, 'estado')->input('text', ['placeholder' => 'Buscar'])->label('Buscar por estado...') ?>
 
 
     <!-- <div class="form-group">

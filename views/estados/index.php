@@ -24,17 +24,22 @@ $this->params['breadcrumbs'][] = $this->title;
         return Yii::$app->response->redirect(['site/index']);
     } ?>
 
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <?php echo $this->render('_search', ['model' => $searchModel, 'sort' =>$dataProvider->sort]); ?>
+        </div>
+    </div>
 
     <div class="row">
-        <h1><?= Html::encode($this->title) ?></h1>
-        
-        <div class="col-md-6 col-xs-6">
-            <div class="estados-form">
+        <!-- <h1><?php //echo Html::encode($this->title) ?></h1> -->
+        <?php $form = ActiveForm::begin([
+            'action' => ['estados/create'],
+            'options' =>   ['method' => 'post'],
+        ]); ?>
 
-                <?php $form = ActiveForm::begin([
-                    'action' => ['estados/create'],
-                    'options' =>   ['method' => 'post'],
-                ]); ?>
+        <div class="estados-form">
+            <div class="col-md-6 col-xs-6">
+
                 <?php
                 $model = new Estados();
                 $model->usuario_id = Yii::$app->user->id;
@@ -51,7 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'estado')->textarea(['maxlength' => true])->label('Que quieres postear?') ?>
 
                 <?= $form->field($model, 'created_at')->textInput()->hiddenInput()->label(false) ?>
-
+            </div>
+            <div class="col-md-6 col-xs-6">
                 <?= $form->field($model, 'libro_id')->widget(Select2::className(), [
                     'data' => $dataLibros,
                     'options' => ['placeholder' => 'Selecciona un libro si lo deseas, para hacer referencia a él'],
@@ -59,20 +65,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         'allowClear' => true
                     ]
                 ]); ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Postear', ['class' => 'btn btn-success']) ?>
-                </div>
-
-                <?php ActiveForm::end(); ?>
-
             </div>
         </div>
-        <div class="col-md-6 col-xs-6">
-
-            <?php echo $this->render('_search', ['model' => $searchModel, 'sort' =>$dataProvider->sort]); ?>
-        </div>
     </div>
+    <div class="form-group">
+        <?= Html::submitButton('Postear', ['class' => 'btn btn-success']) ?>
+    </div>
+    <?php ActiveForm::end(); ?>
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
