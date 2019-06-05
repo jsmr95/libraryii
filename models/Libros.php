@@ -112,6 +112,14 @@ class Libros extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getEstados()
+    {
+        return $this->hasMany(Estados::className(), ['libro_id' => 'id'])->inverseOf('libro');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getAutor()
     {
         return $this->hasOne(Autores::className(), ['id' => 'autor_id'])->inverseOf('libros');

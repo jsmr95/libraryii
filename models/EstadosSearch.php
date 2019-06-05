@@ -18,8 +18,17 @@ class EstadosSearch extends Estados
     {
         return [
             [['id', 'usuario_id'], 'integer'],
-            [['estado', 'created_at', 'usuario.usersFavs', 'libro_id'], 'safe'],
+            [['estado', 'created_at', 'usuario.usersFavs', 'libro_id', 'libro.titulo'], 'safe'],
         ];
+    }
+
+    /**
+     * Funcion para añadir atributo nuevo.
+     * @return array Array resultante de de los nuevos atributos.
+     */
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['libro.titulo']);
     }
 
     /**
@@ -41,7 +50,9 @@ class EstadosSearch extends Estados
     public function search($params)
     {
         $id = Yii::$app->user->id;
-        $query = Estados::find()->joinWith('usuario.usersFavs u', true, 'LEFT JOIN')
+        $query = Estados::find()
+        ->joinWith('libro')
+        ->joinWith('usuario.usersFavs u', true, 'LEFT JOIN')
         ->where(['estados.usuario_id' => $id])
         ->orWhere("u.usuario_id IN (SELECT usuario_fav AS seguidor FROM users_favs WHERE usuario_id = $id)");
         // ->orWhere('u.usuario_id IN (SELECT usuario_id FROM estados_lyb WHERE usuario_id = seguidor)');
@@ -53,6 +64,10 @@ class EstadosSearch extends Estados
             'query' => $query,
         ]);
 
+        $dataProvider->sort->attributes['libro.titulo'] = [
+            'asc' => ['libros.titulo' => SORT_ASC],
+            'desc' => ['libros.titulo' => SORT_DESC],
+        ];
         $this->load($params);
 
         if (!$this->validate()) {
@@ -61,14 +76,17 @@ class EstadosSearch extends Estados
             return $dataProvider;
         }
 
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'usuario_id' => $this->usuario_id,
             'created_at' => $this->created_at,
+            'libro_id' => $this->libro_id,
         ]);
 
-        $query->andFilterWhere(['ilike', 'estado', $this->estado]);
+        $query->andFilterWhere(['ilike', 'estado', $this->estado])
+        ->andFilterWhere(['ilike', 'libros.titulo', $this->getAttribute('libro.titulo')]);
         // ->andFilterWhere(['ilike', 'usuario.usersFavs',
         //                   $this->getAttribute('usuario.usersFavs'), ]);
 
