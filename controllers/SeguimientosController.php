@@ -91,11 +91,11 @@ class SeguimientosController extends Controller
                         ->one();
                         if ($seguimiento) {
                             if ($seguimiento->estado_id == 1) {
-                                return $seguimientoStr = 'Leído';
+                                return $seguimientoStr = "Leído  <span class='glyphicon glyphicon-chevron-down'></span>";
                             } elseif ($seguimiento->estado_id == 2) {
-                                return $seguimientoStr = 'Leyendo';
+                                return $seguimientoStr = "Leyendo  <span class='glyphicon glyphicon-chevron-down'></span>";
                             }
-                            return $seguimientoStr = 'Me gustaría leerlo';
+                            return $seguimientoStr = "Me gustaría leerlo  <span class='glyphicon glyphicon-chevron-down'></span> ";
                         }
                     }
                 } else {
@@ -116,11 +116,11 @@ class SeguimientosController extends Controller
                 ->one();
                 if ($seguimiento) {
                     if ($seguimiento->estado_id == 1) {
-                        return $seguimientoStr = 'Leído';
+                        return $seguimientoStr = "Leído  <span class='glyphicon glyphicon-chevron-down'></span>";
                     } elseif ($seguimiento->estado_id == 2) {
-                        return $seguimientoStr = 'Leyendo';
+                        return $seguimientoStr = "Leyendo  <span class='glyphicon glyphicon-chevron-down'></span>";
                     }
-                    return $seguimientoStr = 'Me gustaría leerlo';
+                    return $seguimientoStr = "Me gustaría leerlo  <span class='glyphicon glyphicon-chevron-down'></span> ";
                 }
             }
         }

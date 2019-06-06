@@ -24,12 +24,16 @@ use yii\helpers\Html;
     box-shadow: 7px 7px 45px -23px rgba(0,0,0,0.75);
 }
 .libro-texto {
-    padding-top: 55px;
+    padding-top: 5px;
     font-family: cursive;
 }
 img.libros {
-    width: 190px !important;
-    height: 225px !important;
+    width: 170px !important;
+    height: 200px !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 10px;
+    border-radius: 12px;
 }
 .dropdown-menu > li {
     cursor:pointer;
@@ -46,6 +50,10 @@ margin-top: 10px;
     color: rgb(255, 233, 0);
     font-size: 30px;
     height: 35px;
+}
+.dropdown {
+    float: right;
+    margin-bottom: 30px;
 }
 </style>
 
@@ -134,35 +142,6 @@ $this->registerJs($followJs);
                     <button class="follow<?=$model->id?>" title="Marcar como favorito" data-libro="<?= $model->id ?>">
                         <span id="estrella<?=$model->id?>" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
                     </button>
-                    <?php
-                    $seguimientoStr = '...';
-                    $seguimiento = Seguimientos::find()
-                    ->where(['usuario_id' => $usuarioId, 'libro_id' => $id])
-                    ->one();
-                    if ($seguimiento) {
-                        if ($seguimiento->estado_id == 1) {
-                            $seguimientoStr = 'Leído';
-                        } else if ($seguimiento->estado_id == 2) {
-                            $seguimientoStr = 'Leyendo';
-                        } else {
-                            $seguimientoStr = 'Me gustaría leerlo';
-                        }
-                    }
-                    ?>
-
-                    <span class="dropdown" title="Seguimiento">
-                      <button style="margin-left:20px" class="btn btn-default dropdown-toggle" id="dropdownMenu<?=$id?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <?= $seguimientoStr ?>
-                      </button>
-                      <ul class="dropdown-menu dropdown<?=$id?>" aria-labelledby="dropdownMenu<?=$id?>" data-seguimiento="<?= $id ?>">
-                        <li data-id='1'><a>Leído</a></li>
-                        <li data-id='2'><a>Leyendo</a></li>
-                        <li data-id='3'><a>Me gustaría leerlo</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li data-id='4'><a>Limpiar seguimiento</a></li>
-                      </ul>
-                    </span>
-                    <?php endif; ?>
                 </h2>
 
                 <ul>
@@ -188,8 +167,41 @@ $this->registerJs($followJs);
             </div>
         </div>
         <div class="col-md-5 col-xs-5 libro-texto " itemprop="description">
-            <!-- Columna de 5 para la sinopsis-->
-            <?= $model->sinopsis  ?>
+            <div class="row">
+                <?php
+                $seguimientoStr = '...';
+                $seguimiento = Seguimientos::find()
+                ->where(['usuario_id' => $usuarioId, 'libro_id' => $id])
+                ->one();
+                if ($seguimiento) {
+                    if ($seguimiento->estado_id == 1) {
+                        $seguimientoStr = "Leído <span class='glyphicon glyphicon-chevron-down'></span>";
+                    } else if ($seguimiento->estado_id == 2) {
+                        $seguimientoStr = "Leyendo  <span class='glyphicon glyphicon-chevron-down'></span>";
+                    } else {
+                        $seguimientoStr = "Me gustaría leerlo  <span class='glyphicon glyphicon-chevron-down'></span>";
+                    }
+                }
+                ?>
+
+                <span class="dropdown" title="Seguimiento">
+                  <button style="margin-left:20px" class="btn btn-default dropdown-toggle" id="dropdownMenu<?=$id?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <?= $seguimientoStr ?>
+                  </button>
+                  <ul class="dropdown-menu dropdown<?=$id?>" aria-labelledby="dropdownMenu<?=$id?>" data-seguimiento="<?= $id ?>">
+                    <li data-id='1'><a>Leído</a></li>
+                    <li data-id='2'><a>Leyendo</a></li>
+                    <li data-id='3'><a>Me gustaría leerlo</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li data-id='4'><a>Limpiar seguimiento</a></li>
+                  </ul>
+                </span>
+                <?php endif; ?>
+            </div>
+            <div class="row">
+                <!-- Columna de 5 para la sinopsis-->
+                <?= $model->sinopsis  ?>
+            </div>
         </div>
     </div>
 
