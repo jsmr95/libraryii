@@ -165,18 +165,18 @@ $this->registerJs($followJs);
                     if ($estado) {
                         if ($usuarioId === $id) { ?>
 
-                        '<?= Html::textInput('contenido',$estado->contenido,
+                        <?= Html::textInput('contenido',$estado->contenido,
                         [
                             'id' => 'inputEstadoPersonal',
-                        ]);  ?>'
+                        ]);  ?>
                     <?php } else { ?>
                         '<?= Html::encode($estado->contenido) ?>'
                     <?php } ?>
                 <?php } else if ($usuarioId === $id) { ?>
-                    '<?= Html::textInput('contenido','Estado Personal',
+                    <?= Html::textInput('contenido','Estado Personal',
                     [
                         'id' => 'inputEstadoPersonal',
-                    ]);  ?>'
+                    ]);  ?>
                 <?php } else { ?>
                     'Estado Personal'
                 <?php } ?>
@@ -336,7 +336,7 @@ $this->registerJs($followJs);
 <!-- Fila para saber los libro que sigue el usuario-->
 <div class="row">
     <div class="col-md-10 col-lg-10 col-xs-10 col-md-offset-1 col-lg-offset-1 col-xs-offset-1">
-        <!-- Columna de 2-->
+        <!-- Columna de 10-->
         <div class="panel panel-primary">
             <div class="panel-heading">Libros favoritos</div>
             <div class="panel-body">
@@ -348,9 +348,8 @@ $this->registerJs($followJs);
                 $dataProvider = new ActiveDataProvider([
                     'query' => $query,
                 ]);
-                if (count($query->all()) > 3) {
-                    $dataProvider->pagination = ['pageSize' => 3];
-                }
+
+                $dataProvider->pagination = ['pageSize' => 6];
 
                 Pjax::begin();
                 echo ListView::widget([
