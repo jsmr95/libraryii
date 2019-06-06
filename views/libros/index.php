@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use yii\widgets\Pjax;
 use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
@@ -32,12 +33,16 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Introducir Libro', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php  } } ?>
-    <?php echo $this->render('_search', ['model' => $searchModel, 'sort' => $dataProvider->sort]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel, 'sort' => $dataProvider->sort]);
+    Pjax::begin();
+    ?>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_libros',
         'summary' => '',
-    ]); ?>
+    ]);
+    Pjax::end();
+    ?>
 
 
 </div>
