@@ -40,7 +40,7 @@ img.usuarios {
 }
 </style>
 
-<div class="col-md-3 usuario-cuerpo ">
+<div class="col-lg-3 col-md-3 col-xs-3 usuario-cuerpo ">
     <!-- Columna completa de cada libro-->
     <!-- Columna de 3 para la imagen del libro-->
     <center>

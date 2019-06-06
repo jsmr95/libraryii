@@ -19,12 +19,21 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php echo $this->render('_search', ['model' => $searchModel]); ?>
     </div>
     <div class="row">
-        <div class="col-md-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-xs-12">
 
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'itemView' => '_usuarios',
             'summary' => '',
+            'layout' => '{items}
+            <center>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12">
+                        {pager}
+                    </div>
+                </div>
+            </center>
+            ',
         ]); ?>
         </div>
     </div>
