@@ -79,13 +79,6 @@ class AutoresFavsController extends Controller
             if (!$model->delete()) {
                 Yii::$app->session->setFlash('error', 'Ocurrió algún error!');
             } else {
-                $libros = Libros::find()->where(['autor_id' => $autor_id])->all();
-                for ($i = 0; $i < count($libros); $i++) {
-                    $libroFav = LibrosFavs::find()->where(['libro_id' => $libros[$i]->id, 'usuario_id' => $id])->one();
-                    if ($libroFav) {
-                        $libroFav->delete();
-                    }
-                }
                 return '-empty';
             }
         } else {
@@ -98,10 +91,10 @@ class AutoresFavsController extends Controller
             } else {
                 $libros = Libros::find()->where(['autor_id' => $autor_id])->all();
                 for ($i = 0; $i < count($libros); $i++) {
-                    $libroFav = new LibrosFavs();
-                    $libroFav->libro_id = $libros[$i]->id;
-                    $libroFav->usuario_id = $id;
-                    $libroFav->save();
+                    $libroFav = LibrosFavs::find()->where(['libro_id' => $libros[$i]->id, 'usuario_id' => $id])->one();
+                    if ($libroFav) {
+                        $libroFav->delete();
+                    }
                 }
                 return '';
             }

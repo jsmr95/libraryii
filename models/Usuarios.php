@@ -222,10 +222,16 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function consultaLibroSeguido($miId, $libroId)
     {
+        $libro = Libros::find()->where(['id' => $libroId])->one();
+
         $fila = LibrosFavs::find()->where(['usuario_id' => $miId])
             ->andWhere(['libro_id' => $libroId])->one();
         if ($fila) {
             return '';
+        }
+        $autor = AutoresFavs::find()->where(['usuario_id' => $miId, 'autor_id' => $libro->autor_id])->one();
+        if ($autor) {
+            return 'autor';
         }
         return '-empty';
     }
