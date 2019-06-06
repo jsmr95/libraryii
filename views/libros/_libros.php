@@ -1,4 +1,5 @@
 <?php
+use app\models\Usuarios;
 use app\models\Seguimientos;
 
 use yii\helpers\Url;
@@ -41,10 +42,16 @@ box-shadow: 0;
 display: inline;
 margin-top: 10px;
 }
+.glyphicon-star, .glyphicon-star-empty{
+    color: rgb(255, 233, 0);
+    font-size: 30px;
+    height: 35px;
+}
 </style>
 
 <?php
 $url1 = Url::to(['seguimientos/create']);
+$url2 = Url::to(['libros-favs/create']);
 
 $id = $model->id;
 $usuarioId = Yii::$app->user->id;
@@ -64,7 +71,25 @@ function cambioSeguimiento(event){
     });
 }
 
+function seguir(event){
+    var libro_id = event.target.parentNode.attributes['data-libro'].nodeValue;
+    $.ajax({
+        url: '$url2',
+        data: { libro_id: libro_id},
+        success: function(data){
+            if (data == '') {
+                $(`#estrella`+libro_id).removeClass('glyphicon-star-empty');
+                $(`#estrella`+libro_id).addClass('glyphicon-star');
+            } else {
+                $(`#estrella`+libro_id).removeClass('glyphicon-star');
+                $(`#estrella`+libro_id).addClass('glyphicon-star-empty');
+            }
+        }
+    });
+}
+
 $(document).ready(function(){
+    $('.follow$id').click(seguir);
     $('.dropdown$id > li ').click(cambioSeguimiento);
 });
 
@@ -99,7 +124,17 @@ $this->registerJs($followJs);
                     'id' => $model->id
                     ]) ?>
                     <!-- Botón para seguimiento -->
-                    <?php if (!Yii::$app->user->isGuest):
+                    <?php
+                    $corazon = '';
+                    if (!Yii::$app->user->isGuest):
+                    $usuario = Usuarios::findOne(Yii::$app->user->id);
+                    $corazon = $usuario->consultaLibroSeguido($usuario->id, $model->id);
+                    ?>
+                    <!-- FAVORITO -->
+                    <button class="follow<?=$model->id?>" title="Marcar como favorito" data-libro="<?= $model->id ?>">
+                        <span id="estrella<?=$model->id?>" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
+                    </button>
+                    <?php
                     $seguimientoStr = '...';
                     $seguimiento = Seguimientos::find()
                     ->where(['usuario_id' => $usuarioId, 'libro_id' => $id])
