@@ -13,6 +13,8 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\DetailView;
 
+use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
 
@@ -346,16 +348,26 @@ $this->registerJs($followJs);
                 $dataProvider = new ActiveDataProvider([
                     'query' => $query,
                 ]);
-                // var_dump($query); die();
                 if (count($query->all()) > 3) {
                     $dataProvider->pagination = ['pageSize' => 3];
                 }
 
+                Pjax::begin();
                 echo ListView::widget([
                     'dataProvider' => $dataProvider,
                     'summary' => '',
                     'itemView' => '_librosFavs',
+                    'layout' => '{items}
+                    <center>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-xs-12">
+                                {pager}
+                            </div>
+                        </div>
+                    </center>
+                    ',
                 ]);
+                Pjax::end();
                 ?>
             </div>
         </div>
