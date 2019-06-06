@@ -119,7 +119,7 @@ $this->registerJs($followJs);
             ?>
 <div class="row">
     <!-- Fila para mostrar las opciones de un administrador-->
-    <div class="col-md-offset-5 col-md-2">
+    <div class="col-md-offset-5 col-md-2 col-lg-offset-5 col-lg-2 col-xs-offset-5 col-xs-2">
     <p>
         <?= Html::a('Modificar', ['update', 'id' => $id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Eliminar cuenta', ['delete', 'id' => $id], [
@@ -136,7 +136,7 @@ $this->registerJs($followJs);
 <div class="row">
     <!-- Fila para el usuario-->
     <div class="row">
-        <div class="col-md-offset-5 col-md-2">
+        <div class="col-md-offset-5 col-md-2 col-lg-offset-5 col-lg-2 col-xs-offset-5 col-xs-2">
             <!-- Columnna de 5 y separada 2 para la imagen del usuario y estado personal -->
             <br>
             <?php
@@ -154,7 +154,7 @@ $this->registerJs($followJs);
     if (!Yii::$app->user->isGuest){
         ?>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-lg-12 col-xs-12">
             <center>
                 <p style="font-style: italic; margin-top: 25px" title="Estado personal">
                     <?php
@@ -195,37 +195,9 @@ $this->registerJs($followJs);
     <p>Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></p>
 </center>
 <div class="row">
-    <!-- Fila para saber los libro que sigue el usuario-->
-    <div class="col-md-2">
-        <!-- Columna de 2-->
-        <div class="panel panel-primary">
-            <div class="panel-heading">Libros favoritos</div>
-            <div class="panel-body">
-                <?php
-                $query = Libros::find()
-                ->joinWith('librosFavs')
-                ->where(['usuario_id' => $model->id]);
-
-                $dataProvider = new ActiveDataProvider([
-                    'query' => $query,
-                ]);
-
-                if (count($query->all()) >=3) {
-                    $dataProvider->pagination = ['pageSize' => 2];
-                }
-
-                echo ListView::widget([
-                    'dataProvider' => $dataProvider,
-                    'summary' => '',
-                    'itemView' => '_librosFavs',
-                ]);
-                ?>
-            </div>
-        </div>
-    </div>
 
     <!-- PANEL CENTRAL -->
-    <div class="col-md-8">
+    <div class="col-md-8 col-lg-8 col-xs-8 col-md-offset-2 col-lg-offset-2 col-xs-offset-2">
         <!-- Columna de 8 para la Info de la cuenta-->
         <ul class="nav nav-tabs" role="tablist" id="myTabs">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
@@ -358,4 +330,34 @@ $this->registerJs($followJs);
 </div>
 </div>
 
+</div>
+<!-- Fila para saber los libro que sigue el usuario-->
+<div class="row">
+    <div class="col-md-10 col-lg-10 col-xs-10 col-md-offset-1 col-lg-offset-1 col-xs-offset-1">
+        <!-- Columna de 2-->
+        <div class="panel panel-primary">
+            <div class="panel-heading">Libros favoritos</div>
+            <div class="panel-body">
+                <?php
+                $query = Libros::find()
+                ->joinWith('librosFavs')
+                ->Where("libros.id IN (SELECT id FROM libros WHERE autor_id IN (SELECT autor_id FROM autores_favs WHERE autores_favs.usuario_id = $model->id))")
+                ->orWhere(['usuario_id' => $model->id]);
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                ]);
+                // var_dump($query); die();
+                if (count($query->all()) > 3) {
+                    $dataProvider->pagination = ['pageSize' => 3];
+                }
+
+                echo ListView::widget([
+                    'dataProvider' => $dataProvider,
+                    'summary' => '',
+                    'itemView' => '_librosFavs',
+                ]);
+                ?>
+            </div>
+        </div>
+    </div>
 </div>
