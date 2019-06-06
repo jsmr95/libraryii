@@ -8,24 +8,25 @@ use yii\helpers\Html;
 ?>
 <style media="screen">
 .cuerpo_estado {
-    background-color: #e8edff;
+    background-color: #ffe6cc;
     position: relative;
-    padding: 5px 10px 5px 30px;
-    margin: 20px 0px 20px 40px;
+    padding: 0px 10px 0px 30px;
+    margin: 10px 0px 10px 40px;
     border-radius: 6px;
     -webkit-box-shadow: 7px 7px 45px -23px rgba(0,0,0,0.75);
     -moz-box-shadow: 7px 7px 45px -23px rgba(0,0,0,0.75);
     box-shadow: 7px 7px 45px -23px rgba(0,0,0,0.75);
 }
 .estado_texto {
-    padding-top: 20px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-family: cursive;
 }
 img.imgEstados {
-    width: 100px !important;
-    height: 125px !important;
+    width: 70px !important;
+    height: 95px !important;
     border-radius: 110px;
+    margin-top:10px;
     margin-left: -20px;
 }
 </style>
@@ -40,8 +41,8 @@ if ($usua) {
     ?>
 
 <div class="row ">
-    <div class=" col-md-10 cuerpo_estado">
-        <div class=" col-md-2">
+    <div class=" col-md-10 col-lg-10 col-xs-10 cuerpo_estado">
+        <div class=" col-md-2 col-lg-2 col-xs-2">
             <!-- Imagen AQUI -->
             <center>
                 <p>
@@ -55,7 +56,7 @@ if ($usua) {
                 </p>
             </center>
         </div>
-        <div class=" col-md-8">
+        <div class=" col-md-8 col-lg-8 col-xs-8">
         <span>
             <h2>
                 <?= Html::a(

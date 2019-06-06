@@ -196,6 +196,7 @@ $this->registerJs($followJs);
     </p>
     <p>Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></p>
 </center>
+<br>
 <div class="row">
 
     <!-- PANEL CENTRAL -->
@@ -249,11 +250,24 @@ $this->registerJs($followJs);
                 ->joinWith('estadosFavs')
                 ->where(['estados_favs.usuario_id' => $model->id]),
             ]);
+            $dataProvider->pagination = ['pageSize' => 5];
+            Pjax::begin();
             echo ListView::widget([
               'dataProvider' => $dataProvider,
               'summary' => '',
               'itemView' => '_userEstados',
-          ]); ?>
+              'layout' => '{items}
+              <center>
+                  <div class="row">
+                      <div class="col-md-12 col-lg-12 col-xs-12">
+                          {pager}
+                      </div>
+                  </div>
+              </center>
+              ',
+          ]);
+          Pjax::end();
+          ?>
         </div>
     </div>
 </div><!-- FIN PANEL ME GUSTAN -->
@@ -267,11 +281,25 @@ $this->registerJs($followJs);
                 ->joinWith('estadosLybs')
                 ->where(['estados_lyb.usuario_id' => $model->id]),
             ]);
+            $dataProvider->pagination = ['pageSize' => 5];
+
+            Pjax::begin();
             echo ListView::widget([
               'dataProvider' => $dataProvider,
               'summary' => '',
               'itemView' => '_userEstados',
-          ]); ?>
+              'layout' => '{items}
+              <center>
+                  <div class="row">
+                      <div class="col-md-12 col-lg-12 col-xs-12">
+                          {pager}
+                      </div>
+                  </div>
+              </center>
+              ',
+          ]);
+          Pjax::end();
+          ?>
         </div>
     </div>
 </div><!-- FIN PANEL MIS LYBS -->
@@ -285,11 +313,25 @@ $this->registerJs($followJs);
                 ->joinWith('seguimientos')
                 ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 2]),
             ]);
+            $dataProvider->pagination = ['pageSize' => 5];
+
+            Pjax::begin();
             echo ListView::widget([
               'dataProvider' => $dataProvider,
               'summary' => '',
               'itemView' => '_librosFavs',
-          ]); ?>
+              'layout' => '{items}
+              <center>
+                  <div class="row">
+                      <div class="col-md-12 col-lg-12 col-xs-12">
+                          {pager}
+                      </div>
+                  </div>
+              </center>
+              ',
+          ]);
+          Pjax::end();
+          ?>
         </div>
     </div>
 </div><!-- FIN PANEL MIS Leyendo -->
@@ -303,11 +345,25 @@ $this->registerJs($followJs);
                 ->joinWith('seguimientos')
                 ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 3]),
             ]);
+            $dataProvider->pagination = ['pageSize' => 5];
+
+            Pjax::begin();
             echo ListView::widget([
               'dataProvider' => $dataProvider,
               'summary' => '',
               'itemView' => '_librosFavs',
-          ]); ?>
+              'layout' => '{items}
+              <center>
+                  <div class="row">
+                      <div class="col-md-12 col-lg-12 col-xs-12">
+                          {pager}
+                      </div>
+                  </div>
+              </center>
+              ',
+          ]);
+          Pjax::end();
+          ?>
         </div>
     </div>
 </div><!-- FIN PANEL MIS Por leer -->
@@ -321,11 +377,25 @@ $this->registerJs($followJs);
                 ->joinWith('seguimientos')
                 ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 1]),
             ]);
+            $dataProvider->pagination = ['pageSize' => 5];
+
+            Pjax::begin();
             echo ListView::widget([
               'dataProvider' => $dataProvider,
               'summary' => '',
               'itemView' => '_librosFavs',
-          ]); ?>
+              'layout' => '{items}
+              <center>
+                  <div class="row">
+                      <div class="col-md-12 col-lg-12 col-xs-12">
+                          {pager}
+                      </div>
+                  </div>
+              </center>
+              ',
+          ]);
+          Pjax::end();
+          ?>
         </div>
     </div>
 </div><!-- FIN PANEL MIS Leidos -->
