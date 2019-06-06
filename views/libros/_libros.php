@@ -47,7 +47,7 @@ display: inline;
 margin-top: 10px;
 }
 .glyphicon-star, .glyphicon-star-empty{
-    color: rgb(255, 233, 0);
+    color: rgb(247, 185, 43);
     font-size: 30px;
     height: 35px;
 }

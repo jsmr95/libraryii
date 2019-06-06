@@ -29,7 +29,7 @@ img.libros {
 }
 
 span#estrella{
-    color: rgb(255, 233, 0);
+    color: rgb(247, 185, 43);
 }
 
 .caption {
