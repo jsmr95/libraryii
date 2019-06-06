@@ -40,11 +40,11 @@ img.usuarios {
 }
 </style>
 
-<div class="col-lg-3 col-md-3 col-xs-3 usuario-cuerpo ">
+<div class="col-lg-3 col-md-3 col-xs-3 usuario-cuerpo " itemscope itemtype="http://schema.org/Person">
     <!-- Columna completa de cada libro-->
     <!-- Columna de 3 para la imagen del libro-->
     <center>
-        <p>
+        <p itemprop="image">
             <?php
             if (empty($model->url_avatar)) {
                 echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'usuarios']);
@@ -53,7 +53,7 @@ img.usuarios {
             }
             ?>
         </p>
-        <h3>
+        <h3 itemprop="alternateName">
             <?= Html::a($model->login, [
             'usuarios/view',
             'id' => $model->id
