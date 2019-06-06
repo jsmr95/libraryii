@@ -129,8 +129,17 @@ $this->registerJs($followJs);
         if (!Yii::$app->user->isGuest) {
             $usuario = Usuarios::findOne(Yii::$app->user->id);
             $corazon = $usuario->consultaLibroSeguido($usuario->id, $model->id);
+            $disabled = false;
+            if ($corazon == 'autor') {
+                $corazon = '';
+                $disabled = true;
+            }
             ?>
-            <button class="follow" title="Marcar como favorito">
+            <button class="follow" 
+            <?php if($disabled){ echo "disabled title='No puedes desmarcarlo, te gusta el autor'";}
+            else {
+                echo "title='Marcar como favorito'";
+            }  ?>>
                 <span id="estrella" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
             </button>
         <?php } ?>

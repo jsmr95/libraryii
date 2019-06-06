@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Autores;
+use app\models\AutoresFavs;
 use app\models\Comentarios;
 use app\models\Generos;
 use app\models\Libros;
@@ -235,7 +236,10 @@ class LibrosController extends Controller
      */
     public function actionConsultaseguidores($libro_id)
     {
-        $seguidores = LibrosFavs::find()->where(['libro_id' => $libro_id])->all();
-        return count($seguidores);
+        $libro = Libros::find($libro_id)->one();
+        $seguidores1 = LibrosFavs::find()->where(['libro_id' => $libro_id])->all();
+        $seguidores2 = AutoresFavs::find()->where(['autor_id' => $libro->autor->id])->all();
+
+        return count($seguidores1) + count($seguidores2);
     }
 }
