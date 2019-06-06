@@ -35,7 +35,11 @@ span#estrella{
 .caption {
     display: none !important;
 }
-
+.follow{
+    padding: 0;
+    border: none;
+    background: none;
+}
 </style>
 <?php
 $url1 = Url::to(['libros-favs/create']);
@@ -135,7 +139,7 @@ $this->registerJs($followJs);
                 $disabled = true;
             }
             ?>
-            <button class="follow" 
+            <button class="follow"
             <?php if($disabled){ echo "disabled title='No puedes desmarcarlo, te gusta el autor'";}
             else {
                 echo "title='Marcar como favorito'";

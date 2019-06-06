@@ -56,6 +56,11 @@ margin-top: 10px;
     margin-bottom: 30px;
     padding: 15px;
 }
+button[data-libro] {
+    padding: 0;
+    border: none;
+    background: none;
+}
 </style>
 
 <?php

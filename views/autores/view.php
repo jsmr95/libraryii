@@ -28,7 +28,11 @@ img.autores {
 span.glyphicon {
     color:red;
 }
-
+.follow{
+    padding: 0;
+    border: none;
+    background: none;
+}
 </style>
 <div class="container">
     <!--Contenedor para el libro -->

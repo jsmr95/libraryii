@@ -34,6 +34,9 @@ use yii\widgets\ListView;
 #lyb > button{
     width: 70px;
     background-color: #ffe6cc;
+    padding: 0;
+    border: none;
+    background: none;
 }
 .botonLyb{
     color: green;
