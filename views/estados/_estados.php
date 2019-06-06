@@ -109,8 +109,8 @@ $usua = Usuarios::findOne(['id' => $model->usuario->id]);
 if ($usua) {
     ?>
 <div class="row ">
-    <div class="cuerpo_estado col-md-12">
-        <div class=" col-md-2">
+    <div class="cuerpo_estado col-md-12 col-lg-12 col-xs-12 ">
+        <div class=" col-md-2 col-lg-2 col-xs-2">
             <!-- Imagen AQUI -->
             <center>
                 <p>
@@ -124,7 +124,7 @@ if ($usua) {
                 </p>
             </center>
         </div>
-        <div class=" col-md-7">
+        <div class=" col-md-7 col-lg-7 col-xs-7">
         <span>
             <h2>
                 <?= Html::a(
@@ -168,7 +168,7 @@ if ($usua) {
             </p>
         </div>
         <?php if ($model->libro_id != '' || $model->libro_id != null) { ?>
-        <div class="col-md-2 col-md-offset-1">
+        <div class="col-md-2 col-lg-2 col-xs-2 col-md-offset-1 col-lg-offset-1 col-xs-offset-1">
             <center>
                 <?php
                 $dataProvider = new ActiveDataProvider([
