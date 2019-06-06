@@ -1,9 +1,14 @@
 <?php
 
+use app\models\Libros;
 use app\models\Usuarios;
+
+use yii\data\ActiveDataProvider;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+
+use yii\widgets\ListView;
 
 ?>
 <style media="screen">
@@ -28,6 +33,12 @@ img.imgEstados {
     border-radius: 110px;
     margin-top:10px;
     margin-left: -20px;
+}
+img.librosUsuarios {
+    width: 50px !important;
+    height: 60px !important;
+    border-radius: 3px;
+    margin-top: 10px !important;
 }
 </style>
 <?php
@@ -75,6 +86,21 @@ if ($usua) {
                 <?= $model->estado  ?>
             </p>
         </div>
+        <?php if ($model->libro_id != '' || $model->libro_id != null) { ?>
+        <div class="col-md-2 col-lg-2 col-xs-2">
+            <center>
+                <?php
+                $dataProvider = new ActiveDataProvider([
+                    'query' => Libros::find()->where(['id' =>$model->libro_id])
+                ]);
+                echo ListView::widget([
+                  'dataProvider' => $dataProvider,
+                  'summary' => '',
+                  'itemView' => '_libroReferencia',
+              ]); ?>
+            </center>
+        </div>
+    <?php } ?>
     </div>
 </div>
 

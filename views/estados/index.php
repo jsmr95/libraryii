@@ -15,6 +15,7 @@ use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use yii\widgets\Pjax;
 use yii\widgets\ListView;
 use yii\widgets\ActiveForm;
 
@@ -84,13 +85,17 @@ $this->params['breadcrumbs'][] = $this->title;
             </center>
         </div>
     </div>
-    <?php ActiveForm::end(); ?>
-
+    <?php ActiveForm::end();
+    Pjax::begin();
+    // $dataProvider->pagination = ['pageSize' => 5];
+    ?>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_estados',
         'summary' => '',
-    ]); ?>
+    ]);
+    Pjax::end();
+    ?>
 
 
 </div>

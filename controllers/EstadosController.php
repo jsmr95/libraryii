@@ -37,10 +37,11 @@ class EstadosController extends Controller
     {
         $searchModel = new EstadosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+
         $dataProvider->setSort([
             'defaultOrder' => ['created_at' => SORT_DESC],
         ]);
-        $dataProvider->pagination = ['pageSize' => 10];
 
 
         return $this->render('index', [
