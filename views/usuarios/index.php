@@ -13,16 +13,19 @@ $this->title = 'Usuarios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuarios-index">
+    <div class="row">
+        <h1><?= Html::encode($this->title) ?></h1>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
 
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemView' => '_usuarios',
-        'summary' => '',
-    ]); ?>
-
-
+        <?= ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => '_usuarios',
+            'summary' => '',
+        ]); ?>
+        </div>
+    </div>
 </div>

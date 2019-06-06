@@ -40,6 +40,8 @@ class EstadosController extends Controller
         $dataProvider->setSort([
             'defaultOrder' => ['created_at' => SORT_DESC],
         ]);
+        $dataProvider->pagination = ['pageSize' => 10];
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
