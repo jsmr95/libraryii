@@ -34,11 +34,11 @@ img.imgEstados {
     margin-top:10px;
     margin-left: -20px;
 }
-img.librosUsuarios {
+img.librosUsuariosPerfil {
     width: 50px !important;
     height: 60px !important;
     border-radius: 3px;
-    margin-top: 10px !important;
+    margin-top: 25px !important;
 }
 </style>
 <?php

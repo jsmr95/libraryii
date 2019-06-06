@@ -4,16 +4,6 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 
 ?>
-<style media="screen">
-
-img .librosUsuarios {
-    width: 50px !important;
-    height: 60px !important;
-    border-radius: 3px;
-    margin-top: 10px !important;
-}
-
-</style>
 <div class="row">
     <!-- Fila de cada libro -->
     <!-- Imagen AQUI -->
@@ -21,9 +11,9 @@ img .librosUsuarios {
         <p style="margin-top: -15px">
         <?php
         if (empty($model->imagen)) {
-            echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'librosUsuarios']);
+            echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'librosUsuariosPerfil']);
         } else {
-            echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'librosUsuarios']);
+            echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'librosUsuariosPerfil']);
         }
         ?>
         </p>
