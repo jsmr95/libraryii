@@ -275,21 +275,21 @@ VALUES (1, 'jose', 'jose@jose.com', 'Jose', 'Gallego', 'Joven programador...',
     ,  (15, 'ildefonso', 'ildefonso@ildefonso.com', 'Ildefonso', 'Hernandez', 'Amante del golf y de mi familia',
             'user15.jpg', crypt('ildefonso', gen_salt('bf',10)),'');
 -- Autores --
-INSERT INTO autores (nombre, descripcion)
+INSERT INTO autores (nombre, descripcion,imagen)
 VALUES ('Stephen King', 'Stephen Edwin King es un escritor estadounidense
-            conocido por sus novelas de terror. Los libros ...')
+            conocido por sus novelas de terror. Los libros ...', 'stephenking.jpg')
     ,  ('Carlos Ruiz Zafón', 'Escritor con una temprana vocación, comenzó
-            con literatura juvenil con la novela "El principe de la niebla".')
+            con literatura juvenil con la novela "El principe de la niebla".', 'carlosruizzafon.jpg')
     ,  ('Isabel Allende', 'Isabel Allende Llona es una reconocida escritora
-            y periodista chilena, conocida principalmente por sus novelas ...')
+            y periodista chilena, conocida principalmente por sus novelas ...', 'isabelallende.jpg')
     ,  ('Georg R. R. Martin', 'George Raymond Richard Martin conocido por sus
-            seguidores como GRRM, es un escritor y guionista estadounidense ...')
+            seguidores como GRRM, es un escritor y guionista estadounidense ...', 'georgerrmartin.jpg')
     ,  ('Arturo Pérez Reverte', 'Es un periodista y escritor español, miembro
-            de la Real Academia Española. Antiguo corresponsal de Radio...')
+            de la Real Academia Española. Antiguo corresponsal de Radio...', 'arturoperezreverte.jpeg')
     ,  ('Megan Maxwell', 'Megan Maxwell es una conocida escritora de literatura
-            romántica de origen español, por parte de madre y norteamericano,...')
+            romántica de origen español, por parte de madre y norteamericano,...', 'meganmaxwell.jpg')
     ,  ('Antoine de Saint Exupéry', 'Antoine de Saint-Exupéry(Lyon-Marsella) fue
-            un escritor y aviador francés, autor de "El principito"');
+            un escritor y aviador francés, autor de "El principito"', 'saint_exypery.jpg');
 
 -- Generos --
 INSERT INTO generos ( genero)
