@@ -67,15 +67,25 @@ class SiteController extends Controller
         }
 
         $ultimoLanzamiento = Libros::find()->orderBy(['created_at' => SORT_DESC])->one();
-        // $filas = Libros::find()->all();
-        // foreach ($filas as $fila) {
-        //     //me devuelve todo null, nose porque.
-        //     var_dump($fila->mediaVotos);
-        // }
-        // die();
-        // ME FALTA POR HACER ESTA CONSULTA PARA COGER AL MAS VOTADO
+        // $votado = (new \yii\db\Query())
+        // ->select(' max(mediaVotos)')
+        // ->from('(SELECT libro_id , avg(voto) AS mediaVotos FROM votos GROUP BY libro_id) AS MEDIA')
+        // ->all();
+        $masVotado = (new \yii\db\Query())
+        ->select('libro_id, avg(voto)')
+        ->from('votos')
+        ->groupBy('libro_id')
+        ->having('avg(voto) = (select max(avgVotos) from (select libro_id, avg(voto) as avgVotos from votos group by libro_id) as f)')
+        ->all();
 
-        return $this->render('index', ['ultimoLanzamiento' => $ultimoLanzamiento]);
+        $idLibroMasVotado = $masVotado[0]['libro_id'];
+
+        $libroMasVotado = Libros::find()->where(['id' => $idLibroMasVotado])->one();
+
+        return $this->render('index', [
+            'ultimoLanzamiento' => $ultimoLanzamiento,
+            'libroMasVotado' => $libroMasVotado,
+        ]);
     }
 
     /**

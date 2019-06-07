@@ -48,7 +48,7 @@ footer{
             <h2 style="text-decoration: underline; ">Más valorado</h2>
             <?php
             $dataProvider = new ActiveDataProvider([
-                'query' => Libros::find()->where(['id' =>$ultimoLanzamiento->id])
+                'query' => Libros::find()->where(['id' =>$libroMasVotado->id])
             ]);
             echo ListView::widget([
               'dataProvider' => $dataProvider,
