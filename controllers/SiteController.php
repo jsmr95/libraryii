@@ -75,9 +75,13 @@ class SiteController extends Controller
         ->having('avg(voto) = (select max(avgVotos) from (select libro_id, avg(voto) as avgVotos from votos group by libro_id) as f)')
         ->all();
 
-        $idLibroMasVotado = $masVotado[0]['libro_id'];
+        $libroMasVotado = $ultimoLanzamiento;
 
-        $libroMasVotado = Libros::find()->where(['id' => $idLibroMasVotado])->one();
+        if ($masVotado) {
+            $idLibroMasVotado = $masVotado[0]['libro_id'];
+
+            $libroMasVotado = Libros::find()->where(['id' => $idLibroMasVotado])->one();
+        }
 
         return $this->render('index', [
             'ultimoLanzamiento' => $ultimoLanzamiento,
