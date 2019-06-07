@@ -67,10 +67,7 @@ class SiteController extends Controller
         }
 
         $ultimoLanzamiento = Libros::find()->orderBy(['created_at' => SORT_DESC])->one();
-        // $votado = (new \yii\db\Query())
-        // ->select(' max(mediaVotos)')
-        // ->from('(SELECT libro_id , avg(voto) AS mediaVotos FROM votos GROUP BY libro_id) AS MEDIA')
-        // ->all();
+
         $masVotado = (new \yii\db\Query())
         ->select('libro_id, avg(voto)')
         ->from('votos')
