@@ -289,7 +289,7 @@ VALUES ('Stephen King', 'Stephen Edwin King es un escritor estadounidense
     ,  ('Megan Maxwell', 'Megan Maxwell es una conocida escritora de literatura
             romántica de origen español, por parte de madre y norteamericano,...', 'meganmaxwell.jpg')
     ,  ('Antoine de Saint Exupéry', 'Antoine de Saint-Exupéry(Lyon-Marsella) fue
-            un escritor y aviador francés, autor de "El principito"', 'saint_exypery.jpg');
+            un escritor y aviador francés, autor de "El principito"', 'saint_exupery.jpg');
 
 -- Generos --
 INSERT INTO generos ( genero)
