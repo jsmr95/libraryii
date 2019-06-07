@@ -250,6 +250,9 @@ $this->registerJs($followJs);
                 ->joinWith('estadosFavs')
                 ->where(['estados_favs.usuario_id' => $model->id]),
             ]);
+            $dataProvider->setSort([
+                'defaultOrder' => ['created_at' => SORT_DESC],
+            ]);
             $dataProvider->pagination = ['pageSize' => 5];
             Pjax::begin();
             echo ListView::widget([
@@ -273,13 +276,16 @@ $this->registerJs($followJs);
 </div><!-- FIN PANEL ME GUSTAN -->
 <div role="tabpanel" class="tab-pane fade" id="messages">
     <div class="panel panel-primary">
-        <div class="panel-heading"></div>
+        <div class="panel-heading">Estados lybreados...</div>
         <div class="panel-body">
             <?php
             $dataProvider = new ActiveDataProvider([
                 'query' => Estados::find()
                 ->joinWith('estadosLybs')
                 ->where(['estados_lyb.usuario_id' => $model->id]),
+            ]);
+            $dataProvider->setSort([
+                'defaultOrder' => ['created_at' => SORT_DESC],
             ]);
             $dataProvider->pagination = ['pageSize' => 5];
 
@@ -305,7 +311,7 @@ $this->registerJs($followJs);
 </div><!-- FIN PANEL MIS LYBS -->
 <div role="tabpanel" class="tab-pane fade" id="leyendo">
     <div class="panel panel-primary">
-        <div class="panel-heading"></div>
+        <div class="panel-heading">Libros en 'leyendo'</div>
         <div class="panel-body">
             <?php
             $dataProvider = new ActiveDataProvider([
@@ -337,7 +343,7 @@ $this->registerJs($followJs);
 </div><!-- FIN PANEL MIS Leyendo -->
 <div role="tabpanel" class="tab-pane fade" id="leer">
     <div class="panel panel-primary">
-        <div class="panel-heading"></div>
+        <div class="panel-heading">Libros en 'Me gustaría leer'</div>
         <div class="panel-body">
             <?php
             $dataProvider = new ActiveDataProvider([
@@ -369,7 +375,7 @@ $this->registerJs($followJs);
 </div><!-- FIN PANEL MIS Por leer -->
 <div role="tabpanel" class="tab-pane fade" id="leidos">
     <div class="panel panel-primary">
-        <div class="panel-heading"></div>
+        <div class="panel-heading">Libros leídos</div>
         <div class="panel-body">
             <?php
             $dataProvider = new ActiveDataProvider([
