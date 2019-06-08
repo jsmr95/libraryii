@@ -191,13 +191,15 @@ $this->registerJs($followJs);
         </center>
         <?php } ?>
         <br>
-        <br>
         <center>
-            <p>Seguidores:
-                <span id="seguidores">
+            <span class="label label-primary">Seguidores:
+                <span id="seguidores" >
                 <?= Yii::$app->runAction('usuarios/consultaseguidores', ['usuario_id' => $model->id]) ?>
                 </span>
-            Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></p>
+            </span>
+            <br>
+            <span class="label label-success">
+            Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></span>
         </center>
         <br>
 
