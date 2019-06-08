@@ -44,9 +44,7 @@ span#estrella{
     font-size: 10px;
     padding: 6px;
 }
-.container {
-    width: 90% !important;
-}
+
 </style>
 <?php
 $url1 = Url::to(['libros-favs/create']);
@@ -211,10 +209,11 @@ $this->registerJs($followJs);
             </span> persona(s) le(s) gusta </p>
         </div>
     </div>
+    <?php if (!Yii::$app->user->isGuest) { ?>
     <div class="row">
         <div class="col-md-12 col-lg-12 col-xs-12" >
             <br><br>
-            <?php if (!Yii::$app->user->isGuest) {
+                <?php
                 $votante = Votos::find()->where(['usuario_id' => $usuarioId,
                                                  'libro_id' => $id])->one();
                 if ($votante) {
@@ -277,9 +276,9 @@ $this->registerJs($followJs);
 </div>
 </div>
 
-    <?php if (!Yii::$app->user->isGuest): ?>
 <div class="row">
     <div class="col-md-10 col-lg-10 col-xs-10 col-md-offset-1 col-lg-offset-1 col-xs-offset-1">
+        <?php if (!Yii::$app->user->isGuest): ?>
         <?php
         $comentario = new Comentarios();
         $comentario->libro_id = $model->id;
