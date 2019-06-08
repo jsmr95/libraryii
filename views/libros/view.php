@@ -40,6 +40,13 @@ span#estrella{
     border: none;
     background: none;
 }
+.label {
+    font-size: 10px;
+    padding: 6px;
+}
+.container {
+    width: 90% !important;
+}
 </style>
 <?php
 $url1 = Url::to(['libros-favs/create']);
@@ -124,56 +131,61 @@ $(document).ready(function(){
 EOT;
 $this->registerJs($followJs);
 ?>
-<div class="libros-view">
+<div class="libros-view col-lg-3 col-md-3 col-xs-3">
     <!-- Titulo del libro y botón para seguirlo-->
-    <center>
-        <h1><?= Html::encode($this->title) ?>
-        <?php
-        $corazon = '';
-        if (!Yii::$app->user->isGuest) {
-            $usuario = Usuarios::findOne(Yii::$app->user->id);
-            $corazon = $usuario->consultaLibroSeguido($usuario->id, $model->id);
-            $disabled = false;
-            if ($corazon == 'autor') {
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12" >
+            <center>
+                <h1><?= Html::encode($this->title) ?>
+                <?php
                 $corazon = '';
-                $disabled = true;
-            }
+                if (!Yii::$app->user->isGuest) {
+                    $usuario = Usuarios::findOne(Yii::$app->user->id);
+                    $corazon = $usuario->consultaLibroSeguido($usuario->id, $model->id);
+                    $disabled = false;
+                    if ($corazon == 'autor') {
+                        $corazon = '';
+                        $disabled = true;
+                    }
+                    ?>
+                    <button class="follow"
+                    <?php if($disabled){ echo "disabled title='No puedes desmarcarlo, te gusta el autor'";}
+                    else {
+                        echo "title='Marcar como favorito'";
+                    }  ?>>
+                        <span id="estrella" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
+                    </button>
+                <?php } ?>
+                </h1>
+            </center>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12" >
+            <!-- Muestro estas opciones solo para el admin -->
+            <?php
+                if (!Yii::$app->user->isGuest){
+                if (Yii::$app->user->identity->login === 'admin'){
             ?>
-            <button class="follow"
-            <?php if($disabled){ echo "disabled title='No puedes desmarcarlo, te gusta el autor'";}
-            else {
-                echo "title='Marcar como favorito'";
-            }  ?>>
-                <span id="estrella" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
-            </button>
-        <?php } ?>
-        </h1>
-    </center>
-    <!-- Muestro estas opciones solo para el admin -->
-    <?php
-        if (!Yii::$app->user->isGuest){
-        if (Yii::$app->user->identity->login === 'admin'){
-    ?>
-    <center>
-    <p>
-        <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Estas seguro de borrar este libro?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-    </center>
-    <?php } } ?>
-
-    <div class="container">
-        <!-- Contenedor de cada libro -->
-        <div class="row">
+            <center>
+            <p>
+                <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => 'Estas seguro de borrar este libro?',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </p>
+            </center>
+            <?php } } ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9 col-lg-9 col-xs-9" >
             <!-- Fila del libro donde incluye la imagen-->
-            <div class="col-md-offset-5 col-md-2">
-                <!-- Columna de 2 y separada 5 que incluye la imagen del libro -->
+            <center>
                 <br>
                 <?php
                 if (empty($model->imagen)) {
@@ -182,168 +194,171 @@ $this->registerJs($followJs);
                     echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'libros']);
                 }
                 ?>
-            </div>
-            <!-- Muestro los seguimientos -->
-            <div class="col-md-offset-1 col-md-2" style="margin-top:40px">
-                <?php
-                    $numLeido = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>1])->count();
-                    $numLeyendo = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>2])->count();
-                    $numGustaría = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>3])->count();
-                 ?>
-                <p><?=$numLeido?> lo ha leido</p>
-                <p><?=$numLeyendo?> lo estan leyendo</p>
-                <p><?=$numGustaría?> le gustaría leerlo</p>
-                <p>A <span id="seguidores">
-                    <?= Yii::$app->runAction('libros/consultaseguidores', ['libro_id' => $model->id]) ?>
-                </span> persona(s) le(s) gusta </p>
-            </div>
+            </center>
         </div>
-        <br><br>
-        <?php if (!Yii::$app->user->isGuest) {
-            $votante = Votos::find()->where(['usuario_id' => $usuarioId,
-                                             'libro_id' => $id])->one();
-            if ($votante) {
-                $voto = $votante->voto;
-            }else {
-                $voto = 0;
-            }
+        <div class="col-md-3 col-xs-3 col-lg-3" style="margin-top: 40px">
+            <?php
+                $numLeido = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>1])->count();
+                $numLeyendo = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>2])->count();
+                $numGustaría = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>3])->count();
+             ?>
+            <p class="label label-primary"><?=$numLeido?> lo ha leido</p>
+            <p class="label label-success"><?=$numLeyendo?> lo estan leyendo</p>
+            <p class="label label-danger"><?=$numGustaría?> le gustaría leerlo</p>
+            <p class="label label-warning">A <span id="seguidores">
+                <?= Yii::$app->runAction('libros/consultaseguidores', ['libro_id' => $model->id]) ?>
+            </span> persona(s) le(s) gusta </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12" >
+            <br><br>
+            <?php if (!Yii::$app->user->isGuest) {
+                $votante = Votos::find()->where(['usuario_id' => $usuarioId,
+                                                 'libro_id' => $id])->one();
+                if ($votante) {
+                    $voto = $votante->voto;
+                }else {
+                    $voto = 0;
+                }
             ?>
-        <div class="row">
             <center>
                 <label class="control-label">Valora el libro:</label>
-                <?= StarRating::widget(['name' => 'rating',
-                                        'value' => $voto,
-                                        'pluginOptions' => [
-                                            'step' => 1 ]
-                                        ]);
+                <?= StarRating::widget(
+                    ['name' => 'rating',
+                        'value' => $voto,
+                        'pluginOptions' => [
+                            'step' => 1 ]
+                    ]);
                 ?>
             </center>
         </div>
+    </div>
         <div class="row">
             <center>
                 <?php $media = Yii::$app->runAction('libros/calculamediavotos',['libro_id' => $id])?>
-                <p>Media:</p>
-                <h4 id="media">
-                    <?= $media ?>
-                </h4>
+                <p class="label label-info">Media:
+                    <h4 id="media">
+                        <?= $media ?>
+                    </h4>
+                </p>
             </center>
         </div>
         <br>
         <br>
     <?php } ?>
-        <div class="row">
-            <!-- Fila del libro donde está la información -->
-            <div class="col-md-8 col-md-offset-2">
-                <!-- Columna de 8 y separada 2 para la información principal-->
-                <div class="panel panel-primary">
-                  <div class="panel-heading">
-                    <center>
-                      Información Principal
-                    </center>
-                  </div>
-                  <div class="panel-body">
-                      <p>Titulo: <?= $model->titulo ?></p>
-                      <p>ISBN: <?= $model->isbn ?></p>
-                      <p>Año: <?= $model->anyo ?></p>
-                      <p>Sinopsis: <?= $model->sinopsis ?></p>
-                      <p title="Enlace a compra">Compra: <?= Html::a('Compra', $model->url_compra) ?></p>
-                      <p>
-                          Autor: <?= Html::a($model->autor->nombre, ['autores/view', 'id' => $model->autor->id])?>
-                      </p>
-                      <p>Género: <?= $model->genero->genero ?></p>
-                  </div>
-                </div>
+</div>
+<div class="col-md-9 col-lg-9 col-xs-9">
+    <div class="row">
+        <!-- Fila del libro donde está la información -->
+        <div class="col-md-8 col-md-offset-2">
+            <!-- Columna de 8 y separada 2 para la información principal-->
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <center>
+                  Información Principal
+                </center>
+              </div>
+              <div class="panel-body">
+                  <p>Titulo: <?= $model->titulo ?></p>
+                  <p>ISBN: <?= $model->isbn ?></p>
+                  <p>Año: <?= $model->anyo ?></p>
+                  <p>Sinopsis: <?= $model->sinopsis ?></p>
+                  <p title="Enlace a compra">Compra: <?= Html::a('Compra', $model->url_compra) ?></p>
+                  <p>
+                      Autor: <?= Html::a($model->autor->nombre, ['autores/view', 'id' => $model->autor->id])?>
+                  </p>
+                  <p>Género: <?= $model->genero->genero ?></p>
+              </div>
             </div>
         </div>
+    </div>
+</div>
 
+    <?php if (!Yii::$app->user->isGuest): ?>
+<div class="row">
+    <div class="col-md-10 col-lg-10 col-xs-10 col-md-offset-1 col-lg-offset-1 col-xs-offset-1">
+        <?php
+        $comentario = new Comentarios();
+        $comentario->libro_id = $model->id;
+        $comentario->usuario_id = Yii::$app->user->identity->id;
+        $comentario->texto = '';
+        $comentario->comentario_id = null;
+        $form = ActiveForm::begin([
+            'method' => 'POST',
+            'action' => Url::to(['comentarios/create']),
+            ]) ?>
+            <?= $form->field($comentario, 'texto')->textarea()->label('Comentar') ?>
+            <?= $form->field($comentario, 'comentario_id')->hiddenInput()->label(false) ?>
+            <?= $form->field($comentario, 'libro_id')->hiddenInput()->label(false) ?>
+            <?= $form->field($comentario, 'usuario_id')->hiddenInput()->label(false) ?>
+            <button class="btn btn-xs btn-success" type="submit" name="button">Comentar</button>
+        <?php ActiveForm::end() ?>
 
-        <?php if (!Yii::$app->user->isGuest): ?>
+        <?php endif; ?>
+    </div>
+<br>
+    <?php
+    pintarComentarios($comentarios, $this);
+    /**
+     * Función para mostrar los comentarios de un libro
+     * @param  array $comentarios Array de comentarios
+     * @param   void $vista   Vista donde se van a mostrar los comentarios
+     * @return void
+     */
+    function pintarComentarios($comentarios, $vista)
+    {
+        ?>
+        <?php if ($comentarios) : ?>
+            <ul>
+            <?php foreach ($comentarios as $comentario) : ?>
+                <div>
+                    <?= $vista->render('/comentarios/_comentario',[
+                        'model' => $comentario
+                        ]) ?>
+                    <?php pintarComentarios($comentario->comentariosHijos(), $vista)?>
+                </div>
+            <?php endforeach ?>
+            </ul>
+    <?php endif;
+    }
+    ?>
 
-        <div class="row">
-            <div class="col-md-offset-1">
-                <?php
-                $comentario = new Comentarios();
-                $comentario->libro_id = $model->id;
-                $comentario->usuario_id = Yii::$app->user->identity->id;
-                $comentario->texto = '';
-                $comentario->comentario_id = null;
-                $form = ActiveForm::begin([
-                    'method' => 'POST',
-                    'action' => Url::to(['comentarios/create']),
-                    ]) ?>
-                    <?= $form->field($comentario, 'texto')->textarea()->label('Comentar') ?>
-                    <?= $form->field($comentario, 'comentario_id')->hiddenInput()->label(false) ?>
-                    <?= $form->field($comentario, 'libro_id')->hiddenInput()->label(false) ?>
-                    <?= $form->field($comentario, 'usuario_id')->hiddenInput()->label(false) ?>
-                    <button class="btn btn-xs btn-success" type="submit" name="button">Comentar</button>
-                <?php ActiveForm::end() ?>
+    <?php if (!Yii::$app->user->isGuest): ?>
+        <!-- modal -->
+        <?php $respuesta = new Comentarios([
+            'usuario_id' => Yii::$app->user->identity->id,
+            'libro_id' => $model->id
+        ]);
+        ?>
 
+        <div class="modal fade" id="respuestaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Nueva respuesta</h4>
+                    </div>
+                    <div class="modal-body">
+                        <?php $form = ActiveForm::begin([
+                            'action' => Url::to(['comentarios/responder-comentario']),
+                            ]) ?>
+                        <?= $form->field($respuesta, 'libro_id')->hiddenInput()->label(false) ?>
+                        <?= $form->field($respuesta, 'comentario_id')->hiddenInput(['class' => 'respuesta_id'])->label(false) ?>
+                        <?= $form->field($respuesta, 'usuario_id')->hiddenInput()->label(false) ?>
+                            <?= $form->field($respuesta, 'texto')->textarea()->label(false) ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Enviar respuesta</button>
+                    </div>
+                    <?php $form->end() ?>
+                </div>
             </div>
         </div>
     <?php endif; ?>
-        <br>
-        <div class="row">
-        <?php
-        pintarComentarios($comentarios, $this);
-        /**
-         * Función para mostrar los comentarios de un libro
-         * @param  array $comentarios Array de comentarios
-         * @param   void $vista   Vista donde se van a mostrar los comentarios
-         * @return void
-         */
-        function pintarComentarios($comentarios, $vista)
-        {
-            ?>
-            <?php if ($comentarios) : ?>
-                <ul>
-                <?php foreach ($comentarios as $comentario) : ?>
-                    <div>
-                        <?= $vista->render('/comentarios/_comentario',[
-                            'model' => $comentario
-                            ]) ?>
-                        <?php pintarComentarios($comentario->comentariosHijos(), $vista)?>
-                    </div>
-                <?php endforeach ?>
-                </ul>
-        <?php endif;
-        }
-        ?>
-
-        <?php if (!Yii::$app->user->isGuest): ?>
-            <!-- modal -->
-            <?php $respuesta = new Comentarios([
-                'usuario_id' => Yii::$app->user->identity->id,
-                'libro_id' => $model->id
-            ]);
-            ?>
-
-            <div class="modal fade" id="respuestaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="exampleModalLabel">Nueva respuesta</h4>
-                        </div>
-                        <div class="modal-body">
-                            <?php $form = ActiveForm::begin([
-                                'action' => Url::to(['comentarios/responder-comentario']),
-                                ]) ?>
-                            <?= $form->field($respuesta, 'libro_id')->hiddenInput()->label(false) ?>
-                            <?= $form->field($respuesta, 'comentario_id')->hiddenInput(['class' => 'respuesta_id'])->label(false) ?>
-                            <?= $form->field($respuesta, 'usuario_id')->hiddenInput()->label(false) ?>
-                                <?= $form->field($respuesta, 'texto')->textarea()->label(false) ?>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Enviar respuesta</button>
-                        </div>
-                        <?php $form->end() ?>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
-        <?php
-//JavaScript para meter el comentario_id a una respuesta
+    <?php
+    //JavaScript para meter el comentario_id a una respuesta
 $js = <<<EOF
 $('#respuestaModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget)
@@ -352,9 +367,6 @@ $('#respuestaModal').on('show.bs.modal', function (event) {
     modal.find('.respuesta_id').val(id)
 })
 EOF;
-            $this->registerJs($js);
-            ?>
-        </div>
-    </div>
-
+        $this->registerJs($js);
+        ?>
 </div>
