@@ -34,6 +34,17 @@ class LibrosSearch extends Libros
     /**
      * {@inheritdoc}
      */
+    public function attributeLabels()
+    {
+        return [
+            'genero.genero' => 'Género',
+            'autor.nombre' => 'Autor',
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class

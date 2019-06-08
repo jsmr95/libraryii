@@ -23,9 +23,9 @@ use kartik\form\ActiveForm;
             <?= $form->field($model, 'titulo')->label(false) ?>
             <?php echo $sort->link('anyo') ?>
             <?= $form->field($model, 'anyo')->label(false) ?>
-            <?php echo $sort->link('genero.genero') ?>
+            <?php echo $sort->link('genero.genero', ['label' => 'Género']) ?>
             <?= $form->field($model, 'genero.genero')->label(false) ?>
-            <?php echo $sort->link('autor.nombre') ?>
+            <?php echo $sort->link('autor.nombre', ['label' => 'Autor']) ?>
             <?= $form->field($model, 'autor.nombre')->label(false) ?>
             <!-- Buscar por autor -->
 
