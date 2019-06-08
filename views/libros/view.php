@@ -131,6 +131,7 @@ $(document).ready(function(){
 EOT;
 $this->registerJs($followJs);
 ?>
+<div class="row">
 <div class="libros-view col-lg-3 col-md-3 col-xs-3">
     <!-- Titulo del libro y botón para seguirlo-->
     <div class="row">
@@ -273,6 +274,7 @@ $this->registerJs($followJs);
             </div>
         </div>
     </div>
+</div>
 </div>
 
     <?php if (!Yii::$app->user->isGuest): ?>
