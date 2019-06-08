@@ -193,8 +193,7 @@ $this->registerJs($followJs);
                 <span id="seguidores">
                 <?= Yii::$app->runAction('usuarios/consultaseguidores', ['usuario_id' => $model->id]) ?>
                 </span>
-            </p>
-            <p>Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></p>
+            Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></p>
         </center>
         <br>
 
@@ -204,219 +203,218 @@ $this->registerJs($followJs);
 
 
 <div class="col-md-9 col-lg-9 col-xs-9">
+    <div class="row">
 
-<div class="row">
-
-    <!-- PANEL CENTRAL -->
-    <div class="col-md-8 col-lg-8 col-xs-8 col-md-offset-2 col-lg-offset-2 col-xs-offset-2">
-        <!-- Columna de 8 para la Info de la cuenta-->
-        <ul class="nav nav-tabs" role="tablist" id="myTabs">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Me gustan</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Lybs</a></li>
-            <li role="presentation"><a href="#leyendo" aria-controls="leyendo" role="tab" data-toggle="tab">Leyendo</a></li>
-            <li role="presentation"><a href="#leer" aria-controls="leer" role="tab" data-toggle="tab">Por leer</a></li>
-            <li role="presentation"><a href="#leidos" aria-controls="leidos" role="tab" data-toggle="tab">Leidos</a></li>
-        </ul>
-        <div class="tab-content ">
-            <div role="tabpanel" class="tab-pane fade in active" id="home">
-        <div class="panel panel-primary ">
-          <div class="panel-heading">Información Cuenta</div>
-          <div class="panel-body">
-              <p>Login: <?= $model->login ?></p>
-              <p>Email: <?= $model->email ?></p>
-          </div>
-        </div>
-    <div class="">
-        <!-- Columna de 8 para la info personal, tendrá 2 de separación dependiendo si tiene o no libros siguiendo-->
-        <div class="panel panel-primary">
-          <div class="panel-heading">Información Personal</div>
-          <div class="panel-body">
-              <p>Nombre: <?= $model->nombre ?></p>
-              <p>Apellido: <?= $model->apellido ?></p>
-              <p>Biografía: <?= $model->biografia ?></p>
-              <p>Autenticado: <?php
-               if (empty($model->auth_key)) {?>
-                   Verificado!
-               <?php } else {?>
-               NO verificado!
-               <?php } ?>
-               </p>
-              <p>Creado: <?= $model->created_at ?></p>
-              <p>Última modificación: <?= $model->updated_at ?></p>
-          </div>
-        </div>
-    </div>
-</div><!-- Final PANEL DE INFORMACION -->
-<div role="tabpanel" class="tab-pane fade" id="profile">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Estados que me gustan...</div>
-        <div class="panel-body">
-            <?php
-            $dataProvider = new ActiveDataProvider([
-                'query' => Estados::find()
-                ->joinWith('estadosFavs')
-                ->where(['estados_favs.usuario_id' => $model->id]),
-            ]);
-            $dataProvider->setSort([
-                'defaultOrder' => ['created_at' => SORT_DESC],
-            ]);
-            $dataProvider->pagination = ['pageSize' => 5];
-            Pjax::begin();
-            echo ListView::widget([
-              'dataProvider' => $dataProvider,
-              'summary' => '',
-              'itemView' => '_userEstados',
-              'layout' => '{items}
-              <center>
-                  <div class="row">
-                      <div class="col-md-12 col-lg-12 col-xs-12">
-                          {pager}
+        <!-- PANEL CENTRAL -->
+        <div class="col-md-8 col-lg-8 col-xs-8 col-md-offset-2 col-lg-offset-2 col-xs-offset-2">
+            <!-- Columna de 8 para la Info de la cuenta-->
+            <ul class="nav nav-tabs" role="tablist" id="myTabs">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Me gustan</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Lybs</a></li>
+                <li role="presentation"><a href="#leyendo" aria-controls="leyendo" role="tab" data-toggle="tab">Leyendo</a></li>
+                <li role="presentation"><a href="#leer" aria-controls="leer" role="tab" data-toggle="tab">Por leer</a></li>
+                <li role="presentation"><a href="#leidos" aria-controls="leidos" role="tab" data-toggle="tab">Leidos</a></li>
+            </ul>
+            <div class="tab-content ">
+                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                    <div class="panel panel-primary ">
+                      <div class="panel-heading">Información Cuenta</div>
+                          <div class="panel-body">
+                              <p>Login: <?= $model->login ?></p>
+                              <p>Email: <?= $model->email ?></p>
+                          </div>
+                    </div>
+                    <!-- Columna de 8 para la info personal, tendrá 2 de separación dependiendo si tiene o no libros siguiendo-->
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">Información Personal</div>
+                      <div class="panel-body">
+                          <p>Nombre: <?= $model->nombre ?></p>
+                          <p>Apellido: <?= $model->apellido ?></p>
+                          <p>Biografía: <?= $model->biografia ?></p>
+                          <p>Autenticado: <?php
+                           if (empty($model->auth_key)) {?>
+                               Verificado!
+                           <?php } else {?>
+                           NO verificado!
+                           <?php } ?>
+                           </p>
+                          <p>Creado: <?= $model->created_at ?></p>
+                          <p>Última modificación: <?= $model->updated_at ?></p>
                       </div>
-                  </div>
-              </center>
-              ',
-          ]);
-          Pjax::end();
-          ?>
-        </div>
-    </div>
-</div><!-- FIN PANEL ME GUSTAN -->
-<div role="tabpanel" class="tab-pane fade" id="messages">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Estados lybreados...</div>
-        <div class="panel-body">
-            <?php
-            $dataProvider = new ActiveDataProvider([
-                'query' => Estados::find()
-                ->joinWith('estadosLybs')
-                ->where(['estados_lyb.usuario_id' => $model->id]),
-            ]);
-            $dataProvider->setSort([
-                'defaultOrder' => ['created_at' => SORT_DESC],
-            ]);
-            $dataProvider->pagination = ['pageSize' => 5];
+                    </div>
+                </div><!-- Final PANEL DE INFORMACION -->
+                <div role="tabpanel" class="tab-pane fade" id="profile">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Estados que me gustan...</div>
+                        <div class="panel-body">
+                            <?php
+                            $dataProvider = new ActiveDataProvider([
+                                'query' => Estados::find()
+                                ->joinWith('estadosFavs')
+                                ->where(['estados_favs.usuario_id' => $model->id]),
+                            ]);
+                            $dataProvider->setSort([
+                                'defaultOrder' => ['created_at' => SORT_DESC],
+                            ]);
+                            $dataProvider->pagination = ['pageSize' => 5];
+                            Pjax::begin();
+                            echo ListView::widget([
+                              'dataProvider' => $dataProvider,
+                              'summary' => '',
+                              'itemView' => '_userEstados',
+                              'layout' => '{items}
+                              <center>
+                                  <div class="row">
+                                      <div class="col-md-12 col-lg-12 col-xs-12">
+                                          {pager}
+                                      </div>
+                                  </div>
+                              </center>
+                              ',
+                          ]);
+                          Pjax::end();
+                          ?>
+                        </div>
+                    </div>
+                </div><!-- FIN PANEL ME GUSTAN -->
+                <div role="tabpanel" class="tab-pane fade" id="messages">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Estados lybreados...</div>
+                        <div class="panel-body">
+                            <?php
+                            $dataProvider = new ActiveDataProvider([
+                                'query' => Estados::find()
+                                ->joinWith('estadosLybs')
+                                ->where(['estados_lyb.usuario_id' => $model->id]),
+                            ]);
+                            $dataProvider->setSort([
+                                'defaultOrder' => ['created_at' => SORT_DESC],
+                            ]);
+                            $dataProvider->pagination = ['pageSize' => 5];
 
-            Pjax::begin();
-            echo ListView::widget([
-              'dataProvider' => $dataProvider,
-              'summary' => '',
-              'itemView' => '_userEstados',
-              'layout' => '{items}
-              <center>
-                  <div class="row">
-                      <div class="col-md-12 col-lg-12 col-xs-12">
-                          {pager}
-                      </div>
-                  </div>
-              </center>
-              ',
-          ]);
-          Pjax::end();
-          ?>
-        </div>
-    </div>
-</div><!-- FIN PANEL MIS LYBS -->
-<div role="tabpanel" class="tab-pane fade" id="leyendo">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Libros en 'leyendo'</div>
-        <div class="panel-body">
-            <?php
-            $dataProvider = new ActiveDataProvider([
-                'query' => Libros::find()
-                ->joinWith('seguimientos')
-                ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 2]),
-            ]);
-            $dataProvider->pagination = ['pageSize' => 5];
+                            Pjax::begin();
+                            echo ListView::widget([
+                              'dataProvider' => $dataProvider,
+                              'summary' => '',
+                              'itemView' => '_userEstados',
+                              'layout' => '{items}
+                              <center>
+                                  <div class="row">
+                                      <div class="col-md-12 col-lg-12 col-xs-12">
+                                          {pager}
+                                      </div>
+                                  </div>
+                              </center>
+                              ',
+                          ]);
+                          Pjax::end();
+                          ?>
+                        </div>
+                    </div>
+                </div><!-- FIN PANEL MIS LYBS -->
+                <div role="tabpanel" class="tab-pane fade" id="leyendo">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Libros en 'leyendo'</div>
+                        <div class="panel-body">
+                            <?php
+                            $dataProvider = new ActiveDataProvider([
+                                'query' => Libros::find()
+                                ->joinWith('seguimientos')
+                                ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 2]),
+                            ]);
+                            $dataProvider->pagination = ['pageSize' => 5];
 
-            Pjax::begin();
-            echo ListView::widget([
-              'dataProvider' => $dataProvider,
-              'summary' => '',
-              'itemView' => '_librosFavs',
-              'layout' => '{items}
-              <center>
-                  <div class="row">
-                      <div class="col-md-12 col-lg-12 col-xs-12">
-                          {pager}
-                      </div>
-                  </div>
-              </center>
-              ',
-          ]);
-          Pjax::end();
-          ?>
-        </div>
-    </div>
-</div><!-- FIN PANEL MIS Leyendo -->
-<div role="tabpanel" class="tab-pane fade" id="leer">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Libros en 'Me gustaría leer'</div>
-        <div class="panel-body">
-            <?php
-            $dataProvider = new ActiveDataProvider([
-                'query' => Libros::find()
-                ->joinWith('seguimientos')
-                ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 3]),
-            ]);
-            $dataProvider->pagination = ['pageSize' => 5];
+                            Pjax::begin();
+                            echo ListView::widget([
+                              'dataProvider' => $dataProvider,
+                              'summary' => '',
+                              'itemView' => '_librosFavs',
+                              'layout' => '{items}
+                              <center>
+                                  <div class="row">
+                                      <div class="col-md-12 col-lg-12 col-xs-12">
+                                          {pager}
+                                      </div>
+                                  </div>
+                              </center>
+                              ',
+                          ]);
+                          Pjax::end();
+                          ?>
+                        </div>
+                    </div>
+                </div><!-- FIN PANEL MIS Leyendo -->
+                <div role="tabpanel" class="tab-pane fade" id="leer">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Libros en 'Me gustaría leer'</div>
+                        <div class="panel-body">
+                            <?php
+                            $dataProvider = new ActiveDataProvider([
+                                'query' => Libros::find()
+                                ->joinWith('seguimientos')
+                                ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 3]),
+                            ]);
+                            $dataProvider->pagination = ['pageSize' => 5];
 
-            Pjax::begin();
-            echo ListView::widget([
-              'dataProvider' => $dataProvider,
-              'summary' => '',
-              'itemView' => '_librosFavs',
-              'layout' => '{items}
-              <center>
-                  <div class="row">
-                      <div class="col-md-12 col-lg-12 col-xs-12">
-                          {pager}
-                      </div>
-                  </div>
-              </center>
-              ',
-          ]);
-          Pjax::end();
-          ?>
-        </div>
-    </div>
-</div><!-- FIN PANEL MIS Por leer -->
-<div role="tabpanel" class="tab-pane fade" id="leidos">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Libros leídos</div>
-        <div class="panel-body">
-            <?php
-            $dataProvider = new ActiveDataProvider([
-                'query' => Libros::find()
-                ->joinWith('seguimientos')
-                ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 1]),
-            ]);
-            $dataProvider->pagination = ['pageSize' => 5];
+                            Pjax::begin();
+                            echo ListView::widget([
+                              'dataProvider' => $dataProvider,
+                              'summary' => '',
+                              'itemView' => '_librosFavs',
+                              'layout' => '{items}
+                              <center>
+                                  <div class="row">
+                                      <div class="col-md-12 col-lg-12 col-xs-12">
+                                          {pager}
+                                      </div>
+                                  </div>
+                              </center>
+                              ',
+                          ]);
+                          Pjax::end();
+                          ?>
+                        </div>
+                    </div>
+                </div><!-- FIN PANEL MIS Por leer -->
+                <div role="tabpanel" class="tab-pane fade" id="leidos">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Libros leídos</div>
+                        <div class="panel-body">
+                            <?php
+                            $dataProvider = new ActiveDataProvider([
+                                'query' => Libros::find()
+                                ->joinWith('seguimientos')
+                                ->where(['seguimientos.usuario_id' => $model->id, 'estado_id' => 1]),
+                            ]);
+                            $dataProvider->pagination = ['pageSize' => 5];
 
-            Pjax::begin();
-            echo ListView::widget([
-              'dataProvider' => $dataProvider,
-              'summary' => '',
-              'itemView' => '_librosFavs',
-              'layout' => '{items}
-              <center>
-                  <div class="row">
-                      <div class="col-md-12 col-lg-12 col-xs-12">
-                          {pager}
-                      </div>
-                  </div>
-              </center>
-              ',
-          ]);
-          Pjax::end();
-          ?>
+                            Pjax::begin();
+                            echo ListView::widget([
+                              'dataProvider' => $dataProvider,
+                              'summary' => '',
+                              'itemView' => '_librosFavs',
+                              'layout' => '{items}
+                              <center>
+                                  <div class="row">
+                                      <div class="col-md-12 col-lg-12 col-xs-12">
+                                          {pager}
+                                      </div>
+                                  </div>
+                              </center>
+                              ',
+                          ]);
+                          Pjax::end();
+                          ?>
+                        </div>
+                    </div>
+                </div><!-- FIN PANEL MIS Leidos -->
+            </div>
         </div>
+
     </div>
-</div><!-- FIN PANEL MIS Leidos -->
 </div>
-</div>
 
-</div>
 <!-- Fila para saber los libro que sigue el usuario-->
 <div class="row">
     <div class="col-md-10 col-lg-10 col-xs-10 col-md-offset-1 col-lg-offset-1 col-xs-offset-1">
@@ -455,5 +453,4 @@ $this->registerJs($followJs);
             </div>
         </div>
     </div>
-</div>
 </div>
