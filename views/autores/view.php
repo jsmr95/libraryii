@@ -35,58 +35,58 @@ span.glyphicon {
     background: none;
 }
 </style>
-<div class="container">
-    <!--Contenedor para el libro -->
-    <?php
-    //Variables que voy a usar
-    $id = $model->id;
-    $fila = AutoresFavs::find()->where(['usuario_id' => $id])->one();
-    $corazon = $model->consultaAutorSeguido(Yii::$app->user->id, $id);
-    $url = Url::to(['autores-favs/create']);
-    $url1 = Url::to(['autores/consultaseguidores']);
-    $followJs = <<<EOT
+<!--Contenedor para el libro -->
+<?php
+//Variables que voy a usar
+$id = $model->id;
+$fila = AutoresFavs::find()->where(['usuario_id' => $id])->one();
+$corazon = $model->consultaAutorSeguido(Yii::$app->user->id, $id);
+$url = Url::to(['autores-favs/create']);
+$url1 = Url::to(['autores/consultaseguidores']);
+$followJs = <<<EOT
 
-    function seguir(event){
-        $.ajax({
-            url: '$url',
-            data: { autor_id: '$id'},
-            success: function(data){
-                if (data == '') {
-                    $('#corazon').removeClass('glyphicon-heart-empty');
-                    $('#corazon').addClass('glyphicon-heart');
-                } else {
-                    $('#corazon').removeClass('glyphicon-heart');
-                    $('#corazon').addClass('glyphicon-heart-empty');
-                }
-                $.ajax({
-                    url: '$url1',
-                    data: { autor_id: '$id'},
-                    success: function(data){
-                        console.log(data);
-                        $('#seguidores')[0].firstChild.nodeValue = data;
-                    }
-                });
+function seguir(event){
+    $.ajax({
+        url: '$url',
+        data: { autor_id: '$id'},
+        success: function(data){
+            if (data == '') {
+                $('#corazon').removeClass('glyphicon-heart-empty');
+                $('#corazon').addClass('glyphicon-heart');
+            } else {
+                $('#corazon').removeClass('glyphicon-heart');
+                $('#corazon').addClass('glyphicon-heart-empty');
             }
-        });
-    }
-
-    $(document).ready(function(){
-        $('.follow').click(seguir);
+            $.ajax({
+                url: '$url1',
+                data: { autor_id: '$id'},
+                success: function(data){
+                    console.log(data);
+                    $('#seguidores')[0].firstChild.nodeValue = data;
+                }
+            });
+        }
     });
+}
+
+$(document).ready(function(){
+    $('.follow').click(seguir);
+});
 EOT;
 $this->registerJs($followJs);
-    ?>
-    <!-- Nombre y corazón para saber si lo sigo-->
-    <?php if (!Yii::$app->user->isGuest) { ?>
+?>
+<!-- Nombre y corazón para saber si lo sigo-->
+<div class="col-md-3 col-lg-3 col-xs-3">
     <center>
         <h1>
             <?= Html::encode($this->title)?>
+    <?php if (!Yii::$app->user->isGuest) { ?>
             <button class="follow" title="Marcar como favorito, esto asignará todos sus libros como favoritos">
                 <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
             </button>
-        </h1>
-    </center>
     <?php } ?>
+    </h1>
+    </center>
     <!-- Muestro estas opciones solo para el admin -->
     <?php
         if (!Yii::$app->user->isGuest){
@@ -105,78 +105,75 @@ $this->registerJs($followJs);
     </p>
     </center>
     <?php } } ?>
-
-    <div class="container">
-        <!-- Contenedor de cada autor -->
-        <div class="row">
-            <div class="col-md-offset-5 col-md-2">
-                <!-- Fila donde colocamos la imagen-->
-                <br>
-                <?php
-                if (empty($model->imagen)) {
-                    echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'autores']);
-                } else {
-                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'autores']);
-                }
-                ?>
+    <!-- colocamos la imagen-->
+    <br>
+    <center>
+    <?php
+    if (empty($model->imagen)) {
+        echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'autores']);
+    } else {
+        echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'autores']);
+    }
+    ?>
+    <br>
+    <div class="row">
+        <br>
+        <p style="margin-top: 15px; font-size:12px; padding:10px" class="label label-primary">Seguidores:
+            <span id="seguidores">
+            <?= Yii::$app->runAction('autores/consultaseguidores', ['autor_id' => $model->id]) ?>
+            </span>
+        </p>
+    </div>
+    </center>
+    <br>
+    <br>
+</div>
+<div class="col-md-9 col-xs-9 col-lg-9">
+    <div class="row">
+        <!-- Fila donde ponemos la información principal-->
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
                 <center>
-                    <p style="margin-top: 15px">Seguidores:
-                        <span id="seguidores">
-                        <?= Yii::$app->runAction('autores/consultaseguidores', ['autor_id' => $model->id]) ?>
-                        </span>
-                    </p>
+                  Información Principal
                 </center>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <!-- Fila donde ponemos la información principal-->
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-primary">
-                  <div class="panel-heading">
-                    <center>
-                      Información Principal
-                    </center>
-                  </div>
-                  <div class="panel-body">
-                      <p>Nombre: <?= $model->nombre ?></p>
-                      <p>Descripción: <?= $model->descripcion ?></p>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Fila donde colocamos los libros escritos por el autor-->
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-primary">
-                  <div class="panel-heading">
-                    <center>
-                      Libros de <?= $model->nombre ?>
-                    </center>
-                  </div>
-                  <div class="panel-body">
-                        <?php
-                        $dataProvider = new ActiveDataProvider([
-                            'query' => Libros::find()->where(['autor_id' => $model->id]),
-                        ]);
-                        $dataProvider->setSort([
-                            'defaultOrder' => ['created_at' => SORT_DESC],
-                        ]);
-                        $dataProvider->pagination = ['pageSize' => 5];
-
-                        Pjax::begin();
-                        echo ListView::widget([
-                          'dataProvider' => $dataProvider,
-                          'summary' => '',
-                          'itemView' => '_librosAutor',
-                      ]);
-                      Pjax::end();
-                      ?>
-                  </div>
-                </div>
+              </div>
+              <div class="panel-body">
+                  <p>Nombre: <?= $model->nombre ?></p>
+                  <p>Descripción: <?= $model->descripcion ?></p>
+              </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <!-- Fila donde colocamos los libros escritos por el autor-->
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <center>
+                  Libros de <?= $model->nombre ?>
+                </center>
+              </div>
+              <div class="panel-body">
+                    <?php
+                    $dataProvider = new ActiveDataProvider([
+                        'query' => Libros::find()->where(['autor_id' => $model->id]),
+                    ]);
+                    $dataProvider->setSort([
+                        'defaultOrder' => ['created_at' => SORT_DESC],
+                    ]);
+                    $dataProvider->pagination = ['pageSize' => 5];
 
+                    Pjax::begin();
+                    echo ListView::widget([
+                      'dataProvider' => $dataProvider,
+                      'summary' => '',
+                      'itemView' => '_librosAutor',
+                  ]);
+                  Pjax::end();
+                  ?>
+              </div>
+            </div>
+        </div>
+    </div>
 </div>
