@@ -2,6 +2,10 @@ html,
 body {
     height: 100%;
     background-color: #fff2e6;
+    font-size: 15px;
+}
+nav{
+    font-size: 18px;
 }
 .container {
     width: 80% !important;
