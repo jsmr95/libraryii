@@ -7,6 +7,7 @@ use yii\data\ActiveDataProvider;
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\widgets\Pjax;
 use yii\widgets\ListView;
 use yii\widgets\DetailView;
 
@@ -159,11 +160,19 @@ $this->registerJs($followJs);
                         $dataProvider = new ActiveDataProvider([
                             'query' => Libros::find()->where(['autor_id' => $model->id]),
                         ]);
+                        $dataProvider->setSort([
+                            'defaultOrder' => ['created_at' => SORT_DESC],
+                        ]);
+                        $dataProvider->pagination = ['pageSize' => 5];
+
+                        Pjax::begin();
                         echo ListView::widget([
                           'dataProvider' => $dataProvider,
                           'summary' => '',
                           'itemView' => '_librosAutor',
-                      ]); ?>
+                      ]);
+                      Pjax::end();
+                      ?>
                   </div>
                 </div>
             </div>

@@ -39,9 +39,7 @@ span.glyphicon {
     width: 500px;
     text-align: center;
 }
-.container {
-    width: 100% !important;
-}
+
 button.follow {
     padding: 0;
     border: none;

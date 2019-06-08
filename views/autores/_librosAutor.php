@@ -5,64 +5,51 @@ use yii\helpers\Html;
 
 ?>
 <style media="screen">
-.libro {
-    padding: 13px;
+/* .libro {
+    padding: 1px;
+    margin-right: 15px;
 }
 .libro-cuerpo {
     background-color: #e8edff;
     position: relative;
-    padding: 3px 5px 3px 15px;
+    padding: 3px 0px 3px 0px;
     border-radius: 6px;
     -webkit-box-shadow: 7px 7px 45px -23px rgba(0,0,0,0.75);
     -moz-box-shadow: 7px 7px 45px -23px rgba(0,0,0,0.75);
     box-shadow: 7px 7px 45px -23px rgba(0,0,0,0.75);
 
-}
-.libro-texto {
+} */
+/* .libro-texto {
     padding-top: 3px;
     padding-bottom: 7px;
     font-family: cursive;
-}
-.glyphicon-trash {
-    color:red;
-    font-size: 20px !important;
-}
+} */
 
-img.librosAutor {
-    width: 50px !important;
-    height: 70px !important;
+img.librosUsuarios {
+    width: 90px !important;
+    height: 120px !important;
     border-radius: 3px;
-    margin-top: 25%;
+    margin-top: 20px !important;
 }
-
 </style>
-<div class="row libro">
-    <!-- Fila para cada libro que tiene un autor-->
-    <div class="col-md-10 libro-cuerpo ">
-        <!-- Columna 10 para cada libro-->
-        <div class="col-md-2">
-            <!-- Imagen AQUI -->
-            <center>
-                <p>
-                <?php
-                if (empty($model->imagen)) {
-                    echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'librosAutor']);
-                } else {
-                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'librosAutor']);
-                }
-                ?>
-                </p>
-            </center>
-        </div>
-        <div class=" col-md-8">
-            <!--Columna de 8 para el titulo y sinopsis del libro -->
-            <h3>
-                <?= Html::a($model->titulo, ['libros/view', 'id' => $model->id]) ?>
-            </h3>
-            <p class="libro-texto">
-                <?= $model->sinopsis ?>
-            </p>
-        </div>
-    </div>
-
+<!-- Fila de cada libro -->
+<div class=" col-md-2 col-lg-2 col-xs-2 ">
+    <!-- Columna de 10 y separado 1 para cada libro-->
+    <!-- Imagen AQUI -->
+    <center>
+        <p>
+        <?php
+        if (empty($model->imagen)) {
+            echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'librosUsuarios']);
+        } else {
+            echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'librosUsuarios']);
+        }
+        ?>
+        </p>
+    </center>
+    <center>
+        <h5>
+            <?= Html::a($model->titulo, ['libros/view', 'id' => $model->id], ['class' => 'tituloLibro']) ?>
+        </h5>
+    </center>
 </div>
