@@ -124,7 +124,6 @@ $this->registerJs($followJs);
                     </button>
                 <?php } ?>
             </h1>
-        </center>
 
         <?php
         if (!Yii::$app->user->isGuest){
@@ -155,7 +154,7 @@ $this->registerJs($followJs);
             echo Html::img(Yii::getAlias('@uploads').'/'.$model->url_avatar, ['class' => 'usuarios']);
         }
         ?>
-
+    </center>
         <!-- Obtengo el estado personal del usuario -->
         </div>
     </div>
@@ -211,7 +210,7 @@ $this->registerJs($followJs);
     <div class="row">
 
         <!-- PANEL CENTRAL -->
-        <div class="col-md-8 col-lg-8 col-xs-8 col-md-offset-2 col-lg-offset-2 col-xs-offset-2">
+        <div class="col-md-8 col-lg-8 col-xs-8 col-md-offset-1 col-lg-offset-1 col-xs-offset-1">
             <!-- Columna de 8 para la Info de la cuenta-->
             <ul class="nav nav-tabs" role="tablist" id="myTabs">
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
