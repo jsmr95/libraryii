@@ -39,9 +39,11 @@ span.glyphicon {
     width: 500px;
     text-align: center;
 }
+.container {
+    width: 100% !important;
+}
 
 </style>
-<div class="container">
     <!--Contenedor para el libro -->
     <?php
     //Variables que voy a usar
@@ -102,101 +104,107 @@ span.glyphicon {
 EOT;
 $this->registerJs($followJs);
     ?>
-    <!-- Nombre y corazón para saber si lo sigo-->
-    <center>
-        <h1>
-            <?= Html::encode($this->title)?>
-            <?php
-            if ($usuarioId != $model->id && !Yii::$app->user->isGuest) { ?>
-                <button class="follow">
-                    <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
-                </button>
-            <?php } ?>
-        </h1>
-    </center>
-
-    <?php
-    if (!Yii::$app->user->isGuest){
-        if (Yii::$app->user->identity->login === $model->login){
-            ?>
-<div class="row">
-    <!-- Fila para mostrar las opciones de un administrador-->
-    <div class="col-md-offset-5 col-md-2 col-lg-offset-5 col-lg-2 col-xs-offset-5 col-xs-2">
-    <p>
-        <?= Html::a('Modificar', ['update', 'id' => $id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Eliminar cuenta', ['delete', 'id' => $id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Estás seguro que desea eliminar su cuenta? Se eliminará TODO su contenido registrado!',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-</div>
-</div>
-<?php } }  ?>
-<div class="row">
-    <!-- Fila para el usuario-->
+<div class="col-md-3 col-lg-3 col-xs-3">
     <div class="row">
-        <div class="col-md-offset-5 col-md-2 col-lg-offset-5 col-lg-2 col-xs-offset-5 col-xs-2">
-            <!-- Columnna de 5 y separada 2 para la imagen del usuario y estado personal -->
-            <br>
-            <?php
-            if (empty($model->url_avatar)) {
-                echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'usuarios']);
-            } else {
-                echo Html::img(Yii::getAlias('@uploads').'/'.$model->url_avatar, ['class' => 'usuarios']);
-            }
-            ?>
+        <div class="col-md-8 col-md-offset-4 col-lg-8 col-lg-offset-4 col-xs-8 col-xs-offset-4" >
+
+        <!-- Nombre y corazón para saber si lo sigo-->
+        <center>
+            <h1>
+                <?= Html::encode($this->title)?>
+                <?php
+                if ($usuarioId != $model->id && !Yii::$app->user->isGuest) { ?>
+                    <button class="follow">
+                        <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
+                    </button>
+                <?php } ?>
+            </h1>
+        </center>
+
+        <?php
+        if (!Yii::$app->user->isGuest){
+            if (Yii::$app->user->identity->login === $model->login){
+                ?>
+
+        <!-- Fila para mostrar las opciones de un administrador-->
+        <p>
+            <?= Html::a('Modificar', ['update', 'id' => $id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Eliminar cuenta', ['delete', 'id' => $id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Estás seguro que desea eliminar su cuenta? Se eliminará TODO su contenido registrado!',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
+
+        <?php } }  ?>
+        <!-- Fila para el usuario-->
+
+        <!-- Columnna de 5 y separada 2 para la imagen del usuario y estado personal -->
+        <br>
+        <?php
+        if (empty($model->url_avatar)) {
+            echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'usuarios']);
+        } else {
+            echo Html::img(Yii::getAlias('@uploads').'/'.$model->url_avatar, ['class' => 'usuarios']);
+        }
+        ?>
+
+        <!-- Obtengo el estado personal del usuario -->
         </div>
     </div>
-
-    <!-- Obtengo el estado personal del usuario -->
-    <?php
-    if (!Yii::$app->user->isGuest){
-        ?>
     <div class="row">
-        <div class="col-md-12 col-lg-12 col-xs-12">
-            <center>
-                <p style="font-style: italic; margin-top: 25px" title="Estado personal">
-                    <?php
-                    $estado = EstadoPersonal::find()
-                        ->where(['usuario_id' => $id])->one();
-                    if ($estado) {
-                        if ($usuarioId === $id) { ?>
+        <div class="col-md-12 col-lg-12 col-xs-12 ">
 
-                        <?= Html::textInput('contenido',$estado->contenido,
-                        [
-                            'id' => 'inputEstadoPersonal',
-                        ]);  ?>
-                    <?php } else { ?>
-                        '<?= Html::encode($estado->contenido) ?>'
-                    <?php } ?>
-                <?php } else if ($usuarioId === $id) { ?>
-                    <?= Html::textInput('contenido','Estado Personal',
+        <?php
+        if (!Yii::$app->user->isGuest){
+            ?>
+        <center>
+            <p style="font-style: italic; margin-top: 25px" title="Estado personal">
+                <?php
+                $estado = EstadoPersonal::find()
+                    ->where(['usuario_id' => $id])->one();
+                if ($estado) {
+                    if ($usuarioId === $id) { ?>
+
+                    <?= Html::textInput('contenido',$estado->contenido,
                     [
                         'id' => 'inputEstadoPersonal',
                     ]);  ?>
                 <?php } else { ?>
-                    'Estado Personal'
+                    '<?= Html::encode($estado->contenido) ?>'
                 <?php } ?>
-                </p>
-            </center>
+            <?php } else if ($usuarioId === $id) { ?>
+                <?= Html::textInput('contenido','Estado Personal',
+                [
+                    'id' => 'inputEstadoPersonal',
+                ]);  ?>
+            <?php } else { ?>
+                'Estado Personal'
+            <?php } ?>
+            </p>
+        </center>
+        <?php } ?>
+        <br>
+        <br>
+        <center>
+            <p>Seguidores:
+                <span id="seguidores">
+                <?= Yii::$app->runAction('usuarios/consultaseguidores', ['usuario_id' => $model->id]) ?>
+                </span>
+            </p>
+            <p>Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></p>
+        </center>
+        <br>
+
         </div>
     </div>
-    <?php } ?>
 </div>
-<br>
-<br>
-<center>
-    <p>Seguidores:
-        <span id="seguidores">
-        <?= Yii::$app->runAction('usuarios/consultaseguidores', ['usuario_id' => $model->id]) ?>
-        </span>
-    </p>
-    <p>Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></p>
-</center>
-<br>
+
+
+<div class="col-md-9 col-lg-9 col-xs-9">
+
 <div class="row">
 
     <!-- PANEL CENTRAL -->
@@ -447,4 +455,5 @@ $this->registerJs($followJs);
             </div>
         </div>
     </div>
+</div>
 </div>
