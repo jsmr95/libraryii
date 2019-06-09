@@ -16,37 +16,46 @@ use kartik\form\ActiveForm;
         'type' => ActiveForm::TYPE_VERTICAL
     ]); ?>
 
-    <!-- Datos cuenta -->
-    <?= $form->field($model, 'id')->hiddenInput()->label(false) ?>
+    <div class="col-md-8">
+        <!-- Personales -->
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+            </div>
+            <div class="col-md-6">
+                <?= $form->field($model, 'apellido')->textInput(['maxlength' => true]) ?>
+            </div>
+        </div>
 
-    <?= $form->field($model, 'login')->textInput(['maxlength' => true]) ?>
+        <!-- Datos cuenta -->
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'id')->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'login')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <!-- Personales -->
-    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'apellido')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'biografia')->textarea(['rows' => 10]) ?>
+        <?= $form->field($model, 'biografia')->textarea(['rows' => 10]) ?>
 
-    <?= $form->field($model, 'url_avatar')->fileInput() ?>
+        <?= $form->field($model, 'url_avatar')->fileInput() ?>
 
-    <?= $form->field($model, 'auth_key')->hiddenInput()->label(false) ?>
+        <?= $form->field($model, 'auth_key')->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'created_at')->hiddenInput()->label(false) ?>
+        <?= $form->field($model, 'created_at')->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'updated_at')->hiddenInput()->label(false) ?>
+        <?= $form->field($model, 'updated_at')->hiddenInput()->label(false) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($titulo, ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Volver', ['usuarios/view', 'id' => $model->id], ['class' => 'btn btn-success btn-danger']) ?>
+        <div class="form-group">
+            <center>
+                <?= Html::submitButton($titulo, ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Volver', ['usuarios/view', 'id' => $model->id], ['class' => 'btn btn-success btn-danger']) ?>
+            </center>
+        </div>
+
+        <?php ActiveForm::end(); ?>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>

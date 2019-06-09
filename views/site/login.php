@@ -50,11 +50,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ])->label('Recuerdame') ?>
 
     <div class="form-group">
-        <div class="col-lg-offset-1 col-lg-11">
+        <div class="col-md-offset-1 col-md-11">
             <!-- Botón Login -->
             <?= Html::submitButton('Logueo', ['submit class' => 'btn btn-primary', 'name' => 'login-button']) ?>
         </div>
-        <div class="col-lg-offset-1 col-lg-11">
+        <div class="col-md-offset-1 col-md-11">
             <br>
             <?= Html::a('Olvidé mi contraseña', ['usuarios/recuperarcontra']) ?>
         </div>
