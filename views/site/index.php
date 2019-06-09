@@ -20,9 +20,12 @@ body {
 footer{
     display: none;
 }
+.libros {
+    margin-top: -30px;
+}
 </style>
 
-<br><br>
+<br><br><br>
 <center>
     <h1>¡Bienvenidos a Libraryii!</h1>
 </center>
@@ -38,9 +41,9 @@ footer{
     comentar que te ha parecido un libro, hacer lybs, marcar como me favorito
     libro e inclusive seguir a otros usuarios para ver sus interacciones.</p>
     </div>
-    <div class="col-md-3 col-md-offset-1">
+    <div class="col-md-3 col-md-offset-1 libros">
         <center>
-            <h2 style="text-decoration: underline; ">Más valorado</h2>
+            <h2 style="text-decoration: underline; ">Más valorado</h2><br>
             <?php
             $dataProvider = new ActiveDataProvider([
                 'query' => Libros::find()->where(['id' =>$libroMasVotado->id])
@@ -51,8 +54,9 @@ footer{
               'itemView' => '_ultimoLanzamientoMedia',
           ]); ?>
         </center>
+        <br>
         <center>
-            <h2 style="text-decoration: underline; ">Último lanzamiento</h2>
+            <h2 style="text-decoration: underline; ">Último lanzamiento</h2><br>
             <?php
             $dataProvider = new ActiveDataProvider([
                 'query' => Libros::find()->where(['id' =>$ultimoLanzamiento->id])
