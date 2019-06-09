@@ -13,19 +13,14 @@ use yii\widgets\ListView;
 $this->title = 'Libraryii';
 ?>
 <style>
-.portada{
-    margin-top: -20px;
-    margin-bottom: -20px;
-    width: 190%%;
-    margin-left: -20%;
-    opacity: 0.2;
-    position: absolute;
+body {
+    background-image: url(<?= Yii::getAlias('@uploads').'/libreria.jpg' ?>);
+    height: auto !important;
 }
 footer{
     display: none;
 }
 </style>
-<?= Html::img(Yii::getAlias('@uploads').'/libreria.jpg', ['class' => 'portada']); ?>
 
 <br><br>
 <center>
