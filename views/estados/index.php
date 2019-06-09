@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
     } ?>
 
     <div class="row">
-        <div class="col-md-12 col-xs-12">
+        <div class="col-md-12">
             <?php echo $this->render('_search', ['model' => $searchModel, 'sort' =>$dataProvider->sort]); ?>
         </div>
     </div>
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]); ?>
 
             <div class="estados-form" >
-                <div class="col-md-6 col-xs-6">
+                <div class="col-md-6 ">
 
                     <?php
                     $model = new Estados();
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'created_at')->textInput()->hiddenInput()->label(false) ?>
                 </div>
-                <div class="col-md-6 col-xs-6">
+                <div class="col-md-6 ">
                     <?= $form->field($model, 'libro_id')->widget(Select2::className(), [
                         'data' => $dataLibros,
                         'options' => ['placeholder' => 'Selecciona un libro si lo deseas, para hacer referencia a él'],
