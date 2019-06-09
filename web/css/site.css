@@ -10,7 +10,9 @@ nav{
 .container {
     width: 75% !important;
 }
-
+footer{
+    display: none;
+}
 .wrap {
     min-height: 100%;
     height: auto;
