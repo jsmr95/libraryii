@@ -38,6 +38,7 @@ span.glyphicon {
     border: none;
     width: 500px;
     text-align: center;
+    background-color: #fff2e6;
 }
 
 button.follow {
