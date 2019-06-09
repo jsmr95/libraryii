@@ -14,7 +14,7 @@ $this->title = 'Libros';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="libros-index">
-
+    <center>
     <h1><?= Html::encode($this->title) ?>
         <?php
         if(!isset($ultimos)){
@@ -33,9 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Introducir Libro', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php  } } ?>
+
+
     <?php echo $this->render('_search', ['model' => $searchModel, 'sort' => $dataProvider->sort]);
-    Pjax::begin();
     ?>
+    </center>
+    <?php Pjax::begin(); ?>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_libros',

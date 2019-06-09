@@ -113,9 +113,9 @@ $this->registerJs($followJs);
 
 <div class="row libro" itemscope itemtype="http://schema.org/Book">
     <!-- Fila para cada libro-->
-    <div class="col-md-12 col-xs-12 col-lg-12 libro-cuerpo " >
+    <div class="col-md-12  libro-cuerpo " >
         <!-- Columna completa de cada libro-->
-        <div class="col-md-3 col-xs-3 col-lg-3">
+        <div class="col-md-3 ">
             <!-- Columna de 3 para la imagen del libro-->
             <center>
                 <p itemprop="image">
@@ -129,9 +129,9 @@ $this->registerJs($followJs);
                 </p>
             </center>
         </div>
-        <div class="col-md-9 col-xs-9 col-lg-9 libro-cabecera ">
+        <div class="col-md-9  libro-cabecera ">
             <div class="row">
-                <div class="col-md-9 col-xs-9 col-lg-9">
+                <div class="col-md-9 ">
                     <h2 itemprop="name">
                         <?= Html::a($model->titulo, [
                         'libros/view',
@@ -160,7 +160,7 @@ $this->registerJs($followJs);
                         </button>
                     </h2>
                 </div>
-                <div class="col-md-3 col-xs-3 col-lg-3">
+                <div class="col-md-3 ">
                     <?php
                     $seguimientoStr = '...';
                     $seguimiento = Seguimientos::find()
@@ -193,7 +193,7 @@ $this->registerJs($followJs);
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-xs-4">
+                <div class="col-md-4">
                     <ul>
                         <li itemprop="author">Autor: <?= Html::a($model->autor->nombre, ['autores/view', 'id' => $model->autor->id]) ?></li>
                         <li itemprop="copyrightYear">Año: <?= $model->anyo ?></li>
@@ -215,7 +215,7 @@ $this->registerJs($followJs);
 
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-8 col-xs-8">
+                <div class="col-md-8 ">
                     <div itemprop="description">
                         <!-- Columna de 5 para la sinopsis-->
                         <?= $model->sinopsis  ?>

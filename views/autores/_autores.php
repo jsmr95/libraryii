@@ -52,9 +52,9 @@ img.autores {
 </style>
 <div class="row autor">
     <!-- Fila por cada autor -->
-    <div class="autor-cuerpo col-md-12" itemscope itemtype="http://schema.org/Person">
+    <div class="autor-cuerpo col-md-12 " itemscope itemtype="http://schema.org/Person">
         <!-- Caja de información-->
-        <div class="col-md-3">
+        <div class="col-md-3 ">
             <!-- Imagen AQUI -->
             <center>
                 <p itemprop="image">
@@ -68,7 +68,7 @@ img.autores {
                 </p>
             </center>
         </div>
-        <div class=" col-md-7" itemprop="name">
+        <div class=" col-md-7 " itemprop="name">
             <!-- Información del autor -->
             <h2>
                 <?= Html::a($model->nombre, ['autores/view', 'id' => $model->id]) ?>
