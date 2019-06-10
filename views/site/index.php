@@ -11,6 +11,12 @@ use yii\widgets\ListView;
 
 $this->title = 'Libraryii';
  ?>
+ <style>
+ body {
+    background-image: url(<?= Yii::getAlias('@uploads').'/libreria.jpg' ?>);
+    height: auto !important;
+}
+</style>
 <br><br><br>
     <h1 style="text-align: center">¡Bienvenidos a Libraryii!</h1>
 <br><br><br>
@@ -26,7 +32,7 @@ $this->title = 'Libraryii';
     libro e inclusive seguir a otros usuarios para ver sus interacciones.</p>
     </div>
     <div class="col-md-3 col-md-offset-1 libros" style="text-align: center; margin-top: -30px">
-        <h2 style="text-decoration: underline; ">Más valorado</h2><br>
+        <h3 style="text-decoration: underline; ">Más valorado</h3><br>
         <?php
         $dataProvider = new ActiveDataProvider([
             'query' => Libros::find()->where(['id' =>$libroMasVotado->id])
@@ -37,7 +43,7 @@ $this->title = 'Libraryii';
           'itemView' => '_ultimoLanzamientoMedia',
       ]); ?>
     <br>
-        <h2 style="text-decoration: underline; ">Último lanzamiento</h2><br>
+        <h3 style="text-decoration: underline; ">Último lanzamiento</h3><br>
         <?php
         $dataProvider = new ActiveDataProvider([
             'query' => Libros::find()->where(['id' =>$ultimoLanzamiento->id])
