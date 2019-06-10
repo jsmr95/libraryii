@@ -130,10 +130,10 @@ EOT;
 $this->registerJs($followJs);
 ?>
 <div class="row">
-<div class="libros-view col-lg-3 col-md-3 col-xs-3">
+<div class="libros-view col-md-3">
     <!-- Titulo del libro y botón para seguirlo-->
     <div class="row">
-        <div class="col-md-12 col-lg-12 col-xs-12" >
+        <div class="col-md-12 " >
             <center>
                 <h1><?= Html::encode($this->title) ?>
                 <?php
@@ -160,7 +160,7 @@ $this->registerJs($followJs);
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 col-lg-12 col-xs-12" >
+        <div class="col-md-12 " >
             <!-- Muestro estas opciones solo para el admin -->
             <?php
                 if (!Yii::$app->user->isGuest){
@@ -182,7 +182,7 @@ $this->registerJs($followJs);
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9 col-lg-9 col-xs-9" >
+        <div class="col-md-9" >
             <!-- Fila del libro donde incluye la imagen-->
             <center>
                 <br>
@@ -195,7 +195,7 @@ $this->registerJs($followJs);
                 ?>
             </center>
         </div>
-        <div class="col-md-3 col-xs-3 col-lg-3" style="margin-top: 40px">
+        <div class="col-md-3 " style="margin-top: 40px">
             <?php
                 $numLeido = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>1])->count();
                 $numLeyendo = Seguimientos::find()->where(['libro_id'=>$id,'estado_id'=>2])->count();
@@ -211,7 +211,7 @@ $this->registerJs($followJs);
     </div>
     <?php if (!Yii::$app->user->isGuest) { ?>
     <div class="row">
-        <div class="col-md-12 col-lg-12 col-xs-12" >
+        <div class="col-md-12 " >
             <br><br>
                 <?php
                 $votante = Votos::find()->where(['usuario_id' => $usuarioId,
@@ -248,7 +248,8 @@ $this->registerJs($followJs);
         <br>
     <?php } ?>
 </div>
-<div class="col-md-9 col-lg-9 col-xs-9">
+<br>
+<div class="col-md-9 ">
     <div class="row">
         <!-- Fila del libro donde está la información -->
         <div class="col-md-8 col-md-offset-2">
@@ -277,7 +278,7 @@ $this->registerJs($followJs);
 </div>
 
 <div class="row">
-    <div class="col-md-10 col-lg-10 col-xs-10 col-md-offset-1 col-lg-offset-1 col-xs-offset-1">
+    <div class="col-md-10 col-md-offset-1">
         <?php if (!Yii::$app->user->isGuest): ?>
         <?php
         $comentario = new Comentarios();
