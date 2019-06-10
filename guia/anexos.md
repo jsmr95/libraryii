@@ -1,5 +1,10 @@
 # Anexos
 
+### **(R24) Despliegue en Heroku, (R38) Desplieue en Local**
+---
+
+![Diagrama Despliegue](images/despliegue.png)
+
 ### **(R68) Validación de HTML y CSS, nivel de accesibilidad AA y prueba del seis**
 ---
 ### Validación de HTML y CSS
