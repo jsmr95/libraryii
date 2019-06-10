@@ -19,7 +19,8 @@ use yii\helpers\Html;
     margin-bottom: 40px;
     margin-top: 40px;
     width: 230px;
-    margin-right: 55px;
+    margin-left: 50px;
+    margin-right: 5px;
 }
 
 img.usuarios {
