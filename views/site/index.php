@@ -18,7 +18,7 @@ $this->title = 'Libraryii';
 }
 </style>
 <br><br><br>
-    <h1 style="text-align: center">¡Bienvenidos a Libraryii!</h1>
+    <p style="text-align: center;font-size: 30pt">¡Bienvenidos a Libraryii!</p>
 <br><br><br>
 <div class="row">
     <div class="col-md-8" style="font-size:28px">
