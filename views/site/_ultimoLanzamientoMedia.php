@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 
 ?>
-<style media="screen">
+<style  >
 .libro {
     padding: 13px;
 }

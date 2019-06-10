@@ -11,7 +11,7 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 
 ?>
-<style media="screen">
+<style  >
 .cuerpo_estado {
     background-color: #ffe6cc;
     position: relative;

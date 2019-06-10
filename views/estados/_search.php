@@ -1,4 +1,4 @@
-<style media="screen">
+<style  >
     #estadossearch-estado, #estadossearch-libro-titulo {
         width: 300px;
     }

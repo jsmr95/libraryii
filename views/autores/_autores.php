@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 
 ?>
-<style media="screen">
+<style>
 .right{
     float: right;
     margin-top: 7px;

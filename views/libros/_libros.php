@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 
 ?>
-<style media="screen">
+<style  >
 .right{
     float: right;
     margin-top: 7px;

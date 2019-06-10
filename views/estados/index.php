@@ -1,4 +1,4 @@
-<style media="screen">
+<style  >
     #postear {
         border: 1px solid;
         border-radius: 15px;

@@ -1,4 +1,4 @@
-<style media="screen">
+<style  >
     #usuariossearch-login {
         width: 300px;
     }
