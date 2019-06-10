@@ -1,6 +1,3 @@
-<head>
-    
-</head>
 <?php
 
 /* @var $this yii\web\View */
