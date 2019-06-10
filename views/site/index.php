@@ -25,7 +25,7 @@ $this->title = 'Libraryii';
     comentar que te ha parecido un libro, hacer lybs, marcar como favorito
     libro e inclusive seguir a otros usuarios para ver sus interacciones.</p>
     </div>
-    <div class="col-md-3 col-md-offset-1 libros" style="text-align: center">
+    <div class="col-md-3 col-md-offset-1 libros" style="text-align: center; margin-top: -30px">
         <h2 style="text-decoration: underline; ">Más valorado</h2><br>
         <?php
         $dataProvider = new ActiveDataProvider([
