@@ -13,26 +13,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Autores */
-?>
-<style>
 
-img.autores {
-    width: 190px !important;
-    height: 225px !important;
-    border-radius: 20px;
-}
-span.glyphicon {
-    color:red;
-}
-.follow{
-    padding: 0;
-    border: none;
-    background: none;
-}
-</style>
-
-<!--Contenedor para el libro -->
-<?php
 $this->title = $model->nombre;
 $this->params['breadcrumbs'][] = ['label' => 'Autores', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -82,7 +63,7 @@ $this->registerJs($followJs);
         <?= Html::encode($this->title)?>
         <?php if (!Yii::$app->user->isGuest) { ?>
             <button class="follow" title="Marcar como favorito, esto asignará todos sus libros como favoritos">
-                <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
+                <span id="corazon" class='corazon glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
             </button>
         <?php } ?>
     </h1>

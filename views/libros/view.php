@@ -15,34 +15,6 @@ use kartik\rating\StarRating;
 /* @var $this yii\web\View */
 /* @var $model app\models\Libros */
 
-?>
-<style>
-
-img.libros {
-    width: 190px !important;
-    height: 225px !important;
-    border-radius: 20px;
-}
-
-span#estrella{
-    color: rgb(247, 185, 43);
-}
-
-.caption {
-    display: none !important;
-}
-.follow{
-    padding: 0;
-    border: none;
-    background: none;
-}
-.label {
-    font-size: 10px;
-    padding: 6px;
-}
-
-</style>
-<?php
 $this->title = $model->titulo;
 $this->params['breadcrumbs'][] = ['label' => 'Libros', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

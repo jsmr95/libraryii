@@ -18,62 +18,7 @@ use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
-?>
-<style>
-#items{
-    list-style: none;
-    margin:0px;
-    margin-top:4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 3px;
-    font-size: 17px;
-    color: #333333;
-}
-#menu{
-    z-index: 9999 !important;
-    display:none;
-    position:fixed;
-    border:1px solid #B2B2B2;
-    width: auto;
-    background: #F9F9F9;
-    box-shadow: 3px 3px 2px #E9E9E9;
-    border-radius: 4px;
-}
-li {
-    padding: 3px;
-    padding-left: 10px;
-}
-#items:hover {
-    color:white;
-    background: #284570;
-    border-radius: 2px;
-}
 
-img.usuarios {
-    width: 190px !important;
-    height: 225px !important;
-    border-radius: 110px;
-}
-span.glyphicon {
-    color:red;
-}
-
-#inputEstadoPersonal {
-    border: none;
-    width: 500px;
-    text-align: center;
-    background-color: #fff2e6;
-}
-
-button.follow {
-    padding: 0;
-    border: none;
-    background: none;
-}
-
-</style>
-<?php
 $this->title = $model->nombre . ' ' . $model->apellido;
 $this->params['breadcrumbs'][] = ['label' => 'Social', 'url' => ['estados/index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -197,7 +142,7 @@ $this->registerJs($followJs);
                 <?php
                 if ($usuarioId != $model->id && !Yii::$app->user->isGuest) { ?>
                     <button class="follow">
-                        <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
+                        <span id="corazon" class='corazon glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
                     </button>
                 <?php } ?>
             </h1>
@@ -273,6 +218,7 @@ $this->registerJs($followJs);
         <br>
         <span class="label label-success">
         Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></span>
+        <br>
         <br>
 
         </div>

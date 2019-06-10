@@ -1,3 +1,6 @@
+<head>
+    
+</head>
 <?php
 
 /* @var $this yii\web\View */
@@ -9,21 +12,6 @@ use yii\helpers\Html;
 
 use yii\widgets\ListView;
 
-
-?>
-<style>
-body {
-    background-image: url(<?= Yii::getAlias('@uploads').'/libreria.jpg' ?>);
-    height: auto !important;
-}
-footer{
-    display: none;
-}
-.libros {
-    margin-top: -30px;
-}
-</style>
-<?php
 $this->title = 'Libraryii';
  ?>
 <br><br><br>
