@@ -108,9 +108,9 @@ button.follow {
 EOT;
 $this->registerJs($followJs);
     ?>
-<div class="col-md-3 col-lg-3 col-xs-3">
+<div class="col-md-3">
     <div class="row">
-        <div class="col-md-8 col-md-offset-4 col-lg-8 col-lg-offset-4 col-xs-8 col-xs-offset-4" >
+        <div class="col-md-8 col-md-offset-4" >
 
         <!-- Nombre y corazón para saber si lo sigo-->
         <center>
@@ -158,7 +158,7 @@ $this->registerJs($followJs);
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 col-lg-12 col-xs-12 ">
+        <div class="col-md-12  ">
 
         <?php
         if (!Yii::$app->user->isGuest){
@@ -207,11 +207,11 @@ $this->registerJs($followJs);
 </div>
 
 
-<div class="col-md-9 col-lg-9 col-xs-9">
+<div class="col-md-9 ">
     <div class="row">
 
         <!-- PANEL CENTRAL -->
-        <div class="col-md-8 col-lg-8 col-xs-8 col-md-offset-1 col-lg-offset-1 col-xs-offset-1">
+        <div class="col-md-8 col-md-offset-1">
             <!-- Columna de 8 para la Info de la cuenta-->
             <ul class="nav nav-tabs" role="tablist" id="myTabs">
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
@@ -422,7 +422,7 @@ $this->registerJs($followJs);
 
 <!-- Fila para saber los libro que sigue el usuario-->
 <div class="row">
-    <div class="col-md-10 col-lg-10 col-xs-10 col-md-offset-1 col-lg-offset-1 col-xs-offset-1">
+    <div class="col-md-10  col-md-offset-1 ">
         <!-- Columna de 10-->
         <div class="panel panel-primary">
             <div class="panel-heading">Libros favoritos</div>

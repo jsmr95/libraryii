@@ -33,7 +33,7 @@ img.librosUsuarios {
 }
 </style>
 <!-- Fila de cada libro -->
-<div class=" col-md-2 col-lg-2 col-xs-2 ">
+<div class=" col-md-2 col-xs-6 ">
     <!-- Columna de 10 y separado 1 para cada libro-->
     <!-- Imagen AQUI -->
     <center>

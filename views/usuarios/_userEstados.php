@@ -52,8 +52,8 @@ if ($usua) {
     ?>
 
 <div class="row ">
-    <div class=" col-md-10 col-lg-10 col-xs-10 cuerpo_estado">
-        <div class=" col-md-2 col-lg-2 col-xs-2">
+    <div class=" col-md-10  cuerpo_estado">
+        <div class=" col-md-2">
             <!-- Imagen AQUI -->
             <center>
                 <p>
@@ -67,7 +67,7 @@ if ($usua) {
                 </p>
             </center>
         </div>
-        <div class=" col-md-8 col-lg-8 col-xs-8">
+        <div class=" col-md-8 ">
         <span>
             <h2>
                 <?= Html::a(
@@ -87,7 +87,7 @@ if ($usua) {
             </p>
         </div>
         <?php if ($model->libro_id != '' || $model->libro_id != null) { ?>
-        <div class="col-md-2 col-lg-2 col-xs-2">
+        <div class="col-md-2 ">
             <center>
                 <?php
                 $dataProvider = new ActiveDataProvider([
