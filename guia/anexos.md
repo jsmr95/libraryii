@@ -6,7 +6,7 @@
 
 **HTML**
 
-![Validación HTML](images/prueba_.png)
+![Validación HTML](images/prueba_html.png)
 
 [Enlace a la validación HTML](https://validator.w3.org/nu/?doc=http%3A%2F%2Flibraryii.herokuapp.com)
 
