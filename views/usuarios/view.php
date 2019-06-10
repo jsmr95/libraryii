@@ -215,6 +215,7 @@ $this->registerJs($followJs);
             <!-- Columna de 8 para la Info de la cuenta-->
             <ul class="nav nav-tabs" role="tablist" id="myTabs">
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
+                <li role="presentation"><a href="#misPosts" aria-controls="misPosts" role="tab" data-toggle="tab">Posts</a></li>
                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Me gustan</a></li>
                 <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Lybs</a></li>
                 <li role="presentation"><a href="#leyendo" aria-controls="leyendo" role="tab" data-toggle="tab">Leyendo</a></li>
@@ -226,29 +227,62 @@ $this->registerJs($followJs);
                     <div class="panel panel-primary ">
                       <div class="panel-heading">Información Cuenta</div>
                           <div class="panel-body">
-                              <p>Login: <?= $model->login ?></p>
-                              <p>Email: <?= $model->email ?></p>
+                              <p><strong>Login:</strong> <?= $model->login ?></p>
+                              <p><strong>Email:</strong> <?= $model->email ?></p>
                           </div>
                     </div>
                     <!-- Columna de 8 para la info personal, tendrá 2 de separación dependiendo si tiene o no libros siguiendo-->
                     <div class="panel panel-primary">
                       <div class="panel-heading">Información Personal</div>
                       <div class="panel-body">
-                          <p>Nombre: <?= $model->nombre ?></p>
-                          <p>Apellido: <?= $model->apellido ?></p>
-                          <p>Biografía: <?= $model->biografia ?></p>
-                          <p>Autenticado: <?php
+                          <p><strong>Nombre:</strong> <?= $model->nombre ?></p>
+                          <p><strong>Apellido:</strong> <?= $model->apellido ?></p>
+                          <p><strong>Biografía:</strong> <?= $model->biografia ?></p>
+                          <p><strong>Autenticado:</strong> <?php
                            if (empty($model->auth_key)) {?>
                                Verificado!
                            <?php } else {?>
                            NO verificado!
                            <?php } ?>
                            </p>
-                          <p>Creado: <?= $model->created_at ?></p>
-                          <p>Última modificación: <?= $model->updated_at ?></p>
+                          <p><strong>Creado:</strong> <?= $model->created_at ?></p>
+                          <p><strong>Última modificación:</strong> <?= $model->updated_at ?></p>
                       </div>
                     </div>
                 </div><!-- Final PANEL DE INFORMACION -->
+                <div role="tabpanel" class="tab-pane fade" id="misPosts">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Posts del usuarios...</div>
+                        <div class="panel-body">
+                            <?php
+                            $dataProvider = new ActiveDataProvider([
+                                'query' => Estados::find()
+                                ->where(['usuario_id' => $model->id]),
+                            ]);
+                            $dataProvider->setSort([
+                                'defaultOrder' => ['created_at' => SORT_DESC],
+                            ]);
+                            $dataProvider->pagination = ['pageSize' => 5];
+                            Pjax::begin();
+                            echo ListView::widget([
+                              'dataProvider' => $dataProvider,
+                              'summary' => '',
+                              'itemView' => '_userEstados',
+                              'layout' => '{items}
+                              <center>
+                                  <div class="row">
+                                      <div class="col-md-12 col-lg-12 col-xs-12">
+                                          {pager}
+                                      </div>
+                                  </div>
+                              </center>
+                              ',
+                          ]);
+                          Pjax::end();
+                          ?>
+                        </div>
+                    </div>
+                </div>
                 <div role="tabpanel" class="tab-pane fade" id="profile">
                     <div class="panel panel-primary">
                         <div class="panel-heading">Estados que me gustan...</div>
