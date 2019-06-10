@@ -293,6 +293,11 @@ in the request.</td>
         <td>Accion para que el admin pueda desbanear a los usuarios.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
     </tr>
+            <tr id="actionGuardacookie()">
+        <td><a href="app-controllers-usuarioscontroller.html#actionGuardacookie()-detail">actionGuardacookie()</a></td>
+        <td>Accion que guarda el color del panel-heading en una cookie.</td>
+        <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
+    </tr>
             <tr id="actionIndex()">
         <td><a href="app-controllers-usuarioscontroller.html#actionIndex()-detail">actionIndex()</a></td>
         <td>Lists all Usuarios models.</td>
@@ -301,6 +306,11 @@ in the request.</td>
             <tr id="actionModificarcontra()">
         <td><a href="app-controllers-usuarioscontroller.html#actionModificarcontra()-detail">actionModificarcontra()</a></td>
         <td>Funcion para modificar la contraseña.</td>
+        <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
+    </tr>
+            <tr id="actionObtenercookie()">
+        <td><a href="app-controllers-usuarioscontroller.html#actionObtenercookie()-detail">actionObtenercookie()</a></td>
+        <td>Accion que retorna una cookie si existiera.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
     </tr>
             <tr id="actionRecuperarcontra()">
@@ -565,7 +575,7 @@ in the request.</td>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-                                                                                                                                                        <tr id="findModel()">
+                                                                                                                                                                <tr id="findModel()">
         <td><a href="app-controllers-usuarioscontroller.html#findModel()-detail">findModel()</a></td>
         <td>Finds the Usuarios model based on its primary key value.</td>
         <td><a href="app-controllers-usuarioscontroller.html">app\controllers\UsuariosController</a></td>
@@ -764,6 +774,35 @@ in the request.</td>
 
 <!--	-->
 
+    <div class="detail-header h3" id="actionGuardacookie()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#actionGuardacookie()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionGuardacookie()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Accion que guarda el color del panel-heading en una cookie.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-controllers-usuarioscontroller.html#actionGuardacookie()-detail">actionGuardacookie</a></strong> ( <span style="color: #0000BB">$color</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$color</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Color en hexadecimal</p>
+</td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
     <div class="detail-header h3" id="actionIndex()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#actionIndex()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -810,6 +849,35 @@ in the request.</td>
                   <th class="param-name-col">return</th>
                   <td class="param-type-col">\app\controllers\[type]</td>
                   <td class="param-desc-col"><p>[description]</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionObtenercookie()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-usuarioscontroller.html#actionObtenercookie()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionObtenercookie()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Accion que retorna una cookie si existiera.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-controllers-usuarioscontroller.html#actionObtenercookie()-detail">actionObtenercookie</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>La cadena del valor de la cookie</p>
 </td>
                 </tr>
                                     </table>
@@ -1148,7 +1216,7 @@ or be detached using <a href="yii-base-component.html#detachBehavior()-detail">d
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 09 Jun 2019 10:13:11 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Mon, 10 Jun 2019 23:31:36 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {
