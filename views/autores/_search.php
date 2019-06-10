@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
     <div class="row" >
-        <div class="col-md-3" style="border:1px solid; padding:20px; border-radius:9px">
+        <div class="col-md-3" style=" padding:20px;">
 
             <?php echo $sort->link('nombre'); ?>
             <?= $form->field($model, 'nombre')->label(false) ?>
