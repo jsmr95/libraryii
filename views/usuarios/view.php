@@ -24,6 +24,35 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <style>
+#items{
+    list-style: none;
+    margin:0px;
+    margin-top:4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    font-size: 17px;
+    color: #333333;
+}
+#menu{
+    z-index: 9999 !important;
+    display:none;
+    position:fixed;
+    border:1px solid #B2B2B2;
+    width: auto;
+    background: #F9F9F9;
+    box-shadow: 3px 3px 2px #E9E9E9;
+    border-radius: 4px;
+}
+li {
+    padding: 3px;
+    padding-left: 10px;
+}
+#items:hover {
+    color:white;
+    background: #284570;
+    border-radius: 2px;
+}
 
 img.usuarios {
     width: 190px !important;
@@ -94,6 +123,12 @@ button.follow {
         });
     }
 
+    function cambiarColorYGuardaCookie(){
+        var color = $("#pickerColor").val();
+        $(".panel-heading").css('background-color', color);
+        
+    }
+
     $(document).ready(function(){
         $('.follow').click(seguir);
         $('#inputEstadoPersonal').change(cambiarEstado);
@@ -104,10 +139,34 @@ button.follow {
             $(this).tab('show')
         });
 
+        //Función para cambiar de color el panel-heading
+        $('.panel-heading').contextmenu(function(e){
+            e.preventDefault();
+
+            if ($("#menu").css('display') == 'block') {
+                $("#menu").hide();
+                return;
+            }
+
+            $("#menu").css("left", e.clientX);
+            $("#menu").css("top", e.clientY);
+            $("#menu").fadeIn(200);
+            $('#pickerColor').change(function(){
+                $("#menu").hide();
+                cambiarColorYGuardaCookie();
+            });
+        });
+
     });
 EOT;
 $this->registerJs($followJs);
     ?>
+<!-- Menú -->
+<div id="menu">
+    <ul id="items">
+        <li><input type="color" id="pickerColor">Cambiar color</li>
+    </ul>
+</div>
 <div class="col-md-3">
     <div class="row">
         <div class="col-md-8 col-md-offset-4" >
@@ -211,7 +270,7 @@ $this->registerJs($followJs);
     <div class="row">
 
         <!-- PANEL CENTRAL -->
-        <div class="col-md-8 col-md-offset-1">
+        <div class="col-md-9 col-md-offset-1 col-xs-12">
             <!-- Columna de 8 para la Info de la cuenta-->
             <ul class="nav nav-tabs" role="tablist" id="myTabs">
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Información</a></li>
