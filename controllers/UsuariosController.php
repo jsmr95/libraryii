@@ -366,4 +366,25 @@ class UsuariosController extends Controller
         Yii::$app->session->setFlash('success', 'El usuario ha sido desbaneado');
         return $this->redirect(['usuarios/index']);
     }
+
+    /**
+     * Accion que guarda el color del panel-heading en una cookie.
+     * @param  string $color color en hexadecimal
+     */
+    public function actionGuardacookie($color)
+    {
+        //Expira en 7 dias
+        $valor = $color;
+        setcookie('colorPanel', $valor, time() + 60 * 60 * 24 * 7);
+        return $color;
+    }
+
+    /**
+     * Accion que retorna una cookie si existiera.
+     * @return string la cadena del valor de la cookie
+     */
+    public function actionObtenercookie()
+    {
+        return $_COOKIE['colorPanel'];
+    }
 }

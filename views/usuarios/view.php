@@ -87,6 +87,8 @@ button.follow {
     $url1 = Url::to(['users-favs/create']);
     $url2 = Url::to(['estado-personal/create']);
     $url3 = Url::to(['usuarios/consultaseguidores']);
+    $url4 = Url::to(['usuarios/guardacookie']);
+    $url5 = Url::to(['usuarios/obtenercookie']);
     $followJs = <<<EOT
 
     function seguir(event){
@@ -126,10 +128,26 @@ button.follow {
     function cambiarColorYGuardaCookie(){
         var color = $("#pickerColor").val();
         $(".panel-heading").css('background-color', color);
-        
+        $.ajax({
+            url: '$url4',
+            data: { color: color },
+            success: function(data){
+                console.log(data);
+            }
+        });
+    }
+
+    function obtenerCookie(){
+        $.ajax({
+            url: '$url5',
+            success: function(data){
+                $(".panel-heading").css('background-color', data);
+            }
+        });
     }
 
     $(document).ready(function(){
+        obtenerCookie();
         $('.follow').click(seguir);
         $('#inputEstadoPersonal').change(cambiarEstado);
 
