@@ -21,13 +21,10 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Logueo';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <center>
+<div class="site-login" style="text-align: center">
         <h1><?= Html::encode($this->title) ?></h1>
         <p>Use su usuario o email y contraseña para loguearse:</p>
-    </center>
     <br>
-    <center>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
@@ -61,5 +58,4 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <?php ActiveForm::end(); ?>
-</center>
 </div>

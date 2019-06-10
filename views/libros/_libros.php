@@ -115,19 +115,17 @@ $this->registerJs($followJs);
     <!-- Fila para cada libro-->
     <div class="col-md-12  libro-cuerpo " >
         <!-- Columna completa de cada libro-->
-        <div class="col-md-3 ">
+        <div class="col-md-3 " style="text-align: center">
             <!-- Columna de 3 para la imagen del libro-->
-            <center>
-                <p itemprop="image">
-                    <?php
-                    if (empty($model->imagen)) {
-                        echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'libros']);
-                    } else {
-                        echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'libros']);
-                    }
-                    ?>
-                </p>
-            </center>
+            <p itemprop="image">
+                <?php
+                if (empty($model->imagen)) {
+                    echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'libros']);
+                } else {
+                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'libros']);
+                }
+                ?>
+            </p>
         </div>
         <div class="col-md-9  libro-cabecera ">
             <div class="row">

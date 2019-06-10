@@ -49,11 +49,9 @@ use kartik\form\ActiveForm;
 
         <?= $form->field($model, 'updated_at')->hiddenInput()->label(false) ?>
 
-        <div class="form-group">
-            <center>
-                <?= Html::submitButton($titulo, ['class' => 'btn btn-success']) ?>
-                <?= Html::a('Volver', ['usuarios/view', 'id' => $model->id], ['class' => 'btn btn-success btn-danger']) ?>
-            </center>
+        <div class="form-group" style="text-align: center">
+            <?= Html::submitButton($titulo, ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Volver', ['usuarios/view', 'id' => $model->id], ['class' => 'btn btn-success btn-danger']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

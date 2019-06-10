@@ -13,9 +13,8 @@ use yii\widgets\ListView;
 $this->title = 'Libros';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="libros-index">
-    <center>
-    <h1><?= Html::encode($this->title) ?>
+<div class="libros-index" >
+    <h1 ><?= Html::encode($this->title) ?>
         <?php
         if(!isset($ultimos)){
             echo Html::a('Ultimos lanzamientos',['libros/ultimos'], ['style' => 'float: right; font-size: 15px;']);
@@ -37,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php echo $this->render('_search', ['model' => $searchModel, 'sort' => $dataProvider->sort]);
     ?>
-    </center>
+
     <?php Pjax::begin(); ?>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,

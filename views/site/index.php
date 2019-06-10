@@ -23,13 +23,11 @@ footer{
     margin-top: -30px;
 }
 </style>
-<?php 
+<?php
 $this->title = 'Libraryii';
  ?>
 <br><br><br>
-<center>
-    <h1>¡Bienvenidos a Libraryii!</h1>
-</center>
+    <h1 style="text-align: center">¡Bienvenidos a Libraryii!</h1>
 <br><br><br>
 <div class="row">
     <div class="col-md-8" style="font-size:28px">
@@ -42,31 +40,27 @@ $this->title = 'Libraryii';
     comentar que te ha parecido un libro, hacer lybs, marcar como favorito
     libro e inclusive seguir a otros usuarios para ver sus interacciones.</p>
     </div>
-    <div class="col-md-3 col-md-offset-1 libros">
-        <center>
-            <h2 style="text-decoration: underline; ">Más valorado</h2><br>
-            <?php
-            $dataProvider = new ActiveDataProvider([
-                'query' => Libros::find()->where(['id' =>$libroMasVotado->id])
-            ]);
-            echo ListView::widget([
-              'dataProvider' => $dataProvider,
-              'summary' => '',
-              'itemView' => '_ultimoLanzamientoMedia',
-          ]); ?>
-        </center>
-        <br>
-        <center>
-            <h2 style="text-decoration: underline; ">Último lanzamiento</h2><br>
-            <?php
-            $dataProvider = new ActiveDataProvider([
-                'query' => Libros::find()->where(['id' =>$ultimoLanzamiento->id])
-            ]);
-            echo ListView::widget([
-              'dataProvider' => $dataProvider,
-              'summary' => '',
-              'itemView' => '_ultimoLanzamientoMedia',
-            ]); ?>
-        </center>
+    <div class="col-md-3 col-md-offset-1 libros" style="text-align: center">
+        <h2 style="text-decoration: underline; ">Más valorado</h2><br>
+        <?php
+        $dataProvider = new ActiveDataProvider([
+            'query' => Libros::find()->where(['id' =>$libroMasVotado->id])
+        ]);
+        echo ListView::widget([
+          'dataProvider' => $dataProvider,
+          'summary' => '',
+          'itemView' => '_ultimoLanzamientoMedia',
+      ]); ?>
+    <br>
+        <h2 style="text-decoration: underline; ">Último lanzamiento</h2><br>
+        <?php
+        $dataProvider = new ActiveDataProvider([
+            'query' => Libros::find()->where(['id' =>$ultimoLanzamiento->id])
+        ]);
+        echo ListView::widget([
+          'dataProvider' => $dataProvider,
+          'summary' => '',
+          'itemView' => '_ultimoLanzamientoMedia',
+        ]); ?>
     </div>
 </div>

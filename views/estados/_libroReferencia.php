@@ -31,26 +31,22 @@ img.librosUsuarios {
     margin-top: 40px !important;
 }
 </style>
-<div class="row libro">
+<div class="row libro" style="text-align: center">
     <!-- Fila de cada libro -->
     <!-- Imagen AQUI -->
-    <center>
-        <p style="margin-top: -35px">
-        <?php
-        if (empty($model->imagen)) {
-            echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'librosUsuarios']);
-        } else {
-            echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'librosUsuarios']);
-        }
-        ?>
-        </p>
-    </center>
+    <p style="margin-top: -35px">
+    <?php
+    if (empty($model->imagen)) {
+        echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'librosUsuarios']);
+    } else {
+        echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'librosUsuarios']);
+    }
+    ?>
+    </p>
 </div>
-<div class="row" style="margin-top: -30px">
+<div class="row" style="margin-top: -30px; text-align:center" >
     <!-- Fila para cada titulo del libro-->
-    <center>
-        <h5>
-            <?= Html::a($model->titulo, ['libros/view', 'id' => $model->id], ['class' => 'tituloLibro']) ?>
-        </h5>
-    </center>
+    <h5>
+        <?= Html::a($model->titulo, ['libros/view', 'id' => $model->id], ['class' => 'tituloLibro']) ?>
+    </h5>
 </div>

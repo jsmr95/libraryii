@@ -77,24 +77,21 @@ EOT;
 $this->registerJs($followJs);
 ?>
 <!-- Nombre y corazón para saber si lo sigo-->
-<div class="col-md-3">
-    <center>
-        <h1>
-            <?= Html::encode($this->title)?>
-    <?php if (!Yii::$app->user->isGuest) { ?>
+<div class="col-md-3" style="text-align: center">
+    <h1>
+        <?= Html::encode($this->title)?>
+        <?php if (!Yii::$app->user->isGuest) { ?>
             <button class="follow" title="Marcar como favorito, esto asignará todos sus libros como favoritos">
                 <span id="corazon" class='glyphicon glyphicon-heart<?=$corazon?>' aria-hidden='true'></span>
             </button>
-    <?php } ?>
+        <?php } ?>
     </h1>
-    </center>
     <!-- Muestro estas opciones solo para el admin -->
     <?php
         if (!Yii::$app->user->isGuest){
         if (Yii::$app->user->identity->login === 'admin'){
     ?>
-    <center>
-    <p>
+    <p style="text-align: center">
         <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -104,28 +101,27 @@ $this->registerJs($followJs);
             ],
         ]) ?>
     </p>
-    </center>
     <?php } } ?>
     <!-- colocamos la imagen-->
     <br>
-    <center>
-    <?php
-    if (empty($model->imagen)) {
-        echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'autores']);
-    } else {
-        echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'autores']);
-    }
-    ?>
-    <br>
-    <div class="row">
+    <div style="text-align: center">
+        <?php
+        if (empty($model->imagen)) {
+            echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'autores']);
+        } else {
+            echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'autores']);
+        }
+        ?>
         <br>
-        <p style="margin-top: 15px; font-size:12px; padding:10px" class="label label-primary">Seguidores:
-            <span id="seguidores">
-            <?= Yii::$app->runAction('autores/consultaseguidores', ['autor_id' => $model->id]) ?>
-            </span>
-        </p>
+        <div class="row">
+            <br>
+            <p style="margin-top: 15px; font-size:12px; padding:10px" class="label label-primary">Seguidores:
+                <span id="seguidores">
+                <?= Yii::$app->runAction('autores/consultaseguidores', ['autor_id' => $model->id]) ?>
+                </span>
+            </p>
+        </div>
     </div>
-    </center>
     <br>
     <br>
 </div>
@@ -134,10 +130,8 @@ $this->registerJs($followJs);
         <!-- Fila donde ponemos la información principal-->
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
-              <div class="panel-heading">
-                <center>
+              <div class="panel-heading" style="text-align: center">
                   Información Principal
-                </center>
               </div>
               <div class="panel-body">
                   <p>Nombre: <?= $model->nombre ?></p>
@@ -150,10 +144,8 @@ $this->registerJs($followJs);
         <!-- Fila donde colocamos los libros escritos por el autor-->
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
-              <div class="panel-heading">
-                <center>
+              <div class="panel-heading" style="text-align: center">
                   Libros de <?= $model->nombre ?>
-                </center>
               </div>
               <div class="panel-body">
                     <?php

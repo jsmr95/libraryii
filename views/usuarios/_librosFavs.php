@@ -33,23 +33,19 @@ img.librosUsuarios {
 }
 </style>
 <!-- Fila de cada libro -->
-<div class=" col-md-2 col-xs-6 ">
+<div class=" col-md-2 col-xs-6 " style="text-align: center">
     <!-- Columna de 10 y separado 1 para cada libro-->
     <!-- Imagen AQUI -->
-    <center>
-        <p>
-        <?php
-        if (empty($model->imagen)) {
-            echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'librosUsuarios']);
-        } else {
-            echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'librosUsuarios']);
-        }
-        ?>
-        </p>
-    </center>
-    <center>
-        <h5>
-            <?= Html::a($model->titulo, ['libros/view', 'id' => $model->id], ['class' => 'tituloLibro']) ?>
-        </h5>
-    </center>
+    <p>
+    <?php
+    if (empty($model->imagen)) {
+        echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'librosUsuarios']);
+    } else {
+        echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'librosUsuarios']);
+    }
+    ?>
+    </p>
+    <h5>
+        <?= Html::a($model->titulo, ['libros/view', 'id' => $model->id], ['class' => 'tituloLibro']) ?>
+    </h5>
 </div>

@@ -113,19 +113,17 @@ if ($usua) {
     ?>
 <div class="row ">
     <div class="cuerpo_estado col-md-12 ">
-        <div class=" col-md-2">
+        <div class=" col-md-2" style="text-align: center">
             <!-- Imagen AQUI -->
-            <center>
-                <p>
-                    <?php
-                    if (empty($usua->url_avatar)) {
-                        echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'usuarios']);
-                    } else {
-                        echo Html::img(Yii::getAlias('@uploads').'/'.$usua->url_avatar, ['class' => 'usuarios']);
-                    }
-                    ?>
-                </p>
-            </center>
+            <p>
+                <?php
+                if (empty($usua->url_avatar)) {
+                    echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'usuarios']);
+                } else {
+                    echo Html::img(Yii::getAlias('@uploads').'/'.$usua->url_avatar, ['class' => 'usuarios']);
+                }
+                ?>
+            </p>
         </div>
         <div class=" col-md-7 ">
         <span>
@@ -171,18 +169,16 @@ if ($usua) {
             </p>
         </div>
         <?php if ($model->libro_id != '' || $model->libro_id != null) { ?>
-        <div class="col-md-2 col-md-offset-1 ">
-            <center>
-                <?php
-                $dataProvider = new ActiveDataProvider([
-                    'query' => Libros::find()->where(['id' =>$model->libro_id])
-                ]);
-                echo ListView::widget([
-                  'dataProvider' => $dataProvider,
-                  'summary' => '',
-                  'itemView' => '_libroReferencia',
-              ]); ?>
-            </center>
+        <div class="col-md-2 col-md-offset-1 " style="text-align: center">
+            <?php
+            $dataProvider = new ActiveDataProvider([
+                'query' => Libros::find()->where(['id' =>$model->libro_id])
+            ]);
+            echo ListView::widget([
+              'dataProvider' => $dataProvider,
+              'summary' => '',
+              'itemView' => '_libroReferencia',
+          ]); ?>
         </div>
     <?php } ?>
     </div>

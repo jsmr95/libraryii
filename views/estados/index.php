@@ -77,12 +77,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-        <div class="row">
-            <center>
-                <div class="form-group">
-                    <?= Html::submitButton('Postear', ['class' => 'btn btn-success']) ?>
-                </div>
-            </center>
+        <div class="row" style="text-align: center">
+            <div class="form-group">
+                <?= Html::submitButton('Postear', ['class' => 'btn btn-success']) ?>
+            </div>
         </div>
     </div>
     <?php ActiveForm::end();

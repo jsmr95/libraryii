@@ -135,40 +135,37 @@ $this->registerJs($followJs);
 <div class="libros-view col-md-3">
     <!-- Titulo del libro y botón para seguirlo-->
     <div class="row">
-        <div class="col-md-12 " >
-            <center>
-                <h1><?= Html::encode($this->title) ?>
-                <?php
-                $corazon = '';
-                if (!Yii::$app->user->isGuest) {
-                    $usuario = Usuarios::findOne(Yii::$app->user->id);
-                    $corazon = $usuario->consultaLibroSeguido($usuario->id, $model->id);
-                    $disabled = false;
-                    if ($corazon == 'autor') {
-                        $corazon = '';
-                        $disabled = true;
-                    }
-                    ?>
-                    <button class="follow"
-                    <?php if($disabled){ echo "disabled title='No puedes desmarcarlo, te gusta el autor'";}
-                    else {
-                        echo "title='Marcar como favorito'";
-                    }  ?>>
-                        <span id="estrella" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
-                    </button>
-                <?php } ?>
-                </h1>
-            </center>
+        <div class="col-md-12 " style="text-align: center">
+            <h1><?= Html::encode($this->title) ?>
+            <?php
+            $corazon = '';
+            if (!Yii::$app->user->isGuest) {
+                $usuario = Usuarios::findOne(Yii::$app->user->id);
+                $corazon = $usuario->consultaLibroSeguido($usuario->id, $model->id);
+                $disabled = false;
+                if ($corazon == 'autor') {
+                    $corazon = '';
+                    $disabled = true;
+                }
+                ?>
+                <button class="follow"
+                <?php if($disabled){ echo "disabled title='No puedes desmarcarlo, te gusta el autor'";}
+                else {
+                    echo "title='Marcar como favorito'";
+                }  ?>>
+                    <span id="estrella" class='glyphicon glyphicon-star<?=$corazon?>' aria-hidden='true'></span>
+                </button>
+            <?php } ?>
+            </h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 " >
+        <div class="col-md-12 " style="text-align: center" >
             <!-- Muestro estas opciones solo para el admin -->
             <?php
                 if (!Yii::$app->user->isGuest){
                 if (Yii::$app->user->identity->login === 'admin'){
             ?>
-            <center>
             <p>
                 <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
                 <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
@@ -179,23 +176,20 @@ $this->registerJs($followJs);
                     ],
                 ]) ?>
             </p>
-            </center>
             <?php } } ?>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9" >
+        <div class="col-md-9" style="text-align: center">
             <!-- Fila del libro donde incluye la imagen-->
-            <center>
-                <br>
-                <?php
-                if (empty($model->imagen)) {
-                    echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'libros']);
-                } else {
-                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'libros']);
-                }
-                ?>
-            </center>
+            <br>
+            <?php
+            if (empty($model->imagen)) {
+                echo Html::img(Yii::getAlias('@uploads').'/libroDefecto.png', ['class' => 'libros']);
+            } else {
+                echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'libros']);
+            }
+            ?>
         </div>
         <div class="col-md-3 " style="margin-top: 40px">
             <?php
@@ -213,7 +207,7 @@ $this->registerJs($followJs);
     </div>
     <?php if (!Yii::$app->user->isGuest) { ?>
     <div class="row">
-        <div class="col-md-12 " >
+        <div class="col-md-12 " style="text-align: center">
             <br><br>
                 <?php
                 $votante = Votos::find()->where(['usuario_id' => $usuarioId,
@@ -224,27 +218,23 @@ $this->registerJs($followJs);
                     $voto = 0;
                 }
             ?>
-            <center>
-                <label class="control-label">Valora el libro:</label>
-                <?= StarRating::widget(
-                    ['name' => 'rating',
-                        'value' => $voto,
-                        'pluginOptions' => [
-                            'step' => 1 ]
-                    ]);
-                ?>
-            </center>
+            <label class="control-label">Valora el libro:</label>
+            <?= StarRating::widget(
+                ['name' => 'rating',
+                    'value' => $voto,
+                    'pluginOptions' => [
+                        'step' => 1 ]
+                ]);
+            ?>
         </div>
     </div>
-        <div class="row">
-            <center>
-                <?php $media = Yii::$app->runAction('libros/calculamediavotos',['libro_id' => $id])?>
-                <p class="label label-info">Media:
-                    <h4 id="media">
-                        <?= $media ?>
-                    </h4>
-                </p>
-            </center>
+        <div class="row" style="text-align: center">
+            <?php $media = Yii::$app->runAction('libros/calculamediavotos',['libro_id' => $id])?>
+            <p class="label label-info">Media:
+                <h4 id="media">
+                    <?= $media ?>
+                </h4>
+            </p>
         </div>
         <br>
         <br>
@@ -257,10 +247,8 @@ $this->registerJs($followJs);
         <div class="col-md-8 col-md-offset-2">
             <!-- Columna de 8 y separada 2 para la información principal-->
             <div class="panel panel-primary">
-              <div class="panel-heading">
-                <center>
+              <div class="panel-heading" style="text-align: center">
                   Información Principal
-                </center>
               </div>
               <div class="panel-body">
                   <p>Titulo: <?= $model->titulo ?></p>

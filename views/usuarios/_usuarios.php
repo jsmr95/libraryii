@@ -41,63 +41,60 @@ img.usuarios {
 }
 </style>
 
-<div class="col-lg-3 usuario-cuerpo " itemscope itemtype="http://schema.org/Person">
+<div class="col-lg-3 usuario-cuerpo " itemscope itemtype="http://schema.org/Person" style="text-align: center">
     <!-- Columna completa de cada libro-->
     <!-- Columna de 3 para la imagen del libro-->
-    <center>
-        <p itemprop="image">
-            <?php
-            if (empty($model->url_avatar)) {
-                echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'usuarios']);
+    <p itemprop="image">
+        <?php
+        if (empty($model->url_avatar)) {
+            echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'usuarios']);
+        } else {
+            echo Html::img(Yii::getAlias('@uploads').'/'.$model->url_avatar, ['class' => 'usuarios']);
+        }
+        ?>
+    </p>
+    <h3 itemprop="alternateName">
+        <?= Html::a($model->login, [
+        'usuarios/view',
+        'id' => $model->id
+        ])
+        ?>
+        <?php
+            if (!Yii::$app->user->isGuest && Yii::$app->user->identity->login === 'admin'){
+
+                echo Html::a( "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
+                [ 'usuarios/delete', 'id' => $model->id ],
+                [ 'data' =>
+                    [
+                        'method' => 'POST',
+                        'confirm' => "¿Seguro que quieres eliminar al usuario $model->login?"
+                    ]
+                ]);
+                ?>
+    <small>
+        <?php
+            if ($model->banned_at == null) {
+                echo Html::a(
+                    'Banear',
+                    ['usuarios/banear', 'id' => $model->id],
+                    [
+                        'data-method' => 'POST',
+                        'data-confirm' => '¿Seguro que desea banear a ese usuario?'
+                    ]
+                );
             } else {
-                echo Html::img(Yii::getAlias('@uploads').'/'.$model->url_avatar, ['class' => 'usuarios']);
+                echo Html::a(
+                    'Desbanear',
+                    ['usuarios/desbanear', 'id' => $model->id],
+                    [
+                        'data-method' => 'POST',
+                        'data-confirm' => '¿Seguro que desea desbanear a ese usuario?'
+                    ]
+                );
             }
-            ?>
-        </p>
-        <h3 itemprop="alternateName">
-            <?= Html::a($model->login, [
-            'usuarios/view',
-            'id' => $model->id
-            ])
-            ?>
-            <?php
-                if (!Yii::$app->user->isGuest && Yii::$app->user->identity->login === 'admin'){
-
-                    echo Html::a( "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
-                    [ 'usuarios/delete', 'id' => $model->id ],
-                    [ 'data' =>
-                        [
-                            'method' => 'POST',
-                            'confirm' => "¿Seguro que quieres eliminar al usuario $model->login?"
-                        ]
-                    ]);
-                    ?>
-        <small>
-            <?php
-                if ($model->banned_at == null) {
-                    echo Html::a(
-                        'Banear',
-                        ['usuarios/banear', 'id' => $model->id],
-                        [
-                            'data-method' => 'POST',
-                            'data-confirm' => '¿Seguro que desea banear a ese usuario?'
-                        ]
-                    );
-                } else {
-                    echo Html::a(
-                        'Desbanear',
-                        ['usuarios/desbanear', 'id' => $model->id],
-                        [
-                            'data-method' => 'POST',
-                            'data-confirm' => '¿Seguro que desea desbanear a ese usuario?'
-                        ]
-                    );
-                }
-                }
-            ?>
-        </small>
+            }
+        ?>
+    </small>
     </h3>
-    </center>
-
 
 </div>

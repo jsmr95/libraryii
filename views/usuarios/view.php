@@ -189,10 +189,9 @@ $this->registerJs($followJs);
 </div>
 <div class="col-md-3">
     <div class="row">
-        <div class="col-md-8 col-md-offset-4" >
+        <div class="col-md-8 col-md-offset-4" style="text-align: center">
 
         <!-- Nombre y corazón para saber si lo sigo-->
-        <center>
             <h1>
                 <?= Html::encode($this->title)?>
                 <?php
@@ -232,53 +231,48 @@ $this->registerJs($followJs);
             echo Html::img(Yii::getAlias('@uploads').'/'.$model->url_avatar, ['class' => 'usuarios']);
         }
         ?>
-    </center>
         <!-- Obtengo el estado personal del usuario -->
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12  ">
+        <div class="col-md-12  " style="text-align: center">
 
         <?php
         if (!Yii::$app->user->isGuest){
             ?>
-        <center>
             <p style="font-style: italic; margin-top: 25px" title="Estado personal">
-                <?php
-                $estado = EstadoPersonal::find()
-                    ->where(['usuario_id' => $id])->one();
-                if ($estado) {
-                    if ($usuarioId === $id) { ?>
+            <?php
+            $estado = EstadoPersonal::find()
+                ->where(['usuario_id' => $id])->one();
+            if ($estado) {
+                if ($usuarioId === $id) { ?>
 
-                    <?= Html::textInput('contenido',$estado->contenido,
-                    [
-                        'id' => 'inputEstadoPersonal',
-                    ]);  ?>
-                <?php } else { ?>
-                    '<?= Html::encode($estado->contenido) ?>'
-                <?php } ?>
-            <?php } else if ($usuarioId === $id) { ?>
-                <?= Html::textInput('contenido','Estado Personal',
+                <?= Html::textInput('contenido',$estado->contenido,
                 [
                     'id' => 'inputEstadoPersonal',
                 ]);  ?>
             <?php } else { ?>
-                'Estado Personal'
+                '<?= Html::encode($estado->contenido) ?>'
             <?php } ?>
-            </p>
-        </center>
+            <?php } else if ($usuarioId === $id) { ?>
+            <?= Html::textInput('contenido','Estado Personal',
+            [
+                'id' => 'inputEstadoPersonal',
+            ]);  ?>
+        <?php } else { ?>
+            'Estado Personal'
+        <?php } ?>
+        </p>
         <?php } ?>
         <br>
-        <center>
-            <span class="label label-primary">Seguidores:
-                <span id="seguidores" >
-                <?= Yii::$app->runAction('usuarios/consultaseguidores', ['usuario_id' => $model->id]) ?>
-                </span>
+        <span class="label label-primary">Seguidores:
+            <span id="seguidores" >
+            <?= Yii::$app->runAction('usuarios/consultaseguidores', ['usuario_id' => $model->id]) ?>
             </span>
-            <br>
-            <span class="label label-success">
-            Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></span>
-        </center>
+        </span>
+        <br>
+        <span class="label label-success">
+        Siguiendo: <?= $model->consultaSiguiendo($model->id) ?></span>
         <br>
 
         </div>

@@ -54,19 +54,17 @@ img.autores {
     <!-- Fila por cada autor -->
     <div class="autor-cuerpo col-md-12 " itemscope itemtype="http://schema.org/Person">
         <!-- Caja de información-->
-        <div class="col-md-3 ">
+        <div class="col-md-3 " style="text-align: center">
             <!-- Imagen AQUI -->
-            <center>
-                <p itemprop="image">
-                <?php
-                if (empty($model->imagen)) {
-                    echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'autores']);
-                } else {
-                    echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'autores']);
-                }
-                ?>
-                </p>
-            </center>
+            <p itemprop="image">
+            <?php
+            if (empty($model->imagen)) {
+                echo Html::img(Yii::getAlias('@uploads').'/userAutorDefecto.jpeg', ['class' => 'autores']);
+            } else {
+                echo Html::img(Yii::getAlias('@uploads').'/'.$model->imagen, ['class' => 'autores']);
+            }
+            ?>
+            </p>
         </div>
         <div class=" col-md-7 " itemprop="name">
             <!-- Información del autor -->
