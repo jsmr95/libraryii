@@ -34,11 +34,11 @@ footer{
     <div class="col-md-8" style="font-size:28px">
         <p>Libraryii es una red social orientada a todos los amantes de los
             libros. En esta web podrás tener organizado el seguimiento de tus
-            libros. Clasificarlos en 'leidos', 'leyendo', 'por leer', marcar libros
+            libros, clasificarlos en 'leidos', 'leyendo', 'por leer', marcar libros
             como favoritos.</p><br>
-        <p>Si eres un amante de los libros y te gusta sumergite en un sin fin de
+        <p>Si eres un amante de los libros y te gusta sumergirte en un sin fin de
     historias, estás en el lugar idóneo. Aquí podrás interactuar con otros usuarios,
-    comentar que te ha parecido un libro, hacer lybs, marcar como me favorito
+    comentar que te ha parecido un libro, hacer lybs, marcar como favorito
     libro e inclusive seguir a otros usuarios para ver sus interacciones.</p>
     </div>
     <div class="col-md-3 col-md-offset-1 libros">
