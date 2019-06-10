@@ -23,13 +23,11 @@ $this->title = 'Libraryii';
 <div class="row">
     <div class="col-md-8" style="font-size:28px">
         <p>Libraryii es una red social orientada a todos los amantes de los
-            libros. En esta web podrás tener organizado el seguimiento de tus
-            libros, clasificarlos en 'leidos', 'leyendo', 'por leer', marcar libros
-            como favoritos.</p><br>
-        <p>Si eres un amante de los libros y te gusta sumergirte en un sin fin de
-    historias, estás en el lugar idóneo. Aquí podrás interactuar con otros usuarios,
-    comentar que te ha parecido un libro, hacer lybs, marcar como favorito
-    libro e inclusive seguir a otros usuarios para ver sus interacciones.</p>
+            libros. Si te consideras uno de ellos y ademas te gusta sumergirte en un sin
+            fin de historias, estas en el lugar idóneo.</p><br>
+        <p>Aquí podrás organizar el seguimiento de tus libros, marcandolos en favoritos,
+        leidos, por leer o leyendo, además de poder interactuar con los demás usuarios,
+    viendo las interacciones que realiza.</p>
     </div>
     <div class="col-md-3 col-md-offset-1 libros" style="text-align: center; margin-top: -30px">
         <p style="text-decoration: underline;font-size: 24pt; ">Más valorado</p><br>
