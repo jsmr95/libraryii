@@ -76,7 +76,7 @@ EOT;
 $this->registerJs($followJs);
 ?>
 <!-- Nombre y corazón para saber si lo sigo-->
-<div class="col-md-3 col-lg-3 col-xs-3">
+<div class="col-md-3">
     <center>
         <h1>
             <?= Html::encode($this->title)?>
@@ -128,7 +128,7 @@ $this->registerJs($followJs);
     <br>
     <br>
 </div>
-<div class="col-md-9 col-xs-9 col-lg-9">
+<div class="col-md-9 ">
     <div class="row">
         <!-- Fila donde ponemos la información principal-->
         <div class="col-md-8 col-md-offset-2">
