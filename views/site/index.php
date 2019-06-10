@@ -32,7 +32,7 @@ $this->title = 'Libraryii';
     libro e inclusive seguir a otros usuarios para ver sus interacciones.</p>
     </div>
     <div class="col-md-3 col-md-offset-1 libros" style="text-align: center; margin-top: -30px">
-        <h1 style="text-decoration: underline; ">Más valorado</h1><br>
+        <p style="text-decoration: underline;font-size: 24pt; ">Más valorado</p><br>
         <?php
         $dataProvider = new ActiveDataProvider([
             'query' => Libros::find()->where(['id' =>$libroMasVotado->id])
@@ -43,7 +43,7 @@ $this->title = 'Libraryii';
           'itemView' => '_ultimoLanzamientoMedia',
       ]); ?>
     <br>
-        <h1 style="text-decoration: underline; ">Último lanzamiento</h1><br>
+        <p style="text-decoration: underline;font-size: 24pt; ">Último lanzamiento</p><br>
         <?php
         $dataProvider = new ActiveDataProvider([
             'query' => Libros::find()->where(['id' =>$ultimoLanzamiento->id])
