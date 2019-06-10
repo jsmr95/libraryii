@@ -15,13 +15,9 @@ use yii\widgets\DetailView;
 
 use yii\widgets\Pjax;
 
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
-
-$this->title = $model->nombre . ' ' . $model->apellido;
-$this->params['breadcrumbs'][] = ['label' => 'Social', 'url' => ['estados/index']];
-$this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
 ?>
 <style>
 #items{
@@ -77,6 +73,12 @@ button.follow {
 }
 
 </style>
+<?php
+$this->title = $model->nombre . ' ' . $model->apellido;
+$this->params['breadcrumbs'][] = ['label' => 'Social', 'url' => ['estados/index']];
+$this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
+?>
     <!--Contenedor para el libro -->
     <?php
     //Variables que voy a usar

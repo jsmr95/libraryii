@@ -13,11 +13,6 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Autores */
-
-$this->title = $model->nombre;
-$this->params['breadcrumbs'][] = ['label' => 'Autores', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
 ?>
 <style>
 
@@ -35,8 +30,14 @@ span.glyphicon {
     background: none;
 }
 </style>
+
 <!--Contenedor para el libro -->
 <?php
+$this->title = $model->nombre;
+$this->params['breadcrumbs'][] = ['label' => 'Autores', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
+
 //Variables que voy a usar
 $id = $model->id;
 $fila = AutoresFavs::find()->where(['usuario_id' => $id])->one();

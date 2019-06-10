@@ -15,10 +15,6 @@ use kartik\rating\StarRating;
 /* @var $this yii\web\View */
 /* @var $model app\models\Libros */
 
-$this->title = $model->titulo;
-$this->params['breadcrumbs'][] = ['label' => 'Libros', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
 ?>
 <style>
 
@@ -47,6 +43,12 @@ span#estrella{
 
 </style>
 <?php
+$this->title = $model->titulo;
+$this->params['breadcrumbs'][] = ['label' => 'Libros', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
+
+
 $url1 = Url::to(['libros-favs/create']);
 $url2 = Url::to(['votos/create']);
 $url3 = Url::to(['libros/calculamediavotos']);

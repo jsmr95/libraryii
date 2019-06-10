@@ -10,7 +10,6 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 
 
-$this->title = 'Libraryii';
 ?>
 <style>
 body {
@@ -24,7 +23,9 @@ footer{
     margin-top: -30px;
 }
 </style>
-
+<?php 
+$this->title = 'Libraryii';
+ ?>
 <br><br><br>
 <center>
     <h1>¡Bienvenidos a Libraryii!</h1>
