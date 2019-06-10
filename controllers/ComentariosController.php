@@ -117,15 +117,16 @@ class ComentariosController extends Controller
     /**
      * Deletes an existing Comentarios model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id
+     * @param int $id id del comentario a eliminar
+     * @param int $libro_id id del libro al que retornará la vista
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $libro_id)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['libros/view', 'id' => $libro_id]);
     }
 
     /**

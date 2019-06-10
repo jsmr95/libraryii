@@ -21,6 +21,14 @@ use yii\helpers\Html;
 .comentario-texto {
     padding-left: 10px;
 }
+.glyphicon-trash {
+    color:red;
+    font-size: 20px !important;
+}
+.glyphicon-trash:hover {
+    color:blue;
+    font-size: 18px !important;
+}
 </style>
 <div class="row comentario">
     <div class="comentario-cuerpo col-md-11">
@@ -38,6 +46,19 @@ use yii\helpers\Html;
                     ->formatter
                     ->asRelativeTime($model->created_at) ?>
                 </small>
+                <?php
+                    if (!Yii::$app->user->isGuest && Yii::$app->user->identity->login === 'admin'){
+
+                echo Html::a( "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
+                [ 'comentarios/delete', 'id' => $model->id, 'libro_id' => $model->libro_id ],
+                [ 'data' =>
+                    [
+                        'method' => 'POST',
+                        'confirm' => "¿Seguro que quieres eliminar este comentario?"
+                    ]
+                ]);
+                    }
+                ?>
             </h4>
         </div>
         <div class="comentario-texto">
