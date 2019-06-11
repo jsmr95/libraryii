@@ -443,9 +443,14 @@ INSERT INTO comentarios (texto, usuario_id, libro_id, comentario_id)
 VALUES  ('Me ha encantado',1,1,null)
         ,  ('No me ha gustado mucho',1, 2, null)
         ,  ('Sin palabras',2, 3, null)
-        ,  ('Sin palabras1',2, 3, 3)
-        ,  ('Sin palabras2',2, 3, 3)
-        ,  ('Me ha encantado1',2, 3, 1)
+        ,  ('Sin palabras, pero además de verdad',2, 3, 3)
+        ,  ('Desde luego que si compañero!',2, 3, 3)
+        ,  ('Me ha encantado demasié!',2, 3, 1)
+        ,  ('Me lo termińe ayer y me lo espero leer de nuevo.',5, 9, null)
+        ,  ('Lo recomiendo para todo el que esté buscando un buen libro',14, 13, null)
+        ,  ('Me ha enamorado este libro',12, 11, null)
+        ,  ('Tampoco ha sido para tanto',5, 8, null)
+        ,  ('Tampoco ha sido para ponerse asi',5, 8, null)
         ,  ('Nada mas que añadir',3, 4, null);
 
 -- Libros_favs --
@@ -467,6 +472,12 @@ INSERT INTO users_favs (usuario_id, usuario_fav)
 VALUES  (1,2)
         ,  (1, 3)
         ,  (2, 3)
+        ,  (2, 4)
+        ,  (1, 6)
+        ,  (1, 7)
+        ,  (1, 14)
+        ,  (2, 11)
+        ,  (2, 10)
         ,  (3, 1);
 
 -- Estados --
@@ -474,7 +485,18 @@ INSERT INTO estados (usuario_id, estado, libro_id)
 VALUES  (1, 'Qué pasada de libro, lo recomiendo al 100%!! "El principito".', 1)
         ,  (1, 'Volvería a leerme todos y cada uno de los libros de Carlos Ruiz Zafón.', null)
         ,  (2, 'Esperaba algo más de "Juego de Tronos".', 5)
-        ,  (3, 'Sin duda una de mis mejores compras con este libro!', 6);
+        ,  (2, 'Esperaba algo más de este señor, me tenía muy bien acostumbrado.', 10)
+        ,  (2, 'Lo volveré a leer sin ningún tipo de dudas', 15)
+        ,  (3, 'Fabuloso, magnifico, increible...".', 11)
+        ,  (3, 'No sé que libro empezar a leer...".', null)
+        ,  (5, 'La verdad que es una de las mejores elecciones.', 12)
+        ,  (5, 'No me ha gustado mucho el final, pero la lectura ha sido preciosa!.', 13)
+        ,  (6, 'Mucha distracción con este libro".', 7)
+        ,  (7, 'No me gustado este libro, no lo aconsejo.', 4)
+        ,  (8, 'Aconsejo este libro al 1000%.', 14)
+        ,  (10, 'No estoy teniendo tiempo ninguno para leer, con lo que me gustaria!!', null)
+        ,  (12, 'Ahora despues de trabajar, un ratito leyendo! VAMOS!!', null)
+        ,  (15, 'Mañana empiezo a leerlo!!!', 4);
 
 -- Estados_favs --
 INSERT INTO estados_favs (usuario_id, estado_id)
@@ -493,7 +515,17 @@ VALUES  (1, 4)
 -- estado_personal --
 INSERT INTO estado_personal (usuario_id, contenido)
 VALUES  (1, 'La lectura es mi distracción.'),
-        (2, 'Me encanta leer!');
+(2, 'Me encanta leer!'),
+(3, 'Mi pasion!'),
+(4, 'Seguidme y sigo!!'),
+(5, 'Coleccionista!'),
+(7, 'Lector de vocación!'),
+(8, 'Me gusta esto!'),
+(9, 'Mis libros son los mejores!'),
+(11, 'Saco tiempo de donde sea!'),
+(12, 'Poeta y escritor.'),
+(14, 'Para y lee'),
+        (15, 'Leer es saber');
 
 -- libros_estados --
 INSERT INTO libros_estados (estado)
