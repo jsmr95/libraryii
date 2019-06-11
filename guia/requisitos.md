@@ -508,7 +508,7 @@
 | **R57**     | **Buscar por género**         |
 | --------------: | :------------------- |
 | **Descripción** | La aplicación permitirá a un usuario buscar ejemplares por el género             |
-| **Prioridad**   | Mínimo           |
+| **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
@@ -517,7 +517,7 @@
 | **R58**     | **Cambiar a autores**         |
 | --------------: | :------------------- |
 | **Descripción** | La aplicación tendrá en un menú superior, una pestaña ‘Autores’ donde podremos consultar los autores             |
-| **Prioridad**   | Mínimo           |
+| **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
@@ -643,7 +643,7 @@
 | **R72**     | **Ver libros de otro usuario**         |
 | --------------: | :------------------- |
 | **Descripción** | La aplicación permitirá a un usuario ver los libros que tiene otro usuario en favoritos             |
-| **Prioridad**   | Mínimo           |
+| **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
@@ -688,7 +688,7 @@
 | **R77**     | **Página oficial**         |
 | --------------: | :------------------- |
 | **Descripción** | En la vista de un autor particular, aparecerá un enlace a la página oficial del autor (si la tuviese)             |
-| **Prioridad**   | Mínimo           |
+| **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v2             |
@@ -697,15 +697,15 @@
 | **R78**     | **Puntuación media**         |
 | --------------: | :------------------- |
 | **Descripción** | Cada libro tendrá su puntuación media, dada por todos los usuarios que lo hayan valorado             |
-| **Prioridad**   | Mínimo           |
+| **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
-| **Entrega**     | v1             |
+| **Entrega**     | v2             |
 | **Incidencia**  | [78](https://github.com/jsmr95/libraryii/issues/78) |
 
-| **R79**     | **Votados del mes**         |
+| **R79**     | **Mejor votado**         |
 | --------------: | :------------------- |
-| **Descripción** | La aplicación mostrará en su pagina inicial un pequeño top 3 de los más votados ese mes             |
+| **Descripción** | La aplicación mostrará en su pagina el mejor valorado de todos             |
 | **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
@@ -895,10 +895,10 @@
 | **R100**     | **Compartir**         |
 | --------------: | :------------------- |
 | **Descripción** | Un usuario podrá compartir un libro, autor o un determinado post             |
-| **Prioridad**   | Mínimo           |
+| **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v3             |
 | **Incidencia**  | [100](https://github.com/jsmr95/libraryii/issues/100) |
 
 | **R101**     | **Me gusta post**         |
