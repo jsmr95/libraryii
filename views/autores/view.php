@@ -115,8 +115,8 @@ $this->registerJs($followJs);
                   Información Principal
               </div>
               <div class="panel-body">
-                  <p>Nombre: <?= $model->nombre ?></p>
-                  <p>Descripción: <?= $model->descripcion ?></p>
+                  <p><strong>Nombre:</strong> <?= $model->nombre ?></p>
+                  <p><strong>Descripción:</strong> <?= $model->descripcion ?></p>
               </div>
             </div>
         </div>
