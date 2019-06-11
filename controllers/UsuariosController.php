@@ -231,7 +231,6 @@ class UsuariosController extends Controller
 
     /**
      * Funcion para modificar la contraseña.
-     * @return [type] [description]
      */
     public function actionModificarcontra()
     {

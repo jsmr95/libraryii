@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Generos;
 use app\models\GenerosSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * GenerosController implements the CRUD actions for Generos model.
@@ -46,7 +46,7 @@ class GenerosController extends Controller
 
     /**
      * Displays a single Generos model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -78,7 +78,7 @@ class GenerosController extends Controller
     /**
      * Updates an existing Generos model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -98,7 +98,7 @@ class GenerosController extends Controller
     /**
      * Deletes an existing Generos model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -112,7 +112,7 @@ class GenerosController extends Controller
     /**
      * Finds the Generos model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Generos the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
