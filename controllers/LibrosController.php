@@ -16,6 +16,8 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
+require '../web/uploads3.php';
+
 /**
  * LibrosController implements the CRUD actions for Libros model.
  */
@@ -97,8 +99,15 @@ class LibrosController extends Controller
     {
         $model = new Libros();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if (!empty($_FILES)) {
+                $model->imagen = $_FILES['Libros']['name']['imagen'];
+            }
+            $model->save();
+            if (!empty($_FILES['Libros']['name']['imagen'])) {
+                uploadImagenLibro($model);
+            }
+            return;
         }
 
 
@@ -120,8 +129,14 @@ class LibrosController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if (!empty($_FILES['Libros']['name']['imagen'])) {
+                uploadImagenLibro($model);
+                $model->imagen = $_FILES['Libros']['name']['imagen'];
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [

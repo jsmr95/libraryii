@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Libros */
@@ -10,7 +10,11 @@ use yii\widgets\ActiveForm;
 
 <div class="libros-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => ['enctype' => 'multipart/form-data'],
+        'id' => 'login-form-vertical',
+        'type' => ActiveForm::TYPE_VERTICAL
+    ]); ?>
 
     <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
 
@@ -26,7 +30,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'genero_id')->dropDownList($listaGeneros) ?>
 
-    <?= $form->field($model, 'imagen')->input('file') ?>
+    <?= $form->field($model, 'imagen')->fileInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($titulo, ['class' => 'btn btn-success']) ?>

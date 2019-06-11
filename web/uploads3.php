@@ -101,5 +101,83 @@ function uploadImagen($model)
     }
 }
 
+/**
+ * Función para subir una imagen a Amazon S3.
+ * @return void|S3Exception void si todo va bien, o una excepcion si falla algo.
+ * @param object $model Modelo para ver si ya tenia foto subida o no.
+ */
+function uploadImagenLibro($model)
+{
+    // AWS Info
+    $bucketName = 'imagesjsmr95';
+    $IAM_KEY = getenv('IAM_KEY');
+    $IAM_SECRET = getenv('IAM_SECRET');
+
+    //Comprueba si tiene foto antigua para eliminarla
+    if (!empty($model->getOldAttribute('imagen'))) {
+        $keyName = basename($model->getOldAttribute('imagen'));
+        var_dump($model->getOldAttributes());
+
+        $s3 = S3Client::factory(
+            [
+        'credentials' => [
+            'key' => $IAM_KEY,
+            'secret' => $IAM_SECRET,
+        ],
+        'version' => 'latest',
+        'region' => 'eu-west-2',
+    ]
+        );
+
+        //Delete
+        $s3->deleteObject([
+            'Bucket' => $bucketName,
+            'Key' => $keyName,
+        ]);
+    }
+
+
+    try {
+        // You may need to change the region. It will say in the URL when the bucket is open
+        // and on creation.
+        $s3 = S3Client::factory(
+            [
+        'credentials' => [
+            'key' => $IAM_KEY,
+            'secret' => $IAM_SECRET,
+        ],
+        'version' => 'latest',
+        'region' => 'eu-west-2',
+    ]
+);
+    } catch (Exception $e) {
+        // We use a die, so if this fails. It stops here. Typically this is a REST call so this would
+        // return a json object.
+        die('Error: ' . $e->getMessage());
+    }
+
+    // For this, I would generate a unqiue random string for the key name. But you can do whatever.
+
+    $keyName = basename($_FILES['Libros']['name']['imagen']);
+    $pathInS3 = 'https://s3.eu-west-2.amazonaws.com/' . $bucketName . '/' . $keyName;
+    // Add it to S3
+    try {
+        // Uploaded:
+        $file = $_FILES['Libros']['tmp_name']['imagen'];
+        $s3->putObject(
+            [
+        'Bucket' => $bucketName,
+        'Key' => $keyName,
+        'SourceFile' => $file,
+        'ACL' => 'public-read',
+        'StorageClass' => 'REDUCED_REDUNDANCY',
+    ]
+);
+    } catch (S3Exception $e) {
+        die('Error:' . $e->getMessage());
+    } catch (Exception $e) {
+        die('Error:' . $e->getMessage());
+    }
+}
 // Now that you have it working, I recommend adding some checks on the files.
 // Example: Max size, allowed file types, etc.
